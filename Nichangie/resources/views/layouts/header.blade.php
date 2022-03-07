@@ -40,8 +40,9 @@
             <div class="auto-container">
                 <div class="wrapper-box">
                     <div class="logo-column">
-                        <div class="logo-box">
-                            <div class="logo"><a href="index-2.html"><img src="assets/images/logo.png" alt="" title=""></a></div>
+                        <div class="logo-box d-flex">
+                            <div class="logo"><a href="index-2.html"><img src="assets/images/logo-10.jpeg" alt="" title=""></a></div>
+                            <h5 class="mt-3 ml-2"><strong>{{ __('NACHANGIA')}}</strong></h5>
                         </div>
                     </div>
                     <div class="right-column">
@@ -140,7 +141,7 @@
                                 </button>
                             </div>
                             <div class="link-btn">
-                                <a href="#" class="theme-btn btn-style-one"><span>Volunteer</span></a>
+                                <a href="{{ route('login') }}" class="theme-btn btn-style-one"><span>Login/Register</span></a>
                             </div>
                         </div>
                     </div>
@@ -154,8 +155,9 @@
             <div class="auto-container">
                 <div class="wrapper-box">
                     <div class="logo-column">
-                        <div class="logo-box">
-                            <div class="logo"><a href="index-2.html"><img src="assets/images/logo.png" alt="" title=""></a></div>
+                        <div class="logo-box d-flex">
+                            <div class="logo"><a href="index-2.html"><img src="assets/images/logo-10.jpeg" alt="logo" title=""></a></div>
+                            <h5 class="mt-4 ml-2"><strong>{{ __('NACHANGIA')}}</strong></h5>
                         </div>
                     </div>
                     <div class="menu-column">
@@ -182,7 +184,7 @@
         <!-- Mobile Menu  -->
         <div class="mobile-menu style-one">
             <div class="menu-box">
-                <div class="logo"><a href="index-2.html"><img src="assets/images/logo.png" alt=""></a></div>
+                <div class="logo"><a href="index-2.html"><img src="assets/images/logo-10.jpeg" alt=""></a><strong class="ml-1">{{ __('NACHANGIA')}}</strong></div>
                 <!-- Main Menu -->
                 <nav class="main-menu navbar-expand-xl navbar-dark">
                     <div class="navbar-header">

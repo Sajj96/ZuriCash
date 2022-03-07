@@ -28,12 +28,12 @@
 }
 
 :root {
-	--theme-color: #ed6221;
+	--theme-color: #E46322;
 	--theme-color-two: #ffbf00;
 	--theme-color-three: #d40032;
 	--theme-color-four: #02c06d;
 	--theme-color-five: #18bec2;
-	--dark-color: #302c51;
+	--dark-color: #04719C;
 	--dark-color-two: #302c51;
 	--rubik: 'Rubik', sans-serif;
 	--prata: 'Prata', serif;
@@ -55,7 +55,7 @@
 body {
 	font-size: 15px;
 	line-height: 28px;
-	color: #302c51;
+	color: #04719C;
 	font-weight: 400;
 	background: #ffffff;
 	-webkit-font-smoothing: antialiased;
@@ -5369,7 +5369,7 @@ img {
 
 .donor-section {
 	position: relative;
-	background-color: #2f2b4f;
+	background-color: #04719C;
 	background-position: right center;
 	background-size: cover;
 }
@@ -5382,7 +5382,7 @@ img {
 .donor-section .left-column:before {
 	position: absolute;
 	content: '';
-	background: #2f2b4f;
+	background: #04719C;
 	height: 100%;
 	width: 200%;
 	top: 0;
@@ -5405,10 +5405,10 @@ img {
 	/* ff3.6+ */
 	/* safari4+,chrome */
 	/* safari5.1+,chrome10+ */
-	background: -o-linear-gradient(45deg, rgba(33, 29, 71, 1) 0%, rgba(33, 29, 71, 1) 35%, rgba(33, 29, 71, 0.3) 81%, rgba(33, 29, 71, 0.3) 100%);
+	background: -o-linear-gradient(45deg, rgb(29, 58, 71) 0%, rgb(29, 58, 71) 35%, rgba(33, 29, 71, 0.3) 81%, rgba(29, 58, 71, 0.3) 100%);
 	/* opera 11.10+ */
 	/* ie10+ */
-	background: linear-gradient(45deg, rgba(33, 29, 71, 1) 0%, rgba(33, 29, 71, 1) 35%, rgba(33, 29, 71, 0.3) 81%, rgba(33, 29, 71, 0.3) 100%);
+	background: linear-gradient(45deg, rgb(29, 56, 71) 0%, rgb(29, 58, 71) 35%, rgba(29, 58, 71, 0.3) 81%, rgba(29, 61, 71, 0.3) 100%);
 	/* w3c */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#211d47', endColorstr='#211d47', GradientType=1);
 	/* ie6-9 */
@@ -5912,7 +5912,7 @@ img {
 	width: 100%;
 	right: 0;
 	top: 0;
-	background: rgba(48, 44, 81, 0.9);
+	background: rgba(44, 72, 81, 0.9);
 	-webkit-transition: .5s ease;
 	-o-transition: .5s ease;
 	transition: .5s ease;
@@ -6216,7 +6216,7 @@ img {
 .team-section {
 	position: relative;
 	padding: 110px 0 0px;
-	background: #302c51;
+	background: #04719C;
 }
 
 .team-section.style-two {
@@ -6952,7 +6952,7 @@ img {
 
 .main-footer {
 	position: relative;
-	background: #2d294d;
+	background: #29404d;
 }
 
 .main-footer.style-two {

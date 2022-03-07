@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
+
+Route::get('/login', [App\Http\Controllers\AuthController::class, 'index'])->name('login');
+
+Route::group(['prefix' => 'register'], function(){
+    Route::get('/', [App\Http\Controllers\AuthController::class, 'show'])->name('register.form');
+    Route::post('/', [App\Http\Controllers\AuthController::class, 'register'])->name('register');
+});

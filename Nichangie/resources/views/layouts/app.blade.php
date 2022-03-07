@@ -39,6 +39,8 @@
     <link href="{{ asset('assets/css/owl.css')}}" rel="stylesheet">
     <link href="{{ asset('assets/css/style.css')}}" rel="stylesheet">
     <link href="{{ asset('assets/css/responsive.css')}}" rel="stylesheet">
+    @section('page-styles')
+    @show
 </head>
 
 <body>
@@ -72,6 +74,8 @@
     <script src="{{ asset('assets/js/jquery.fancybox.js')}}"></script>
     <script src="{{ asset('assets/js/menu-nav-btn.js')}}"></script>
     <script src="{{ asset('assets/js/jquery-ui.js')}}"></script>
+    @section('page-scripts')
+    @show
     <!-- Custom JS -->
     <script src="{{ asset('assets/js/script.js')}}"></script>
 
