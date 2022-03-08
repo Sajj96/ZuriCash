@@ -47,7 +47,7 @@
             </div>
             <div class="footer-bottom">
                 <div class="left-content">
-                    <div class="icon"><img src="images/resource/logo-icon.png" alt=""></div>
+                    <div class="icon"><img src="{{ asset('assets/images/resource/logo-icon.png')}}" alt=""></div>
                     <div class="copyright-text"><a href="templateshub.net">Templateshub</a><a href="#">Goodsoul.</a> <br>Designed By <a href="#">Themekalia.</a></div>
                 </div>
                 <div class="right-content">

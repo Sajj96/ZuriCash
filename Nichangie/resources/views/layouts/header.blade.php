@@ -41,7 +41,7 @@
                 <div class="wrapper-box">
                     <div class="logo-column">
                         <div class="logo-box d-flex">
-                            <div class="logo"><a href="index-2.html"><img src="assets/images/logo-10.jpeg" alt="" title=""></a></div>
+                            <div class="logo"><a href="index-2.html"><img src="{{ asset('assets/images/logo-10.jpeg')}}" alt="" title=""></a></div>
                             <h5 class="mt-3 ml-2"><strong>{{ __('NACHANGIA')}}</strong></h5>
                         </div>
                     </div>
@@ -156,7 +156,7 @@
                 <div class="wrapper-box">
                     <div class="logo-column">
                         <div class="logo-box d-flex">
-                            <div class="logo"><a href="index-2.html"><img src="assets/images/logo-10.jpeg" alt="logo" title=""></a></div>
+                            <div class="logo"><a href="index-2.html"><img src="{{ asset('assets/images/logo-10.jpeg')}}" alt="logo" title=""></a></div>
                             <h5 class="mt-4 ml-2"><strong>{{ __('NACHANGIA')}}</strong></h5>
                         </div>
                     </div>
@@ -184,7 +184,7 @@
         <!-- Mobile Menu  -->
         <div class="mobile-menu style-one">
             <div class="menu-box">
-                <div class="logo"><a href="index-2.html"><img src="assets/images/logo-10.jpeg" alt=""></a><strong class="ml-1">{{ __('NACHANGIA')}}</strong></div>
+                <div class="logo"><a href="index-2.html"><img src="{{ asset('assets/images/logo-10.jpeg')}}" alt=""></a><strong class="ml-1">{{ __('NACHANGIA')}}</strong></div>
                 <!-- Main Menu -->
                 <nav class="main-menu navbar-expand-xl navbar-dark">
                     <div class="navbar-header">
@@ -235,7 +235,7 @@
     <section class="hidden-sidebar close-sidebar">
         <div class="wrapper-box">
             <div class="hidden-sidebar-close"><span class="flaticon-cross"></span></div>
-            <div class="logo"><a href="#"><img src="assets/images/logo.png" alt=""></a></div>
+            <div class="logo"><a href="#"><img src="{{ asset('assets/images/logo-10.jpeg')}}" alt=""></a></div>
             <div class="content">
                 <div class="about-widget-four sidebar-widget">
                     <h3>To improve learning environment in primary schools</h3>
@@ -245,12 +245,12 @@
                 <div class="news-widget-two sidebar-widget">
                     <div class="widget-title">News & Updates</div>
                     <div class="post-wrapper">
-                        <div class="image"><a href="blog-details.html"><img src="assets/images/resource/post-thumb-1.jpg" alt=""></a></div>
+                        <div class="image"><a href="blog-details.html"><img src="{{ asset('assets/images/resource/post-thumb-1.jpg')}}" alt=""></a></div>
                         <div class="category">LIFE SAVING</div>
                         <h4><a href="blog-details.html">Goodsoul partners with lafarge on national literacy competition</a></h4>
                     </div>
                     <div class="post-wrapper">
-                        <div class="image"><a href="blog-details.html"><img src="assets/images/resource/post-thumb-2.jpg" alt=""></a></div>
+                        <div class="image"><a href="blog-details.html"><img src="{{ asset('assets/images/resource/post-thumb-2.jpg')}}" alt=""></a></div>
                         <div class="category">Education</div>
                         <h4><a href="blog-details.html">Goodsoul improves education infrastructure</a></h4>
                     </div>

@@ -376,7 +376,10 @@
 	font-size: 14px
 }
 
-.shop-sidebar-wrapper .search-form input[type="text"]:focus {
+.shop-sidebar-wrapper .search-form input[type="text"]:focus,
+.shop-sidebar-wrapper .search-form input[type="email"]:focus,
+.shop-sidebar-wrapper .search-form input[type="password"]:focus,
+.shop-sidebar-wrapper .search-form input[type="tel"]:focus {
 	border: 1px solid var(--theme-color);
 	background: #fff;
 	color: #000000;
@@ -1889,7 +1892,10 @@
 	text-transform: capitalize;
 }
 
-.checkout-area .form form .field-input input[type="text"] {
+.checkout-area .form form .field-input input[type="text"],
+.checkout-area .form form .field-input input[type="email"],
+.checkout-area .form form .field-input input[type="password"],
+.checkout-area .form form .field-input input[type="tel"] {
 	border: 1px solid #f0eef9;
 	color: #848484;
 	display: block;
@@ -1904,7 +1910,10 @@
 	transition: all 500ms ease;
 }
 
-.checkout-area .form form .field-input input[type="text"]:focus {
+.checkout-area .form form .field-input input[type="text"]:focus,
+.checkout-area .form form .field-input input[type="email"]:focus,
+.checkout-area .form form .field-input input[type="password"]:focus,
+.checkout-area .form form .field-input input[type="tel"]:focus {
 	border: 1px solid var(--theme-color);
 }
 
@@ -2160,10 +2169,14 @@
 	line-height: 28px;
 }
 
+.register-btn {
+	padding: 10px;
+	text-align-last: center;
+}
+
 .placeorder-button button {
 	padding: 11.5px 35px;
-	margin-top: 20px;
-	margin-left: 30px;
+	margin: 0;
 	cursor: pointer;
 	font-size: 13px;
 	font-weight: 500;
@@ -2205,7 +2218,9 @@
 	position: relative;
 }
 
-.login-register-area .form .input-field input[type="text"] {
+.login-register-area .form .input-field input[type="text"],
+.login-register-area .form .input-field input[type="email"],
+.login-register-area .form .input-field input[type="password"] {
 	position: relative;
 	display: block;
 	width: 100%;
@@ -2326,7 +2341,9 @@
 	color: var(--theme-color);
 }
 
-.login-register-area .form .input-field input[type="text"]:focus {
+.login-register-area .form .input-field input[type="text"]:focus,
+.login-register-area .form .input-field input[type="email"]:focus,
+.login-register-area .form .input-field input[type="password"]:focus {
 	border: 1px solid #1d1d1d;
 }
 
@@ -2336,4 +2353,40 @@
 
 .login-register-area .theme-btn {
 	padding: 11px 50px;
+}
+
+.login-register-area .exisitng-customer {
+	position: relative;
+	display: block;
+	background: #f8f7ff;
+	padding: 20px 28px 21px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+}
+
+.login-register-area .exisitng-customer:before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 2px;
+	height: 100%;
+	background: var(--theme-color);
+	content: "";
+}
+
+.login-register-area .exisitng-customer h5 {
+	color: #222222;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.login-register-area .exisitng-customer h5 a {
+	color: var(--theme-color);
+	font-weight: 400;
+	display: inline-block;
+	padding-left: 15px;
+}
+
+.iti {
+	width: 100% !important;
 }
