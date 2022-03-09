@@ -141,7 +141,14 @@
                                 </button>
                             </div>
                             <div class="link-btn">
-                                <a href="{{ route('login') }}" class="theme-btn btn-style-one"><span>Login/Register</span></a>
+                                @if(Auth::user())
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="theme-btn btn-style-one"><span>{{ __('Logout')}}</span></a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                                @else
+                                <a href="{{ route('login') }}" class="theme-btn btn-style-one"><span>{{ __('Login/Register')}}</span></a>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -198,6 +205,16 @@
                         <ul class="navigation">
 
                         </ul>
+                        <div class="link-btn">
+                            @if(Auth::user())
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="theme-btn btn-style-two"><span>{{ __('Logout')}}</span></a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                            @else
+                            <a href="{{ route('login') }}" class="theme-btn btn-style-two"><span>{{ __('Login/Register')}}</span></a>
+                            @endif
+                        </div>
                     </div>
                 </nav>
                 <!-- Main Menu End-->

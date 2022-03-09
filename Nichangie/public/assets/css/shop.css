@@ -2219,7 +2219,7 @@
 }
 
 .login-register-area .form .input-field input[type="text"],
-.login-register-area .form .input-field input[type="email"],
+.login-register-area .form .input-field input[type="tel"],
 .login-register-area .form .input-field input[type="password"] {
 	position: relative;
 	display: block;
@@ -2342,7 +2342,7 @@
 }
 
 .login-register-area .form .input-field input[type="text"]:focus,
-.login-register-area .form .input-field input[type="email"]:focus,
+.login-register-area .form .input-field input[type="tel"]:focus,
 .login-register-area .form .input-field input[type="password"]:focus {
 	border: 1px solid #1d1d1d;
 }

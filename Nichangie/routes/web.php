@@ -17,13 +17,8 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::group(['prefix' => 'login'], function(){
-    Route::get('/', [App\Http\Controllers\AuthController::class, 'index'])->name('login.form');
-    Route::post('/', [App\Http\Controllers\AuthController::class, 'login'])->name('login');
-});
+Route::get('/register/doner', [App\Http\Controllers\AuthController::class, 'show'])->name('register.doner');
 
-Route::group(['prefix' => 'register'], function(){
-    Route::get('/doner', [App\Http\Controllers\AuthController::class, 'showDoner'])->name('register.doner');
-    Route::get('/donee', [App\Http\Controllers\AuthController::class, 'showDonee'])->name('register.donee');
-    Route::post('/', [App\Http\Controllers\AuthController::class, 'register'])->name('register');
-});
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
