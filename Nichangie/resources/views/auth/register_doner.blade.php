@@ -39,7 +39,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="exisitng-customer">
-                    <h5>{{ __('Have an account? Please')}}<a href="{{ route('login.form') }}">Login </a></h5>
+                    <h5>{{ __('Have an account? Please')}}<a href="{{ route('login') }}">Login </a></h5>
                 </div>
             </div>
         </div>
@@ -50,58 +50,83 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="field-label">First Name*</div>
+                                <div class="field-label">{{ __('First Name*')}}</div>
                                 <div class="field-input">
-                                    <input type="text" name="fname" placeholder="Enter first name" autofocus>
+                                    <input type="text" class="@error('firstname') is-invalid @enderror" name="firstname" placeholder="Enter first name" autofocus>
                                 </div>
+                                @error('firstname')
+                                <span class="text-danger" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                             <div class="col-md-6">
-                                <div class="field-label">Last Name *</div>
+                                <div class="field-label">{{ __('Last Name *')}}</div>
                                 <div class="field-input">
-                                    <input type="text" name="lname" placeholder="Enter last name">
+                                    <input type="text" class="@error('lastname') is-invalid @enderror" name="lastname" placeholder="Enter last name">
                                     <input type="hidden" name="user_type" value="2">
                                 </div>
+                                @error('lastname')
+                                <span class="text-danger" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                             <div class="col-md-6">
-                                <div class="field-label">Address *</div>
+                                <div class="field-label">{{ __('Address')}}</div>
                                 <div class="field-input">
                                     <input type="text" name="address" placeholder="Enter Address">
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="field-label">Town / City *</div>
+                                <div class="field-label">{{ __('Town / City')}}</div>
                                 <div class="field-input">
-                                    <input type="text" name="town-city" placeholder="Enter Town / City">
+                                    <input type="text" name="town_city" placeholder="Enter Town / City" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="field-label">Email *</div>
                                 <div class="field-input">
-                                    <input type="text" name="email" placeholder="Email Address">
+                                    <input type="text" class="@error('email') is-invalid @enderror" name="email" placeholder="Email Address">
                                 </div>
+                                @error('email')
+                                <span class="text-danger" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                             <div class="col-md-6">
-                                <div class="field-label">Phone *</div>
+                                <div class="field-label">{{ __('Phone *')}}</div>
                                 <div class="field-input">
-                                    <input id="phone" type="tel" name="phone" placeholder="Phone Number">
+                                    <input id="phone" type="tel" class="@error('address') is-invalid @enderror" name="phone" placeholder="Phone Number" required>
                                 </div>
+                                @error('phone')
+                                <span class="text-danger" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                             <div class="col-md-6">
-                                <div class="field-label">Password *</div>
+                                <div class="field-label">{{ __('Password *')}}</div>
                                 <div class="field-input">
-                                    <input type="password" name="email" placeholder="Password">
+                                    <input id="password-confirm" type="password" class="@error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="new-password">
                                 </div>
+                                @error('password')
+                                <span class="text-danger" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                             <div class="col-md-6">
-                                <div class="field-label">Confirm Password *</div>
+                                <div class="field-label">{{ __('Confirm Password *')}}</div>
                                 <div class="field-input">
-                                    <input type="password" name="phone" placeholder="Confirm Password">
+                                    <input id="password-confirm" type="password" name="password_confirmation" placeholder="Confirm Password" required autocomplete="new-password">
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-12">
                             <div class="register-btn">
-                                <button class="theme-btn btn-style-one" type="submit"><span>Register</span></button>
+                                <button class="theme-btn btn-style-one" type="submit"><span>{{ __('Register')}}</span></button>
                             </div>
                         </div>
                     </form>
