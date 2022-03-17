@@ -54,7 +54,7 @@
 
                                     <div class="collapse navbar-collapse">
                                         <ul class="navigation">
-                                            <li class="dropdown current"><a href="index-2.html">Home</a>
+                                            <li class="dropdown current"><a href="index-2.html">{{ __('Home')}}</a>
                                                 <ul>
                                                     <li><a href="index-2.html">Main Home</a></li>
                                                     <li><a href="index-3.html">Volunteer Home</a></li>
@@ -63,31 +63,14 @@
                                                     <li><a href="index-6.html">Education Home</a></li>
                                                 </ul>
                                             </li>
-                                            <li class="dropdown"><a href="#">Pages</a>
+                                            <li class="dropdown"><a href="#">{{ __('Discover')}}</a>
                                                 <ul>
                                                     <li><a href="about.html">About Us</a></li>
                                                     <li><a href="faq.html">FAQ’s</a></li>
                                                     <li><a href="team.html">Meet Our Team</a></li>
-                                                    <li class="dropdown"><a href="#">Portfolio</a>
-                                                        <ul>
-                                                            <li><a href="portfolio-1.html">Style 01 - Grid View</a></li>
-                                                            <li><a href="portfolio-2.html">Style 02 - Grid View</a></li>
-                                                            <li><a href="portfolio-3.html">Style 01 - Masonry View</a></li>
-                                                            <li><a href="portfolio-4.html">Style 02 - Masonry View</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="dropdown"><a href="#">Shop</a>
-                                                        <ul>
-                                                            <li><a href="shop.html">Our Products</a></li>
-                                                            <li><a href="shop-single.html">Products Single</a></li>
-                                                            <li><a href="shopping-cart.html">Shopping Cart</a></li>
-                                                            <li><a href="checkout.html">Checkout</a></li>
-                                                            <li><a href="account.html">My Account</a></li>
-                                                        </ul>
-                                                    </li>
                                                 </ul>
                                             </li>
-                                            <li class="dropdown"><a href="#">Causes</a>
+                                            <li class="dropdown"><a href="#">{{ __('Fudraising For')}}</a>
                                                 <ul>
                                                     <li><a href="causes-1.html">Style 01 - Grid View</a></li>
                                                     <li><a href="causes-2.html">Style 02 - List View</a></li>
@@ -95,21 +78,21 @@
                                                     <li><a href="cause-details.html">Single Cause</a></li>
                                                 </ul>
                                             </li>
-                                            <li class="dropdown"><a href="#">Events</a>
+                                            <li class="dropdown"><a href="#">{{ __('How it works')}}</a>
                                                 <ul>
                                                     <li><a href="events-1.html">Events</a></li>
                                                     <li><a href="event-details.html">Single Event</a></li>
                                                 </ul>
                                             </li>
-                                            <li class="dropdown"><a href="#">Blog</a>
-                                                <ul>
-                                                    <li><a href="blog.html">Classic Grid View</a></li>
-                                                    <li><a href="blog-fullwidth.html">Fullwidth Masonry</a></li>
-                                                    <li><a href="blog-list.html">List With Sidebar</a></li>
-                                                    <li><a href="blog-details.html">Single Post</a></li>
-                                                </ul>
+                                            @if(Auth::user())
+                                            <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span>{{ __('Sign out')}}</span></a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                            </form>
                                             </li>
-                                            <li><a href="contact.html">Contact</a></li>
+                                            @else
+                                            <li><a href="{{ route('login') }}">{{ __('Sign in')}}</a></li>
+                                            @endif
                                         </ul>
                                     </div>
                                 </nav><!-- Main Menu End-->
@@ -132,22 +115,11 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="cart-btn">
-                                <div class="cart-icon"><span class="flaticon-bag"></span><span class="item-count">0</span></div>
-                            </div>
-                            <div class="navbar-btn-wrap">
-                                <button class="anim-menu-btn">
-                                    <i class="flaticon-menu"></i>
-                                </button>
-                            </div>
                             <div class="link-btn">
                                 @if(Auth::user())
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="theme-btn btn-style-one"><span>{{ __('Logout')}}</span></a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
+                                <a href="#" class="theme-btn btn-style-one"><span>{{ __('Account')}}</span></a>
                                 @else
-                                <a href="{{ route('login') }}" class="theme-btn btn-style-one"><span>{{ __('Login/Register')}}</span></a>
+                                <a href="{{ route('register') }}" class="theme-btn btn-style-one"><span>{{ __('Nichangie')}}</span></a>
                                 @endif
                             </div>
                         </div>
@@ -212,7 +184,7 @@
                                 @csrf
                             </form>
                             @else
-                            <a href="{{ route('login') }}" class="theme-btn btn-style-two"><span>{{ __('Login/Register')}}</span></a>
+                            <a href="{{ route('register') }}" class="theme-btn btn-style-two"><span>{{ __('Nichangie')}}</span></a>
                             @endif
                         </div>
                     </div>
@@ -247,39 +219,3 @@
         </div>
     </header>
     <!-- End Main Header -->
-
-    <!-- Hidden Sidebar -->
-    <section class="hidden-sidebar close-sidebar">
-        <div class="wrapper-box">
-            <div class="hidden-sidebar-close"><span class="flaticon-cross"></span></div>
-            <div class="logo"><a href="#"><img src="{{ asset('assets/images/logo-10.jpeg')}}" alt=""></a></div>
-            <div class="content">
-                <div class="about-widget-four sidebar-widget">
-                    <h3>To improve learning environment in primary schools</h3>
-                    <div class="text">We denounce with righteous indignation and dislike men who we are to beguiled demoralized by the charms of pleasures that moment, so we blinded desires, that they indignations.</div>
-                </div>
-                <!-- News Widget -->
-                <div class="news-widget-two sidebar-widget">
-                    <div class="widget-title">News & Updates</div>
-                    <div class="post-wrapper">
-                        <div class="image"><a href="blog-details.html"><img src="{{ asset('assets/images/resource/post-thumb-1.jpg')}}" alt=""></a></div>
-                        <div class="category">LIFE SAVING</div>
-                        <h4><a href="blog-details.html">Goodsoul partners with lafarge on national literacy competition</a></h4>
-                    </div>
-                    <div class="post-wrapper">
-                        <div class="image"><a href="blog-details.html"><img src="{{ asset('assets/images/resource/post-thumb-2.jpg')}}" alt=""></a></div>
-                        <div class="category">Education</div>
-                        <h4><a href="blog-details.html">Goodsoul improves education infrastructure</a></h4>
-                    </div>
-                </div>
-                <!-- Newsletter Widget -->
-                <div class="newsletter-widget-two">
-                    <div class="widget-title">Newsletter Subscription</div>
-                    <form action="#">
-                        <input type="email" placeholder="Enter Email Address">
-                        <button class="theme-btn btn-style-one w-100"><i class="flaticon-next"></i><span>Subscribe Us</span></button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>

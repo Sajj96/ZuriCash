@@ -8,17 +8,6 @@
 @section('content')
 @include('layouts.header')
 <!-- Page Title -->
-<section class="page-title">
-    <div class="auto-container">
-        <div class="content-box">
-            <h1>Register</h1>
-            <ul class="bread-crumb">
-                <li><a class="home" href="index-2.html"><span class="fa fa-home"></span></a></li>
-                <li>Register as a donee</li>
-            </ul>
-        </div>
-    </div>
-</section>
 <section class="checkout-area">
     <div class="auto-container">
         @if ($message = Session::get('success'))
@@ -39,13 +28,16 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="exisitng-customer">
-                    <h5>{{ __('Have an account? Please')}}<a href="{{ route('login') }}">Login </a></h5>
+                    <h5>{{ __('Already have an account?')}}<a href="{{ route('login') }}">{{ __('Login')}} </a></h5>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 col-sm-12">
+            <div class="col-md-12 col-sm-12 card-panel">
                 <div class="form billing-info">
+                    <div class="shop-page-title">
+                        <div class="title">{{ __('Register')}} </div>
+                    </div>
                     <form method="post" action="{{ route('register') }}">
                         @csrf
                         <div class="row">
@@ -72,7 +64,24 @@
                                 </span>
                                 @enderror
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="field-label">{{ __('What are you fundraising for?')}}</div>
+                                <div class="field-input">
+                                    <select class="filters-select selectmenu @error('category') is-invalid @enderror">
+                                        <option value="">Choose a category</option>
+                                        <option value=".category-1">M</option>
+                                        <option value=".category-2">L</option>
+                                        <option value=".category-3">XL </option>
+                                        <option value=".category-4">XL</option>
+                                    </select>
+                                </div>
+                                @error('category')
+                                <span class="text-danger" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6">
                                 <div class="field-label">{{ __('Address *')}}</div>
                                 <div class="field-input">
                                     <input type="text" class="@error('address') is-invalid @enderror" name="address" placeholder="Enter Address">
@@ -129,7 +138,6 @@
         </div>
     </div>
 </section>
-@include('layouts.footer')
 @section('page-scripts')
 <script src="{{ asset('assets/js/jquery.bootstrap-touchspin.js')}}"></script>
 <script src="{{ asset('assets/js/intl-tel-input/js/intlTelInput.min.js')}}"></script>

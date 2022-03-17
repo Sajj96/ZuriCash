@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/register/doner', [App\Http\Controllers\AuthController::class, 'show'])->name('register.doner');
+Route::get('/verify', [App\Http\Controllers\AuthController::class, 'verify'])->name('verify.phone');
 
 Auth::routes();
 

@@ -1809,7 +1809,8 @@
 .checkout-area {
 	position: relative;
 	display: block;
-	padding-top: 100px;
+	padding: 20px 0;
+	background: #f4f1ee;
 }
 
 .checkout-area .shop-title-box h3 {
@@ -2202,8 +2203,16 @@
 .login-register-area {
 	position: relative;
 	display: block;
-	padding-top: 103px;
-	padding-bottom: 102px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background: #f4f1ee;
+	height: 100vh;
+}
+
+.card-panel {
+	background: #fff;
+	padding: 20px;
+	border-radius: 20px;
 }
 
 .login-register-area .form .shop-page-title {
@@ -2389,4 +2398,34 @@
 
 .iti {
 	width: 100% !important;
+}
+
+.verify-area {
+	position: relative;
+	display: block;
+	background: #f4f1ee;
+	height: 100vh;
+}
+
+.verify-area .panel{
+	padding: 20px;
+}
+
+.verify-area .form-control:focus {
+    box-shadow: none;
+    border: 2px solid #E46322
+}
+
+.verify-area .inputs input {
+    width: 60px;
+    height: 70px;
+	font-size: 50px;
+}
+
+.verify-area input[type=number]::-webkit-inner-spin-button,
+.verify-area input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0
 }
