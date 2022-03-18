@@ -23,3 +23,10 @@ Route::get('/verify', [App\Http\Controllers\AuthController::class, 'verify'])->n
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware(['auth'])->group(function () {
+    Route::group(['prefix' => 'cause'], function(){
+        Route::get('/', [App\Http\Controllers\CauseController::class, 'index'])->name('cause');
+        Route::post('/', [App\Http\Controllers\CauseController::class, 'create'])->name('cause.create');
+    });
+});

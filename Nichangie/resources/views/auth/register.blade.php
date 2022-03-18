@@ -65,28 +65,23 @@
                                 @enderror
                             </div>
                             <div class="col-md-6">
-                                <div class="field-label">{{ __('What are you fundraising for?')}}</div>
+                                <div class="field-label">{{ __('Address *')}}</div>
                                 <div class="field-input">
-                                    <select class="filters-select selectmenu @error('category') is-invalid @enderror">
-                                        <option value="">Choose a category</option>
-                                        <option value=".category-1">M</option>
-                                        <option value=".category-2">L</option>
-                                        <option value=".category-3">XL </option>
-                                        <option value=".category-4">XL</option>
-                                    </select>
+                                    <input type="text" class="@error('address') is-invalid @enderror" name="address" placeholder="Enter Address">
                                 </div>
-                                @error('category')
+                                @error('address')
                                 <span class="text-danger" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
                             </div>
                             <div class="col-md-6">
-                                <div class="field-label">{{ __('Address *')}}</div>
+                                <div class="field-label">{{ __('Country')}}</div>
                                 <div class="field-input">
-                                    <input type="text" class="@error('address') is-invalid @enderror" name="address" placeholder="Enter Address">
+                                    <select id="address-country" name="country" class="filters-select selectmenu @error('category') is-invalid @enderror">
+                                    </select>
                                 </div>
-                                @error('address')
+                                @error('country')
                                 <span class="text-danger" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -112,8 +107,11 @@
                             <div class="col-md-6">
                                 <div class="field-label">{{ __('Password *')}}</div>
                                 <div class="field-input">
-                                    <input id="password-confirm" type="password" class="@error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="new-password">
+                                    <input id="password-confirm" type="password" class="@error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="new-password" aria-describedby="passwordHelpInline">
                                 </div>
+                                <small id="passwordHelpInline" class="text-muted">
+                                    Must contain at least 8 or more characters.
+                                </small>
                                 @error('password')
                                 <span class="text-danger" role="alert">
                                     <strong>{{ $message }}</strong>

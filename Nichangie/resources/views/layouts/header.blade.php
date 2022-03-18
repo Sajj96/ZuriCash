@@ -115,9 +115,12 @@
                                     </ul>
                                 </div>
                             </div>
+                            <div class="navbar-btn-wrap">
+                               <a href="#" class=""><i class="flaticon-user"></i><span>{{ __(' My Profile')}}</span></a>
+                            </div>
                             <div class="link-btn">
                                 @if(Auth::user())
-                                <a href="#" class="theme-btn btn-style-one"><span>{{ __('Account')}}</span></a>
+                                <a href="{{ route('cause')}}" class="theme-btn btn-style-one"><span>{{ __('Create Cause')}}</span></a>
                                 @else
                                 <a href="{{ route('register') }}" class="theme-btn btn-style-one"><span>{{ __('Nichangie')}}</span></a>
                                 @endif

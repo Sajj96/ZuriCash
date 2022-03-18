@@ -75,6 +75,7 @@ class RegisterController extends Controller
         $user->firstname    = $data['firstname'];
         $user->lastname     = $data['lastname'];
         $user->address      = $data['address'];
+        $user->country      = $data['country'];
         $user->town         = $data['town_city'];
         $user->email        = $email;
         $user->phone        = $data['phone'];

@@ -1896,7 +1896,10 @@
 .checkout-area .form form .field-input input[type="text"],
 .checkout-area .form form .field-input input[type="email"],
 .checkout-area .form form .field-input input[type="password"],
-.checkout-area .form form .field-input input[type="tel"] {
+.checkout-area .form form .field-input input[type="tel"],
+.checkout-area .form form .field-input input[type="number"],
+.checkout-area .form form .field-input input[type="date"],
+.checkout-area .form form .field-input input[type="file"] {
 	border: 1px solid #f0eef9;
 	color: #848484;
 	display: block;
@@ -1914,7 +1917,9 @@
 .checkout-area .form form .field-input input[type="text"]:focus,
 .checkout-area .form form .field-input input[type="email"]:focus,
 .checkout-area .form form .field-input input[type="password"]:focus,
-.checkout-area .form form .field-input input[type="tel"]:focus {
+.checkout-area .form form .field-input input[type="tel"]:focus,
+.checkout-area .form form .field-input input[type="number"]:focus,
+.checkout-area .form form .field-input input[type="date"]:focus {
 	border: 1px solid var(--theme-color);
 }
 
