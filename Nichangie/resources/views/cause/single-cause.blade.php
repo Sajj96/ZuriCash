@@ -9,7 +9,7 @@
 <section class="page-title" style="background-image:url(images/background/bg-13.jpg)">
     <div class="auto-container">
         <div class="content-box">
-            <h1>Help bolanile imogene recover <br>from cancer</h1>
+            <h1>{{ $cause->title }}</h1>
         </div>
     </div>
 </section>
@@ -19,7 +19,7 @@
     <div class="auto-container">
         <div class="wrapper-box">
             <div class="raised"><span>Raised:</span> <br>$92000</div>
-            <div class="goal"><span>Goal:</span> <br>$120000</div>
+            <div class="goal"><span>Goal:</span> <br>TZS {{ $cause->amount }}</div>
             <div class="progress-block">
                 <div class="inner-box">
                     <div class="graph-outer">
@@ -39,10 +39,10 @@
     <div class="auto-container">
         <div class="row">
             <div class="col-lg-8 content-column">
-                <div class="image mb-50"><img src="images/resource/cause-18.jpg" alt=""></div>
+                <div class="image mb-50"><img src="{{ asset('storage/images/'.$cause->media)}}" alt=""></div>
                 <div class="sec-title mb-40">
-                    <h1>Cause description</h1>
-                    <div class="text">Zharms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment that they cannot foresee.</div>
+                    <h1>Campaign description</h1>
+                    <div class="text">{{ $cause->description }}.</div>
                 </div>
                 <h4>What we want to do bolanile imogene in this cause?</h4>
                 <div class="row">
@@ -250,17 +250,6 @@
             <div class="col-lg-4">
                 <div class="sidebar">
                     <!-- Search Widget -->
-                    <div class="sidebar-title">
-                        <h4>Search</h4>
-                    </div>
-                    <div class="sidebar-widget search-box">
-                        <form method="post" action="#">
-                            <div class="form-group">
-                                <input type="search" name="search-field" value="" placeholder="Search...." required="">
-                                <button type="submit"><span class="flaticon-magnifying-glass"></span></button>
-                            </div>
-                        </form>
-                    </div>
                     <!-- Cause Widget -->
                     <div class="sidebar-title">
                         <h4>Emergency Causes</h4>
@@ -339,33 +328,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Event Widget -->
-                    <div class="sidebar-title">
-                        <h4>Upcoming Events</h4>
-                    </div>
-                    <div class="sidebar-widget event-widget">
-                        <div class="event-item">
-                            <div class="image"><img src="images/resource/event-thumb-1.jpg" alt=""></div>
-                            <div class="content">
-                                <div class="date">Sept 28, 2019, 9.00am</div>
-                                <h5><a href="#">Medfest 2019 & 20 - Bristol</a></h5>
-                            </div>
-                        </div>
-                        <div class="event-item">
-                            <div class="image"><img src="images/resource/event-thumb-2.jpg" alt=""></div>
-                            <div class="content">
-                                <div class="date">Nov 14, 2019, 04.00pm</div>
-                                <h5><a href="#">UK walks & treks - Belfast</a></h5>
-                            </div>
-                        </div>
-                        <div class="event-item">
-                            <div class="image"><img src="images/resource/event-thumb-3.jpg" alt=""></div>
-                            <div class="content">
-                                <div class="date">Jan 21, 2020, 10.00am</div>
-                                <h5><a href="#">Challenge events - Cardiff</a></h5>
-                            </div>
-                        </div>
-                    </div>
                     <!-- Newsletter Widget -->
                     <div class="sidebar-title">
                         <h4>Subscribe Us</h4>
@@ -386,5 +348,6 @@
 </div>
 @include('layouts.footer')
 @section('page-scripts')
+<script src="{{ asset('assets/js/knob.js')}}"></script>
 @endsection
 @endsection

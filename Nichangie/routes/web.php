@@ -22,8 +22,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'cause'], function(){
-    Route::get('/', [App\Http\Controllers\CauseController::class, 'index'])->name('cause');
+Route::group(['prefix' => 'campaign'], function(){
+    Route::get('/', [App\Http\Controllers\CauseController::class, 'index'])->name('cause')->middleware('auth');
     Route::get('/{id}', [App\Http\Controllers\CauseController::class, 'show'])->name('cause.show');
     Route::post('/', [App\Http\Controllers\CauseController::class, 'create'])->name('cause.create')->middleware('auth');
 });

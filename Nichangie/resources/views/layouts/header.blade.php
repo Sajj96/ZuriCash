@@ -57,27 +57,25 @@
 
                                     <div class="collapse navbar-collapse">
                                         <ul class="navigation">
-                                            <li class="dropdown"><a href="#">{{ __('Discover')}}</a>
+                                            <li class="dropdown"><a href="#">{{ __('Campaigns')}}</a>
                                                 <ul>
-                                                    <li><a href="about.html">About Us</a></li>
-                                                    <li><a href="faq.html">FAQ’s</a></li>
-                                                    <li><a href="team.html">Meet Our Team</a></li>
+                                                    <li><a href="about.html">Featured</a></li>
+                                                    <li><a href="faq.html">Latest</a></li>
                                                 </ul>
                                             </li>
-                                            <li class="dropdown"><a href="#">{{ __('Fudraising For')}}</a>
+                                            <li class="dropdown"><a href="#">{{ __('Categories')}}</a>
                                                 <ul>
-                                                    <li><a href="causes-1.html">Style 01 - Grid View</a></li>
-                                                    <li><a href="causes-2.html">Style 02 - List View</a></li>
-                                                    <li><a href="causes-3.html">Style 01 - Carousel</a></li>
-                                                    <li><a href="cause-details.html">Single Cause</a></li>
+                                                    <li><a href="causes-1.html">Animals</a></li>
+                                                    <li><a href="causes-2.html">Medical</a></li>
+                                                    <li><a href="causes-3.html">Emergency</a></li>
+                                                    <li><a href="cause-details.html">Family</a></li>
+                                                    <div class="dropdown-divider"></div>
+                                                    <li><a href="cause-details.html">View All <span class="flaticon-arrow-2"></span></a></li>
                                                 </ul>
                                             </li>
-                                            <li class="dropdown"><a href="#">{{ __('How it works')}}</a>
-                                                <ul>
-                                                    <li><a href="events-1.html">Events</a></li>
-                                                    <li><a href="event-details.html">Single Event</a></li>
-                                                </ul>
-                                            </li>
+                                            <li><a href="#">{{ __('How it works')}}</a></li>
+                                            <li><a href="#">{{ __('Earn Money')}}</a></li>
+                                            <li><a href="#">{{ __('Promote')}}</a></li>
                                             @if(Auth::user())
                                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span>{{ __('Sign out')}}</span></a>
                                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -116,7 +114,7 @@
                             @endif
                             <div class="link-btn">
                                 @if(Auth::user())
-                                <a href="{{ route('cause')}}" class="theme-btn btn-style-one"><span>{{ __('Create Cause')}}</span></a>
+                                <a href="{{ route('cause')}}" class="theme-btn btn-style-one"><span>{{ __('Create Campaign')}}</span></a>
                                 @else
                                 <a href="{{ route('register') }}" class="theme-btn btn-style-one"><span>{{ __('Nichangie')}}</span></a>
                                 @endif
@@ -157,7 +155,7 @@
                                         @endif
                                         <div class="link-btn">
                                             @if(Auth::user())
-                                            <a href="{{ route('cause')}}" class="theme-btn btn-sm btn-style-two"><span>{{ __('Create Cause')}}</span></a>
+                                            <a href="{{ route('cause')}}" class="theme-btn btn-sm btn-style-two"><span>{{ __('Create Campaign')}}</span></a>
                                             @else
                                             <a href="{{ route('register') }}" class="theme-btn btn-sm btn-style-two"><span>{{ __('Nichangie')}}</span></a>
                                             @endif
@@ -196,7 +194,7 @@
                         @endif
                         <div class="link-btn">
                             @if(Auth::user())
-                            <a href="{{ route('cause')}}" class="theme-btn btn-sm btn-style-two"><span>{{ __('Create Cause')}}</span></a>
+                            <a href="{{ route('cause')}}" class="theme-btn btn-sm btn-style-two"><span>{{ __('Create Campaign')}}</span></a>
                             @else
                             <a href="{{ route('register') }}" class="theme-btn btn-sm btn-style-two"><span>{{ __('Nichangie')}}</span></a>
                             @endif
