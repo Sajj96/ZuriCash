@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cause;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 
@@ -12,6 +13,12 @@ class CauseController extends Controller
     public function index()
     {
         return view('cause.create-cause');
+    }
+
+    public function show($id)
+    {
+        $cause = Cause::find($id);
+        return view('cause.single-cause', compact('cause'));
     }
 
     public function create(Request $request)
@@ -46,7 +53,11 @@ class CauseController extends Controller
             $base64encodedString = 'data:image/' . $type . ';base64,' . base64_encode($image_data);
             $fileBin = file_get_contents($base64encodedString);
 
+            $user = Auth::user();
+
             $cause = new Cause;
+            $cause->user_id = $user->id;
+            $cause->title = $request->title;
             $cause->description = strip_tags($request->description);
             $cause->media = $fileName;
             $cause->amount = $request->amount;

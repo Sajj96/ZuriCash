@@ -2467,6 +2467,11 @@ img {
 	position: relative;
 }
 
+.main-header .logo-box a{
+	text-decoration: none;
+	color: #04719C
+}
+
 .main-header .logo {
 	position: relative;
 	text-align: center;
@@ -2807,6 +2812,16 @@ img {
 .mobile-menu .logo {
 	text-align: left;
 	padding-left: 10px;
+}
+
+.mobile-menu .logo a {
+	text-decoration: none;
+	color: #04719C;
+}
+
+.mobile-menu .navbar-btn-wrap {
+    position: relative;
+    text-align: start;
 }
 
 .mobile-menu .menu-box {

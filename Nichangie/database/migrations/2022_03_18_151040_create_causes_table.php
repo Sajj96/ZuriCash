@@ -15,6 +15,8 @@ class CreateCausesTable extends Migration
     {
         Schema::create('causes', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id', false, true);
+            $table->string('title');
             $table->text('description');
             $table->string('media');
             $table->integer('category_id', false, true);

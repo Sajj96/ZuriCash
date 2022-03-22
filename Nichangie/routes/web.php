@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 Route::get('/verify', [App\Http\Controllers\AuthController::class, 'verify'])->name('verify.phone');
 
@@ -24,9 +22,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::group(['prefix' => 'cause'], function(){
+    Route::get('/', [App\Http\Controllers\CauseController::class, 'index'])->name('cause');
+    Route::get('/{id}', [App\Http\Controllers\CauseController::class, 'show'])->name('cause.show');
+    Route::post('/', [App\Http\Controllers\CauseController::class, 'create'])->name('cause.create')->middleware('auth');
+});
+
 Route::middleware(['auth'])->group(function () {
-    Route::group(['prefix' => 'cause'], function(){
-        Route::get('/', [App\Http\Controllers\CauseController::class, 'index'])->name('cause');
-        Route::post('/', [App\Http\Controllers\CauseController::class, 'create'])->name('cause.create');
-    });
 });

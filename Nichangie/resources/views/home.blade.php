@@ -104,16 +104,17 @@
         <div class="cause-carousel-wrapper">
             <div class="cause-carousel owl-theme owl-carousel owl-dots-none owl-nav-style-three">
                 <!-- Cause Block One -->
+                @foreach($causes as $key=>$rows)
                 <div class="cause-block-one">
                     <div class="inner-box">
-                        <div class="image"><a href="cause-details.html"><img src="assets/images/resource/cause-1.jpg" alt=""></a></div>
+                        <div class="image"><a href="{{ route('cause.show', $rows->id) }}"><img src="{{ asset('storage/images/'.$rows->media)}}" style="height: 230px;" alt="cause-media"></a></div>
                         <div class="lower-content">
-                            <h4><a href="cause-details.html">Help nigerian girls education</a></h4>
-                            <div class="category"><a href="#"><span class="flaticon-book"></span>Education</a></div>
-                            <div class="text">Indignation and dislike men who are like beguiled and demoralized.</div>
+                            <h4><a href="{{ route('cause.show', $rows->id) }}">{{ $rows->title }}</a></h4>
+                            <div class="category"><a href="#"><span class="flaticon-book"></span>{{ $rows->category_id }}</a></div>
+                            <div class="text">{{ substr($rows->description,0,75) }}...</div>
                             <div class="info-box">
                                 <a href="#"><span>Raised:</span> $72000</a>
-                                <a href="#"><span>Goal:</span> $100000</a>
+                                <a href="#"><span>Goal:</span> TZS {{ $rows->amount }}</a>
                             </div>
                             <!--Progress Levels-->
                             <div class="progress-levels">
@@ -145,6 +146,7 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
                 <!-- Cause Block One -->
                 <div class="cause-block-one">
                     <div class="inner-box">

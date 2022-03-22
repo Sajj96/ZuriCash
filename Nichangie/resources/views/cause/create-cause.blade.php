@@ -21,6 +21,12 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
+                                <div class="field-label">{{ __('Title *')}}</div>
+                                <div class="field-input">
+                                    <input type="text" name="title" placeholder="Enter Title" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
                                 <div class="field-label">{{ __('Description*')}}</div>
                                 <div class="field-input">
                                     <textarea class="summernote-simple" name="description" required></textarea>
@@ -71,6 +77,7 @@
         </div>
     </div>
 </section>
+@include('layouts.footer')
 @section('page-scripts')
 <script src="{{ asset('assets/js/summernote/summernote-bs4.js')}}"></script>
 @endsection

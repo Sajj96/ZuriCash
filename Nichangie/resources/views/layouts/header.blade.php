@@ -40,9 +40,12 @@
             <div class="auto-container">
                 <div class="wrapper-box">
                     <div class="logo-column">
-                        <div class="logo-box d-flex">
-                            <div class="logo"><a href="index-2.html"><img src="{{ asset('assets/images/logo-10.jpeg')}}" alt="" title=""></a></div>
-                            <h5 class="mt-3 ml-2"><strong>{{ __('NACHANGIA')}}</strong></h5>
+                        <div class="logo-box">
+                            <div class="logo">
+                                <a href="{{ route('home') }}" class="d-flex"><img src="{{ asset('assets/images/logo-10.jpeg')}}" alt="" title="">
+                                    <h5 class="mt-3 ml-2"><strong>{{ __('NACHANGIA')}}</strong></h5>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <div class="right-column">
@@ -54,15 +57,6 @@
 
                                     <div class="collapse navbar-collapse">
                                         <ul class="navigation">
-                                            <li class="dropdown current"><a href="index-2.html">{{ __('Home')}}</a>
-                                                <ul>
-                                                    <li><a href="index-2.html">Main Home</a></li>
-                                                    <li><a href="index-3.html">Volunteer Home</a></li>
-                                                    <li><a href="index-4.html">Charity Home</a></li>
-                                                    <li><a href="index-5.html">Ecology Home</a></li>
-                                                    <li><a href="index-6.html">Education Home</a></li>
-                                                </ul>
-                                            </li>
                                             <li class="dropdown"><a href="#">{{ __('Discover')}}</a>
                                                 <ul>
                                                     <li><a href="about.html">About Us</a></li>
@@ -86,9 +80,9 @@
                                             </li>
                                             @if(Auth::user())
                                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span>{{ __('Sign out')}}</span></a>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                @csrf
-                                            </form>
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                    @csrf
+                                                </form>
                                             </li>
                                             @else
                                             <li><a href="{{ route('login') }}">{{ __('Sign in')}}</a></li>
@@ -115,9 +109,11 @@
                                     </ul>
                                 </div>
                             </div>
+                            @if(Auth::user())
                             <div class="navbar-btn-wrap">
-                               <a href="#" class=""><i class="flaticon-user"></i><span>{{ __(' My Profile')}}</span></a>
+                                <a href="#" class=""><i class="flaticon-user"></i><span>{{ __(' My Profile')}}</span></a>
                             </div>
+                            @endif
                             <div class="link-btn">
                                 @if(Auth::user())
                                 <a href="{{ route('cause')}}" class="theme-btn btn-style-one"><span>{{ __('Create Cause')}}</span></a>
@@ -137,9 +133,10 @@
             <div class="auto-container">
                 <div class="wrapper-box">
                     <div class="logo-column">
-                        <div class="logo-box d-flex">
-                            <div class="logo"><a href="index-2.html"><img src="{{ asset('assets/images/logo-10.jpeg')}}" alt="logo" title=""></a></div>
-                            <h5 class="mt-4 ml-2"><strong>{{ __('NACHANGIA')}}</strong></h5>
+                        <div class="logo-box">
+                            <a href="{{ route('home') }}" class="d-flex"><img src="{{ asset('assets/images/logo-10.jpeg')}}" alt="" title="">
+                                <h5 class="mt-3 ml-2"><strong>{{ __('NACHANGIA')}}</strong></h5>
+                            </a>
                         </div>
                     </div>
                     <div class="menu-column">
@@ -153,6 +150,18 @@
                                     <div class="collapse navbar-collapse">
                                         <ul class="navigation">
                                         </ul>
+                                        @if(Auth::user())
+                                        <div class="navbar-btn-wrap mr-2">
+                                            <a href="#" class=""><i class="flaticon-user"></i><span>{{ __(' My Profile')}}</span></a>
+                                        </div>
+                                        @endif
+                                        <div class="link-btn">
+                                            @if(Auth::user())
+                                            <a href="{{ route('cause')}}" class="theme-btn btn-sm btn-style-two"><span>{{ __('Create Cause')}}</span></a>
+                                            @else
+                                            <a href="{{ route('register') }}" class="theme-btn btn-sm btn-style-two"><span>{{ __('Nichangie')}}</span></a>
+                                            @endif
+                                        </div>
                                     </div>
                                 </nav><!-- Main Menu End-->
 
@@ -166,7 +175,7 @@
         <!-- Mobile Menu  -->
         <div class="mobile-menu style-one">
             <div class="menu-box">
-                <div class="logo"><a href="index-2.html"><img src="{{ asset('assets/images/logo-10.jpeg')}}" alt=""></a><strong class="ml-1">{{ __('NACHANGIA')}}</strong></div>
+                <div class="logo"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo-10.jpeg')}}" alt=""><strong class="ml-1">{{ __('NACHANGIA')}}</strong></a></div>
                 <!-- Main Menu -->
                 <nav class="main-menu navbar-expand-xl navbar-dark">
                     <div class="navbar-header">
@@ -180,14 +189,16 @@
                         <ul class="navigation">
 
                         </ul>
+                        @if(Auth::user())
+                        <div class="navbar-btn-wrap mr-2">
+                            <a href="#" class=""><i class="flaticon-user"></i><span>{{ __(' My Profile')}}</span></a>
+                        </div>
+                        @endif
                         <div class="link-btn">
                             @if(Auth::user())
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="theme-btn btn-style-two"><span>{{ __('Logout')}}</span></a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
+                            <a href="{{ route('cause')}}" class="theme-btn btn-sm btn-style-two"><span>{{ __('Create Cause')}}</span></a>
                             @else
-                            <a href="{{ route('register') }}" class="theme-btn btn-style-two"><span>{{ __('Nichangie')}}</span></a>
+                            <a href="{{ route('register') }}" class="theme-btn btn-sm btn-style-two"><span>{{ __('Nichangie')}}</span></a>
                             @endif
                         </div>
                     </div>
