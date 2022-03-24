@@ -15,7 +15,7 @@
             <div class="col-md-12 col-sm-12 card-panel">
                 <div class="form billing-info">
                     <div class="shop-page-title">
-                        <div class="title">{{ __('Create Cause')}} </div>
+                        <div class="title">{{ __('Create Campaign')}} </div>
                     </div>
                     <form method="post" action="{{ route('cause.create') }}" enctype="multipart/form-data">
                         @csrf

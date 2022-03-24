@@ -42,7 +42,7 @@
                     <div class="logo-column">
                         <div class="logo-box">
                             <div class="logo">
-                                <a href="{{ route('home') }}" class="d-flex"><img src="{{ asset('assets/images/logo-10.jpeg')}}" alt="" title="">
+                                <a href="{{ route('index') }}" class="d-flex"><img src="{{ asset('assets/images/logo-10.jpeg')}}" alt="" title="">
                                     <h5 class="mt-3 ml-2"><strong>{{ __('NACHANGIA')}}</strong></h5>
                                 </a>
                             </div>
@@ -116,7 +116,7 @@
                                 @if(Auth::user())
                                 <a href="{{ route('cause')}}" class="theme-btn btn-style-one"><span>{{ __('Create Campaign')}}</span></a>
                                 @else
-                                <a href="{{ route('register') }}" class="theme-btn btn-style-one"><span>{{ __('Nichangie')}}</span></a>
+                                <a href="{{ route('register') }}" class="theme-btn btn-style-one"><span>{{ __('Sign Up')}}</span></a>
                                 @endif
                             </div>
                         </div>
@@ -128,11 +128,11 @@
 
         <!--End Header Upper-->
         <div class="sticky-header">
-            <div class="auto-container">
+            <div class="auto-container">    
                 <div class="wrapper-box">
                     <div class="logo-column">
                         <div class="logo-box">
-                            <a href="{{ route('home') }}" class="d-flex"><img src="{{ asset('assets/images/logo-10.jpeg')}}" alt="" title="">
+                            <a href="{{ route('index') }}" class="d-flex"><img src="{{ asset('assets/images/logo-10.jpeg')}}" alt="" title="">
                                 <h5 class="mt-3 ml-2"><strong>{{ __('NACHANGIA')}}</strong></h5>
                             </a>
                         </div>
@@ -157,7 +157,7 @@
                                             @if(Auth::user())
                                             <a href="{{ route('cause')}}" class="theme-btn btn-sm btn-style-two"><span>{{ __('Create Campaign')}}</span></a>
                                             @else
-                                            <a href="{{ route('register') }}" class="theme-btn btn-sm btn-style-two"><span>{{ __('Nichangie')}}</span></a>
+                                            <a href="{{ route('register') }}" class="theme-btn btn-sm btn-style-two"><span>{{ __('Sign Up')}}</span></a>
                                             @endif
                                         </div>
                                     </div>
@@ -173,7 +173,7 @@
         <!-- Mobile Menu  -->
         <div class="mobile-menu style-one">
             <div class="menu-box">
-                <div class="logo"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo-10.jpeg')}}" alt=""><strong class="ml-1">{{ __('NACHANGIA')}}</strong></a></div>
+                <div class="logo"><a href="{{ route('index') }}"><img src="{{ asset('assets/images/logo-10.jpeg')}}" alt=""><strong class="ml-1">{{ __('NACHANGIA')}}</strong></a></div>
                 <!-- Main Menu -->
                 <nav class="main-menu navbar-expand-xl navbar-dark">
                     <div class="navbar-header">
@@ -196,7 +196,7 @@
                             @if(Auth::user())
                             <a href="{{ route('cause')}}" class="theme-btn btn-sm btn-style-two"><span>{{ __('Create Campaign')}}</span></a>
                             @else
-                            <a href="{{ route('register') }}" class="theme-btn btn-sm btn-style-two"><span>{{ __('Nichangie')}}</span></a>
+                            <a href="{{ route('register') }}" class="theme-btn btn-sm btn-style-two"><span>{{ __('Sign Up')}}</span></a>
                             @endif
                         </div>
                     </div>
