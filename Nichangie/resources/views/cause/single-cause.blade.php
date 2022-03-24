@@ -41,7 +41,7 @@
             <div class="col-lg-8 content-column">
                 <div class="image mb-50"><img src="{{ asset('storage/images/'.$cause->media)}}" alt=""></div>
                 <div class="sec-title mb-40">
-                    <h1>Campaign description</h1>
+                    <h1>The Story</h1>
                     <div class="text">{{ $cause->description }}.</div>
                 </div>
                 <h4>What we want to do bolanile imogene in this cause?</h4>
@@ -61,6 +61,69 @@
                     </div>
                 </div>
                 <br>
+                <div class="sec-title">
+                        <h1>Recent donars</h1>                        
+                    </div>
+                    <div class="recent-donars">
+                        <div class="wrapper-box">
+                            <div class="donor-thumb">
+                                <div class="image"><img src="{{ asset('assets/images/resource/donor-6.jpg')}}" alt=""></div>
+                                <div class="content">
+                                    <div class="text">Piyush Gabriel <br> Donated: TZS 250</div>
+                                </div>                        
+                                <span class="point"></span>
+                            </div>
+                            <div class="donor-thumb">
+                                <div class="image"><img src="{{ asset('assets/images/resource/donor-7.jpg')}}" alt=""></div>
+                                <div class="content">
+                                    <div class="text">Piyush Gabriel <br> Donated: TZS 250</div>
+                                </div>                        
+                                <span class="point"></span>
+                            </div>
+                            <div class="donor-thumb">
+                                <div class="image"><img src="{{ asset('assets/images/resource/donor-8.jpg')}}" alt=""></div>
+                                <div class="content">
+                                    <div class="text">Piyush Gabriel <br> Donated: TZS 250</div>
+                                </div>                        
+                                <span class="point"></span>
+                            </div>
+                            <div class="donor-thumb">
+                                <div class="image"><img src="{{ asset('assets/images/resource/donor-9.jpg')}}" alt=""></div>
+                                <div class="content">
+                                    <div class="text">Piyush Gabriel <br> Donated: TZS 250</div>
+                                </div>                        
+                                <span class="point"></span>
+                            </div>
+                            <div class="donor-thumb">
+                                <div class="image"><img src="{{ asset('assets/images/resource/donor-10.jpg')}}" alt=""></div>
+                                <div class="content">
+                                    <div class="text">Piyush Gabriel <br> Donated: TZS 250</div>
+                                </div>                        
+                                <span class="point"></span>
+                            </div>
+                            <div class="donor-thumb">
+                                <div class="image"><img src="{{ asset('assets/images/resource/donor-11.jpg')}}" alt=""></div>
+                                <div class="content">
+                                    <div class="text">Piyush Gabriel <br> Donated: TZS 250</div>
+                                </div>                        
+                                <span class="point"></span>
+                            </div>
+                            <div class="donor-thumb">
+                                <div class="image"><img src="{{ asset('assets/images/resource/donor-12.jpg')}}" alt=""></div>
+                                <div class="content">
+                                    <div class="text">Piyush Gabriel <br> Donated: TZS 250</div>
+                                </div>                        
+                                <span class="point"></span>
+                            </div>
+                            <div class="donor-thumb">
+                                <div class="image"><img src="{{ asset('assets/images/resource/donor-13.jpg')}}" alt=""></div>
+                                <div class="content">
+                                    <div class="text">Piyush Gabriel <br> Donated: TZS 250</div>
+                                </div>                        
+                                <span class="point"></span>
+                            </div>
+                        </div>
+                    </div>
                 <div class="share-post">
                     <div class="text"><i class="flaticon-share"></i>Share with friends</div>
                     <ul class="social-icon-seven">
@@ -76,26 +139,26 @@
                             <div class="text">Beguiled and demoralized by the charms of pleasure of the moment, so by desire, <br>that they cannot foresee.</div>
                         </div>
 
-                        <form action="#" class="donate-form default-form">
+                        <form action="#" class="donate-form default-form" method="post">
                             <ul class="chicklet-list clearfix">
                                 <li>
-                                    <input type="radio" id="donate-amount-1" name="donate-amount" />
-                                    <label for="donate-amount-1" data-amount="10">$10</label>
+                                    <input type="radio" id="donate-amount-1" value="1000" name="donate_amount" />
+                                    <label for="donate-amount-1" data-amount="10">TZS 1000</label>
                                 </li>
                                 <li>
-                                    <input type="radio" id="donate-amount-2" name="donate-amount" checked="checked" />
-                                    <label for="donate-amount-2" data-amount="20">$20</label>
+                                    <input type="radio" id="donate-amount-2" value="2000" name="donate_amount" checked="checked" />
+                                    <label for="donate-amount-2" data-amount="20">TZS 2000</label>
                                 </li>
                                 <li>
-                                    <input type="radio" id="donate-amount-3" name="donate-amount" />
-                                    <label for="donate-amount-3" data-amount="50">$50</label>
+                                    <input type="radio" id="donate-amount-3" value="5000" name="donate_amount" />
+                                    <label for="donate-amount-3" data-amount="50">TZS 5000</label>
                                 </li>
                                 <li>
-                                    <input type="radio" id="donate-amount-4" name="donate-amount" />
-                                    <label for="donate-amount-4" data-amount="100">$100</label>
+                                    <input type="radio" id="donate-amount-4" value="10000" name="donate_amount" />
+                                    <label for="donate-amount-4" data-amount="100">TZS 10000</label>
                                 </li>
                                 <li class="other-amount">
-                                    <div class="input-container" data-message="Every dollar you donate helps end hunger."><input type="text" id="other-amount" placeholder="Other Amount" />
+                                    <div class="input-container" data-message="Every dollar you donate helps end hunger."><input type="text" id="donate_amount" placeholder="Other Amount" />
                                     </div>
                                 </li>
                             </ul>
@@ -111,34 +174,30 @@
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group">
-                                            <input type="text" name="fname" placeholder="Email Address">
+                                            <input type="email" name="email" placeholder="Email Address">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group">
-                                            <input type="text" name="fname" placeholder="Contact">
+                                            <input type="text" name="contact" placeholder="Contact">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group">
                                             <select class="filters-selec form-controlt selectmenu" name="form_subject">
-                                                <option value="*">Payment Via</option>
-                                                <option value=".category-1">Cash</option>
-                                                <option value=".category-2">Card</option>
-                                                <option value=".category-2">Bank Transfer</option>
-                                                <option value=".category-2">Other</option>
+                                                <option value="">Payment Via</option>
+                                                <option value="mpesa">Mpesa</option>
+                                                <option value="tigopesa">Tigo Pesa</option>
+                                                <option value="airtelmoney">Airtel Money</option>
+                                                <option value="halopesa">Halo Pesa</option>
+                                                <option value="bank">Bank Transfer</option>
+                                                <option value="card">Card</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <div class="form-group d-flex align-items-center justify-content-between">
                                             <button class="theme-btn btn-style-one" type="submit"><span>Donate Now</span></button>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox">
-                                                    <span>I would like to donate automatically repeat each month</span>
-                                                </label>
-                                            </div>
                                         </div>
                                     </div>
 
@@ -154,14 +213,14 @@
                     <!-- Search Widget -->
                     <!-- Cause Widget -->
                     <div class="sidebar-title">
-                        <h4>Emergency Causes</h4>
+                        <h4>Emergency Campaigns</h4>
                     </div>
                     <div class="sidebar-widget case-widget">
                         <div class="single-item-carousel owl-theme owl-carousel owl-nav-none owl-dot-style-one">
                             <div class="cause-block-two">
                                 <div class="inner-box">
                                     <div class="image">
-                                        <img src="images/resource/cause-4.jpg" alt="">
+                                        <img src="{{ asset('assets/images/resource/cause-4.jpg')}}" alt="">
                                         <div class="overlay">
                                             <a href="cause-details.html" class="theme-btn btn-style-seven"><span>More Details</span></a>
                                         </div>
@@ -196,7 +255,7 @@
                             <div class="cause-block-two">
                                 <div class="inner-box">
                                     <div class="image">
-                                        <img src="images/resource/cause-4.jpg" alt="">
+                                        <img src="{{ asset('assets/images/resource/cause-4.jpg')}}" alt="">
                                         <div class="overlay">
                                             <a href="cause-details.html" class="theme-btn btn-style-seven"><span>More Details</span></a>
                                         </div>

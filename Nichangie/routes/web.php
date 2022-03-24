@@ -28,5 +28,9 @@ Route::group(['prefix' => 'campaign'], function(){
     Route::post('/', [App\Http\Controllers\CauseController::class, 'create'])->name('cause.create')->middleware('auth');
 });
 
+Route::group(['prefix' => 'donations'], function(){
+    Route::post('/', [App\Http\Controllers\DonationController::class, 'create'])->name('donate.create');
+});
+
 Route::middleware(['auth'])->group(function () {
 });
