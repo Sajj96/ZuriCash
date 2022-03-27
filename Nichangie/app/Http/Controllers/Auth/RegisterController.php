@@ -83,7 +83,7 @@ class RegisterController extends Controller
         $user->email        = $email;
         $user->phone        = $data['phone'];
         $user->password     = Hash::make($data['password']);
-        $user->user_type    = $data['user_type'];
+        $user->user_type    = User::DONEE_USER_TYPE;
         $user->save();
         return $user;
     }

@@ -56,7 +56,6 @@
                                 <div class="field-label">{{ __('Last Name *')}}</div>
                                 <div class="field-input">
                                     <input type="text" class="@error('lastname') is-invalid @enderror" name="lastname" placeholder="Enter last name">
-                                    <input type="hidden" name="user_type" value="1">
                                 </div>
                                 @error('lastname')
                                 <span class="text-danger" role="alert">

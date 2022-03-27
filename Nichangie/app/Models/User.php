@@ -13,7 +13,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     const DONEE_USER_TYPE = 1;
-    const DONER_USER_TYPE = 2;
+    const ADMIN_USER_TYPE = 2;
 
     /**
      * The attributes that are mass assignable.
