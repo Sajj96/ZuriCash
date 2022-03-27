@@ -22,6 +22,7 @@ class CreateCampaignsTable extends Migration
             $table->integer('category_id', false, true);
             $table->double('amount');
             $table->date('enddate');
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }
