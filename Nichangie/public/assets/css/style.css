@@ -11706,7 +11706,7 @@ img {
 .page-title:before {
 	position: absolute;
 	content: '';
-	background: rgba(29, 23, 71, 0.9);
+	background: #04719C /*rgba(29, 23, 71, 0.9); */;
 	left: 0;
 	top: 0;
 	width: 100%;

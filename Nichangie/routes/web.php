@@ -33,5 +33,10 @@ Route::group(['prefix' => 'donations'], function(){
     Route::post('/', [App\Http\Controllers\DonationController::class, 'create'])->name('donate.create');
 });
 
+Route::get('/admin/login', [App\Http\Controllers\Auth\LoginController::class, 'adminLogin'])->name('admin.login');
+
 Route::middleware(['auth'])->group(function () {
+    Route::group(['middleware' => 'user.type', 'prefix' => 'admin'], function(){
+        Route::get('/home', [App\Http\Controllers\HomeController::class, 'adminIndex'])->name('admin.home');
+    });
 });

@@ -1313,7 +1313,7 @@ Basic card CSS
 .common-img-bg {
   height: 100%;
   background-size: cover;
-  background: url("../images/authentication-bg.jpg") no-repeat; }
+}
 
 .login {
   position: fixed;
@@ -1322,7 +1322,7 @@ Basic card CSS
   display: flex;
   align-items: center;
   text-align: left;
-  background-color: #2196F3; }
+  }
   .login h3 {
     color: #666666;
     font-size: 20px;

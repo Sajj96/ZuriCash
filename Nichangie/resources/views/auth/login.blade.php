@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-xl-3"></div>
             <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mt-2 card-panel">
-                @error('phone')
+                @error('login')
                 <div class="alert alert-danger">
                     <strong>{{ $message }}</strong>
                 </div>
@@ -36,6 +36,7 @@
                                 <div class="field-label">{{ __('Phone Number')}}</div>
                                 <div class="input-field">
                                     <input type="tel" id="phone" name="phone" placeholder="Enter phone number" autofocus>
+                                    <input type="hidden" name="user_type" value="1">
                                     <div class="icon-holder">
                                         <i class="fa fa-phone" aria-hidden="true"></i>
                                     </div>

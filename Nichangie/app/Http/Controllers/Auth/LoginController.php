@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -39,16 +40,51 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->userphone = $this->findUser();
+    }
+
+    public function adminLogin()
+    {
+        return view('auth.admin_login');
+    }
+
+    public function findUser()
+    {
+        $login = request()->input('login');
+ 
+        $fieldType = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
+ 
+        request()->merge([$fieldType => $login]);
+ 
+        return $fieldType;
+    }
+ 
+    public function userphone()
+    {
+        return $this->userphone;
     }
 
     public function login(Request $request)
     {
         $this->validate($request, [
-            'phone'    => 'required',
+            'login'    => 'required',
             'password' => 'required',
         ]);
 
-        if (Auth::attempt(['phone' => $request->input('phone'), 'password' => $request->input('password')])) {
+        $login_type = filter_var($request->input('login'), FILTER_VALIDATE_EMAIL ) 
+            ? 'email' 
+            : 'phone';
+
+        $request->merge([
+            $login_type => $request->input('login')
+        ]);
+
+        $remember = $request->has('remember') ? true : false;
+
+        if (Auth::attempt([$login_type => $request->input('login'), 'password' => $request->input('password'), $remember])) {
+            if($request->input('user_type') == User::ADMIN_USER_TYPE) {
+                return redirect()->route('admin.home');
+            }
             return redirect()->intended($this->redirectTo);
         }
 
@@ -56,6 +92,7 @@ class LoginController extends Controller
             ->withInput()
             ->withErrors([
                 'phone' => 'Incorrect Phone number or Password',
+                'login' => 'These credentials do not match our records',
                 'password' => 'Incorrect Password'
             ]);
     }

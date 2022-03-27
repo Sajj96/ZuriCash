@@ -7,19 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta property="og:type" content="website" />
     <meta property="og:url" content="env('APP_URL')" />
-    <meta property="og:title" content="NICHANGIE" />
-    <meta property="og:description" content="NICHANGIE" />
+    <meta property="og:title" content="NACHANGIA" />
+    <meta property="og:description" content="NACHANGIA" />
     <meta property="og:image" content="{{ asset('assets/img/logo1.png')}}" />
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="env('APP_URL')" />
     <meta property="twitter:title" content="" />
-    <meta property="twitter:description" content="NICHANGIE" />
+    <meta property="twitter:description" content="NACHANGIA" />
     <meta property="twitter:image" content="{{ asset('assets/img/logo1.png')}}" />
     <meta property="twitter:image:alt" content="Company logo" />
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Nichangie') }}</title>
+    <title>{{ config('app.name', 'NACHANGIA') }}</title>
 
     <link rel="shortcut icon" href="{{ asset('assets/images/logo-10.jpeg')}}" type="image/x-icon">
     <link rel="icon" href="{{ asset('assets/images/logo-10.jpeg')}}" type="image/x-icon">

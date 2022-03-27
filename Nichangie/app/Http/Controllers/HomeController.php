@@ -19,6 +19,11 @@ class HomeController extends Controller
         return view('home', compact('campaigns'));
     }
 
+    public function adminIndex()
+    {
+        return view('admin.home');
+    }
+
     public function show()
     {
         return view('auth.register_doner');
