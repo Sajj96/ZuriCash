@@ -2,23 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cause;
+use App\Models\Campaign;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 
-class CauseController extends Controller
+class CampaignController extends Controller
 {
     public function index()
     {
-        return view('cause.create-cause');
+        return view('campaign.create-campaign');
     }
 
     public function show($id)
     {
-        $cause = Cause::find($id);
-        return view('cause.single-cause', compact('cause'));
+        $campaign = Campaign::find($id);
+        return view('campaign.single-campaign', compact('campaign'));
+    }
+
+    public function getAll()
+    {
+        $campaigns = Campaign::all();
+        return view('campaign.campaigns', compact($campaigns));
     }
 
     public function create(Request $request)
@@ -31,7 +37,7 @@ class CauseController extends Controller
         ]);
 
         if($validator->fails()) {
-            return redirect()->route('cause')->with('error','All details are required!');
+            return redirect()->route('campaign')->with('error','All details are required!');
         }
 
         try {
@@ -45,7 +51,7 @@ class CauseController extends Controller
             } else if($extension == "jpeg") {
                 $fileName = $generated.".jpeg";
             } else {
-                return redirect()->route('cause')->with('error', "Invalid file type only png, jpeg and jpg files are allowed.");
+                return redirect()->route('campaign')->with('error', "Invalid file type only png, jpeg and jpg files are allowed.");
             }
             $filePath = $request->file('image')->storeAs('images', $fileName,'public');
             $type = pathinfo($filePath, PATHINFO_EXTENSION);
@@ -55,20 +61,20 @@ class CauseController extends Controller
 
             $user = Auth::user();
 
-            $cause = new Cause;
-            $cause->user_id = $user->id;
-            $cause->title = $request->title;
-            $cause->description = strip_tags($request->description);
-            $cause->media = $fileName;
-            $cause->amount = $request->amount;
-            $cause->category_id = $request->category;
-            $cause->enddate = $request->enddate;
-            if($cause->save()) {
-                return redirect()->route('cause')->with('success','Cause created successfully!');
+            $campaign = new Campaign;
+            $campaign->user_id = $user->id;
+            $campaign->title = $request->title;
+            $campaign->description = strip_tags($request->description);
+            $campaign->media = $fileName;
+            $campaign->amount = $request->amount;
+            $campaign->category_id = $request->category;
+            $campaign->enddate = $request->enddate;
+            if($campaign->save()) {
+                return redirect()->route('campaign')->with('success','Campaign created successfully!');
             }
             file_put_contents("/app/public/images/".$fileName, $fileBin);
         } catch (\Exception $e) {
-            return redirect()->route('cause')->with('error','Something went wrong while creating a cause!');
+            return redirect()->route('campaign')->with('error','Something went wrong while creating a campaign!');
         }
     }
 }

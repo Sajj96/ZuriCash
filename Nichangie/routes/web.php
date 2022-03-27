@@ -22,10 +22,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'campaign'], function(){
-    Route::get('/', [App\Http\Controllers\CauseController::class, 'index'])->name('cause')->middleware('auth');
-    Route::get('/{id}', [App\Http\Controllers\CauseController::class, 'show'])->name('cause.show');
-    Route::post('/', [App\Http\Controllers\CauseController::class, 'create'])->name('cause.create')->middleware('auth');
+Route::group(['prefix' => 'campaigns'], function(){
+    Route::get('/', [App\Http\Controllers\CampaignController::class, 'index'])->name('campaign')->middleware('auth');
+    Route::get('/all', [App\Http\Controllers\CampaignController::class, 'getAll'])->name('campaign.all');
+    Route::get('/{id}', [App\Http\Controllers\CampaignController::class, 'show'])->name('campaign.show');
+    Route::post('/', [App\Http\Controllers\CampaignController::class, 'create'])->name('campaign.create')->middleware('auth');
 });
 
 Route::group(['prefix' => 'donations'], function(){

@@ -65,6 +65,39 @@
                                 @enderror
                             </div>
                             <div class="col-md-6">
+                                <div class="field-label">{{ __('Email (optional)')}}</div>
+                                <div class="field-input">
+                                    <input type="email" class="@error('email') is-invalid @enderror" name="email" placeholder="Enter email">
+                                </div>
+                                @error('email')
+                                <span class="text-danger" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6">
+                                <div class="field-label">{{ __('NIDA Number *')}}</div>
+                                <div class="field-input">
+                                    <input type="text" class="@error('nida') is-invalid @enderror" name="nida" placeholder="Enter NIDA">
+                                </div>
+                                @error('nida')
+                                <span class="text-danger" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6">
+                                <div class="field-label">{{ __('Phone *')}}</div>
+                                <div class="field-input">
+                                    <input id="phone" type="tel" class="@error('address') is-invalid @enderror" name="phone" placeholder="Phone Number" required>
+                                </div>
+                                @error('phone')
+                                <span class="text-danger" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6">
                                 <div class="field-label">{{ __('Address *')}}</div>
                                 <div class="field-input">
                                     <input type="text" class="@error('address') is-invalid @enderror" name="address" placeholder="Enter Address">
@@ -92,17 +125,6 @@
                                 <div class="field-input">
                                     <input type="text" name="town_city" placeholder="Enter Town / City" required>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="field-label">{{ __('Phone *')}}</div>
-                                <div class="field-input">
-                                    <input id="phone" type="tel" class="@error('address') is-invalid @enderror" name="phone" placeholder="Phone Number" required>
-                                </div>
-                                @error('phone')
-                                <span class="text-danger" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <div class="field-label">{{ __('Password *')}}</div>

@@ -9,7 +9,7 @@
 <section class="page-title" style="background-image:url(images/background/bg-13.jpg)">
     <div class="auto-container">
         <div class="content-box">
-            <h1>{{ $cause->title }}</h1>
+            <h1>{{ $campaign->title }}</h1>
         </div>
     </div>
 </section>
@@ -19,7 +19,7 @@
     <div class="auto-container">
         <div class="wrapper-box">
             <div class="raised"><span>Raised:</span> <br>$92000</div>
-            <div class="goal"><span>Goal:</span> <br>TZS {{ $cause->amount }}</div>
+            <div class="goal"><span>Goal:</span> <br>TZS {{ $campaign->amount }}</div>
             <div class="progress-block">
                 <div class="inner-box">
                     <div class="graph-outer">
@@ -39,10 +39,10 @@
     <div class="auto-container">
         <div class="row">
             <div class="col-lg-8 content-column">
-                <div class="image mb-50"><img src="{{ asset('storage/images/'.$cause->media)}}" alt=""></div>
+                <div class="image mb-50"><img src="{{ asset('storage/images/'.$campaign->media)}}" alt=""></div>
                 <div class="sec-title mb-40">
                     <h1>The Story</h1>
-                    <div class="text">{{ $cause->description }}.</div>
+                    <div class="text">{{ $campaign->description }}.</div>
                 </div>
                 <h4>What we want to do bolanile imogene in this cause?</h4>
                 <div class="row">

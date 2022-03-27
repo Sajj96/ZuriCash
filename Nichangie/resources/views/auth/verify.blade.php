@@ -37,7 +37,6 @@
                                 <div class="text-center">
                                     {{ __('Didn\'t receive the code?')}}<br />
                                     <a href="#">{{ __('Send code again')}}</a><br />
-                                    <a href="#">{{ __('Change phone number')}}</a>
                                 </div>
                             </div>
                         </div>

@@ -74,8 +74,6 @@
                                                 </ul>
                                             </li>
                                             <li><a href="#">{{ __('How it works')}}</a></li>
-                                            <li><a href="#">{{ __('Earn Money')}}</a></li>
-                                            <li><a href="#">{{ __('Promote')}}</a></li>
                                             @if(Auth::user())
                                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span>{{ __('Sign out')}}</span></a>
                                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -109,12 +107,12 @@
                             </div>
                             @if(Auth::user())
                             <div class="navbar-btn-wrap">
-                                <a href="#" class=""><i class="flaticon-user"></i><span>{{ __(' My Profile')}}</span></a>
+                                <a href="#" class=""><i class="fa fa-user-circle fa-2x"></i></a>
                             </div>
                             @endif
                             <div class="link-btn">
                                 @if(Auth::user())
-                                <a href="{{ route('cause')}}" class="theme-btn btn-style-one"><span>{{ __('Create Campaign')}}</span></a>
+                                <a href="{{ route('campaign')}}" class="theme-btn btn-style-one"><span>{{ __('Start Campaign')}}</span></a>
                                 @else
                                 <a href="{{ route('register') }}" class="theme-btn btn-style-one"><span>{{ __('Sign Up')}}</span></a>
                                 @endif
@@ -150,12 +148,12 @@
                                         </ul>
                                         @if(Auth::user())
                                         <div class="navbar-btn-wrap mr-2">
-                                            <a href="#" class=""><i class="flaticon-user"></i><span>{{ __(' My Profile')}}</span></a>
+                                            <a href="#" class=""><i class="fa fa-user-circle fa-2x"></i></a>
                                         </div>
                                         @endif
                                         <div class="link-btn">
                                             @if(Auth::user())
-                                            <a href="{{ route('cause')}}" class="theme-btn btn-sm btn-style-two"><span>{{ __('Create Campaign')}}</span></a>
+                                            <a href="{{ route('campaign')}}" class="theme-btn btn-sm btn-style-two"><span>{{ __('Start Campaign')}}</span></a>
                                             @else
                                             <a href="{{ route('register') }}" class="theme-btn btn-sm btn-style-two"><span>{{ __('Sign Up')}}</span></a>
                                             @endif
@@ -189,12 +187,12 @@
                         </ul>
                         @if(Auth::user())
                         <div class="navbar-btn-wrap mr-2">
-                            <a href="#" class=""><i class="flaticon-user"></i><span>{{ __(' My Profile')}}</span></a>
+                            <a href="#" class=""><i class="fa fa-user-circle fa-2x"></i></a>
                         </div>
                         @endif
                         <div class="link-btn">
                             @if(Auth::user())
-                            <a href="{{ route('cause')}}" class="theme-btn btn-sm btn-style-two"><span>{{ __('Create Campaign')}}</span></a>
+                            <a href="{{ route('campaign')}}" class="theme-btn btn-sm btn-style-two"><span>{{ __('Start Campaign')}}</span></a>
                             @else
                             <a href="{{ route('register') }}" class="theme-btn btn-sm btn-style-two"><span>{{ __('Sign Up')}}</span></a>
                             @endif

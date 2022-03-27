@@ -17,7 +17,7 @@
                     <div class="shop-page-title">
                         <div class="title">{{ __('Create Campaign')}} </div>
                     </div>
-                    <form method="post" action="{{ route('cause.create') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('campaign.create') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
@@ -27,7 +27,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <div class="field-label">{{ __('Description*')}}</div>
+                                <div class="field-label">{{ __('Story*')}}</div>
                                 <div class="field-input">
                                     <textarea class="summernote-simple" name="description" required></textarea>
                                 </div>
@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 mt-3">
-                                <div class="field-label">{{ __('What are you fundraising for?*')}}</div>
+                                <div class="field-label">{{ __('What are you campaigning for?*')}}</div>
                                 <div class="field-input">
                                     <select class="filters-select selectmenu" name="category">
                                         <option value="">Please select</option>

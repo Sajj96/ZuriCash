@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cause;
+use App\Models\Campaign;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,8 +15,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $causes = Cause::all();
-        return view('home', compact('causes'));
+        $campaigns = Campaign::all();
+        return view('home', compact('campaigns'));
     }
 
     public function show()

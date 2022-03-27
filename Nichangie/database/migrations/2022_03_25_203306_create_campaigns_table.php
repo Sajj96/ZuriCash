@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCausesTable extends Migration
+class CreateCampaignsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateCausesTable extends Migration
      */
     public function up()
     {
-        Schema::create('causes', function (Blueprint $table) {
+        Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id', false, true);
             $table->string('title');
-            $table->text('description');
+            $table->text('story');
             $table->string('media');
             $table->integer('category_id', false, true);
             $table->double('amount');
@@ -33,6 +33,6 @@ class CreateCausesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('causes');
+        Schema::dropIfExists('campaigns');
     }
 }

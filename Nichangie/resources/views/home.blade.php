@@ -98,13 +98,13 @@
 <section class="causes-section">
     <div class="auto-container">
         <div class="sec-title text-center">
-            <h1>Causes we care about</h1>
+            <h1>Campaigns we care about</h1>
             <div class="text">We connects nonprofits, donors, and companies in nearly every country around the world.</div>
         </div>
         <div class="cause-carousel-wrapper">
             <div class="cause-carousel owl-theme owl-carousel owl-dots-none owl-nav-style-three">
                 <!-- Cause Block One -->
-                @foreach($causes as $key=>$rows)
+                @foreach($campaigns as $key=>$rows)
                 <div class="cause-block-one">
                     <div class="inner-box">
                         <div class="image"><a href="{{ route('cause.show', $rows->id) }}"><img src="{{ asset('storage/images/'.$rows->media)}}" style="height: 230px;" alt="cause-media"></a></div>
