@@ -1,7 +1,7 @@
 <div class="wrapper">
     <!-- Navbar-->
     <header class="main-header-top hidden-print">
-        <a href="index.html" class="logo"><strong>NACHANGIA</strong></a>
+        <a href="{{ route('admin.home')}}" class="logo"><strong>NACHANGIA</strong></a>
         <nav class="navbar navbar-static-top">
             <!-- Sidebar toggle button-->
             <a href="#!" data-toggle="offcanvas" class="sidebar-toggle"></a>
@@ -57,7 +57,7 @@
                 </li>
                 <li class="treeview">
                     <a class="waves-effect waves-dark" href="index.html">
-                        <i class="icon-hourglass"></i><span> Campaign</span>
+                        <i class="icon-hourglass"></i><span> Campaigns</span>
                     </a>
                 </li>
                 <li class="treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-grid"></i><span> Categories</span><i class="icon-arrow-down"></i></a>

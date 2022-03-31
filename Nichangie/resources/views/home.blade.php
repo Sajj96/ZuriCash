@@ -363,83 +363,25 @@
 </section>
 
 <!-- Donor Section -->
-<section class="donor-section" style="background-image: url(assets/images/background/bg-1.jpg);">
+<section class="donor-section">
     <div class="auto-container">
         <div class="row">
-            <div class="col-lg-8 left-column">
-                <div class="sec-title light">
-                    <h1>The trusted choice of donors</h1>
-                    <div class="text">We connects nonprofits, donors, and companies in nearly every country around the world.</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 donor-block">
-                        <div class="inner-box wow fadeInUp" data-wow-delay="200ms">
-                            <div class="top-content">
-                                <div class="image">
-                                    <img src="assets/images/resource/donor-1.jpg" alt="">
-                                    <div class="overlay">
-                                        <div class="icon"><a href="#"><span class="fa fa-twitter"></span></a></div>
-                                    </div>
-                                </div>
-                                <h4>Austin Leon</h4>
-                                <div class="location">San Jose</div>
-                            </div>
-                            <div class="bottom-content">
-                                <div class="text">Donation</div>
-                                <div class="price">$250</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 donor-block">
-                        <div class="inner-box wow fadeInUp" data-wow-delay="500ms">
-                            <div class="top-content">
-                                <div class="image">
-                                    <img src="assets/images/resource/donor-2.jpg" alt="">
-                                    <div class="overlay">
-                                        <div class="icon"><a href="#"><span class="fa fa-twitter"></span></a></div>
-                                    </div>
-                                </div>
-                                <h4>Alvina Betty</h4>
-                                <div class="location">Liverpool</div>
-                            </div>
-                            <div class="bottom-content">
-                                <div class="text">Donation</div>
-                                <div class="price">$200</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 donor-block">
-                        <div class="inner-box wow fadeInUp" data-wow-delay="200ms">
-                            <div class="top-content">
-                                <div class="image">
-                                    <img src="assets/images/resource/donor-3.jpg" alt="">
-                                    <div class="overlay">
-                                        <div class="icon"><a href="#"><span class="fa fa-twitter"></span></a></div>
-                                    </div>
-                                </div>
-                                <h4>Jasper Flelix</h4>
-                                <div class="location">Newcastle</div>
-                            </div>
-                            <div class="bottom-content">
-                                <div class="text">Donation</div>
-                                <div class="price">$500</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-lg-6">
+                <div class="image mb-30"><img src="{{ asset('assets/images/resource/image-12.jpg')}}" alt=""></div>
             </div>
-            <div class="col-lg-4 right-column">
-                <div class="feature-block-one wow fadeInUp" data-wow-delay="200ms">
-                    <div class="icon-box"><span class="flaticon-world"></span></div>
-                    <h4>Maximum tax <br>benefit</h4>
-                </div>
-                <div class="feature-block-one wow fadeInUp" data-wow-delay="400ms">
-                    <div class="icon-box"><span class="flaticon-reward"></span></div>
-                    <h4>Publicity <br>or anonymity</h4>
-                </div>
-                <div class="feature-block-one wow fadeInUp" data-wow-delay="600ms">
-                    <div class="icon-box"><span class="flaticon-shield"></span></div>
-                    <h4>Guaranteed <br>and relevance</h4>
+            <div class="col-lg-6">
+                <div class="about-content-block">
+                    <h1>Be part of a change <br>you want to see in the world</h1>
+                    <h4>“Generosity consists not of the sum given, but the manner in <br>which it is bestowed.”</h4>
+                    <div class="text wow fadeInUp" data-wow-delay="200ms">How all this mistaken idea of denouncing pleasure and praising pain was born <br>and I will give you a complete account of the system expound the actually <br>teachings of the great explorer of the truth pursues.</div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="link-btn wow fadeInLeft" data-wow-delay="500ms"><a href="#" class="theme-btn btn-style-two"><i class="flaticon-next"></i><span>Our Mission</span></a></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="link-btn wow fadeInRight" data-wow-delay="900ms"><a href="#" class="theme-btn btn-style-three"><i class="flaticon-next"></i><span>Our Vision</span></a></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

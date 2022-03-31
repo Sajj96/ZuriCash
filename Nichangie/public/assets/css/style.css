@@ -5384,9 +5384,10 @@ img {
 
 .donor-section {
 	position: relative;
-	background-color: #04719C;
+	/* background-color: #04719C; */
 	background-position: right center;
 	background-size: cover;
+	padding: 60px 15px 10px;
 }
 
 .donor-section .left-column {
@@ -5397,7 +5398,7 @@ img {
 .donor-section .left-column:before {
 	position: absolute;
 	content: '';
-	background: #04719C;
+	/* background: #04719C; */
 	height: 100%;
 	width: 200%;
 	top: 0;

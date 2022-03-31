@@ -30,7 +30,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="md-input-wrapper">
-									<input type="email" name="email" class="md-form-control" required="required"/>
+									<input type="email" name="login" class="md-form-control" required="required"/>
 									<input type="hidden" name="user_type" value="2">
 									<label>Email</label>
 								</div>
@@ -43,7 +43,7 @@
 							</div>
 						<div class="row">
 							<div class="col-xs-10 offset-xs-1">
-								<button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">LOGIN</button>
+								<button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">LOGIN</button>
 							</div>
 						</div>
 					</form>

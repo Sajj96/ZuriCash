@@ -81,7 +81,7 @@ class LoginController extends Controller
 
         $remember = $request->has('remember') ? true : false;
 
-        if (Auth::attempt([$login_type => $request->input('login'), 'password' => $request->input('password'), $remember])) {
+        if (Auth::attempt([$login_type => $request->input('login'), 'password' => $request->input('password')], $remember)) {
             if($request->input('user_type') == User::ADMIN_USER_TYPE) {
                 return redirect()->route('admin.home');
             }
