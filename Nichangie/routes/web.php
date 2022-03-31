@@ -38,5 +38,11 @@ Route::get('/admin/login', [App\Http\Controllers\Auth\LoginController::class, 'a
 Route::middleware(['auth'])->group(function () {
     Route::group(['middleware' => 'user.type', 'prefix' => 'admin'], function(){
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'adminIndex'])->name('admin.home');
+
+        Route::group(['prefix' => 'categories'], function(){
+            Route::get('/', [App\Http\Controllers\CategoryController::class, 'index'])->name('category');
+            Route::get('/create', [App\Http\Controllers\CategoryController::class, 'show'])->name('category.show');
+            Route::post('/', [App\Http\Controllers\CategoryController::class, 'create'])->name('category.create');
+        });
     });
 });

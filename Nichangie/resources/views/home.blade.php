@@ -105,7 +105,7 @@
             <div class="cause-carousel owl-theme owl-carousel owl-dots-none owl-nav-style-three">
                 <!-- Cause Block One -->
                 @foreach($campaigns as $key=>$rows)
-                <div class="cause-block-one">
+                <div class="cause-block-one-carousel">
                     <div class="inner-box">
                         <div class="image"><a href="{{ route('cause.show', $rows->id) }}"><img src="{{ asset('storage/images/'.$rows->media)}}" style="height: 230px;" alt="cause-media"></a></div>
                         <div class="lower-content">
@@ -133,22 +133,12 @@
                                 </div>
                             </div>
                             <div class="text">Raised by 84 people in 12 days</div>
-                            <div class="bottom-content">
-                                <div class="link-btn"><a href="cause-details.html" class="theme-btn btn-style-one donate-box-btn"><span>Donate Now</span></a></div>
-                                <div class="share-icon post-share-icon">
-                                    <div class="share-btn"><i class="flaticon-share"></i></div>
-                                    <ul>
-                                        <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                                        <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
                 @endforeach
                 <!-- Cause Block One -->
-                <div class="cause-block-one">
+                <div class="cause-block-one-carousel">
                     <div class="inner-box">
                         <div class="image"><a href="cause-details.html"><img src="assets/images/resource/cause-2.jpg" alt=""></a></div>
                         <div class="lower-content">
@@ -176,21 +166,11 @@
                                 </div>
                             </div>
                             <div class="text">Raised by 36 people in 08 days</div>
-                            <div class="bottom-content">
-                                <div class="link-btn"><a href="cause-details.html" class="theme-btn btn-style-one donate-box-btn"><span>Donate Now</span></a></div>
-                                <div class="share-icon post-share-icon">
-                                    <div class="share-btn"><i class="flaticon-share"></i></div>
-                                    <ul>
-                                        <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                                        <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
                 <!-- Cause Block One -->
-                <div class="cause-block-one">
+                <div class="cause-block-one-carousel">
                     <div class="inner-box">
                         <div class="image"><a href="cause-details.html"><img src="assets/images/resource/cause-1.jpg" alt=""></a></div>
                         <div class="lower-content">
@@ -218,21 +198,11 @@
                                 </div>
                             </div>
                             <div class="text">Raised by 56 people in 15 days</div>
-                            <div class="bottom-content">
-                                <div class="link-btn"><a href="cause-details.html" class="theme-btn btn-style-one donate-box-btn"><span>Donate Now</span></a></div>
-                                <div class="share-icon post-share-icon">
-                                    <div class="share-btn"><i class="flaticon-share"></i></div>
-                                    <ul>
-                                        <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                                        <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
                 <!-- Cause Block One -->
-                <div class="cause-block-one">
+                <div class="cause-block-one-carousel">
                     <div class="inner-box">
                         <div class="image"><a href="cause-details.html"><img src="assets/images/resource/cause-1.jpg" alt=""></a></div>
                         <div class="lower-content">
@@ -260,21 +230,11 @@
                                 </div>
                             </div>
                             <div class="text">Raised by 84 people in 12 days</div>
-                            <div class="bottom-content">
-                                <div class="link-btn"><a href="cause-details.html" class="theme-btn btn-style-one donate-box-btn"><span>Donate Now</span></a></div>
-                                <div class="share-icon post-share-icon">
-                                    <div class="share-btn"><i class="flaticon-share"></i></div>
-                                    <ul>
-                                        <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                                        <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
                 <!-- Cause Block One -->
-                <div class="cause-block-one">
+                <div class="cause-block-one-carousel">
                     <div class="inner-box">
                         <div class="image"><a href="cause-details.html"><img src="assets/images/resource/cause-2.jpg" alt=""></a></div>
                         <div class="lower-content">
@@ -302,21 +262,11 @@
                                 </div>
                             </div>
                             <div class="text">Raised by 36 people in 08 days</div>
-                            <div class="bottom-content">
-                                <div class="link-btn"><a href="cause-details.html" class="theme-btn btn-style-one donate-box-btn"><span>Donate Now</span></a></div>
-                                <div class="share-icon post-share-icon">
-                                    <div class="share-btn"><i class="flaticon-share"></i></div>
-                                    <ul>
-                                        <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                                        <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
                 <!-- Cause Block One -->
-                <div class="cause-block-one">
+                <div class="cause-block-one-carousel">
                     <div class="inner-box">
                         <div class="image"><a href="cause-details.html"><img src="assets/images/resource/cause-1.jpg" alt=""></a></div>
                         <div class="lower-content">
@@ -344,20 +294,13 @@
                                 </div>
                             </div>
                             <div class="text">Raised by 56 people in 15 days</div>
-                            <div class="bottom-content">
-                                <div class="link-btn"><a href="cause-details.html" class="theme-btn btn-style-one donate-box-btn"><span>Donate Now</span></a></div>
-                                <div class="share-icon post-share-icon">
-                                    <div class="share-btn"><i class="flaticon-share"></i></div>
-                                    <ul>
-                                        <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                                        <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="bottom-content text-center">
+            <div class="link-btn"><a href="{{ route('campaign.all') }}" class="theme-btn btn-style-one"><span>{{ __('View All')}}</span></a></div>
         </div>
     </div>
 </section>
@@ -373,13 +316,13 @@
                 <div class="about-content-block">
                     <h1>Be part of a change <br>you want to see in the world</h1>
                     <h4>“Generosity consists not of the sum given, but the manner in <br>which it is bestowed.”</h4>
-                    <div class="text wow fadeInUp" data-wow-delay="200ms">How all this mistaken idea of denouncing pleasure and praising pain was born <br>and I will give you a complete account of the system expound the actually <br>teachings of the great explorer of the truth pursues.</div>
+                    <div class="text wow fadeInUp" data-wow-delay="200ms">Get our app now.</div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="link-btn wow fadeInLeft" data-wow-delay="500ms"><a href="#" class="theme-btn btn-style-two"><i class="flaticon-next"></i><span>Our Mission</span></a></div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="link-btn wow fadeInLeft" data-wow-delay="500ms"><a href="#"><img src="{{ asset('assets/images/badge-google-play.png')}}" width="200" height="100" alt="googleplay" srcset=""></a></div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="link-btn wow fadeInRight" data-wow-delay="900ms"><a href="#" class="theme-btn btn-style-three"><i class="flaticon-next"></i><span>Our Vision</span></a></div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="link-btn wow fadeInRight" data-wow-delay="900ms"><a href="#"><img src="{{ asset('assets/images/badge-apple.png')}}" width="200" height="100" alt="appstore"></a></div>
                         </div>
                     </div>
                 </div>

@@ -20,7 +20,7 @@
                     <!-- User Menu-->
                     <li class="dropdown">
                         <a href="#!" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle drop icon-circle drop-image">
-                            <span><img class="img-circle " src="assets/images/avatar-1.png" style="width:40px;" alt="User Image"></span>
+                            <span><img class="img-circle " src="{{ asset('admin/assets/images/avatar-1.png')}}" style="width:40px;" alt="User Image"></span>
                             <span>John <b>Doe</b> <i class=" icofont icofont-simple-down"></i></span>
 
                         </a>
@@ -62,8 +62,8 @@
                 </li>
                 <li class="treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-grid"></i><span> Categories</span><i class="icon-arrow-down"></i></a>
                     <ul class="treeview-menu">
-                        <li><a class="waves-effect waves-dark" href="float-chart.html"><i class="icon-arrow-right"></i> Category List</a></li>
-                        <li><a class="waves-effect waves-dark" href="morris-chart.html"><i class="icon-arrow-right"></i> Create Category</a></li>
+                        <li><a class="waves-effect waves-dark" href="{{ route('category')}}"><i class="icon-arrow-right"></i> Category List</a></li>
+                        <li><a class="waves-effect waves-dark" href="{{ route('category.show')}}"><i class="icon-arrow-right"></i> Create Category</a></li>
                     </ul>
                 </li>
             </ul>

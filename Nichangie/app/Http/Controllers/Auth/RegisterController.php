@@ -69,11 +69,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $email = null;
-        if($data['user_type'] == 2) {
-            $email = $data['email'];
-        }
-
         $user               = new User;
         $user->firstname    = $data['firstname'];
         $user->lastname     = $data['lastname'];
@@ -82,7 +77,7 @@ class RegisterController extends Controller
         $user->nida         = $data['nida'];
         $user->country      = $data['country'];
         $user->town         = $data['town_city'];
-        $user->email        = $email;
+        $user->email        = $data['email'];
         $user->phone        = $data['phone'];
         $user->password     = Hash::make($data['password']);
         $user->user_type    = User::DONEE_USER_TYPE;

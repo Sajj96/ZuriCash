@@ -56,10 +56,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-header-text">Bar chart</h5>
+                        <h5 class="card-header-text">Donations</h5>
                     </div>
                     <div class="card-block">
                         <div id="barchart" style="min-width: 250px; height: 330px; margin: 0 auto"></div>
