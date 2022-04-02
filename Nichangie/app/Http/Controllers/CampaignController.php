@@ -30,7 +30,7 @@ class CampaignController extends Controller
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'description' => 'required|string',
+            'story' => 'required|string',
             'image'       => 'required',
             'category'    => 'required|string',
             'amount'      => 'required|numeric'
@@ -64,7 +64,7 @@ class CampaignController extends Controller
             $campaign = new Campaign;
             $campaign->user_id = $user->id;
             $campaign->title = $request->title;
-            $campaign->description = strip_tags($request->description);
+            $campaign->story = strip_tags($request->story);
             $campaign->media = $fileName;
             $campaign->amount = $request->amount;
             $campaign->category_id = $request->category;

@@ -107,9 +107,9 @@
                 @foreach($campaigns as $key=>$rows)
                 <div class="cause-block-one-carousel">
                     <div class="inner-box">
-                        <div class="image"><a href="{{ route('cause.show', $rows->id) }}"><img src="{{ asset('storage/images/'.$rows->media)}}" style="height: 230px;" alt="cause-media"></a></div>
+                        <div class="image"><a href="{{ route('campaign.show', $rows->id) }}"><img src="{{ asset('storage/images/'.$rows->media)}}" style="height: 230px;" alt="cause-media"></a></div>
                         <div class="lower-content">
-                            <h4><a href="{{ route('cause.show', $rows->id) }}">{{ $rows->title }}</a></h4>
+                            <h4><a href="{{ route('campaign.show', $rows->id) }}">{{ $rows->title }}</a></h4>
                             <div class="category"><a href="#"><span class="flaticon-book"></span>{{ $rows->category_id }}</a></div>
                             <div class="text">{{ substr($rows->description,0,75) }}...</div>
                             <div class="info-box">

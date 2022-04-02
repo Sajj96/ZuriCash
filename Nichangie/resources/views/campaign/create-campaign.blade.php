@@ -29,7 +29,7 @@
                             <div class="col-md-12">
                                 <div class="field-label">{{ __('Story*')}}</div>
                                 <div class="field-input">
-                                    <textarea class="summernote-simple" name="description" required></textarea>
+                                    <textarea class="summernote-simple" name="story" required></textarea>
                                 </div>
                             </div>
                             <div class="col-md-6 mt-3">

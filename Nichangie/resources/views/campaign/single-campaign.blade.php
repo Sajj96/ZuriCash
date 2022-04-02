@@ -42,7 +42,7 @@
                 <div class="image mb-50"><img src="{{ asset('storage/images/'.$campaign->media)}}" alt=""></div>
                 <div class="sec-title mb-40">
                     <h1>The Story</h1>
-                    <div class="text">{{ $campaign->description }}.</div>
+                    <div class="text">{{ $campaign->story }}.</div>
                 </div>
                 <h4>What we want to do bolanile imogene in this cause?</h4>
                 <div class="row">

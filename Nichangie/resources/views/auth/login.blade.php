@@ -35,7 +35,7 @@
                             <div class="col-xl-12 mb-3">
                                 <div class="field-label">{{ __('Phone Number')}}</div>
                                 <div class="input-field">
-                                    <input type="tel" id="phone" name="phone" placeholder="Enter phone number" autofocus>
+                                    <input type="tel" id="phone" name="login" placeholder="Enter phone number" autofocus>
                                     <input type="hidden" name="user_type" value="1">
                                     <div class="icon-holder">
                                         <i class="fa fa-phone" aria-hidden="true"></i>
