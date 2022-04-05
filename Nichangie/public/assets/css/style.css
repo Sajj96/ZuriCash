@@ -5604,15 +5604,15 @@ img {
 
 .donor-block .top-content {
 	position: relative;
-	background: #fff;
+	background: #ddd;
 	text-align: center;
-	padding: 40px 5px 30px;
+	padding: 30px 5px 30px;
 	border-radius: 6px;
 }
 
 .donor-block .image {
 	position: relative;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	overflow: hidden;
 	display: inline-block;
 }
@@ -6281,7 +6281,7 @@ img {
 
 .testimonial-section-four {
 	position: relative;
-	padding: 110px 0 80px;
+	padding: 60px 0 80px;
 }
 
 .testimonial-block-four {
@@ -8003,6 +8003,11 @@ img {
 .social-icon-four .pinterest:hover {
 	color: #fff;
 	background: #c62026;
+}
+
+.social-icon-four .whatsapp:hover {
+	color: #fff;
+	background: #29a628;
 }
 
 /* Ui Selector */
@@ -13434,7 +13439,7 @@ img {
 	position: relative;
 	line-height: 33px;
 	padding: 10px 30px;
-	background: #ffffff;
+	background: #9e9e9e;
 	display: block;
 	font-size: 14px;
 	border-radius: 6px;
@@ -13455,9 +13460,10 @@ img {
 	position: absolute;
 	right: 15px;
 	top: 15px;
-	background: transparent;
+	background: #ffffff;
+	height: 50%;
 	font-size: 18px;
-	color: #9e9e9e;
+	color: #000000;
 }
 
 /* Post Widget */
@@ -18125,6 +18131,10 @@ img {
 
 .social-icon-seven li a.pinterest {
 	background: #c51f26;
+}
+
+.social-icon-seven li a.whatsapp {
+	background: #29a628;
 }
 
 /* Donate Form */

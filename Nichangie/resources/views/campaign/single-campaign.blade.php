@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Facades\URL; $currentUrl = URL::current(); @endphp
 @extends('layouts.app')
 
 @section('page-styles')
@@ -61,76 +62,34 @@
                     </div>
                 </div>
                 <br>
-                <div class="sec-title">
-                        <h1>Recent donars</h1>                        
-                    </div>
-                    <div class="recent-donars">
-                        <div class="wrapper-box">
-                            <div class="donor-thumb">
-                                <div class="image"><img src="{{ asset('assets/images/resource/donor-6.jpg')}}" alt=""></div>
-                                <div class="content">
-                                    <div class="text">Piyush Gabriel <br> Donated: TZS 250</div>
-                                </div>                        
-                                <span class="point"></span>
-                            </div>
-                            <div class="donor-thumb">
-                                <div class="image"><img src="{{ asset('assets/images/resource/donor-7.jpg')}}" alt=""></div>
-                                <div class="content">
-                                    <div class="text">Piyush Gabriel <br> Donated: TZS 250</div>
-                                </div>                        
-                                <span class="point"></span>
-                            </div>
-                            <div class="donor-thumb">
-                                <div class="image"><img src="{{ asset('assets/images/resource/donor-8.jpg')}}" alt=""></div>
-                                <div class="content">
-                                    <div class="text">Piyush Gabriel <br> Donated: TZS 250</div>
-                                </div>                        
-                                <span class="point"></span>
-                            </div>
-                            <div class="donor-thumb">
-                                <div class="image"><img src="{{ asset('assets/images/resource/donor-9.jpg')}}" alt=""></div>
-                                <div class="content">
-                                    <div class="text">Piyush Gabriel <br> Donated: TZS 250</div>
-                                </div>                        
-                                <span class="point"></span>
-                            </div>
-                            <div class="donor-thumb">
-                                <div class="image"><img src="{{ asset('assets/images/resource/donor-10.jpg')}}" alt=""></div>
-                                <div class="content">
-                                    <div class="text">Piyush Gabriel <br> Donated: TZS 250</div>
-                                </div>                        
-                                <span class="point"></span>
-                            </div>
-                            <div class="donor-thumb">
-                                <div class="image"><img src="{{ asset('assets/images/resource/donor-11.jpg')}}" alt=""></div>
-                                <div class="content">
-                                    <div class="text">Piyush Gabriel <br> Donated: TZS 250</div>
-                                </div>                        
-                                <span class="point"></span>
-                            </div>
-                            <div class="donor-thumb">
-                                <div class="image"><img src="{{ asset('assets/images/resource/donor-12.jpg')}}" alt=""></div>
-                                <div class="content">
-                                    <div class="text">Piyush Gabriel <br> Donated: TZS 250</div>
-                                </div>                        
-                                <span class="point"></span>
-                            </div>
-                            <div class="donor-thumb">
-                                <div class="image"><img src="{{ asset('assets/images/resource/donor-13.jpg')}}" alt=""></div>
-                                <div class="content">
-                                    <div class="text">Piyush Gabriel <br> Donated: TZS 250</div>
-                                </div>                        
-                                <span class="point"></span>
-                            </div>
-                        </div>
-                    </div>
                 <div class="share-post">
                     <div class="text"><i class="flaticon-share"></i>Share with friends</div>
                     <ul class="social-icon-seven">
-                        <li><a href="#" class="facebook"><span class="fa fa-facebook"></span>Facebook</a></li>
-                        <li><a href="#" class="twitter"><span class="fa fa-twitter"></span>Twitter</a></li>
-                        <li><a href="#" class="pinterest"><span class="fa fa-pinterest"></span>Pinterest</a></li>
+                        <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ $currentUrl }}" class="facebook"><span class="fa fa-facebook"></span>Facebook</a></li>
+                        <li><a href="https://twitter.com/intent/tweet?url={{ $currentUrl }}&text={{ $campaign->title }}" class="twitter"><span class="fa fa-twitter"></span>Twitter</a></li>
+                        <li><a href="whatsapp://send?text={{ $currentUrl }}" class="whatsapp"><span class="fa fa-whatsapp"></span>Whatsapp</a></li>
                     </ul>
+                </div>
+                <div class="sec-title">
+                    <h1>Donations</h1>
+                </div>
+                <div class="recent-donars">
+                    <table class="table">
+                        <tr>
+                            <td>
+                            <div class="content">
+                                <div class="text">Piyush Gabriel <br> Donated: TZS 250</div>
+                            </div>
+                            </td>
+                        </tr>
+                        <tr>
+                        <td>
+                            <div class="content">
+                                <div class="text">Piyush Gabriel <br> Donated: TZS 250</div>
+                            </div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
                 <div class="donate-form-area">
                     <div class="donate-form-wrapper">
@@ -205,7 +164,6 @@
                             </div>
                         </form>
                     </div>
-
                 </div>
             </div>
             <div class="col-lg-4">
@@ -302,6 +260,14 @@
                             </form>
                         </div>
                     </div>
+                    <div class="sidebar-widget search-box">
+                        <form method="post" action="#">
+                            <div class="form-group">
+                                <input type="text" name="link" id="link" value="{{ $currentUrl }}" readonly>
+                                <button type="button" class="theme-btn dark-bg" data-clipboard-target="#link">Copy link</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -310,5 +276,13 @@
 @include('layouts.footer')
 @section('page-scripts')
 <script src="{{ asset('assets/js/knob.js')}}"></script>
+<script src="{{ asset('assets/js/clipboard/clipboard.min.js')}}"></script>
+<script>
+    $(document).ready(function (){
+
+        new Clipboard('.btn');
+
+    });
+</script>
 @endsection
 @endsection

@@ -69,6 +69,7 @@ class CampaignController extends Controller
             $campaign->amount = $request->amount;
             $campaign->category_id = $request->category;
             $campaign->enddate = $request->enddate;
+            $campaign->type  = $request->type;
             $campaign->status = Campaign::STATUS_INPROGRESS;
             if($campaign->save()) {
                 return redirect()->route('campaign')->with('success','Campaign created successfully!');
