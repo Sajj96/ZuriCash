@@ -47,8 +47,9 @@
             </div>
             <div class="footer-bottom">
                 <div class="left-content">
-                    <div class="icon"><img src="{{ asset('assets/images/resource/logo-icon.png')}}" alt=""></div>
-                    <div class="copyright-text"><a href="templateshub.net">Templateshub</a><a href="#">Goodsoul.</a> <br>Designed By <a href="#">Themekalia.</a></div>
+                    <a href="{{ route('index') }}" class="d-flex"><img src="{{ asset('assets/images/logo-10.jpeg')}}" alt="" title="">
+                        <h5 class="copyright-text mt-3 ml-2"><strong>{{ __('NACHANGIA')}}</strong></h5>
+                    </a>
                 </div>
                 <div class="right-content">
                     <ul class="social-icon-three">

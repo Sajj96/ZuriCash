@@ -1,4 +1,5 @@
-    <!-- Main Header-->
+    <!-- Main Header--> 
+    @php $categories = App\Models\Category::limit(4)->get(); @endphp
     <header class="main-header">
         <!-- Top bar -->
         <div class="top-bar theme-bg">
@@ -42,8 +43,7 @@
                     <div class="logo-column">
                         <div class="logo-box">
                             <div class="logo">
-                                <a href="{{ route('index') }}" class="d-flex"><img src="{{ asset('assets/images/logo-10.jpeg')}}" alt="" title="">
-                                    <h5 class="mt-3 ml-2"><strong>{{ __('NACHANGIA')}}</strong></h5>
+                                <a href="{{ route('index') }}" class="d-flex"><img src="{{ asset('assets/images/LOGO2.png')}}" alt="" title="">
                                 </a>
                             </div>
                         </div>
@@ -59,21 +59,20 @@
                                         <ul class="navigation">
                                             <li class="dropdown"><a href="#">{{ __('Campaigns')}}</a>
                                                 <ul>
-                                                    <li><a href="about.html">Featured</a></li>
+                                                    <li><a href="{{ route('campaign.all') }}">Featured</a></li>
                                                     <li><a href="faq.html">Latest</a></li>
                                                 </ul>
                                             </li>
                                             <li class="dropdown"><a href="#">{{ __('Categories')}}</a>
                                                 <ul>
-                                                    <li><a href="causes-1.html">Animals</a></li>
-                                                    <li><a href="causes-2.html">Medical</a></li>
-                                                    <li><a href="causes-3.html">Emergency</a></li>
-                                                    <li><a href="cause-details.html">Family</a></li>
+                                                    @foreach($categories as $key=>$rows)
+                                                    <li><a href="cause-details.html">{{$rows->name}}</a></li>
+                                                    @endforeach
                                                     <div class="dropdown-divider"></div>
-                                                    <li><a href="cause-details.html">View All <span class="flaticon-arrow-2"></span></a></li>
+                                                    <li><a href="{{ route('user.category')}}">View All <span class="flaticon-arrow-2"></span></a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="#">{{ __('How it works')}}</a></li>
+                                            <li><a href="{{ route('how')}}">{{ __('How it works')}}</a></li>
                                             @if(Auth::user())
                                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span>{{ __('Sign out')}}</span></a>
                                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -130,8 +129,7 @@
                 <div class="wrapper-box">
                     <div class="logo-column">
                         <div class="logo-box">
-                            <a href="{{ route('index') }}" class="d-flex"><img src="{{ asset('assets/images/logo-10.jpeg')}}" alt="" title="">
-                                <h5 class="mt-3 ml-2"><strong>{{ __('NACHANGIA')}}</strong></h5>
+                            <a href="{{ route('index') }}" class="d-flex"><img src="{{ asset('assets/images/LOGO2.png')}}" alt="" title="">
                             </a>
                         </div>
                     </div>
@@ -171,7 +169,7 @@
         <!-- Mobile Menu  -->
         <div class="mobile-menu style-one">
             <div class="menu-box">
-                <div class="logo"><a href="{{ route('index') }}"><img src="{{ asset('assets/images/logo-10.jpeg')}}" alt=""><strong class="ml-1">{{ __('NACHANGIA')}}</strong></a></div>
+                <div class="logo"><a href="{{ route('index') }}"><img src="{{ asset('assets/images/LOGO2.png')}}" alt=""></a></div>
                 <!-- Main Menu -->
                 <nav class="main-menu navbar-expand-xl navbar-dark">
                     <div class="navbar-header">

@@ -15,6 +15,7 @@ var errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long
 var it = window.intlTelInput(telInput, {
 initialCountry: 'tz',
 autoPlaceholder: 'aggressive',
+nationalMode: true,
 utilsScript: utilUrl,
 geoIpLookup: function(callback) {
       $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
@@ -48,29 +49,15 @@ addressDropdown.addEventListener('change', function() {
   it.setCountry(this.value);
 });
 
-var reset = function() {
-  telInput.classList.remove("error");
-  errorMsg.innerHTML = "";
-  errorMsg.classList.add("hide");
-  validMsg.classList.add("hide");
+var handleChange = function() {
+  if(it.isValidNumber()) {
+    var text = it.getNumber();
+    telInput.value = text;
+  }
+
 };
 
-// on blur: validate
-telInput.addEventListener('blur', function() {
-  reset();
-  if (telInput.value.trim()) {
-    if (it.isValidNumber()) {
-      validMsg.classList.remove("hide");
-    } else {
-      telInput.classList.add("error");
-      var errorCode = it.getValidationError();
-      errorMsg.innerHTML = errorMap[errorCode];
-      errorMsg.classList.remove("hide");
-    }
-  }
-});
-
 // on keyup / change flag: reset
-telInput.addEventListener('change', reset);
-telInput.addEventListener('keyup', reset);
+telInput.addEventListener('change', handleChange);
+telInput.addEventListener('keyup', handleChange);
   

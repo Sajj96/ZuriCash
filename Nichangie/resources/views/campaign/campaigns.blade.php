@@ -11,7 +11,7 @@
         <div class="content-box">
             <h1>Campaigns</h1>
             <ul class="bread-crumb">
-                <li><a class="home" href="index-2.html"><span class="fa fa-home"></span></a></li>
+                <li><a class="home" href="{{ route('home') }}"><span class="fa fa-home"></span></a></li>
                 <li>Campaigns</li>
             </ul>
         </div>
@@ -23,6 +23,39 @@
     <div class="auto-container">
         <div class="cause-wrapper">
             <div class="row loadMore" id="jar">
+                @foreach($campaigns as $key=>$rows)
+                <div class="cause-block-one col-lg-4 col-md-6">
+                    <div class="inner-box">
+                        <div class="image"><a href="{{ route('campaign.show', $rows->id) }}"><img src="{{ asset('storage/images/'.$rows->media)}}" style="height: 230px;" alt="cause-media"></a></div>
+                        <div class="lower-content">
+                            <h4><a href="{{ route('campaign.show', $rows->id) }}">{{ $rows->title }}</a></h4>
+                            <div class="category"><a href="#"><span class="flaticon-user"></span> {{ $rows->name }}</a></div>
+                            <div class="text">{{ substr($rows->description,0,40) }}...</div>
+                            <div class="info-box">
+                                <a href="#"><span>Raised:</span> $72000</a>
+                                <a href="#"><span>Goal:</span> TZS {{ $rows->fundgoals }}</a>
+                            </div>
+                            <!--Progress Levels-->
+                            <div class="progress-levels style-two">
+
+                                <!--Skill Box-->
+                                <div class="progress-box wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1500ms">
+                                    <div class="inner">
+                                        <div class="bar">
+                                            <div class="bar-innner">
+                                                <div class="bar-fill" data-percent="60">
+                                                    <div class="percent"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text">Raised by 84 people in 12 days</div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
                 <!-- Cause Block Four -->
                 <div class="cause-block-one col-lg-4 col-md-6">
                     <div class="inner-box">
@@ -223,7 +256,7 @@
 @section('page-scripts')
 <script src="{{ asset('assets/js/pagination/load-more-single-button/dist/btnloadmore.min.js')}}"></script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
         $('.loadMore').btnLoadmore();
     })
 </script>

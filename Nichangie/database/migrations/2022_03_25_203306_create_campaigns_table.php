@@ -13,16 +13,21 @@ class CreateCampaignsTable extends Migration
      */
     public function up()
     {
-        Schema::create('campaigns', function (Blueprint $table) {
+        Schema::create('stories', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id', false, true);
             $table->string('title');
-            $table->text('story');
-            $table->string('media');
-            $table->integer('category_id', false, true);
-            $table->double('amount');
+            $table->string('link');
+            $table->text('location')->nullable();
+            $table->text('description')->nullable();
+            $table->text('raised')->nullable();
+            $table->text('owner_phonenumber')->nullable();
+            $table->text('owner_name')->nullable();
+            $table->bigInteger('owner_id', false, true);
+            $table->double('fundgoals');
+            $table->date('deadline');
             $table->tinyInteger('type');
-            $table->date('enddate');
+            $table->text('category')->nullable();
+            $table->integer('category_id', false, true);
             $table->tinyInteger('status');
             $table->timestamps();
         });

@@ -30,4 +30,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'sms' => [
+        'uri' => env('API_URI', 'https://messaging-service.co.tz'),
+        'token' => env('API_TOKEN'),
+    ],
+
 ];

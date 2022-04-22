@@ -38,7 +38,7 @@
                     <div class="shop-page-title">
                         <div class="title">{{ __('Register')}} </div>
                     </div>
-                    <form method="post" action="{{ route('register') }}">
+                    <form method="post" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -75,11 +75,26 @@
                                 @enderror
                             </div>
                             <div class="col-md-6">
-                                <div class="field-label">{{ __('NIDA Number *')}}</div>
+                                <div class="field-label">{{ __('ID Type *')}}</div>
                                 <div class="field-input">
-                                    <input type="text" class="@error('nida') is-invalid @enderror" name="nida" placeholder="Enter NIDA">
+                                    <select class="filters-select selectmenu" name="idtype">
+                                        <option value="National ID">National ID</option>
+                                        <option value="Driver Licence ID">Driver Licence ID</option>
+                                        <option value="Passport">Passport</option>
+                                    </select>
                                 </div>
-                                @error('nida')
+                                @error('idtype')
+                                <span class="text-danger" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6">
+                                <div class="field-label">{{ __('ID Photo*')}}</div>
+                                <div class="field-input">
+                                    <input type="file" name="idlink">
+                                </div>
+                                @error('idlink')
                                 <span class="text-danger" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

@@ -56,44 +56,6 @@
 </section>
 <!-- End Bnner Section -->
 
-<!-- About Section -->
-<section class="about-section">
-    <div class="auto-container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="about-content-block">
-                    <h1>Be part of a change <br>you want to see in the world</h1>
-                    <h4>“Generosity consists not of the sum given, but the manner in <br>which it is bestowed.”</h4>
-                    <div class="text wow fadeInUp" data-wow-delay="200ms">How all this mistaken idea of denouncing pleasure and praising pain was born <br>and I will give you a complete account of the system expound the actually <br>teachings of the great explorer of the truth pursues.</div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="link-btn wow fadeInLeft" data-wow-delay="500ms"><a href="#" class="theme-btn btn-style-two"><i class="flaticon-next"></i><span>Our Mission</span></a></div>
-                            <div class="text">Beguiled and demoralized by the charms off pleasure the moments, so by desire trouble.</div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="link-btn wow fadeInRight" data-wow-delay="900ms"><a href="#" class="theme-btn btn-style-three"><i class="flaticon-next"></i><span>Our Vision</span></a></div>
-                            <div class="text">The great explorer of the truth, theats masters builders off human happiness no one rejects.</div>
-                        </div>
-                    </div>
-                    <div class="link-btn-two">
-                        <a href="#" class="theme-btn btn-style-one"><span>More About Us</span></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="about-image-block">
-                    <div class="logo-box">
-                        <div class="image wow zoomIn" data-wow-delay="500ms"><img src="assets/images/resource/logo-icon.png" alt=""></div>
-                    </div>
-                    <div class="image-one wow fadeInUp" data-wow-delay="200ms"><img src="assets/images/resource/image-1.jpg" alt=""></div>
-                    <div class="image-two"><img src="assets/images/resource/image-2.jpg" alt=""><a href="https://www.youtube.com/watch?v=nfP5N9Yc72A&amp;t=28s" class="overlay-link lightbox-image video-fancybox"><span class="flaticon-multimedia"></span></a></div>
-                    <div class="image-three wow fadeInRight" data-wow-delay="200ms"><img src="assets/images/resource/image-3.jpg" alt=""></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- Featured campaigns -->
 <section class="causes-section">
     <div class="auto-container">
@@ -110,14 +72,14 @@
                         <div class="image"><a href="{{ route('campaign.show', $rows->id) }}"><img src="{{ asset('storage/images/'.$rows->media)}}" style="height: 230px;" alt="cause-media"></a></div>
                         <div class="lower-content">
                             <h4><a href="{{ route('campaign.show', $rows->id) }}">{{ $rows->title }}</a></h4>
-                            <div class="category"><a href="#"><span class="flaticon-book"></span>{{ $rows->category_id }}</a></div>
-                            <div class="text">{{ substr($rows->story,0,75) }}...</div>
+                            <div class="category"><a href="#"><span class="flaticon-user"></span>{{ $rows->name }}</a></div>
+                            <div class="text">{{ substr($rows->description,0,40) }}...</div>
                             <div class="info-box">
                                 <a href="#"><span>Raised:</span> $72000</a>
-                                <a href="#"><span>Goal:</span> TZS {{ $rows->amount }}</a>
+                                <a href="#"><span>Goal:</span> TZS {{ $rows->fundgoals }}</a>
                             </div>
                             <!--Progress Levels-->
-                            <div class="progress-levels">
+                            <div class="progress-levels style-two">
 
                                 <!--Skill Box-->
                                 <div class="progress-box wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1500ms">
@@ -150,7 +112,7 @@
                                 <a href="#"><span>Goal:</span> $80000</a>
                             </div>
                             <!--Progress Levels-->
-                            <div class="progress-levels">
+                            <div class="progress-levels style-two">
 
                                 <!--Skill Box-->
                                 <div class="progress-box wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1500ms">
@@ -182,7 +144,7 @@
                                 <a href="#"><span>Goal:</span> $120000</a>
                             </div>
                             <!--Progress Levels-->
-                            <div class="progress-levels">
+                            <div class="progress-levels style-two">
 
                                 <!--Skill Box-->
                                 <div class="progress-box wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1500ms">
@@ -214,7 +176,7 @@
                                 <a href="#"><span>Goal:</span> $100000</a>
                             </div>
                             <!--Progress Levels-->
-                            <div class="progress-levels">
+                            <div class="progress-levels style-two">
 
                                 <!--Skill Box-->
                                 <div class="progress-box wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1500ms">
@@ -246,7 +208,7 @@
                                 <a href="#"><span>Goal:</span> $80000</a>
                             </div>
                             <!--Progress Levels-->
-                            <div class="progress-levels">
+                            <div class="progress-levels style-two">
 
                                 <!--Skill Box-->
                                 <div class="progress-box wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1500ms">
@@ -278,7 +240,7 @@
                                 <a href="#"><span>Goal:</span> $120000</a>
                             </div>
                             <!--Progress Levels-->
-                            <div class="progress-levels">
+                            <div class="progress-levels style-two">
 
                                 <!--Skill Box-->
                                 <div class="progress-box wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1500ms">
@@ -353,7 +315,7 @@
                                 <a href="#"><span>Goal:</span> $80000</a>
                             </div>
                             <!--Progress Levels-->
-                            <div class="progress-levels">
+                            <div class="progress-levels style-two">
 
                                 <!--Skill Box-->
                                 <div class="progress-box wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1500ms">
@@ -385,7 +347,7 @@
                                 <a href="#"><span>Goal:</span> $120000</a>
                             </div>
                             <!--Progress Levels-->
-                            <div class="progress-levels">
+                            <div class="progress-levels style-two">
 
                                 <!--Skill Box-->
                                 <div class="progress-box wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1500ms">
@@ -417,7 +379,7 @@
                                 <a href="#"><span>Goal:</span> $100000</a>
                             </div>
                             <!--Progress Levels-->
-                            <div class="progress-levels">
+                            <div class="progress-levels style-two">
 
                                 <!--Skill Box-->
                                 <div class="progress-box wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1500ms">
@@ -449,7 +411,7 @@
                                 <a href="#"><span>Goal:</span> $80000</a>
                             </div>
                             <!--Progress Levels-->
-                            <div class="progress-levels">
+                            <div class="progress-levels style-two">
 
                                 <!--Skill Box-->
                                 <div class="progress-box wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1500ms">
@@ -481,7 +443,7 @@
                                 <a href="#"><span>Goal:</span> $120000</a>
                             </div>
                             <!--Progress Levels-->
-                            <div class="progress-levels">
+                            <div class="progress-levels style-two">
 
                                 <!--Skill Box-->
                                 <div class="progress-box wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1500ms">
@@ -509,7 +471,7 @@
 </section>
 
 <!-- Categories  -->
-<section class="causes-section-four">
+<section class="causes-section-four feature-section">
     <div class="auto-container">
         <div class="row m-0 justify-content-md-between align-items-end">
             <div class="sec-title">
@@ -517,82 +479,177 @@
             </div>
             <!--Link Btn-->
             <div class="link-btn mb-50">
+                <a href="{{ route('user.category') }}" class="theme-btn btn-style-one"><span>View All</span></a>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Feature Block Two -->
+            <div class="col-lg-3 col-md-6 feature-block-two">
+                <div class="inner-box">
+                    <a href="#">
+                        <div class="icon-box">
+                            <img src="{{ asset('assets/images/icons/healthcare-2.png')}}" alt="">
+                        </div>
+                        <h4>Medical</h4>
+                    </a>
+                </div>
+            </div>
+            <!-- Feature Block Two -->
+            <div class="col-lg-3 col-md-6 feature-block-two">
+                <div class="inner-box">
+                    <a href="#">
+                        <div class="icon-box">
+                            <img src="{{ asset('assets/images/icons/team-2.png')}}" alt="">
+                        </div>
+                        <h4>Business</h4>
+                    </a>
+                </div>
+            </div>
+            <!-- Feature Block Two -->
+            <div class="col-lg-3 col-md-6 feature-block-two">
+                <div class="inner-box">
+                    <a href="#">
+                        <div class="icon-box">
+                            <img src="{{ asset('assets/images/icons/foster-family-2.png')}}" alt="">
+                        </div>
+                        <h4>Family</h4>
+                    </a>
+                </div>
+            </div>
+            <!-- Feature Block Two -->
+            <div class="col-lg-3 col-md-6 feature-block-two">
+                <div class="inner-box">
+                    <a href="#">
+                        <div class="icon-box">
+                            <img src="{{ asset('assets/images/icons/community-2.png')}}" alt="">
+                        </div>
+                        <h4>Community</h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Success stories -->
+<section class="blog-section">
+    <div class="auto-container">
+        <div class="row m-0 justify-content-md-between align-items-end">
+            <div class="sec-title">
+                <h1>Success stories</h1>
+            </div>
+            <!--Link Btn-->
+            <div class="link-btn mb-50">
                 <a href="#" class="theme-btn btn-style-one"><span>View All</span></a>
             </div>
         </div>
-        <div class="cause-wrapper">
-            <div class="row">
-                <div class="col-md-4 donor-block">
-                    <a href="#">
-                        <div class="inner-box wow fadeInUp" data-wow-delay="200ms">
-                            <div class="top-content">
-                                <div class="image">
-                                    <span class="flaticon-heart" style="font-size: 32px;"></span>
-                                </div>
-                                <h4>Medical</h4>
-                            </div>
+        <div class="row">
+            <!-- News Block One -->
+            <div class="col-lg-3 col-md-6 news-block-one">
+                <div class="inner-box wow fadeInUp" data-wow-delay="200ms">
+                    <div class="category"><a href="#">Raised: TZS 30</a></div>
+                    <div class="image">
+                        <a href="blog-details.html"><img src="{{ asset('assets/images/resource/news-1.jpg')}}" alt=""></a>
+                        <div class="post-meta-info">
+                            <a href="#">Raised: TZS 21</a>
                         </div>
-                    </a>
+                    </div>
+                    <div class="lower-content">
+                        <div class="date">Jul 14, 2019</div>
+                        <h4><a href="blog-details.html">Water is more essential</a></h4>
+                        <div class="author-info">
+                            <div class="image"><span class="flaticon-user"></span></div>
+                            <div class="author-title"><a href="#">Rubin Santro</a></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-4 donor-block">
-                    <a href="#">
-                        <div class="inner-box wow fadeInUp" data-wow-delay="500ms">
-                            <div class="top-content">
-                                <div class="image">
-                                    <span class="flaticon-money-1" style="font-size: 32px;"></span>
-                                </div>
-                                <h4>Business</h4>
+            </div>
+            <!-- News Block One -->
+            <div class="col-lg-3 col-md-6 news-block-one">
+                <div class="inner-box wow fadeInDown" data-wow-delay="400ms">
+                    <div class="category"><a href="#">Interviews</a></div>
+                    <div class="image">
+                        <a href="blog-details.html"><img src="{{ asset('assets/images/resource/news-2.jpg')}}" alt=""></a>
+                        <div class="post-meta-info">
+                            <a href="#"><span class="flaticon-eye"></span>14</a>
+                            <a href="#"><span class="flaticon-comment"></span>05</a>
+                        </div>
+                    </div>
+                    <div class="lower-content">
+                        <div class="date">Jun 05, 2019</div>
+                        <h4><a href="blog-details.html">Coaching for fundraisers</a></h4>
+                        <div class="author-info">
+                            <div class="image"><img src="{{ asset('assets/images/resource/author-thumb-1.jpg')}}" alt=""></div>
+                            <div class="author-title"><a href="#">Carl Ronny</a></div>
+                            <div class="share-icon style-two post-share-icon">
+                                <div class="share-btn"><img src="{{ asset('assets/images/resource/dotted.png')}}" alt=""></div>
+                                <ul>
+                                    <li><a href="#"><span class="fa fa-facebook"></span></a></li>
+                                    <li><a href="#"><span class="fa fa-twitter"></span></a></li>
+                                    <li><a href="#"><span class="fa fa-skype"></span></a></li>
+                                </ul>
                             </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
-                <div class="col-md-4 donor-block">
-                    <a href="#">
-                        <div class="inner-box wow fadeInUp" data-wow-delay="200ms">
-                            <div class="top-content">
-                                <div class="image">
-                                    <span class="flaticon-world" style="font-size: 32px;"></span>
-                                </div>
-                                <h4>Community</h4>
+            </div>
+            <!-- News Block One -->
+            <div class="col-lg-3 col-md-6 news-block-one">
+                <div class="inner-box wow fadeInUp" data-wow-delay="200ms">
+                    <div class="category"><a href="#">Disaster</a><a href="#">Video</a></div>
+                    <div class="image">
+                        <a href="blog-details.html"><img src="{{ asset('assets/images/resource/news-3.jpg')}}" alt=""></a>
+                        <div class="post-meta-info">
+                            <a href="#"><span class="flaticon-eye"></span>12</a>
+                            <a href="#"><span class="flaticon-comment"></span>02</a>
+                        </div>
+                        <div class="youtube-video-box"><a href="#"><span class="flaticon-logo"></span></a></div>
+                    </div>
+                    <div class="lower-content">
+                        <div class="date">Mar 27, 2019</div>
+                        <h4><a href="blog-details.html">Aid for japan flood</a></h4>
+                        <div class="author-info">
+                            <div class="image"><img src="{{ asset('assets/images/resource/author-thumb-1.jpg')}}" alt=""></div>
+                            <div class="author-title"><a href="#">Gene Emery</a></div>
+                            <div class="share-icon style-two post-share-icon">
+                                <div class="share-btn"><img src="{{ asset('assets/images/resource/dotted.png')}}" alt=""></div>
+                                <ul>
+                                    <li><a href="#"><span class="fa fa-facebook"></span></a></li>
+                                    <li><a href="#"><span class="fa fa-twitter"></span></a></li>
+                                    <li><a href="#"><span class="fa fa-skype"></span></a></li>
+                                </ul>
                             </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
-                <div class="col-md-4 donor-block">
-                    <a href="#">
-                        <div class="inner-box wow fadeInUp" data-wow-delay="200ms">
-                            <div class="top-content">
-                                <div class="image">
-                                    <span class="flaticon-book" style="font-size: 32px;"></span>
-                                </div>
-                                <h4>Education</h4>
+            </div>
+            <!-- News Block One -->
+            <div class="col-lg-3 col-md-6 news-block-one">
+                <div class="inner-box wow fadeInDown" data-wow-delay="400ms">
+                    <div class="category"><a href="#">Disaster</a></div>
+                    <div class="image">
+                        <a href="blog-details.html"><img src="{{ asset('assets/images/resource/news-4.jpg')}}" alt=""></a>
+                        <div class="post-meta-info">
+                            <a href="#"><span class="flaticon-eye"></span>26</a>
+                            <a href="#"><span class="flaticon-comment"></span>07</a>
+                        </div>
+                    </div>
+                    <div class="lower-content">
+                        <div class="date">Feb 14, 2019</div>
+                        <h4><a href="blog-details.html">Central china flood</a></h4>
+                        <div class="author-info">
+                            <div class="image"><img src="{{ asset('assets/images/resource/author-thumb-1.jpg')}}" alt=""></div>
+                            <div class="author-title"><a href="#">Lix Ferguson</a></div>
+                            <div class="share-icon style-two post-share-icon">
+                                <div class="share-btn"><img src="{{ asset('assets/images/resource/dotted.png')}}" alt=""></div>
+                                <ul>
+                                    <li><a href="#"><span class="fa fa-facebook"></span></a></li>
+                                    <li><a href="#"><span class="fa fa-twitter"></span></a></li>
+                                    <li><a href="#"><span class="fa fa-skype"></span></a></li>
+                                </ul>
                             </div>
                         </div>
-                    </a>
-                </div>
-                <div class="col-md-4 donor-block">
-                    <a href="#">
-                        <div class="inner-box wow fadeInUp" data-wow-delay="200ms">
-                            <div class="top-content">
-                                <div class="image">
-                                    <span class="flaticon-hands-and-gestures" style="font-size: 32px;"></span>
-                                </div>
-                                <h4>Family</h4>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4 donor-block">
-                    <a href="#">
-                        <div class="inner-box wow fadeInUp" data-wow-delay="200ms">
-                            <div class="top-content">
-                                <div class="image">
-                                    <span class="flaticon-bag" style="font-size: 32px;"></span>
-                                </div>
-                                <h4>Travel</h4>
-                            </div>
-                        </div>
-                    </a>
+                    </div>
                 </div>
             </div>
         </div>

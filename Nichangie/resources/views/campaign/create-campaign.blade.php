@@ -43,13 +43,9 @@
                                 <div class="field-input">
                                     <select class="filters-select selectmenu" name="category">
                                         <option value="">Please select</option>
-                                        <option value="1">Medical</option>
-                                        <option value="2">Memorial</option>
-                                        <option value="3">Emergency</option>
-                                        <option value="4">Nonprofit </option>
-                                        <option value="5">Education</option>
-                                        <option value="6">Financial Emergency</option>
-                                        <option value="7">Animals</option>
+                                        @foreach($categories as $key=>$rows)
+                                        <option value="{{ $rows->id }}">{{ $rows->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -63,6 +59,16 @@
                                 <div class="field-label">{{ __('End Date *')}}</div>
                                 <div class="field-input">
                                     <input type="date" name="enddate" placeholder="Enter End Date" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <div class="field-label">{{ __('Campaign Type')}}</div>
+                                <div class="field-input">
+                                    <select class="filters-select selectmenu" name="type">
+                                        @foreach($category_types as $key=>$rows)
+                                        <option value="{{ $rows->id }}">{{ $rows->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>

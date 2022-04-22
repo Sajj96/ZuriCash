@@ -81,7 +81,13 @@ class LoginController extends Controller
 
         $remember = $request->has('remember') ? true : false;
 
-        if (Auth::attempt([$login_type => $request->input('login'), 'password' => $request->input('password')], $remember)) {
+        if($login_type == 'phone') {
+            $login_data = str_replace('+','',$request->input('login'));
+        } else {
+            $login_data = $request->input('login');
+        }
+
+        if (Auth::attempt([$login_type => $login_data, 'password' => $request->input('password'), 'active' => User::USER_ACTIVE], $remember)) {
             if($request->input('user_type') == User::ADMIN_USER_TYPE) {
                 return redirect()->route('admin.home');
             }

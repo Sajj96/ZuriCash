@@ -36,7 +36,6 @@
                                 <div class="field-label">{{ __('Phone Number')}}</div>
                                 <div class="input-field">
                                     <input type="tel" id="phone" name="login" placeholder="Enter phone number" autofocus>
-                                    <input type="hidden" name="user_type" value="1">
                                     <div class="icon-holder">
                                         <i class="fa fa-phone" aria-hidden="true"></i>
                                     </div>
@@ -68,6 +67,6 @@
 <script type="text/javascript">
     var utilUrl = "{{ asset('assets/js/intl-tel-input/js/utils.js?1638200991544')}}"
 </script>
-<script src="{{ asset('assets/js/auth-register.js')}}"></script>
+<script src="{{ asset('assets/js/auth-login.js')}}"></script>
 @endsection
 @endsection

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Campaign;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 
@@ -12,19 +14,36 @@ class CampaignController extends Controller
 {
     public function index()
     {
-        return view('campaign.create-campaign');
+        $categories = Category::all();
+        $category_types = DB::table('category_types')->select('*')->get();
+        return view('campaign.create-campaign', compact('categories', 'category_types'));
     }
 
     public function show($id)
     {
         $campaign = Campaign::find($id);
-        return view('campaign.single-campaign', compact('campaign'));
+        $donations = DB::table('donations')
+                            ->where('campaign_id', $id)
+                            ->get();
+        $total_donations = DB::table('donations')
+                            ->where('campaign_id', $id)
+                            ->sum('fundgoals');
+        $donation_percent = ($total_donations/$campaign->fundgoals) * 100;
+        $date = date('Y-m-d');
+        $start = strtotime($date);
+        $end = strtotime($campaign->deadline);
+
+        $days_between = ceil(abs($end - $start) / 86400);
+        return view('campaign.single-campaign', compact('campaign','total_donations','donation_percent','days_between'));
     }
 
     public function getAll()
     {
-        $campaigns = Campaign::all();
-        return view('campaign.campaigns', compact($campaigns));
+        $campaigns = DB::table('stories')
+                        ->join('users','stories.owner_id','=','users.id')
+                        ->select('stories.*','users.name','users.lastname')
+                        ->get();
+        return view('campaign.campaigns', compact('campaigns'));
     }
 
     public function create(Request $request)
@@ -58,17 +77,18 @@ class CampaignController extends Controller
             $image_data = File::get(storage_path('/app/public/images/'.$fileName));
             $base64encodedString = 'data:image/' . $type . ';base64,' . base64_encode($image_data);
             $fileBin = file_get_contents($base64encodedString);
+            $fileLink = env('APP_URL').'/public/images/'.$fileName;
 
             $user = Auth::user();
 
             $campaign = new Campaign;
-            $campaign->user_id = $user->id;
+            $campaign->owner_id = $user->id;
             $campaign->title = $request->title;
-            $campaign->story = strip_tags($request->story);
-            $campaign->media = $fileName;
-            $campaign->amount = $request->amount;
+            $campaign->description = strip_tags($request->story);
+            $campaign->link = $fileLink;
+            $campaign->fundgoals = $request->amount;
             $campaign->category_id = $request->category;
-            $campaign->enddate = $request->enddate;
+            $campaign->deadline = $request->enddate;
             $campaign->type  = $request->type;
             $campaign->status = Campaign::STATUS_INPROGRESS;
             if($campaign->save()) {

@@ -15,6 +15,9 @@ class User extends Authenticatable
     const DONEE_USER_TYPE = 1;
     const ADMIN_USER_TYPE = 2;
 
+    const USER_ACTIVE = 1;
+    const USER_INACTIVE = 2;
+
     /**
      * The attributes that are mass assignable.
      *

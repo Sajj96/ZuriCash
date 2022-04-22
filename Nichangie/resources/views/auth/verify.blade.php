@@ -17,23 +17,27 @@
                     <strong>{{ $message }}</strong>
                 </div>
                 @enderror
+                @include('flash-message')
                 <div class="form">
                     <div class="row">
                         <div class="position-relative col-xl-12">
                             <div class="panel p-2">
-                                <h4>{{ __('Please enter the 4-digit verification code we sent via SMS:')}}</h4>
+                                <h4>{{ __('Please enter the 4-digit verification code we sent via SMS to :')}}{{$phone}}</h4>
                                 <span>{{ __('(we want to make sure it\'s you before we proceed)')}}</span>
-                                <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
-                                    <input class="m-2 text-center form-control rounded" type="text" id="first" maxlength="1" />
-                                    <input class="m-2 text-center form-control rounded" type="text" id="second" maxlength="1" />
-                                    <input class="m-2 text-center form-control rounded" type="text" id="third" maxlength="1" />
-                                    <input class="m-2 text-center form-control rounded" type="text" id="fourth" maxlength="1" />
-                                </div>
-                                <div class="mt-4">
-                                    <div class="register-btn">
-                                        <button class="theme-btn btn-style-one" type="submit"><span>{{ __('Validate')}}</span></button>
+                                <form action="{{ route('verify.otp') }}" method="post" autocomplete="off">
+                                    @csrf
+                                    <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
+                                        <input class="m-2 text-center form-control rounded" type="text" name="first" id="first" maxlength="1" autofocus/>
+                                        <input class="m-2 text-center form-control rounded" type="text" name="second" id="second" maxlength="1" />
+                                        <input class="m-2 text-center form-control rounded" type="text" name="third" id="third" maxlength="1" />
+                                        <input class="m-2 text-center form-control rounded" type="text" name="fourth" id="fourth" maxlength="1" />
                                     </div>
-                                </div>
+                                    <div class="mt-4">
+                                        <div class="register-btn">
+                                            <button class="theme-btn btn-style-one" type="submit"><span>{{ __('Validate')}}</span></button>
+                                        </div>
+                                    </div>
+                                </form>
                                 <div class="text-center">
                                     {{ __('Didn\'t receive the code?')}}<br />
                                     <a href="#">{{ __('Send code again')}}</a><br />

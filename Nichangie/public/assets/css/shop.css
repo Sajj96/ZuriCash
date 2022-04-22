@@ -308,7 +308,7 @@
 .shop-sidebar-wrapper {
 	position: relative;
 	display: block;
-	max-width: 270px;
+	max-width: 100%;
 	width: 100%;
 }
 
@@ -325,7 +325,7 @@
 .shop-sidebar-wrapper .search-form {
 	position: relative;
 	display: block;
-	max-width: 270px;
+	max-width: 100%;
 	width: 100%;
 	margin-bottom: 50px;
 }
@@ -339,7 +339,6 @@
 	font-size: 15px;
 	font-weight: 400;
 	height: 50px;
-	max-width: 270px;
 	width: 100%;
 	padding-left: 20px;
 	padding-right: 60px;
@@ -360,7 +359,7 @@
 	color: #fff;
 	font-size: 14px;
 	height: 50px;
-	width: 50px;
+	width: 80px;
 	border: 0px solid #edf2f7;
 	line-height: 48px;
 	text-align: center;
@@ -1056,7 +1055,7 @@
 	position: relative;
 	display: block;
 	overflow: hidden;
-	margin-top: 66px;
+	margin-top: 6px;
 }
 
 .product-tab-box .tab-btns {
@@ -1164,7 +1163,7 @@
 }
 
 .review-box-holder .single-review-box .image-holder img {
-	width: 100%;
+	width: 50%;
 	border-radius: 50%;
 }
 

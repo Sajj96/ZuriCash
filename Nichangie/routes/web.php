@@ -16,17 +16,28 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
-Route::get('/verify', [App\Http\Controllers\AuthController::class, 'verify'])->name('verify.phone');
+Route::group(['prefix' => 'verify'], function(){
+    Route::get('/', [App\Http\Controllers\AuthController::class, 'verify'])->name('verify.phone');
+    Route::post('/verify-otp', [App\Http\Controllers\AuthController::class, 'verifyOtp'])->name('verify.otp');
+});
+
+Route::get('/verify-test', [App\Http\Controllers\AuthController::class, 'verifyTest'])->name('verify.test');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/how-it-works', [App\Http\Controllers\HomeController::class, 'howItWorks'])->name('how');
 
 Route::group(['prefix' => 'campaigns'], function(){
     Route::get('/', [App\Http\Controllers\CampaignController::class, 'index'])->name('campaign')->middleware('auth');
     Route::get('/all', [App\Http\Controllers\CampaignController::class, 'getAll'])->name('campaign.all');
     Route::get('/{id}', [App\Http\Controllers\CampaignController::class, 'show'])->name('campaign.show');
     Route::post('/', [App\Http\Controllers\CampaignController::class, 'create'])->name('campaign.create')->middleware('auth');
+});
+
+Route::group(['prefix' => 'categories'], function(){
+    Route::get('/', [App\Http\Controllers\CategoryController::class, 'getAll'])->name('user.category');
 });
 
 Route::group(['prefix' => 'donations'], function(){
