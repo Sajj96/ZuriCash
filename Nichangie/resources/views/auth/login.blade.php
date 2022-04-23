@@ -8,7 +8,7 @@
 @section('content')
 @include('layouts.header')
 <!-- Page Title -->
-<section class="login-register-area">
+<section class="contact-form-section">
     <div class="auto-container">
         <div class="row">
             <div class="col-md-12">
@@ -18,46 +18,59 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xl-3"></div>
-            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 mt-2 card-panel">
-                @error('login')
-                <div class="alert alert-danger">
-                    <strong>{{ $message }}</strong>
-                </div>
-                @enderror
-                <div class="form">
-                    <div class="shop-page-title">
-                        <div class="title">{{ __('Login')}} </div>
+            <div class="col-lg-12">
+                <div class="default-form-area">
+                    <div class="sec-title">
+                        <h1>{{ __('Login')}}</h1>
                     </div>
-                    <div class="row">
-                        <form method="post" action="{{ route('login') }}">
-                            @csrf
-                            <div class="col-xl-12 mb-3">
-                                <div class="field-label">{{ __('Phone Number')}}</div>
-                                <div class="input-field">
-                                    <input type="tel" id="phone" name="login" placeholder="Enter phone number" autofocus>
-                                    <div class="icon-holder">
-                                        <i class="fa fa-phone" aria-hidden="true"></i>
+                    @error('login')
+                    <div class="alert alert-danger">
+                        <strong>{{ $message }}</strong>
+                    </div>
+                    @enderror
+                    <form id="contact-form" name="contact_form" class="contact-form" action="{{ route('login') }}" method="post">
+                        @csrf
+                        <div class="row clearfix">
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 column">
+                                        <div class="form-group">
+                                            <label for="phone">{{ __('Phone Number*')}}</label>
+                                            <input type="tel" id="phone" name="login" class="form-control @error('phone') is-invalid @enderror" required>
+                                            @error('phone')
+                                            <span class="text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 column">
+                                        <div class="form-group">
+                                            <label for="password">{{ __('Password *')}}</label>
+                                            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Enter password" required>
+                                            @error('password')
+                                            <span class="text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 column">
+                                        <div class="form-group flex-box">
+                                            <div class="submit-btn">
+                                                <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">
+                                                <button class="theme-btn btn-style-one" type="submit" data-loading-text="Please wait..."><span>{{ __('Login')}}</span></button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-12">
-                                <div class="field-label">{{ __('Password')}}</div>
-                                <div class="input-field">
-                                    <input type="password" name="password" placeholder="Enter password">
-                                    <div class="icon-holder">
-                                        <i class="fa fa-unlock-alt" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-12 register-btn">
-                                <button class="theme-btn btn-style-one" type="submit"><span>{{ __('Login')}}</span></button>
-                            </div>
-                        </form>
-                    </div>
+                            <div class="col-lg-3"></div>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="col-xl-3"></div>
         </div>
     </div>
 </section>

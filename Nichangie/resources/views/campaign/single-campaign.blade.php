@@ -42,7 +42,7 @@
         <div class="row">
             <div class="col-lg-8 content-column">
                 @include('flash-message')
-                <div class="image mb-50"><img src="{{ asset('storage/images/'.$campaign->media)}}" width="720" height="400" alt="campaign-image"></div>
+                <div class="image mb-50"><img src="{{ $campaign->link }}" width="720" height="400" alt="campaign-image"></div>
                 <div class="sec-title mb-40">
                     <h1>The Story</h1>
                     <div class="text">{{ $campaign->description }}.</div>

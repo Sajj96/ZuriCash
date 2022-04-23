@@ -9,138 +9,118 @@
 @include('layouts.header')
 <!-- Page Title -->
 <section class="contact-form-section">
-        <div class="auto-container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="default-form-area">
-                        <div class="sec-title">
-                            <h1>Drop a line us</h1>
-                        </div>
-                        <form id="contact-form" name="contact_form" class="contact-form" action="http://steelthemes.com/demo/html/Goodsoul_html/inc/sendmail.php" method="post">
-                            <div class="row clearfix">
-                                <div class="col-lg-6 col-md-6 column">        
-                                    <div class="form-group">
-                                        <input type="text" name="form_name" class="form-control" value="" placeholder="Name" required="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 column">
-                                    <div class="form-group">
-                                        <input type="email" name="form_email" class="form-control required email" value="" placeholder="Email" required="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 column">        
-                                    <div class="form-group">
-                                        <input type="text" name="form_phone" class="form-control" value="" placeholder="Phone" required="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 column">        
-                                    <div class="form-group">
-                                        <input type="text" name="form_subject" class="form-control" value="" placeholder="Subject" required="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 column">
-                                    <div class="form-group">
-                                        <textarea name="form_message" class="form-control textarea required" placeholder="Message...."></textarea>
-                                    </div>
-                                    <div class="form-group flex-box">
-                                        <div class="submit-btn">
-                                            <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">
-                                            <button class="theme-btn btn-style-one" type="submit" data-loading-text="Please wait..."><span>Send Message</span></button>
-                                        </div>
-                                        <span class="hint">*Get answers to common questions through our help center.</span>
-                                    </div>
-                                </div>                                            
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="contact-info-three">
-                        <div class="single-info">
-                            <h4>Global HQ</h4>
-                            <div class="text">5404 Berrick Street, 2nd cross str, Boston, MA 02115.</div>
-                            <a class="link-btn" href="#">Your Nearest Location</a>                            
-                        </div>
-                        <div class="single-info">
-                            <h4>Quick Contact</h4>
-                            <div class="wrapper-box">
-                                <a href="mailto:supportyou@goodsoul.co">supportyou@goodsoul.com </a> <br>
-                                <a href="tel:+211456789123">+211 456 789 & 123</a>
-                            </div>
-                            <a class="link-btn" href="#">Get Call Back</a>
-                        </div>
-                    </div>
-                </div>
-            </div>                    
-        </div>
-    </section>
-<section class="checkout-area">
-    @include('flash-message')
     <div class="auto-container">
         <div class="row">
-            <div class="col-md-12 col-sm-12 card-panel">
-                <div class="form billing-info">
-                    <div class="shop-page-title">
-                        <div class="title">{{ __('Create Campaign')}} </div>
+            <div class="col-lg-12">
+                <div class="default-form-area">
+                    <div class="sec-title">
+                        <h1>{{ __('Create Campaign')}}</h1>
                     </div>
-                    <form method="post" action="{{ route('campaign.create') }}" enctype="multipart/form-data">
+                    @include('flash-message')
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+                    @endif
+                    @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+                    <form id="contact-form" name="contact_form" class="contact-form" action="{{ route('campaign.create') }}" enctype="multipart/form-data" method="post">
                         @csrf
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="field-label">{{ __('Title *')}}</div>
-                                <div class="field-input">
-                                    <input type="text" name="title" placeholder="Enter Title" required>
+                        <div class="row clearfix">
+                            <div class="col-lg-12 col-md-12 column">
+                                <div class="form-group">
+                                    <label for="title">{{ __('Title*')}}</label>
+                                    <input type="text" id="title" name="title" class="form-control @error('title') is-invalid @enderror" value="" placeholder="Enter campaign title" required>
+                                    @error('title')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <div class="field-label">{{ __('Story*')}}</div>
-                                <div class="field-input">
-                                    <textarea class="summernote-simple" name="story" required></textarea>
+                            <div class="col-lg-6 col-md-6 column">
+                                <div class="form-group">
+                                    <label for="image">{{ __('Supporting photo*')}}</label>
+                                    <input type="file" id="image" name="image" class="form-control" required>
+                                    @error('image')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6 mt-3">
-                                <div class="field-label">{{ __('Supporting Image*')}}</div>
-                                <div class="field-input">
-                                    <input type="file" name="image">
-                                </div>
-                            </div>
-                            <div class="col-md-6 mt-3">
-                                <div class="field-label">{{ __('What are you campaigning for?*')}}</div>
-                                <div class="field-input">
-                                    <select class="filters-select selectmenu" name="category">
+                            <div class="col-lg-6 col-md-6 column">
+                                <div class="form-group">
+                                    <label for="category">{{ __('What are you campaigning for?*')}}</label>
+                                    <select class="filters-select form-control selectmenu" name="category">
                                         <option value="">Please select</option>
                                         @foreach($categories as $key=>$rows)
                                         <option value="{{ $rows->id }}">{{ $rows->name }}</option>
                                         @endforeach
                                     </select>
+                                    @error('category')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="field-label">{{ __('Expected Goal(Amount) *')}}</div>
-                                <div class="field-input">
-                                    <input type="number" name="amount" placeholder="Enter Amount" required>
+                            <div class="col-lg-4 col-md-6 column">
+                                <div class="form-group">
+                                    <label for="amount">{{ __('Expected Goal(Amount) *')}}</label>
+                                    <input type="number" name="amount" class="form-control @error('amount') is-invalid @enderror" placeholder="Enter goal amount" required>
+                                    @error('amount')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="field-label">{{ __('End Date *')}}</div>
-                                <div class="field-input">
-                                    <input type="date" name="enddate" placeholder="Enter End Date" required>
+                            <div class="col-lg-4 col-md-6 column">
+                                <div class="form-group">
+                                    <label for="enddate">{{ __('End Date *')}}</label>
+                                    <input type="date" name="enddate" class="form-control @error('enddate') is-invalid @enderror" placeholder="Enter deadline" required>
+                                    @error('enddate')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6 mt-3">
-                                <div class="field-label">{{ __('Campaign Type')}}</div>
-                                <div class="field-input">
-                                    <select class="filters-select selectmenu" name="type">
+                            <div class="col-lg-4 col-md-6 column">
+                                <div class="form-group">
+                                    <label for="type">{{ __('Campaign Type')}}</label>
+                                    <select class="filters-select form-control selectmenu" name="type">
                                         @foreach($category_types as $key=>$rows)
                                         <option value="{{ $rows->id }}">{{ $rows->name }}</option>
                                         @endforeach
                                     </select>
+                                    @error('type')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xl-12">
-                            <div class="register-btn">
-                                <button class="theme-btn btn-style-one" type="submit"><span>{{ __('Save')}}</span></button>
+                            <div class="col-lg-12 col-md-12 column">
+                                <div class="form-group">
+                                    <label for="type">{{ __('Story')}}</label>
+                                    <textarea name="form_message" class="form-control textarea required summernote-simple" name="story" placeholder="Type your story...."></textarea>
+                                </div>
+                                <div class="form-group flex-box">
+                                    <div class="submit-btn">
+                                        <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">
+                                        <button class="theme-btn btn-style-one" type="submit" data-loading-text="Please wait..."><span>{{ __('Save')}}</span></button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>

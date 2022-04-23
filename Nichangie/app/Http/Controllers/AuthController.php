@@ -46,8 +46,8 @@ class AuthController extends Controller
 
             if($otp == $session_otp) {
                 $request->session()->forget('session_otp');
-                $user = User::where('phone', $mobile_number)->first();
-                $user->active = User::USER_ACTIVE;
+                $user = User::where('phonenumber', $mobile_number)->first();
+                $user->status = User::USER_ACTIVE;
                 $user->save();
                 return redirect()->route('login')->with('success','Phone number verified successfully. Please login');
             } else {

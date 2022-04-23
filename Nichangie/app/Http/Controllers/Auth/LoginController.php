@@ -73,7 +73,7 @@ class LoginController extends Controller
 
         $login_type = filter_var($request->input('login'), FILTER_VALIDATE_EMAIL ) 
             ? 'email' 
-            : 'phone';
+            : 'phonenumber';
 
         $request->merge([
             $login_type => $request->input('login')
@@ -81,13 +81,13 @@ class LoginController extends Controller
 
         $remember = $request->has('remember') ? true : false;
 
-        if($login_type == 'phone') {
+        if($login_type == 'phonenumber') {
             $login_data = str_replace('+','',$request->input('login'));
         } else {
             $login_data = $request->input('login');
         }
 
-        if (Auth::attempt([$login_type => $login_data, 'password' => $request->input('password'), 'active' => User::USER_ACTIVE], $remember)) {
+        if (Auth::attempt([$login_type => $login_data, 'password' => $request->input('password'), 'status' => User::USER_ACTIVE], $remember)) {
             if($request->input('user_type') == User::ADMIN_USER_TYPE) {
                 return redirect()->route('admin.home');
             }
@@ -97,7 +97,7 @@ class LoginController extends Controller
         return redirect()->back()
             ->withInput()
             ->withErrors([
-                'phone' => 'Incorrect Phone number or Password',
+                'phone' => 'Incorrect Phone number',
                 'login' => 'These credentials do not match our records',
                 'password' => 'Incorrect Password'
             ]);

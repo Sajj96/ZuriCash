@@ -26,7 +26,7 @@
                 @foreach($campaigns as $key=>$rows)
                 <div class="cause-block-one col-lg-4 col-md-6">
                     <div class="inner-box">
-                        <div class="image"><a href="{{ route('campaign.show', $rows->id) }}"><img src="{{ asset('storage/images/'.$rows->media)}}" style="height: 230px;" alt="cause-media"></a></div>
+                        <div class="image"><a href="{{ route('campaign.show', $rows->id) }}"><img src="{{ $rows->link }}" style="height: 230px;" alt="cause-media"></a></div>
                         <div class="lower-content">
                             <h4><a href="{{ route('campaign.show', $rows->id) }}">{{ $rows->title }}</a></h4>
                             <div class="category"><a href="#"><span class="flaticon-user"></span> {{ $rows->name }}</a></div>

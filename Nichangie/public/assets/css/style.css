@@ -6616,6 +6616,8 @@ img {
 .contact-form input[type="password"],
 .contact-form input[type="tel"],
 .contact-form input[type="file"],
+.contact-form input[type="number"],
+.contact-form input[type="date"],
 .contact-form select,
 .contact-form textarea {
 	display: block;

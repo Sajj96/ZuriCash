@@ -30,10 +30,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/how-it-works', [App\Http\Controllers\HomeController::class, 'howItWorks'])->name('how');
 
 Route::group(['prefix' => 'campaigns'], function(){
-    Route::get('/', [App\Http\Controllers\CampaignController::class, 'index'])->name('campaign')->middleware('auth');
-    Route::get('/all', [App\Http\Controllers\CampaignController::class, 'getAll'])->name('campaign.all');
-    Route::get('/{id}', [App\Http\Controllers\CampaignController::class, 'show'])->name('campaign.show');
-    Route::post('/', [App\Http\Controllers\CampaignController::class, 'create'])->name('campaign.create')->middleware('auth');
+    Route::get('/', [App\Http\Controllers\StoryController::class, 'index'])->name('campaign')->middleware('auth');
+    Route::get('/all', [App\Http\Controllers\StoryController::class, 'getAll'])->name('campaign.all');
+    Route::get('/{id}', [App\Http\Controllers\StoryController::class, 'show'])->name('campaign.show');
+    Route::post('/', [App\Http\Controllers\StoryController::class, 'create'])->name('campaign.create')->middleware('auth');
 });
 
 Route::group(['prefix' => 'categories'], function(){

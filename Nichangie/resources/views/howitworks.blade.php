@@ -21,12 +21,12 @@
 <section class="history-section">
     <div class="auto-container">
         <div class="description">
-            <div class="row">
-                <h1>Nachangia</h1>
-                <div class="col-lg-12 text">
-                    <h4>Nachangia is a Tanzania donation-type crowdfunding service. Anyone in Tanzania can quickly and easily create campaign to raise funds within Tanzania and around the world for their beloved ones, for themselves, for the community and for charity.</h4>
+            <div class="row cause-details">
+                <div class="sec-title">
+                    <h1>Nachangia</h1>
+                    <div class="text">Nachangia is a Tanzania donation-type crowdfunding service. Anyone in Tanzania can quickly and easily create campaign to raise funds within Tanzania and around the world for their beloved ones, for themselves, for the community and for charity.</div>
                 </div>
-                <div class="col-lg-12 cause-details">
+                <div class="col-lg-12">
                     <ol>
                         <li>
                             Start your Campaign
@@ -64,12 +64,12 @@
                     </ol>
                 </div>
             </div>
-            <div class="row">
-                <h1>How to write a successful story?</h1>
-                <div class="col-lg-12 text">
-                    <h4>To write a good story to be able make your project more appealing is an important key to success in crowdfunding. Don’t forget to follow these tips to write a good crowdfunding story!</h4>
+            <div class="row cause-details">
+                <div class="sec-title">
+                    <h1>How to write a successful story?</h1>
+                    <div class="text">To write a good story to be able make your project more appealing is an important key to success in crowdfunding. Don’t forget to follow these tips to write a good crowdfunding story!</div>
                 </div>
-                <div class="col-lg-12 cause-details">
+                <div class="col-lg-12">
                     <ol>
                         <li>
                             Write an attractive title
