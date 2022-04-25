@@ -40,10 +40,24 @@ class StoryController extends Controller
     public function getAll()
     {
         $campaigns = DB::table('stories')
-                        ->join('users','stories.user_id','=','users.id')
+                        ->join('users','stories.owner_id','=','users.id')
                         ->select('stories.*','users.name','users.lastname')
+                        ->where('type', 1)
                         ->get();
-        return view('campaign.campaigns', compact('campaigns'));
+        $type = 'Featured';
+        return view('campaign.campaigns', compact('campaigns','type'));
+    }
+
+    public function getLatest()
+    {
+        $campaigns = DB::table('stories')
+                        ->join('users','stories.owner_id','=','users.id')
+                        ->select('stories.*','users.name','users.lastname')
+                        ->orderByDesc('stories.id')
+                        ->limit(20)
+                        ->get();
+        $type = 'Latest';
+        return view('campaign.campaigns', compact('campaigns','type'));
     }
 
     public function create(Request $request)
@@ -77,7 +91,7 @@ class StoryController extends Controller
             $image_data = File::get(storage_path('/app/public/images/'.$fileName));
             $base64encodedString = 'data:image/' . $type . ';base64,' . base64_encode($image_data);
             $fileBin = file_get_contents($base64encodedString);
-            $fileLink = env('APP_URL').'/public/images/'.$fileName;
+            $fileLink = url('storage/images/'.$fileName);
 
             $user = Auth::user();
 

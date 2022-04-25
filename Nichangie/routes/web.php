@@ -27,20 +27,22 @@ Auth::routes();
 
 Route::group(['prefix' => 'home'], function(){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'doneeDashboard'])->name('donee.home');
+    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'doneeDashboard'])->name('donee.home')->middleware('auth');
 });
 
 Route::get('/how-it-works', [App\Http\Controllers\HomeController::class, 'howItWorks'])->name('how');
 
 Route::group(['prefix' => 'campaigns'], function(){
     Route::get('/', [App\Http\Controllers\StoryController::class, 'index'])->name('campaign')->middleware('auth');
-    Route::get('/all', [App\Http\Controllers\StoryController::class, 'getAll'])->name('campaign.all');
+    Route::get('/featured', [App\Http\Controllers\StoryController::class, 'getAll'])->name('campaign.all');
+    Route::get('/latest', [App\Http\Controllers\StoryController::class, 'getLatest'])->name('campaign.latest');
     Route::get('/{id}', [App\Http\Controllers\StoryController::class, 'show'])->name('campaign.show');
     Route::post('/', [App\Http\Controllers\StoryController::class, 'create'])->name('campaign.create')->middleware('auth');
 });
 
 Route::group(['prefix' => 'categories'], function(){
-    Route::get('/', [App\Http\Controllers\CategoryController::class, 'getAll'])->name('user.category');
+    Route::get('/', [App\Http\Controllers\CategoryController::class, 'getCategories'])->name('user.category');
+    Route::get('/{id}', [App\Http\Controllers\CategoryController::class, 'getCategoryCampaigns'])->name('category.campaigns');
 });
 
 Route::group(['prefix' => 'donations'], function(){

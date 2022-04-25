@@ -22,7 +22,7 @@
     <title>{{ config('app.name', 'NACHANGIA') }}</title>
 
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png')}}" type="image/x-icon">
-    <link rel="icon" href="{{ asset('assets/imagfavicon.png')}}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('assets/images/favicon.png')}}" type="image/x-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Prata|Rubik:300,400,500,700&amp;display=swap" rel="stylesheet">

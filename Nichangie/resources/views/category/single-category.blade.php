@@ -9,10 +9,10 @@
 <section class="page-title">
     <div class="auto-container">
         <div class="content-box">
-            <h1>{{ $type }} {{ __('Campaigns')}}</h1>
+            <h1>{{ $category->name }} {{ __('Campaigns')}}</h1>
             <ul class="bread-crumb">
                 <li><a class="home" href="{{ route('home') }}"><span class="fa fa-home"></span></a></li>
-                <li>{{ $type }} {{ __('Campaigns')}}</li>
+                <li>{{ $category->name }} {{ __('Campaigns')}}</li>
             </ul>
         </div>
     </div>

@@ -57,13 +57,13 @@
                                             <li class="dropdown"><a href="#">{{ __('Campaigns')}}</a>
                                                 <ul>
                                                     <li><a href="{{ route('campaign.all') }}">Featured</a></li>
-                                                    <li><a href="faq.html">Latest</a></li>
+                                                    <li><a href="{{ route('campaign.latest') }}">Latest</a></li>
                                                 </ul>
                                             </li>
                                             <li class="dropdown"><a href="#">{{ __('Categories')}}</a>
                                                 <ul>
                                                     @foreach($categories as $key=>$rows)
-                                                    <li><a href="cause-details.html">{{$rows->name}}</a></li>
+                                                    <li><a href="{{ route('category.campaigns', $rows->id) }}">{{$rows->name}}</a></li>
                                                     @endforeach
                                                     <div class="dropdown-divider"></div>
                                                     <li><a href="{{ route('user.category')}}">View All <span class="flaticon-arrow-2"></span></a></li>
@@ -103,7 +103,7 @@
                             </div>
                             @if(Auth::user())
                             <div class="navbar-btn-wrap">
-                                <a href="{{ route('donee.index') }}" class=""><i class="fa fa-user-circle fa-2x"></i></a>
+                                <a href="{{ route('donee.home') }}" class=""><i class="fa fa-user-circle fa-2x"></i></a>
                             </div>
                             @endif
                             <div class="link-btn">

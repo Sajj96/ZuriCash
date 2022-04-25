@@ -16,7 +16,6 @@
                     <div class="sec-title">
                         <h1>{{ __('Create Campaign')}}</h1>
                     </div>
-                    @include('flash-message')
                     @if ($message = Session::get('success'))
                     <div class="alert alert-success">
                         <p>{{ $message }}</p>
