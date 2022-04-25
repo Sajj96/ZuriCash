@@ -12,10 +12,7 @@
                                 <span class="hover">English</span>
                                 <ul>
                                     <li><a href="#">English</a></li>
-                                    <li><a href="#">Hindi</a></li>
-                                    <li><a href="#">Tamil</a></li>
-                                    <li><a href="#">Kannada</a></li>
-                                    <li><a href="#">Gujarathi</a></li>
+                                    <li><a href="#">Swahili</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -23,8 +20,8 @@
                     </div>
                     <div class="right-content">
                         <ul class="contact-info">
-                            <li><span class="flaticon-mail"></span><a href="mailto:support@charity.com">support@charity.com</a></li>
-                            <li><span class="flaticon-phone"></span><a href="tel:+211456789">+211 456 789</a></li>
+                            <li><span class="flaticon-mail"></span><a href="mailto:info@nachangia.co.tz">info@nachangia.co.tz</a></li>
+                            <li><span class="flaticon-phone"></span><a href="tel:+255788209794">+255 788 209 794</a></li>
                         </ul>
                         <ul class="social-icon-one">
                             <li><a href="#"><span class="fa fa-facebook"></span></a></li>
@@ -93,7 +90,7 @@
                                     <ul class="dropdown-menu pull-right search-panel" aria-labelledby="dropdownMenu3">
                                         <li class="panel-outer">
                                             <div class="form-container">
-                                                <form method="post" action="http://steelthemes.com/demo/html/Goodsoul_html/blog.html">
+                                                <form method="post" action="#">
                                                     <div class="form-group">
                                                         <input type="search" name="field-name" value="" placeholder="Search...." required="">
                                                         <button type="submit" class="search-btn"><span class="fa fa-search"></span></button>
@@ -106,7 +103,7 @@
                             </div>
                             @if(Auth::user())
                             <div class="navbar-btn-wrap">
-                                <a href="#" class=""><i class="fa fa-user-circle fa-2x"></i></a>
+                                <a href="{{ route('donee.index') }}" class=""><i class="fa fa-user-circle fa-2x"></i></a>
                             </div>
                             @endif
                             <div class="link-btn">

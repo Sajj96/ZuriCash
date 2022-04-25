@@ -7,14 +7,12 @@
     <div class="swiper-container banner-slider">
         <div class="swiper-wrapper">
             <!-- Slide Item -->
-            <div class="swiper-slide" style="background-image: url(assets/images/main-slider/1.jpg);">
+            <div class="swiper-slide" style="background-image: url(assets/images/main-slider/4.jpg);">
                 <div class="content-outer">
                     <div class="content-box justify-content-center">
                         <div class="inner text-center">
-                            <h4><span class="border-shape-left"></span>6 million out of 36 million Nigerian <span class="border-shape-right"></span></h4>
-                            <h1>Childrens out of school</h1>
-                            <div class="text">To improve the learning environment in primary schools by holistically creating world-class <br>basic education systems to the community.</div>
-                            <div class="link-box"><a href="#" class="theme-btn btn-style-one donate-box-btn"><span>Donate Now</span></a></div>
+                            <h1>RAISE MONEY FOR ANYTHING</h1>
+                            <div class="text">Nachangia Platform allows you to Raise Money for yourself, a family, Friends  <br>and even community development campaign.</div>
                         </div>
                     </div>
                 </div>
@@ -25,10 +23,8 @@
                 <div class="content-outer">
                     <div class="content-box justify-content-center">
                         <div class="inner text-center">
-                            <div class="link-box-two"><a href="#" class="theme-btn default-btn">help the needy</a></div>
-                            <h3>To improve learning environment in primary schools</h3>
-                            <h1>Together we can make <br>a Difference</h1>
-                            <div class="link-box"><a href="#" class="theme-btn btn-style-one donate-box-btn"><span>Donate Now</span></a></div>
+                            <h1>CREATE CAMPAIGN FREE OF COST</h1>
+                            <div class="text">Register your account for free, create your campaign which is simple and precise, your story should answer all the question to donors.  <br>Your pictures should portray the essence of your fundraising.</div>
                         </div>
                     </div>
                 </div>
@@ -39,9 +35,8 @@
                 <div class="content-outer">
                     <div class="content-box justify-content-center">
                         <div class="inner text-center">
-                            <h1>Healing & Caring</h1>
-                            <div class="text">To improve the learning environment in primary schools by <br>holistically creating world-class.</div>
-                            <div class="link-box"><a href="#" class="theme-btn btn-style-one donate-box-btn"><span>Donate Now</span></a></div>
+                            <h1>SHARE YOUR CAMPAIGN TO YOUR FAMILY AND FRIENDS</h1>
+                            <div class="text">The more you share your campaign to many people, the higher the chances of completing your campaign. Use various methods<br> of sharing such as Social media, Email, Text message, Whastapp and many others.</div>
                         </div>
                     </div>
                 </div>

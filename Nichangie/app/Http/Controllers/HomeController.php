@@ -23,7 +23,12 @@ class HomeController extends Controller
         return view('home', compact('campaigns'));
     }
 
-    public function adminIndex()
+    public function adminDashboard()
+    {
+        return view('admin.home');
+    }
+
+    public function doneeDashboard()
     {
         return view('admin.home');
     }

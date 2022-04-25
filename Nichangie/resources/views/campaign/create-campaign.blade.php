@@ -113,7 +113,7 @@
                             <div class="col-lg-12 col-md-12 column">
                                 <div class="form-group">
                                     <label for="type">{{ __('Story')}}</label>
-                                    <textarea name="form_message" class="form-control textarea required summernote-simple" name="story" placeholder="Type your story...."></textarea>
+                                    <textarea name="story" class="form-control textarea required summernote-simple" name="story" placeholder="Type your story...."></textarea>
                                 </div>
                                 <div class="form-group flex-box">
                                     <div class="submit-btn">

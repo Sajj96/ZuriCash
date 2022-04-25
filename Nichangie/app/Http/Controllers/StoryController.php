@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Story;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -49,7 +49,7 @@ class StoryController extends Controller
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'story' => 'required|string',
+            'story'       => 'required|string',
             'image'       => 'required',
             'category'    => 'required|string',
             'amount'      => 'required|numeric'

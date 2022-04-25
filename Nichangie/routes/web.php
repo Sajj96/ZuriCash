@@ -25,7 +25,10 @@ Route::get('/verify-test', [App\Http\Controllers\AuthController::class, 'verifyT
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['prefix' => 'home'], function(){
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'doneeDashboard'])->name('donee.home');
+});
 
 Route::get('/how-it-works', [App\Http\Controllers\HomeController::class, 'howItWorks'])->name('how');
 
@@ -48,7 +51,7 @@ Route::get('/admin/login', [App\Http\Controllers\Auth\LoginController::class, 'a
 
 Route::middleware(['auth'])->group(function () {
     Route::group(['middleware' => 'user.type', 'prefix' => 'admin'], function(){
-        Route::get('/home', [App\Http\Controllers\HomeController::class, 'adminIndex'])->name('admin.home');
+        Route::get('/home', [App\Http\Controllers\HomeController::class, 'adminDashboard'])->name('admin.home');
 
         Route::group(['prefix' => 'categories'], function(){
             Route::get('/', [App\Http\Controllers\CategoryController::class, 'index'])->name('category');

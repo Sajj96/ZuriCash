@@ -23,6 +23,11 @@
                     <div class="sec-title">
                         <h1>{{ __('Login')}}</h1>
                     </div>
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+                    @endif
                     @error('login')
                     <div class="alert alert-danger">
                         <strong>{{ $message }}</strong>
