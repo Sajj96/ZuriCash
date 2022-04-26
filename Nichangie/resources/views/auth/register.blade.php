@@ -108,7 +108,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6 column">
                                 <div class="form-group">
-                                    <label for="address">Location</label>
+                                    <label for="address">Address Location *</label>
                                     <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" placeholder="Enter location" required>
                                     @error('address')
                                     <span class="text-danger" role="alert">
@@ -119,9 +119,9 @@
                             </div>
                             <div class="col-lg-4 col-md-6 column">
                                 <div class="form-group">
-                                    <label for="town_city">{{ __('Town/City *')}}</label>
-                                    <input type="text" name="town_city" class="form-control @error('town_city') is-invalid @enderror" placeholder="Enter town or city" required>
-                                    @error('town_city')
+                                    <label for="district">{{ __('District Location')}}</label>
+                                    <input type="text" name="district" class="form-control @error('district') is-invalid @enderror" placeholder="Enter district">
+                                    @error('district')
                                     <span class="text-danger" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -130,10 +130,12 @@
                             </div>
                             <div class="col-lg-4 col-md-6 column">
                                 <div class="form-group">
-                                    <label for="idtype">{{ __('Country')}}</label>
-                                    <select id="address-country" name="country" class="filters-select selectmenu @error('country') is-invalid @enderror">
+                                    <label for="town_city">{{ __('City')}}</label>
+                                    <select class="filters-select form-control selectmenu" name="town_city">
+                                        <option value="">Please select</option>
+                                        <option value="Dar es Salaam">Dar es Salaam</option>
                                     </select>
-                                    @error('country')
+                                    @error('town_city')
                                     <span class="text-danger" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -163,10 +165,16 @@
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-12 column">
-                                <div class="form-group flex-box">
-                                    <div class="submit-btn">
-                                        <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">
-                                        <button class="theme-btn btn-style-one" type="submit" data-loading-text="Please wait..."><span>{{ __('Register')}}</span></button>
+                                <div class="row">
+                                    <div class="form-group flex-box col-lg-2 col-md-2 col-sm-12">
+                                        <div class="submit-btn">
+                                            <button class="theme-btn btn-style-one" type="submit" data-loading-text="Please wait..."><span>{{ __('Register')}}</span></button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-sm-12">
+                                        <div class="right mt-2">
+                                            <h6 class="text">By creating an account, you are agreeing to our terms and conditions.</h6>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -69,12 +69,12 @@
                 </li>
                 <li class="treeview">
                     <a class="waves-effect waves-dark" href="index.html">
-                        <i class="icon-hourglass"></i><span> Transactions</span>
+                        <i class="icon-credit-card"></i><span> Transactions</span>
                     </a>
                 </li>
                 <li class="treeview">
                     <a class="waves-effect waves-dark" href="index.html">
-                        <i class="icon-hourglass"></i><span> Donations</span>
+                        <i class="icon-heart"></i><span> Donations</span>
                     </a>
                 </li>
                 @else
@@ -85,12 +85,12 @@
                 </li>
                 <li class="treeview">
                     <a class="waves-effect waves-dark" href="index.html">
-                        <i class="icon-hourglass"></i><span> Transactions</span>
+                        <i class="icon-credit-card"></i><span> Transactions</span>
                     </a>
                 </li>
                 <li class="treeview">
                     <a class="waves-effect waves-dark" href="index.html">
-                        <i class="icon-hourglass"></i><span> Donations</span>
+                        <i class="icon-heart"></i><span> Donations</span>
                     </a>
                 </li>
                 @endif

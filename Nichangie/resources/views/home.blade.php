@@ -7,7 +7,7 @@
     <div class="swiper-container banner-slider">
         <div class="swiper-wrapper">
             <!-- Slide Item -->
-            <div class="swiper-slide" style="background-image: url(assets/images/main-slider/4.jpg);">
+            <div class="swiper-slide" style="background-image: url(assets/images/main-slider/5.jpg);">
                 <div class="content-outer">
                     <div class="content-box justify-content-center">
                         <div class="inner text-center">
@@ -19,7 +19,7 @@
             </div>
 
             <!-- Slide Item -->
-            <div class="swiper-slide" style="background-image: url(assets/images/main-slider/2.jpg);">
+            <div class="swiper-slide" style="background-image: url(assets/images/main-slider/6.jpg);">
                 <div class="content-outer">
                     <div class="content-box justify-content-center">
                         <div class="inner text-center">
@@ -31,7 +31,7 @@
             </div>
 
             <!-- Slide Item -->
-            <div class="swiper-slide" style="background-image: url(assets/images/main-slider/3.jpg);">
+            <div class="swiper-slide" style="background-image: url(assets/images/main-slider/7.webp);">
                 <div class="content-outer">
                     <div class="content-box justify-content-center">
                         <div class="inner text-center">

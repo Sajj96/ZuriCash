@@ -90,7 +90,7 @@ class RegisterController extends Controller
         $base64encodedString = 'data:image/' . $type . ';base64,' . base64_encode($image_data);
         $fileBin = file_get_contents($base64encodedString);
         
-        $fileLink = env('APP_URL').'/public/IDs/'.$fileName;
+        $fileLink = url('storage/IDs/'.$fileName);
 
         $user               = new User;
         $user->name         = $data['name'];
@@ -99,7 +99,7 @@ class RegisterController extends Controller
         $user->email        = $data['email'];
         $user->idtype       = $data['idtype'];
         $user->idlink       = $fileLink;
-        $user->country      = $data['country'];
+        $user->district     = $data['district'];
         $user->city         = $data['town_city'];
         $user->phonenumber  = str_replace('+','',$data['phonenumber']);
         $user->password     = Hash::make($data['password']);

@@ -26,29 +26,6 @@ geoIpLookup: function(callback) {
   separateDialCode: true
 });
 
-// populate the country dropdown
-for (var i = 0; i < countryData.length; i++) {
-  var country = countryData[i];
-  var optionNode = document.createElement("option");
-  optionNode.value = country.iso2;
-  var textNode = document.createTextNode(country.name);
-  optionNode.appendChild(textNode);
-  addressDropdown.appendChild(optionNode);
-}
-// set it's initial value
-addressDropdown.value = it.getSelectedCountryData().iso2;
-$("#address-country").val(it.getSelectedCountryData().iso2).find("option[value=" + it.getSelectedCountryData().iso2 +"]").attr('selected', true);
-
-// listen to the telephone input for changes
-telInput.addEventListener('countrychange', function(e) {
-  addressDropdown.value = it.getSelectedCountryData().iso2;
-});
-
-// listen to the address dropdown for changes
-addressDropdown.addEventListener('change', function() {
-  it.setCountry(this.value);
-});
-
 var handleChange = function() {
   if(it.isValidNumber()) {
     var text = it.getNumber();

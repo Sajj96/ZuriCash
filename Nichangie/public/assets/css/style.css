@@ -2821,6 +2821,15 @@ img {
 	color: #04719C;
 }
 
+.mobile-menu .logo a {
+	text-decoration: none;
+	color: #04719C;
+}
+
+.mobile-menu .logo a img{
+	width: 105px !important;
+}
+
 .mobile-menu .navbar-btn-wrap {
     position: relative;
     text-align: start;
@@ -3948,7 +3957,7 @@ img {
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 0 15px;
-	min-height: 750px;
+	min-height: 550px;
 }
 
 .banner-section .content-box .inner {

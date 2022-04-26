@@ -116,7 +116,6 @@
                                 </div>
                                 <div class="form-group flex-box">
                                     <div class="submit-btn">
-                                        <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">
                                         <button class="theme-btn btn-style-one" type="submit" data-loading-text="Please wait..."><span>{{ __('Save')}}</span></button>
                                     </div>
                                 </div>
