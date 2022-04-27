@@ -29,7 +29,7 @@
                         <div class="image"><a href="{{ route('campaign.show', $rows->id) }}"><img src="{{ $rows->link }}" style="height: 230px;" alt="cause-media"></a></div>
                         <div class="lower-content">
                             <h4><a href="{{ route('campaign.show', $rows->id) }}">{{ $rows->title }}</a></h4>
-                            <div class="category"><a href="#"><span class="flaticon-user"></span> {{ $rows->name }}</a></div>
+                            <div class="category"><span class="flaticon-user"></span> {{ $rows->name }}</div>
                             <div class="text">{{ substr($rows->description,0,40) }}...</div>
                             <div class="info-box">
                                 <a href="#"><span>Raised:</span> $72000</a>

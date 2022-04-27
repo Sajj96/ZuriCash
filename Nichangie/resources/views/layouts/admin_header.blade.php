@@ -79,7 +79,7 @@
                 </li>
                 @else
                 <li class="treeview">
-                    <a class="waves-effect waves-dark" href="index.html">
+                    <a class="waves-effect waves-dark" href="{{ route('me.campaign')}}">
                         <i class="icon-hourglass"></i><span> Campaigns</span>
                     </a>
                 </li>

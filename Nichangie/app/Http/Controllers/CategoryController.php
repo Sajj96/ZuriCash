@@ -24,10 +24,10 @@ class CategoryController extends Controller
         return view('category.categories');
     }
 
-    public function getCategoryCampaigns($id)
+    public function getCategoryCampaigns($name)
     {
-        $category = Category::find($id);
-        $campaigns = Story::where('category_id', $id)->get();
+        $category = Category::where('name',$name)->first();
+        $campaigns = Story::where('category', $name)->get();
         return view('category.single-category', compact('category', 'campaigns'));
     }
 

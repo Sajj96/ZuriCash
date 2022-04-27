@@ -104,6 +104,7 @@ class RegisterController extends Controller
         $user->phonenumber  = str_replace('+','',$data['phonenumber']);
         $user->password     = Hash::make($data['password']);
         $user->status       = User::USER_INACTIVE;
+        $user->user_type    = User::DONEE_USER_TYPE;
         if($user->save()) {
             $smsOpt = app(SMSService::class);
             $smsOpt->sendOtp(str_replace('+','',$data['phonenumber']));

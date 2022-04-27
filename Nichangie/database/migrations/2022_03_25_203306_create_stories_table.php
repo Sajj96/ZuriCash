@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCampaignsTable extends Migration
+class CreateStoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -25,9 +25,9 @@ class CreateCampaignsTable extends Migration
             $table->bigInteger('owner_id', false, true);
             $table->double('fundgoals');
             $table->date('deadline');
-            $table->tinyInteger('type');
+            $table->tinyInteger('type')->nullable();
             $table->text('category')->nullable();
-            $table->integer('category_id', false, true);
+            $table->integer('category_id', false, true)->nullable();
             $table->tinyInteger('status');
             $table->timestamps();
         });

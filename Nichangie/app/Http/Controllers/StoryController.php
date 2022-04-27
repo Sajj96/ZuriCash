@@ -27,7 +27,7 @@ class StoryController extends Controller
                             ->get();
         $total_donations = DB::table('donations')
                             ->where('campaign_id', $id)
-                            ->sum('fundgoals');
+                            ->sum('amount');
         $donation_percent = ($total_donations/$campaign->fundgoals) * 100;
         $date = date('Y-m-d');
         $start = strtotime($date);
@@ -97,13 +97,14 @@ class StoryController extends Controller
 
             $campaign = new Story;
             $campaign->owner_id = $user->id;
+            $campaign->owner_phonenumber = $user->phonenumber;
+            $campaign->owner_name = $user->lastname;
             $campaign->title = $request->title;
             $campaign->description = strip_tags($request->story);
             $campaign->link = $fileLink;
             $campaign->fundgoals = $request->amount;
-            $campaign->category_id = $request->category;
+            $campaign->category = $request->category;
             $campaign->deadline = $request->enddate;
-            $campaign->type  = $request->type;
             $campaign->status = Story::STATUS_INPROGRESS;
             if($campaign->save()) {
                 return redirect()->route('campaign')->with('success','Campaign created successfully!');
@@ -112,5 +113,22 @@ class StoryController extends Controller
         } catch (\Exception $e) {
             return redirect()->route('campaign')->with('error','Something went wrong while creating a campaign!');
         }
+    }
+
+    public function storyLink($id)
+    {
+        $campaign = Story::find($id);
+        if(!$campaign) {
+            return response()->json(['error' => 'Sorry, campaign id maybe not be present!'], 422);
+        }
+
+        return response()->json(['link' => url('campaigns/'.$id)], 200);
+    }
+
+    public function getStories()
+    {
+        $user = Auth::user();
+        $campaigns = Story::where('owner_id', $user->id)->get();
+        return view('admin.campaigns.campaigns', compact('campaigns'));
     }
 }

@@ -16,7 +16,6 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="text">We only have what we give... <a href="#" class="donate-box-btn">Donate Now.</a></div>
                     </div>
                     <div class="right-content">
                         <ul class="contact-info">
@@ -63,7 +62,7 @@
                                             <li class="dropdown"><a href="#">{{ __('Categories')}}</a>
                                                 <ul>
                                                     @foreach($categories as $key=>$rows)
-                                                    <li><a href="{{ route('category.campaigns', $rows->id) }}">{{$rows->name}}</a></li>
+                                                    <li><a href="{{ route('category.campaigns', $rows->name) }}">{{$rows->name}}</a></li>
                                                     @endforeach
                                                     <div class="dropdown-divider"></div>
                                                     <li><a href="{{ route('user.category')}}">View All <span class="flaticon-arrow-2"></span></a></li>
@@ -143,7 +142,7 @@
                                         </ul>
                                         @if(Auth::user())
                                         <div class="navbar-btn-wrap mr-2">
-                                            <a href="#" class=""><i class="fa fa-user-circle fa-2x"></i></a>
+                                            <a href="{{ route('donee.home') }}" class=""><i class="fa fa-user-circle fa-2x"></i></a>
                                         </div>
                                         @endif
                                         <div class="link-btn">
@@ -182,7 +181,7 @@
                         </ul>
                         @if(Auth::user())
                         <div class="navbar-btn-wrap mr-2">
-                            <a href="#" class=""><i class="fa fa-user-circle fa-2x"></i></a>
+                            <a href="{{ route('donee.home') }}" class=""><i class="fa fa-user-circle fa-2x"></i></a>
                         </div>
                         @endif
                         <div class="link-btn">
@@ -202,7 +201,7 @@
                         <ul class="dropdown-menu pull-right search-panel" aria-labelledby="dropdownMenu4">
                             <li class="panel-outer">
                                 <div class="form-container">
-                                    <form method="post" action="http://steelthemes.com/demo/html/Goodsoul_html/blog.html">
+                                    <form method="post" action="#">
                                         <div class="form-group">
                                             <input type="search" name="field-name" value="" placeholder="Search...." required="">
                                             <button type="submit" class="search-btn"><span class="fa fa-search"></span></button>

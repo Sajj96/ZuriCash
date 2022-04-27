@@ -58,11 +58,11 @@
                             </div>
                             <div class="col-lg-6 col-md-6 column">
                                 <div class="form-group">
-                                    <label for="category">{{ __('What are you campaigning for?*')}}</label>
+                                    <label for="category">{{ __('Select category*')}}</label>
                                     <select class="filters-select form-control selectmenu" name="category">
                                         <option value="">Please select</option>
                                         @foreach($categories as $key=>$rows)
-                                        <option value="{{ $rows->id }}">{{ $rows->name }}</option>
+                                        <option value="{{ $rows->name }}">{{ $rows->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('category')
@@ -72,10 +72,10 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6 column">
+                            <div class="col-lg-6 col-md-6 column">
                                 <div class="form-group">
-                                    <label for="amount">{{ __('Expected Goal(Amount) *')}}</label>
-                                    <input type="number" name="amount" class="form-control @error('amount') is-invalid @enderror" placeholder="Enter goal amount" required>
+                                    <label for="amount">{{ __('Goal funds (5% platform fee) *')}}</label>
+                                    <input type="number" id="amount" name="amount" class="form-control @error('amount') is-invalid @enderror" placeholder="Enter goal amount" required>
                                     @error('amount')
                                     <span class="text-danger" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -83,9 +83,9 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6 column">
+                            <div class="col-lg-6 col-md-6 column">
                                 <div class="form-group">
-                                    <label for="enddate">{{ __('End Date *')}}</label>
+                                    <label for="enddate">{{ __('Deadline *')}}</label>
                                     <input type="date" name="enddate" class="form-control @error('enddate') is-invalid @enderror" placeholder="Enter deadline" required>
                                     @error('enddate')
                                     <span class="text-danger" role="alert">
@@ -94,7 +94,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6 column">
+                            <!-- <div class="col-lg-4 col-md-6 column">
                                 <div class="form-group">
                                     <label for="type">{{ __('Campaign Type')}}</label>
                                     <select class="filters-select form-control selectmenu" name="type">
@@ -108,7 +108,7 @@
                                     </span>
                                     @enderror
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-lg-12 col-md-12 column">
                                 <div class="form-group">
                                     <label for="type">{{ __('Story')}}</label>
@@ -130,5 +130,15 @@
 @include('layouts.footer')
 @section('page-scripts')
 <script src="{{ asset('assets/js/summernote/summernote-bs4.js')}}"></script>
+<script>
+    $(document).ready(function(){
+        $('#amount').on('blur', function(){
+            var amount = $(this).val();
+            var fee = parseInt(amount) * 0.05;
+            var goal = parseInt(amount) + fee;
+            $(this).val(goal);
+        });
+    });
+</script>
 @endsection
 @endsection

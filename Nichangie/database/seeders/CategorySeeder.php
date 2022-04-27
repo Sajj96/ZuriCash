@@ -24,7 +24,8 @@ class CategorySeeder extends Seeder
             'Wedding',
             'Immigration',
             'Funeral',
-            'Education'
+            'Education',
+            'Other'
             ];
         foreach ($categories as $category) {
             Category::create(['name' => $category]);
