@@ -74,7 +74,7 @@
             <div class="col-lg-6 col-md-6">
                 <div class="card dashboard-product">
                     <span>Campaigns</span>
-                    <h2 class="dashboard-total-products">4500</h2>
+                    <h2 class="dashboard-total-products">{{ $user_campaings }}</h2>
                     <div class="side-box">
                         <i class="ti-signal text-warning-color"></i>
                     </div>

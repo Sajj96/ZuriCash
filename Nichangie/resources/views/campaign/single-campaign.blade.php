@@ -3,6 +3,7 @@
 
 @section('page-styles')
 <link href="{{ asset('assets/css/shop.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('assets/js/intl-tel-input/css/intlTelInput.css')}}">
 @endsection
 
 @section('content')
@@ -94,36 +95,39 @@
                                 <div class="row clearfix">
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group">
-                                            <input type="text" name="name" placeholder="Full Name">
+                                            <label for="name">Full name</label>
+                                            <input type="text" name="name" id="name" placeholder="Enter full name">
                                             <input type="hidden" name="campaign_id" value="{{ $campaign->id }}">
                                             <input type="hidden" name="category_id" value="{{ $campaign->category_id }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group">
-                                            <input type="email" name="email" placeholder="Email Address">
+                                            <label for="email">Email Address (optional)</label>
+                                            <input type="email" id="email" name="email" placeholder="Enter Email Address">
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <input type="text" name="contact" placeholder="Contact">
+                                            <label for="phone">Phone number</label>
+                                            <input type="tel" id="phone" name="phone" placeholder="Contact">
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <select class="filters-selec form-controlt selectmenu" name="payment_method">
-                                                <option value="">Payment Via</option>
-                                                <option value="1">Mpesa</option>
-                                                <option value="2">Tigo Pesa</option>
-                                                <option value="3">Airtel Money</option>
-                                                <option value="4">Halo Pesa</option>
-                                                <option value="5">PayPal</option>
-                                            </select>
+                                            <label for="comment">Comment (optional)</label>
+                                            <textarea name="comment" id="comment" class="form-control" cols="10" rows="10" placeholder="Type comment..."></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <div class="form-group d-flex align-items-center justify-content-between">
                                             <button class="theme-btn btn-style-one" type="submit"><span>Donate Now</span></button>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="anonymous" value="Anonymous">
+                                                    <span>Make anonymous donation</span>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -433,17 +437,22 @@
 <script src="{{ asset('assets/js/knob.js')}}"></script>
 <script src="{{ asset('assets/js/jquery.bootstrap-touchspin.js')}}"></script>
 <script src="{{ asset('assets/js/clipboard/clipboard.min.js')}}"></script>
+<script src="{{ asset('assets/js/intl-tel-input/js/intlTelInput.min.js')}}"></script>
+<script type="text/javascript">
+    var utilUrl = "{{ asset('assets/js/intl-tel-input/js/utils.js?1638200991544')}}"
+</script>
+<script src="{{ asset('assets/js/auth-login.js')}}"></script>
 <script>
     $(document).ready(function() {
 
         new Clipboard('.btn-copy');
 
-        $('#donate_amount').on('keyup', function(){
-            if($(this).val() !== "") {
+        $('#donate_amount').on('keyup', function() {
+            if ($(this).val() !== "") {
                 $('input:radio[name=donate_amount]').each(function() {
-                    if($(this).prop('checked')) {
+                    if ($(this).prop('checked')) {
                         $(this).removeAttr('checked');
-                        $('#donate_amount').attr('name','donate_amount');
+                        $('#donate_amount').attr('name', 'donate_amount');
                     }
                 });
             }

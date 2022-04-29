@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-sm-12 p-0">
                 <div class="main-header">
-                    <h4>Campaigns</h4>
+                    <h4>{{ __('Campaigns')}}</h4>
                 </div>
             </div>
         </div>
@@ -43,15 +43,17 @@
                                     <tbody>
                                         @foreach($campaigns as $key=>$rows)
                                         <tr>
-                                            <td>{{ $key++ }}</td>
+                                            <td>{{ $key+1 }}</td>
                                             <td>{{ $rows->title }}</td>
-                                            <td>{{ $rows->description }}</td>
+                                            <td>{{ substr($rows->description,0,40) }}</td>
                                             <td>{{ $rows->fundgoals }}</td>
                                             <td>{{ $rows->fundgoals }}</td>
                                             <td>{{ $rows->deadline }}</td>
-                                            <td><div class="label-main"><label class="label label-lg bg-success">Completed</label></div></td>
                                             <td>
-                                                <a href="#" class="btn btn-info"></a>
+                                                <div class="label-main"><label class="label label-lg bg-success">Completed</label></div>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('campaign.show', $rows->id)}}" class="btn btn-info"><i class="ti-eye"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -70,7 +72,7 @@
 <script src="{{ asset('admin/assets/plugins/datatables/datatables.min.js')}}"></script>
 <script src="{{ asset('admin/assets/plugins/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js')}}"></script>
 <script>
-$("#table-1").dataTable();
+    $("#table-1").dataTable();
 </script>
 @endsection
 @endsection

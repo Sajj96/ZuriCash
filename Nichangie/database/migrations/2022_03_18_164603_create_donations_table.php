@@ -20,8 +20,9 @@ class CreateDonationsTable extends Migration
             $table->string('email')->nullable();
             $table->string('contact')->nullable();
             $table->integer('category_id', false, true);
-            $table->string('payment_method');
+            $table->string('transaction_number')->nullable();
             $table->double('amount');
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

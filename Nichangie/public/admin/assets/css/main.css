@@ -440,8 +440,16 @@ textarea {
 /**  =====================
       Tabs css start
 ==========================  **/
-.tab-list p {
+.tab-list table {
   padding: 10px; }
+
+.tab-content {
+  padding-top: 20px;
+}
+
+.bank, .asset {
+  display: none;
+}
 
 .tab-with-img i {
   position: absolute;

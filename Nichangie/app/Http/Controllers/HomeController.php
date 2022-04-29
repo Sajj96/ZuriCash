@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Campaign;
+use App\Models\Story;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -25,12 +27,13 @@ class HomeController extends Controller
 
     public function adminDashboard()
     {
-        return view('admin.home');
-    }
+        if(Auth::user()->user_type == 2) {
+            return view('admin.home');
+        }
 
-    public function doneeDashboard()
-    {
-        return view('admin.home');
+        $user = Auth::user();
+        $user_campaings = Story::where('owner_id', $user->id)->count();
+        return view('admin.home',compact('user_campaings'));
     }
 
     public function show()

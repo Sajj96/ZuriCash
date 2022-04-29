@@ -27,7 +27,7 @@ Auth::routes();
 
 Route::group(['prefix' => 'home'], function(){
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'doneeDashboard'])->name('donee.home')->middleware('auth');
+    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'adminDashboard'])->name('donee.home')->middleware('auth');
 });
 
 Route::get('/how-it-works', [App\Http\Controllers\HomeController::class, 'howItWorks'])->name('how');
@@ -61,5 +61,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/create', [App\Http\Controllers\CategoryController::class, 'show'])->name('category.show');
             Route::post('/', [App\Http\Controllers\CategoryController::class, 'create'])->name('category.create');
         });
+    });
+
+    Route::group(['prefix' => 'transactions'], function(){
+        Route::get('/', [App\Http\Controllers\TransactionController::class, 'index'])->name('transaction');
     });
 });

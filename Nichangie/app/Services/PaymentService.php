@@ -11,7 +11,7 @@ class PaymentService {
         $this->client = $client;
     }
 
-    public function ussdPush($phone) {
+    public function ussdPush($phone, $amount, $transactionNo) {
         $url = 'http://18.220.121.223:30001/gateway/services/v1/collect/push';
 
         try {
@@ -21,34 +21,34 @@ class PaymentService {
                     "body" => (object) array(
                         "request" => (object) array(
                             "command" => "UssdPush",
-                            "transactionNumber" => "4334388325",
+                            "transactionNumber" => $transactionNo,
                             "msisdn" => "255659608434",
                             "amount" => "1000"
                         )
                     ),
                     "header" => (object) array(
-                        "username" => "7",
-                        "password" => "Nachangia@2022",
-                        "timestamp" => "1608710938"
+                        "username"  => env('PAYMENT_USERNAME'),
+                        "password"  => env('PAYMENT_PASSWORD'),
+                        "timestamp" => env('PAYMENT_TIMESTAMP')
                     )
                 ]
             ]);
             $statuscode = $response->getStatusCode();
             if ($statuscode == 200) {
                 $responseData = json_decode($response->getBody()->getContents()); 
-                echo json_encode($responseData);               
+                return response()->json($responseData);               
             }
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             $response = $e->getMessage();
             // $responseBodyAsString = $response->getBody()->getContents(); 
-            return redirect()->route('register')->with('error', 'Problem occured while sending verification code');           
+            return redirect()->route('campaign.show')->with('error', 'Problem occured while donating');           
         } catch (\GuzzleHttp\Exception\ConnectException $e) {
             $response = $e->getResponse();            
-            return redirect()->route('register')->with('error', 'Problem occured while sending verification code');
+            return redirect()->route('campaign.show')->with('error', 'Problem occured while donating');
         } catch (\GuzzleHttp\Exception\RequestException $e) {
             $response = $e->getMessage();
             // $responseBodyAsString = $response->getBody()->getContents(); 
-            return redirect()->route('register')->with('error', 'Problem occured while sending verification code');           
+            return redirect()->route('campaign.show')->with('error', 'Problem occured while donating');           
         }
     }
 }
