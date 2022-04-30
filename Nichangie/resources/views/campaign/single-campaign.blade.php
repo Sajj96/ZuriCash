@@ -31,7 +31,7 @@
                     </div>
                 </div>
             </div>
-            <div class="donars"><span>Donars</span> <br>148</div>
+            <div class="donars"><span>Donars</span> <br>{{ $doners }}</div>
             <div class="days-left"><span>Days Left</span> <br>{{ $days_between }}</div>
         </div>
     </div>
@@ -98,7 +98,6 @@
                                             <label for="name">Full name</label>
                                             <input type="text" name="name" id="name" placeholder="Enter full name">
                                             <input type="hidden" name="campaign_id" value="{{ $campaign->id }}">
-                                            <input type="hidden" name="category_id" value="{{ $campaign->category_id }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -139,13 +138,14 @@
                     <div class="col-md-12">
                         <div class="product-tab-box tabs-box">
                             <ul class="tab-btns tab-buttons clearfix">
-                                <li data-tab="#review" class="tab-btn active-btn"><span>Donations (2)</span></li>
+                                <li data-tab="#review" class="tab-btn active-btn"><span>Donations ({{ $doners }})</span></li>
                             </ul>
                             <div class="tabs-content">
                                 <div class="tab active-tab" id="review">
                                     <div class="review-box-holder">
                                         <div class="two-item-carousel owl-carousel owl-theme owl-dots-none owl-nav-style-two">
                                             <!--Start single review box-->
+                                            @foreach($donations as $key=>$rows)
                                             <div class="column">
                                                 <div class="single-review-box">
                                                     <div class="image-holder">
@@ -154,64 +154,14 @@
                                                     <div class="text-holder">
                                                         <div class="top">
                                                             <div class="name">
-                                                                <h3>Steven Rich</h3>
-                                                                <h3>Donated: <span>TZS 20000</span></h3>
+                                                                <h3>{{ $rows->name }}</h3>
+                                                                <h3>Donated: <span>TZS {{ $rows->amount }}</span></h3>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!--End single review box-->
-                                            <!--Start single review box-->
-                                            <div class="column">
-                                                <div class="single-review-box">
-                                                    <div class="image-holder">
-                                                        <img src="{{ asset('assets/images/anonymous.jpg')}}" width="50" height="100" alt="Awesome Image">
-                                                    </div>
-                                                    <div class="text-holder">
-                                                        <div class="top">
-                                                            <div class="name">
-                                                                <h3>Steven Rich</h3>
-                                                                <h3>Donated: <span>TZS 20000</span></h3>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--End single review box-->
-                                            <!--Start single review box-->
-                                            <div class="column">
-                                                <div class="single-review-box">
-                                                    <div class="image-holder">
-                                                        <img src="{{ asset('assets/images/anonymous.jpg')}}" width="50" height="100" alt="Awesome Image">
-                                                    </div>
-                                                    <div class="text-holder">
-                                                        <div class="top">
-                                                            <div class="name">
-                                                                <h3>Steven Rich</h3>
-                                                                <h3>Donated: <span>TZS 20000</span></h3>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--End single review box-->
-                                            <!--Start single review box-->
-                                            <div class="column">
-                                                <div class="single-review-box">
-                                                    <div class="image-holder">
-                                                        <img src="{{ asset('assets/images/anonymous.jpg')}}" width="50" height="100" alt="Awesome Image">
-                                                    </div>
-                                                    <div class="text-holder">
-                                                        <div class="top">
-                                                            <div class="name">
-                                                                <h3>Steven Rich</h3>
-                                                                <h3>Donated: <span>TZS 20000</span></h3>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            @endforeach
                                             <!--End single review box-->
                                         </div>
                                     </div>

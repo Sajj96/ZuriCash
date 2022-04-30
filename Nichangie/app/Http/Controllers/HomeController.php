@@ -22,7 +22,24 @@ class HomeController extends Controller
                         ->join('users','stories.owner_id','=','users.id')
                         ->select('stories.*','users.name','users.lastname')
                         ->get();
-        return view('home', compact('campaigns'));
+        $campaign_data = array();
+        foreach($campaigns as $key=>$rows) {
+            $donations = DB::table('donations')
+                            ->where('campaign_id', $rows->id)
+                            ->get();
+            $total_donations = DB::table('donations')
+                                ->where('campaign_id', $rows->id)
+                                ->sum('amount');
+            $donation_percent = ($total_donations/$rows->fundgoals) * 100;
+            $donation_array = (object) array(
+                "total_donation"      => $total_donations,
+                "donation_percentage" => $donation_percent,
+                "doners"              => count($donations)
+            );
+            $campaign_data[] = (object) array_merge((array) $rows, (array) $donation_array);;
+        }
+
+        return view('home', compact('campaign_data'));
     }
 
     public function adminDashboard()

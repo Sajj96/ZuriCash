@@ -12,7 +12,7 @@
                     <div class="content-box justify-content-center">
                         <div class="inner text-center">
                             <h1>RAISE MONEY FOR ANYTHING</h1>
-                            <div class="text">Nachangia Platform allows you to Raise Money for yourself, a family, Friends  <br>and even community development campaign.</div>
+                            <div class="text">Nachangia Platform allows you to Raise Money for yourself, a family, Friends <br>and even community development campaign.</div>
                         </div>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                     <div class="content-box justify-content-center">
                         <div class="inner text-center">
                             <h1>CREATE CAMPAIGN FREE OF COST</h1>
-                            <div class="text">Register your account for free, create your campaign which is simple and precise, your story should answer all the question to donors.  <br>Your pictures should portray the essence of your fundraising.</div>
+                            <div class="text">Register your account for free, create your campaign which is simple and precise, your story should answer all the question to donors. <br>Your pictures should portray the essence of your fundraising.</div>
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
         <div class="cause-carousel-wrapper">
             <div class="cause-carousel owl-theme owl-carousel owl-dots-none owl-nav-style-three">
                 <!-- Cause Block One -->
-                @foreach($campaigns as $key=>$rows)
+                @foreach($campaign_data as $key=>$rows)
                 <div class="cause-block-one-carousel">
                     <div class="inner-box">
                         <div class="image"><a href="{{ route('campaign.show', $rows->id) }}"><img src="{{ $rows->link }}" style="height: 230px;" alt="cause-media"></a></div>
@@ -70,8 +70,8 @@
                             <div class="category"><span class="flaticon-user"></span>{{ $rows->name }}</div>
                             <div class="text">{{ substr($rows->description,0,40) }}...</div>
                             <div class="info-box">
-                                <a href="#"><span>Raised:</span> $72000</a>
-                                <a href="#"><span>Goal:</span> TZS {{ $rows->fundgoals }}</a>
+                                <a href="#"><span>Raised:</span>TZS {{ number_format($rows->total_donation) }}</a>
+                                <a href="#"><span>Goal:</span> TZS {{ number_format($rows->fundgoals) }}</a>
                             </div>
                             <!--Progress Levels-->
                             <div class="progress-levels style-two">
@@ -81,7 +81,7 @@
                                     <div class="inner">
                                         <div class="bar">
                                             <div class="bar-innner">
-                                                <div class="bar-fill" data-percent="60">
+                                                <div class="bar-fill" data-percent="{{ round($rows->donation_percentage) }}">
                                                     <div class="percent"></div>
                                                 </div>
                                             </div>
@@ -89,7 +89,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="text">Raised by 84 people in 12 days</div>
+                            <div class="text">Raised by {{ $rows->doners }} people</div>
                         </div>
                     </div>
                 </div>
@@ -480,47 +480,47 @@
         <div class="row">
             <!-- Feature Block Two -->
             <div class="col-lg-3 col-md-6 feature-block-two">
-                <div class="inner-box">
-                    <a href="{{ route('category.campaigns', 'Medical') }}">
+                <a href="{{ route('category.campaigns', 'Medical') }}">
+                    <div class="inner-box">
                         <div class="icon-box">
                             <img src="{{ asset('assets/images/icons/healthcare-2.png')}}" alt="">
                         </div>
                         <h4>Medical</h4>
-                    </a>
-                </div>
+                    </div>
+                </a>
             </div>
             <!-- Feature Block Two -->
             <div class="col-lg-3 col-md-6 feature-block-two">
-                <div class="inner-box">
-                    <a href="{{ route('category.campaigns', 'Business') }}">
+                <a href="{{ route('category.campaigns', 'Business') }}">
+                    <div class="inner-box">
                         <div class="icon-box">
                             <img src="{{ asset('assets/images/icons/team-2.png')}}" alt="">
                         </div>
                         <h4>Business</h4>
-                    </a>
-                </div>
+                    </div>
+                </a>
             </div>
             <!-- Feature Block Two -->
             <div class="col-lg-3 col-md-6 feature-block-two">
-                <div class="inner-box">
-                    <a href="{{ route('category.campaigns', 'Family') }}">
+                <a href="{{ route('category.campaigns', 'Family') }}">
+                    <div class="inner-box">
                         <div class="icon-box">
                             <img src="{{ asset('assets/images/icons/foster-family-2.png')}}" alt="">
                         </div>
                         <h4>Family</h4>
-                    </a>
-                </div>
+                    </div>
+                </a>
             </div>
             <!-- Feature Block Two -->
             <div class="col-lg-3 col-md-6 feature-block-two">
-                <div class="inner-box">
-                    <a href="{{ route('category.campaigns', 'Community') }}">
+                <a href="{{ route('category.campaigns', 'Community') }}">
+                    <div class="inner-box">
                         <div class="icon-box">
                             <img src="{{ asset('assets/images/icons/community-2.png')}}" alt="">
                         </div>
                         <h4>Community</h4>
-                    </a>
-                </div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>

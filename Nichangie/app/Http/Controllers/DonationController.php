@@ -34,7 +34,6 @@ class DonationController extends Controller
             $donation->name = (!empty($request->anonymous)) ? $request->anonymous : $request->name;
             $donation->email = $request->email;
             $donation->contact = str_replace('+','',$request->phone);
-            $donation->category_id = $request->category_id;
             $donation->comment = $request->comment;
             $donation->amount = $request->donate_amount;
             $donation->transaction_number = $string;
@@ -46,7 +45,7 @@ class DonationController extends Controller
                 }
             }
         } catch (\Exception $e) {
-            return redirect()->route('campaign.show', $request->campaign_id)->with('error',$e->getMessage());
+            return redirect()->route('campaign.show', $request->campaign_id)->with('error','Something went wrong');
         }
     }
 

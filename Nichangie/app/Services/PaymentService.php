@@ -22,8 +22,8 @@ class PaymentService {
                         "request" => (object) array(
                             "command" => "UssdPush",
                             "transactionNumber" => $transactionNo,
-                            "msisdn" => "255659608434",
-                            "amount" => "1000"
+                            "msisdn" => $phone,
+                            "amount" => $amount
                         )
                     ),
                     "header" => (object) array(
@@ -41,14 +41,14 @@ class PaymentService {
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             $response = $e->getMessage();
             // $responseBodyAsString = $response->getBody()->getContents(); 
-            return redirect()->route('campaign.show')->with('error', 'Problem occured while donating');           
+            return response()->json(['error'=> $response]);           
         } catch (\GuzzleHttp\Exception\ConnectException $e) {
             $response = $e->getResponse();            
-            return redirect()->route('campaign.show')->with('error', 'Problem occured while donating');
+            return response()->json(['error'=> $response]);
         } catch (\GuzzleHttp\Exception\RequestException $e) {
             $response = $e->getMessage();
             // $responseBodyAsString = $response->getBody()->getContents(); 
-            return redirect()->route('campaign.show')->with('error', 'Problem occured while donating');           
+            return response()->json(['error'=>  $response]);          
         }
     }
 }

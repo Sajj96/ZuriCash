@@ -34,7 +34,9 @@ class StoryController extends Controller
         $end = strtotime($campaign->deadline);
 
         $days_between = ceil(abs($end - $start) / 86400);
-        return view('campaign.single-campaign', compact('campaign','total_donations','donation_percent','days_between'));
+        $doners = count($donations);
+
+        return view('campaign.single-campaign', compact('campaign','total_donations','donation_percent','days_between','doners','donations'));
     }
 
     public function getAll()
@@ -45,7 +47,24 @@ class StoryController extends Controller
                         ->where('type', 1)
                         ->get();
         $type = 'Featured';
-        return view('campaign.campaigns', compact('campaigns','type'));
+        $campaign_data = array();
+        foreach($campaigns as $key=>$rows) {
+            $donations = DB::table('donations')
+                            ->where('campaign_id', $rows->id)
+                            ->get();
+            $total_donations = DB::table('donations')
+                                ->where('campaign_id', $rows->id)
+                                ->sum('amount');
+            $donation_percent = ($total_donations/$rows->fundgoals) * 100;
+            $donation_array = (object) array(
+                "total_donation"      => $total_donations,
+                "donation_percentage" => $donation_percent,
+                "doners"              => count($donations)
+            );
+            $campaign_data[] = (object) array_merge((array) $rows, (array) $donation_array);;
+        }
+
+        return view('campaign.campaigns', compact('campaign_data','type'));
     }
 
     public function getLatest()
@@ -57,7 +76,24 @@ class StoryController extends Controller
                         ->limit(20)
                         ->get();
         $type = 'Latest';
-        return view('campaign.campaigns', compact('campaigns','type'));
+        $campaign_data = array();
+        foreach($campaigns as $key=>$rows) {
+            $donations = DB::table('donations')
+                            ->where('campaign_id', $rows->id)
+                            ->get();
+            $total_donations = DB::table('donations')
+                                ->where('campaign_id', $rows->id)
+                                ->sum('amount');
+            $donation_percent = ($total_donations/$rows->fundgoals) * 100;
+            $donation_array = (object) array(
+                "total_donation"      => $total_donations,
+                "donation_percentage" => $donation_percent,
+                "doners"              => count($donations)
+            );
+            $campaign_data[] = (object) array_merge((array) $rows, (array) $donation_array);;
+        }
+
+        return view('campaign.campaigns', compact('campaign_data','type'));
     }
 
     public function create(Request $request)
