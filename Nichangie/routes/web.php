@@ -47,6 +47,7 @@ Route::group(['prefix' => 'categories'], function(){
 });
 
 Route::group(['prefix' => 'donations'], function(){
+    Route::get('/', [App\Http\Controllers\DonationController::class, 'getDonations'])->name('donation')->middleware('auth');
     Route::post('/', [App\Http\Controllers\DonationController::class, 'create'])->name('donate.create');
 });
 

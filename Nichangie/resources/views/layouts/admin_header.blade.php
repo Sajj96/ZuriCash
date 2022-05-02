@@ -86,7 +86,7 @@
                     </a>
                 </li>
                 <li class="treeview">
-                    <a class="waves-effect waves-dark" href="index.html">
+                    <a class="waves-effect waves-dark" href="{{ route('donation') }}">
                         <i class="icon-heart"></i><span> Donations</span>
                     </a>
                 </li>

@@ -83,7 +83,7 @@
             <div class="col-lg-6 col-md-6">
                 <div class="card dashboard-product">
                     <span>Raised</span>
-                    <h2 class="dashboard-total-products">37,500</h2>
+                    <h2 class="dashboard-total-products">TZS {{ number_format($total_donations) }}</h2>
                     <div class="side-box ">
                         <i class="ti-gift text-primary-color"></i>
                     </div>

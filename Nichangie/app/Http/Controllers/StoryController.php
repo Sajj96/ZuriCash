@@ -44,7 +44,6 @@ class StoryController extends Controller
         $campaigns = DB::table('stories')
                         ->join('users','stories.owner_id','=','users.id')
                         ->select('stories.*','users.name','users.lastname')
-                        ->where('type', 1)
                         ->get();
         $type = 'Featured';
         $campaign_data = array();
@@ -55,6 +54,7 @@ class StoryController extends Controller
             $total_donations = DB::table('donations')
                                 ->where('campaign_id', $rows->id)
                                 ->sum('amount');
+            $total_donations = $total_donations ?? 0;
             $donation_percent = ($total_donations/$rows->fundgoals) * 100;
             $donation_array = (object) array(
                 "total_donation"      => $total_donations,
@@ -164,7 +164,13 @@ class StoryController extends Controller
     public function getStories()
     {
         $user = Auth::user();
-        $campaigns = Story::where('owner_id', $user->id)->get();
+        $campaigns = DB::table('stories')
+                        ->join('donations', 'stories.id','donations.campaign_id')
+                        ->select('stories.*',DB::raw('SUM(donations.amount) as amount'))
+                        ->where('stories.owner_id', $user->id)
+                        ->orderBy('stories.id', 'DESC')
+                        ->groupBy('stories.id')
+                        ->get();
         return view('admin.campaigns.campaigns', compact('campaigns'));
     }
 }

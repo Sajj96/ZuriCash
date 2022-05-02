@@ -43,7 +43,7 @@ class PaymentService {
             // $responseBodyAsString = $response->getBody()->getContents(); 
             return response()->json(['error'=> $response]);           
         } catch (\GuzzleHttp\Exception\ConnectException $e) {
-            $response = $e->getResponse();            
+            $response = $e->getMessage();            
             return response()->json(['error'=> $response]);
         } catch (\GuzzleHttp\Exception\RequestException $e) {
             $response = $e->getMessage();

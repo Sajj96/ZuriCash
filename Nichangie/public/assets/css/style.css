@@ -6328,6 +6328,7 @@ img {
 
 .testimonial-block-four .image img {
 	border-radius: 50%;
+	width: 100px;
 }
 
 .testimonial-block-four .image:before {

@@ -27,7 +27,7 @@
             <!-- Feature Block Two -->
             <div class="col-lg-3 col-md-6 feature-block-two">
                 <div class="inner-box">
-                    <a href="{{ route('category.campaigns', 1) }}">
+                    <a href="{{ route('category.campaigns', 'Medical') }}">
                         <div class="icon-box">
                             <img src="{{ asset('assets/images/icons/healthcare-2.png')}}" alt="">
                         </div>
@@ -38,7 +38,7 @@
             <!-- Feature Block Two -->
             <div class="col-lg-3 col-md-6 feature-block-two">
                 <div class="inner-box">
-                    <a href="{{ route('category.campaigns', 4) }}">
+                    <a href="{{ route('category.campaigns', 'Business') }}">
                         <div class="icon-box">
                             <img src="{{ asset('assets/images/icons/team-2.png')}}" alt="">
                         </div>
@@ -49,7 +49,7 @@
             <!-- Feature Block Two -->
             <div class="col-lg-3 col-md-6 feature-block-two">
                 <div class="inner-box">
-                    <a href="{{ route('category.campaigns', 2) }}">
+                    <a href="{{ route('category.campaigns', 'Family') }}">
                         <div class="icon-box">
                             <img src="{{ asset('assets/images/icons/foster-family-2.png')}}" alt="">
                         </div>
@@ -60,7 +60,7 @@
             <!-- Feature Block Two -->
             <div class="col-lg-3 col-md-6 feature-block-two">
                 <div class="inner-box">
-                    <a href="{{ route('category.campaigns', 3) }}">
+                    <a href="{{ route('category.campaigns', 'Community') }}">
                         <div class="icon-box">
                             <img src="{{ asset('assets/images/icons/community-2.png')}}" alt="">
                         </div>
@@ -71,7 +71,7 @@
             <!-- Feature Block Two -->
             <div class="col-lg-3 col-md-6 feature-block-two">
                 <div class="inner-box">
-                    <a href="{{ route('category.campaigns', 6) }}">
+                    <a href="{{ route('category.campaigns', 'Travel') }}">
                         <div class="icon-box">
                             <img src="{{ asset('assets/images/icons/world.png')}}" alt="">
                         </div>
@@ -82,7 +82,7 @@
             <!-- Feature Block Two -->
             <div class="col-lg-3 col-md-6 feature-block-two">
                 <div class="inner-box">
-                    <a href="{{ route('category.campaigns', 5) }}">
+                    <a href="{{ route('category.campaigns', 'Disaster') }}">
                         <div class="icon-box">
                             <img src="{{ asset('assets/images/icons/disaster-2.png')}}" alt="">
                         </div>
@@ -93,7 +93,7 @@
             <!-- Feature Block Two -->
             <div class="col-lg-3 col-md-6 feature-block-two">
                 <div class="inner-box">
-                    <a href="{{ route('category.campaigns', 9) }}">
+                    <a href="{{ route('category.campaigns', 'Funeral') }}">
                         <div class="icon-box">
                             <img src="{{ asset('assets/images/icons/funeral-2.png')}}" alt="">
                         </div>
@@ -104,7 +104,7 @@
             <!-- Feature Block Two -->
             <div class="col-lg-3 col-md-6 feature-block-two">
                 <div class="inner-box">
-                    <a href="{{ route('category.campaigns', 10) }}">
+                    <a href="{{ route('category.campaigns', 'Education') }}">
                         <div class="icon-box">
                             <img src="{{ asset('assets/images/icons/open-book-2.png')}}" alt="">
                         </div>
@@ -115,7 +115,7 @@
             <!-- Feature Block Two -->
             <div class="col-lg-3 col-md-6 feature-block-two">
                 <div class="inner-box">
-                    <a href="{{ route('category.campaigns', 7) }}">
+                    <a href="{{ route('category.campaigns', 'Wedding') }}">
                         <div class="icon-box">
                             <img src="{{ asset('assets/images/icons/wedding-couple-2.png')}}" alt="">
                         </div>
@@ -126,7 +126,7 @@
             <!-- Feature Block Two -->
             <div class="col-lg-3 col-md-6 feature-block-two">
                 <div class="inner-box">
-                    <a href="{{ route('category.campaigns', 8) }}">
+                    <a href="{{ route('category.campaigns', 'Immigration') }}">
                         <div class="icon-box">
                             <img src="{{ asset('assets/images/icons/immigrant-2.png')}}" alt="">
                         </div>
@@ -136,7 +136,7 @@
             </div>
             <div class="col-lg-3 col-md-6 feature-block-two">
                 <div class="inner-box">
-                    <a href="#">
+                    <a href="{{ route('category.campaigns', 'Other') }}">
                         <div class="icon-box">
                             <img src="{{ asset('assets/images/favicon.png')}}" alt="">
                         </div>

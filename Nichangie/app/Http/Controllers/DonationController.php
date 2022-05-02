@@ -5,10 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\Donation;
 use App\Services\PaymentService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class DonationController extends Controller
 {
+
+    public function getDonations()
+    {
+        $user = Auth::user();
+        $donations = DB::table('donations')
+                                ->join('stories','donations.campaign_id','stories.id')
+                                ->where('stories.owner_id', $user->id)
+                                ->select('donations.*','stories.title')
+                                ->get();
+        return view('admin.donations.donations', compact('donations'));
+    }
+
+
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [

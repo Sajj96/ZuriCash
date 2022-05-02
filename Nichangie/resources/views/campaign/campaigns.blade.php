@@ -34,9 +34,10 @@
                             <div class="info-box">
                                 <a href="#"><span>Raised:</span>TZS {{ number_format($rows->total_donation) }}</a>
                                 <a href="#"><span>Goal:</span> TZS {{ number_format($rows->fundgoals) }}</a>
+                                <a href="#"> {{ round($rows->donation_percentage)}}%</a>
                             </div>
                             <!--Progress Levels-->
-                            <div class="progress-levels style-two">
+                            <div class="progress-levels">
 
                                 <!--Skill Box-->
                                 <div class="progress-box wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1500ms">

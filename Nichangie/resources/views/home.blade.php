@@ -72,9 +72,10 @@
                             <div class="info-box">
                                 <a href="#"><span>Raised:</span>TZS {{ number_format($rows->total_donation) }}</a>
                                 <a href="#"><span>Goal:</span> TZS {{ number_format($rows->fundgoals) }}</a>
+                                <a href="#"> {{ round($rows->donation_percentage)}}%</a>
                             </div>
                             <!--Progress Levels-->
-                            <div class="progress-levels style-two">
+                            <div class="progress-levels">
 
                                 <!--Skill Box-->
                                 <div class="progress-box wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1500ms">
@@ -105,16 +106,17 @@
                             <div class="info-box">
                                 <a href="#"><span>Raised:</span> $40000</a>
                                 <a href="#"><span>Goal:</span> $80000</a>
+                                <a href="#"> 80%</a>
                             </div>
                             <!--Progress Levels-->
-                            <div class="progress-levels style-two">
+                            <div class="progress-levels">
 
                                 <!--Skill Box-->
                                 <div class="progress-box wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1500ms">
                                     <div class="inner">
                                         <div class="bar">
                                             <div class="bar-innner">
-                                                <div class="bar-fill" data-percent="60">
+                                                <div class="bar-fill" data-percent="0">
                                                     <div class="percent"></div>
                                                 </div>
                                             </div>
@@ -526,124 +528,40 @@
     </div>
 </section>
 
-<!-- Success stories -->
-<section class="blog-section">
+<!-- Testimonial Section Four -->
+<section class="events-section testimonial-section-four">
     <div class="auto-container">
-        <div class="row m-0 justify-content-md-between align-items-end">
-            <div class="sec-title">
-                <h1>Success stories</h1>
-            </div>
-            <!--Link Btn-->
-            <div class="link-btn mb-50">
-                <a href="#" class="theme-btn btn-style-one"><span>View All</span></a>
-            </div>
+        <div class="sec-title text-center">
+            <h1>Why people love us</h1>
+            <div class="text">Please read below to see what a few of our charity partners have to say about us.</div>
         </div>
         <div class="row">
-            <!-- News Block One -->
-            <div class="col-lg-3 col-md-6 news-block-one">
-                <div class="inner-box wow fadeInUp" data-wow-delay="200ms">
-                    <div class="category"><a href="#">Raised: TZS 30</a></div>
-                    <div class="image">
-                        <a href="blog-details.html"><img src="{{ asset('assets/images/resource/news-1.jpg')}}" alt=""></a>
-                        <div class="post-meta-info">
-                            <a href="#">Raised: TZS 21</a>
-                        </div>
-                    </div>
-                    <div class="lower-content">
-                        <div class="date">Jul 14, 2019</div>
-                        <h4><a href="blog-details.html">Water is more essential</a></h4>
-                        <div class="author-info">
-                            <div class="image"><span class="flaticon-user"></span></div>
-                            <div class="author-title"><a href="#">Rubin Santro</a></div>
-                        </div>
+            <div class="three-item-carousel owl-theme owl-carousel owl-nav-none owl-dot-style-one">
+                <div class="testimonial-block-four">
+                    <div class="inner-box">
+                        <div class="image"><img src="{{ asset('assets/images/anonymous.jpg')}}" width="90" height="90" alt=""></div>
+                        <h4>It’s helped me so much.</h4>
+                        <div class="text">Goodsoul! charities provided the jump <br>start we needed to expaand our all efforts <br>and train more volunteers.</div>
+                        <div class="author-title">Isaac Samuel</div>
+                        <div class="designation">CEO & Founder <a href="#">Sun Life</a></div>
                     </div>
                 </div>
-            </div>
-            <!-- News Block One -->
-            <div class="col-lg-3 col-md-6 news-block-one">
-                <div class="inner-box wow fadeInDown" data-wow-delay="400ms">
-                    <div class="category"><a href="#">Interviews</a></div>
-                    <div class="image">
-                        <a href="blog-details.html"><img src="{{ asset('assets/images/resource/news-2.jpg')}}" alt=""></a>
-                        <div class="post-meta-info">
-                            <a href="#"><span class="flaticon-eye"></span>14</a>
-                            <a href="#"><span class="flaticon-comment"></span>05</a>
-                        </div>
-                    </div>
-                    <div class="lower-content">
-                        <div class="date">Jun 05, 2019</div>
-                        <h4><a href="blog-details.html">Coaching for fundraisers</a></h4>
-                        <div class="author-info">
-                            <div class="image"><img src="{{ asset('assets/images/resource/author-thumb-1.jpg')}}" alt=""></div>
-                            <div class="author-title"><a href="#">Carl Ronny</a></div>
-                            <div class="share-icon style-two post-share-icon">
-                                <div class="share-btn"><img src="{{ asset('assets/images/resource/dotted.png')}}" alt=""></div>
-                                <ul>
-                                    <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                                    <li><a href="#"><span class="fa fa-twitter"></span></a></li>
-                                    <li><a href="#"><span class="fa fa-skype"></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
+                <div class="testimonial-block-four">
+                    <div class="inner-box">
+                        <div class="image"><img src="{{ asset('assets/images/anonymous.jpg')}}" width="90" height="90" alt=""></div>
+                        <h4>Thank you for support.</h4>
+                        <div class="text">Thank you so much for making my family <br>your priority. It has meant the world to my <br>mom to have a decent car.</div>
+                        <div class="author-title">Lucas Edward</div>
+                        <div class="designation">Employee <a href="#">Target Tech</a></div>
                     </div>
                 </div>
-            </div>
-            <!-- News Block One -->
-            <div class="col-lg-3 col-md-6 news-block-one">
-                <div class="inner-box wow fadeInUp" data-wow-delay="200ms">
-                    <div class="category"><a href="#">Disaster</a><a href="#">Video</a></div>
-                    <div class="image">
-                        <a href="blog-details.html"><img src="{{ asset('assets/images/resource/news-3.jpg')}}" alt=""></a>
-                        <div class="post-meta-info">
-                            <a href="#"><span class="flaticon-eye"></span>12</a>
-                            <a href="#"><span class="flaticon-comment"></span>02</a>
-                        </div>
-                        <div class="youtube-video-box"><a href="#"><span class="flaticon-logo"></span></a></div>
-                    </div>
-                    <div class="lower-content">
-                        <div class="date">Mar 27, 2019</div>
-                        <h4><a href="blog-details.html">Aid for japan flood</a></h4>
-                        <div class="author-info">
-                            <div class="image"><img src="{{ asset('assets/images/resource/author-thumb-1.jpg')}}" alt=""></div>
-                            <div class="author-title"><a href="#">Gene Emery</a></div>
-                            <div class="share-icon style-two post-share-icon">
-                                <div class="share-btn"><img src="{{ asset('assets/images/resource/dotted.png')}}" alt=""></div>
-                                <ul>
-                                    <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                                    <li><a href="#"><span class="fa fa-twitter"></span></a></li>
-                                    <li><a href="#"><span class="fa fa-skype"></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- News Block One -->
-            <div class="col-lg-3 col-md-6 news-block-one">
-                <div class="inner-box wow fadeInDown" data-wow-delay="400ms">
-                    <div class="category"><a href="#">Disaster</a></div>
-                    <div class="image">
-                        <a href="blog-details.html"><img src="{{ asset('assets/images/resource/news-4.jpg')}}" alt=""></a>
-                        <div class="post-meta-info">
-                            <a href="#"><span class="flaticon-eye"></span>26</a>
-                            <a href="#"><span class="flaticon-comment"></span>07</a>
-                        </div>
-                    </div>
-                    <div class="lower-content">
-                        <div class="date">Feb 14, 2019</div>
-                        <h4><a href="blog-details.html">Central china flood</a></h4>
-                        <div class="author-info">
-                            <div class="image"><img src="{{ asset('assets/images/resource/author-thumb-1.jpg')}}" alt=""></div>
-                            <div class="author-title"><a href="#">Lix Ferguson</a></div>
-                            <div class="share-icon style-two post-share-icon">
-                                <div class="share-btn"><img src="{{ asset('assets/images/resource/dotted.png')}}" alt=""></div>
-                                <ul>
-                                    <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                                    <li><a href="#"><span class="fa fa-twitter"></span></a></li>
-                                    <li><a href="#"><span class="fa fa-skype"></span></a></li>
-                                </ul>
-                            </div>
-                        </div>
+                <div class="testimonial-block-four">
+                    <div class="inner-box">
+                        <div class="image"><img src="{{ asset('assets/images/anonymous.jpg')}}" width="90" height="90" alt=""></div>
+                        <h4>Positive experience.</h4>
+                        <div class="text">Thank you so much for the laptop you <br>provided. It has been very helpful for him <br>and I'm sure will continue.</div>
+                        <div class="author-title">Ollie Reuben</div>
+                        <div class="designation">Web Designer <a href="#">Forest Theme</a></div>
                     </div>
                 </div>
             </div>

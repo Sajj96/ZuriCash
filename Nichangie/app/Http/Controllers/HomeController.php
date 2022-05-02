@@ -50,7 +50,11 @@ class HomeController extends Controller
 
         $user = Auth::user();
         $user_campaings = Story::where('owner_id', $user->id)->count();
-        return view('admin.home',compact('user_campaings'));
+        $total_donations = DB::table('donations')
+                                ->join('stories','donations.campaign_id','stories.id')
+                                ->where('stories.owner_id', $user->id)
+                                ->sum('donations.amount');
+        return view('admin.home',compact('user_campaings','total_donations'));
     }
 
     public function show()

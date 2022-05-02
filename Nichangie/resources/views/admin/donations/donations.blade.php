@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-sm-12 p-0">
                 <div class="main-header">
-                    <h4>{{ __('Campaigns')}}</h4>
+                    <h4>{{ __('Donations')}}</h4>
                 </div>
             </div>
         </div>
@@ -31,32 +31,20 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Title</th>
-                                            <th>Story</th>
-                                            <th>Raised</th>
-                                            <th>Goal</th>
-                                            <th>Deadline</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
+                                            <th>Campaign Title</th>
+                                            <th>Donor Name</th>
+                                            <th>Amount (TZS)</th>
+                                            <th>Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($campaigns as $key=>$rows)
+                                        @foreach($donations as $key=>$rows)
                                         <tr>
                                             <td>{{ $key+1 }}</td>
-                                            <td><a href="{{ route('campaign.show', $rows->id) }}">{{ $rows->title }}</a></td>
-                                            <td>{{ substr($rows->description,0,40) }}</td>
+                                            <td><a href="{{ route('campaign.show', $rows->campaign_id) }}">{{ $rows->title }}</a></td>
+                                            <td>{{ $rows->name }}</td>
                                             <td>{{ number_format($rows->amount) }}</td>
-                                            <td>{{ number_format($rows->fundgoals) }}</td>
-                                            <td>{{ $rows->deadline }}</td>
-                                            <td>
-                                                <div class="label-main"><label class="label label-lg bg-success">Completed</label></div>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('campaign.show', $rows->id)}}" class="btn btn-danger waves-effect" data-toggle="tooltip" data-placement="top" title="Close Campaign"><i class="ti-close"></i></a>
-                                                <a href="{{ route('campaign.show', $rows->id)}}" class="btn btn-success waves-effect" data-toggle="tooltip" data-placement="top" title="Request Withdraw"><i class="ti-wallet"></i></a>
-                                                <a href="{{ route('campaign.show', $rows->id)}}" class="btn btn-info waves-effect" data-toggle="tooltip" data-placement="top" title="Export Data"><i class="ti-download"></i></a>
-                                            </td>
+                                            <td>{{ date('M, d Y', strtotime($rows->created_at)) }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

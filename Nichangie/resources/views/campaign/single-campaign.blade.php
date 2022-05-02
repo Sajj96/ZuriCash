@@ -156,6 +156,7 @@
                                                             <div class="name">
                                                                 <h3>{{ $rows->name }}</h3>
                                                                 <h3>Donated: <span>TZS {{ $rows->amount }}</span></h3>
+                                                                <h5 class="text">{{ date('M, d Y', strtotime($rows->created_at))}}</h5>
                                                             </div>
                                                         </div>
                                                     </div>
