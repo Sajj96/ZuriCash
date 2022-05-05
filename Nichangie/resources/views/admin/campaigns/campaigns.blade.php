@@ -45,7 +45,7 @@
                                         <tr>
                                             <td>{{ $key+1 }}</td>
                                             <td><a href="{{ route('campaign.show', $rows->id) }}">{{ $rows->title }}</a></td>
-                                            <td>{{ substr($rows->description,0,40) }}</td>
+                                            <td>{{ substr($rows->description,0,10) }}...</td>
                                             <td>{{ number_format($rows->amount) }}</td>
                                             <td>{{ number_format($rows->fundgoals) }}</td>
                                             <td>{{ $rows->deadline }}</td>
@@ -54,8 +54,12 @@
                                             </td>
                                             <td>
                                                 <a href="{{ route('campaign.show', $rows->id)}}" class="btn btn-danger waves-effect" data-toggle="tooltip" data-placement="top" title="Close Campaign"><i class="ti-close"></i></a>
-                                                <a href="{{ route('campaign.show', $rows->id)}}" class="btn btn-success waves-effect" data-toggle="tooltip" data-placement="top" title="Request Withdraw"><i class="ti-wallet"></i></a>
-                                                <a href="{{ route('campaign.show', $rows->id)}}" class="btn btn-info waves-effect" data-toggle="tooltip" data-placement="top" title="Export Data"><i class="ti-download"></i></a>
+                                                <a href="{{ route('transaction.withdraw')}}" class="btn btn-success waves-effect" data-toggle="tooltip" data-placement="top" onclick="event.preventDefault(); document.getElementById('withdraw-form{{$rows->id}}').submit();" title="Request Withdraw"><i class="ti-wallet"></i></a>
+                                                <a href="{{ route('campaign.export', $rows->id)}}" class="btn btn-info waves-effect" data-toggle="tooltip" data-placement="top" title="Export Data"><i class="ti-download"></i></a>
+                                                <form id="withdraw-form{{$rows->id}}" action="{{ route('transaction.withdraw')}}" method="POST" style="display: none;">
+                                                    @csrf
+                                                    <input type="hidden" value="{{$rows->id}}" name="id">
+                                                </form>
                                             </td>
                                         </tr>
                                         @endforeach

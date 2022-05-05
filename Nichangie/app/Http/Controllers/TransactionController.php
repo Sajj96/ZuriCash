@@ -13,15 +13,20 @@ class TransactionController extends Controller
         return view('admin.transactions.transaction');
     }
 
-    public function getCampaignDonations()
+    public function withdraw(Request $request)
     {
         $user = Auth::user();
-        $campaigns = DB::table('stories')
+        if(!empty($request->id)) {
+            $campaign = DB::table('stories')
                         ->join('donations', 'stories.id','donations.campaign_id')
                         ->select('stories.*',DB::raw('SUM(donations.amount) as amount'))
                         ->where('stories.owner_id', $user->id)
-                        ->orderBy('stories.id', 'DESC')
+                        ->where('stories.id', $request->id)
                         ->groupBy('stories.id')
-                        ->get();
+                        ->first();
+        return view('admin.transactions.withdraw', compact('campaign'));
+        }
+
+        return view('admin.transactions.withdraw');
     }
 }

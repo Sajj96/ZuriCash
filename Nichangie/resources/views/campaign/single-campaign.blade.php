@@ -176,41 +176,16 @@
                 <div class="sidebar">
                     <!-- Cause Widget -->
                     <div class="sidebar-title">
-                        <h4>Emergency Campaigns</h4>
+                        <h4>Advertisement</h4>
                     </div>
                     <div class="sidebar-widget case-widget">
                         <div class="single-item-carousel owl-theme owl-carousel owl-nav-none owl-dot-style-one">
                             <div class="cause-block-two">
                                 <div class="inner-box">
                                     <div class="image">
-                                        <img src="{{ asset('assets/images/resource/cause-4.jpg')}}" alt="">
+                                        <img src="{{ asset('assets/images/crdb_winner.jpg')}}" alt="">
                                         <div class="overlay">
                                             <a href="cause-details.html" class="theme-btn btn-style-seven"><span>More Details</span></a>
-                                        </div>
-                                    </div>
-                                    <div class="lower-content">
-                                        <!--Progress Levels-->
-                                        <div class="progress-levels style-two">
-
-                                            <!--Skill Box-->
-                                            <div class="progress-box wow fadeInRight animated" data-wow-delay="100ms" data-wow-duration="1500ms">
-                                                <div class="inner">
-                                                    <div class="bar">
-                                                        <div class="bar-innner">
-                                                            <div class="bar-fill" data-percent="60">
-                                                                <div class="percent"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="wrapper-box">
-                                            <h4><a href="cause-details.html">Help girls education</a></h4>
-                                            <div class="info-box">
-                                                <a href="#"><span>Raised:</span> $72000</a>
-                                                <a href="#"><span>Goal:</span> $100000</a>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -218,34 +193,9 @@
                             <div class="cause-block-two">
                                 <div class="inner-box">
                                     <div class="image">
-                                        <img src="{{ asset('assets/images/resource/cause-4.jpg')}}" alt="">
+                                        <img src="{{ asset('assets/images/farari_crdb.jpg')}}" alt="">
                                         <div class="overlay">
                                             <a href="cause-details.html" class="theme-btn btn-style-seven"><span>More Details</span></a>
-                                        </div>
-                                    </div>
-                                    <div class="lower-content">
-                                        <!--Progress Levels-->
-                                        <div class="progress-levels style-two">
-
-                                            <!--Skill Box-->
-                                            <div class="progress-box wow fadeInRight animated" data-wow-delay="100ms" data-wow-duration="1500ms">
-                                                <div class="inner">
-                                                    <div class="bar">
-                                                        <div class="bar-innner">
-                                                            <div class="bar-fill" data-percent="60">
-                                                                <div class="percent"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="wrapper-box">
-                                            <h4><a href="cause-details.html">Help girls education</a></h4>
-                                            <div class="info-box">
-                                                <a href="#"><span>Raised:</span> $72000</a>
-                                                <a href="#"><span>Goal:</span> $100000</a>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

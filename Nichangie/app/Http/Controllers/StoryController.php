@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
+use Rap2hpoutre\FastExcel\FastExcel;
+use Box\Spout\Writer\Common\Creator\Style\StyleBuilder;
 
 class StoryController extends Controller
 {
@@ -28,7 +30,7 @@ class StoryController extends Controller
         $total_donations = DB::table('donations')
                             ->where('campaign_id', $id)
                             ->sum('amount');
-        $donation_percent = ($total_donations/$campaign->fundgoals) * 100;
+        $donation_percent = ($campaign->fundgoals > 0) ? ($total_donations/$campaign->fundgoals) * 100 : 0;
         $date = date('Y-m-d');
         $start = strtotime($date);
         $end = strtotime($campaign->deadline);
@@ -55,7 +57,7 @@ class StoryController extends Controller
                                 ->where('campaign_id', $rows->id)
                                 ->sum('amount');
             $total_donations = $total_donations ?? 0;
-            $donation_percent = ($total_donations/$rows->fundgoals) * 100;
+            $donation_percent = ($rows->fundgoals > 0) ? ($total_donations/$rows->fundgoals) * 100 : 0;
             $donation_array = (object) array(
                 "total_donation"      => $total_donations,
                 "donation_percentage" => $donation_percent,
@@ -84,7 +86,7 @@ class StoryController extends Controller
             $total_donations = DB::table('donations')
                                 ->where('campaign_id', $rows->id)
                                 ->sum('amount');
-            $donation_percent = ($total_donations/$rows->fundgoals) * 100;
+            $donation_percent = ($rows->fundgoals > 0) ? ($total_donations/$rows->fundgoals) * 100 : 0;
             $donation_array = (object) array(
                 "total_donation"      => $total_donations,
                 "donation_percentage" => $donation_percent,
@@ -164,13 +166,46 @@ class StoryController extends Controller
     public function getStories()
     {
         $user = Auth::user();
+        $stories = Story::where('owner_id', $user->id)->get();
         $campaigns = DB::table('stories')
-                        ->join('donations', 'stories.id','donations.campaign_id')
+                        ->leftJoin('donations', 'stories.id','donations.campaign_id')
                         ->select('stories.*',DB::raw('SUM(donations.amount) as amount'))
                         ->where('stories.owner_id', $user->id)
                         ->orderBy('stories.id', 'DESC')
                         ->groupBy('stories.id')
                         ->get();
         return view('admin.campaigns.campaigns', compact('campaigns'));
+    }
+
+    public function exportCampaignData($id)
+    {
+        $user = Auth::user();
+        $campaign = Story::find($id);
+        $donations = DB::table('donations')
+                        ->join('stories', 'donations.campaign_id','stories.id')
+                        ->select('donations.*','stories.title')
+                        ->where('stories.owner_id', $user->id)
+                        ->where('donations.campaign_id', $id)
+                        ->orderBy('donations.id', 'DESC')
+                        ->get();
+        $header_style = (new StyleBuilder())->setFontBold()->build();
+
+        $rows_style = (new StyleBuilder())
+            ->setFontSize(12)
+            ->setBackgroundColor("EDEDED")
+            ->build();   
+
+        return (new FastExcel($donations))
+        ->headerStyle($header_style)
+        ->rowsStyle($rows_style)
+        ->download('Donations for '.$campaign->title.'.xlsx', function($data){
+            return [
+                "Campaign Title"=> $data->title,
+                "Donor Name"=> $data->name,
+                "Donor Phone"=> $data->contact,
+                "Amount Donated"=> $data->amount,
+                "Date" => date('l, d Y',strtotime($data->created_at))
+            ];
+        });
     }
 }

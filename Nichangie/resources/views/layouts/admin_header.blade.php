@@ -80,10 +80,11 @@
                         <i class="icon-hourglass"></i><span> Campaigns</span>
                     </a>
                 </li>
-                <li class="treeview">
-                    <a class="waves-effect waves-dark" href="{{ route('transaction')}}">
-                        <i class="icon-credit-card"></i><span> Transactions</span>
-                    </a>
+                <li class="treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-credit-card"></i><span> Transactions</span><i class="icon-arrow-down"></i></a>
+                    <ul class="treeview-menu">
+                        <li><a class="waves-effect waves-dark" href="{{ route('transaction')}}"><i class="icon-arrow-right"></i> All Transactions</a></li>
+                        <li><a class="waves-effect waves-dark" href="{{ route('transaction.withdraw')}}"><i class="icon-arrow-right"></i> Withdraw</a></li>
+                    </ul>
                 </li>
                 <li class="treeview">
                     <a class="waves-effect waves-dark" href="{{ route('donation') }}">

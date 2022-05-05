@@ -71,7 +71,6 @@
                             <div class="text">{{ substr($rows->description,0,40) }}...</div>
                             <div class="info-box">
                                 <a href="#"><span>Raised:</span>TZS {{ number_format($rows->total_donation) }}</a>
-                                <a href="#"><span>Goal:</span> TZS {{ number_format($rows->fundgoals) }}</a>
                                 <a href="#"> {{ round($rows->donation_percentage)}}%</a>
                             </div>
                             <!--Progress Levels-->
@@ -90,7 +89,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="text">Raised by {{ $rows->doners }} people</div>
+                            <div class="info-box">
+                                <a href="#"><i><span>Goal:</span> TZS {{ number_format($rows->fundgoals) }}</i></a>
+                            </div>
                         </div>
                     </div>
                 </div>

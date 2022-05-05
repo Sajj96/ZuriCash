@@ -78,7 +78,7 @@
                                             @else
                                             <li><a href="{{ route('login') }}">{{ __('Sign in')}}</a></li>
                                             @endif
-                                            <li><a href="{{ route('contact') }}">{{ __('Contact')}}</a></li>
+                                            <!-- <li><a href="{{ route('contact') }}">{{ __('Contact')}}</a></li> -->
                                         </ul>
                                     </div>
                                 </nav><!-- Main Menu End-->

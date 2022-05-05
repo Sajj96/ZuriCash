@@ -42,6 +42,7 @@ Route::group(['prefix' => 'campaigns'], function(){
     Route::get('/latest', [App\Http\Controllers\StoryController::class, 'getLatest'])->name('campaign.latest');
     Route::get('/my-campaings', [App\Http\Controllers\StoryController::class, 'getStories'])->name('me.campaign')->middleware('auth');
     Route::get('/{id}', [App\Http\Controllers\StoryController::class, 'show'])->name('campaign.show');
+    Route::get('/export/{id}', [App\Http\Controllers\StoryController::class, 'exportCampaignData'])->name('campaign.export');
     Route::post('/', [App\Http\Controllers\StoryController::class, 'create'])->name('campaign.create')->middleware('auth');
 });
 
@@ -70,5 +71,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::group(['prefix' => 'transactions'], function(){
         Route::get('/', [App\Http\Controllers\TransactionController::class, 'index'])->name('transaction');
+        Route::any('/withdraw', [App\Http\Controllers\TransactionController::class, 'withdraw'])->name('transaction.withdraw');
     });
 });
