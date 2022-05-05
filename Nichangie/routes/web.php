@@ -32,6 +32,10 @@ Route::group(['prefix' => 'home'], function(){
 
 Route::get('/how-it-works', [App\Http\Controllers\HomeController::class, 'howItWorks'])->name('how');
 
+Route::get('/privacypolicy', [App\Http\Controllers\HomeController::class, 'privacyPolicy'])->name('privacy');
+
+Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contactUs'])->name('contact');
+
 Route::group(['prefix' => 'campaigns'], function(){
     Route::get('/', [App\Http\Controllers\StoryController::class, 'index'])->name('campaign')->middleware('auth');
     Route::get('/featured', [App\Http\Controllers\StoryController::class, 'getAll'])->name('campaign.all');

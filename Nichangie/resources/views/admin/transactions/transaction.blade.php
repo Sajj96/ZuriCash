@@ -163,6 +163,8 @@
               $('#phoneInput').css('display', 'none');
             } else {
               $('#phoneInput').css('display', 'block');
+              $('.bank').css('display', 'none');
+              $('.asset').css('display', 'none');
             }
         });
     })

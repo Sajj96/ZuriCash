@@ -9,10 +9,10 @@
 <section class="page-title">
     <div class="auto-container">
         <div class="content-box">
-            <h1>How Nachangia Works</h1>
+            <h1>{{ __('How Nachangia Works')}}</h1>
             <ul class="bread-crumb">
                 <li><a class="home" href="{{ route('home') }}"><span class="fa fa-home"></span></a></li>
-                <li>How Nachangia Works</li>
+                <li>{{ __('How Nachangia Works')}}</li>
             </ul>
         </div>
     </div>

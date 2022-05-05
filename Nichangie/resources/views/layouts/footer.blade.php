@@ -23,7 +23,7 @@
                     <div class="col-lg-3 col-md-6 link-widget footer-widget">
                         <h4 class="widget-title">Quick Link</h4>
                         <ul>
-                            <li><a href="#">Private Policies</a></li>
+                            <li><a href="{{ route('privacy') }}">Privacy Policies</a></li>
                             <li><a href="{{ route('how') }}">How it Works</a></li>
                             <li><a href="#">Contact Us</a></li>
                         </ul>

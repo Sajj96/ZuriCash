@@ -66,4 +66,14 @@ class HomeController extends Controller
     {
         return view('howitworks');
     }
+
+    public function privacyPolicy()
+    {
+        return view('privacypolicy');
+    }
+
+    public function contactUs()
+    {
+        return view('contact');
+    }
 }
