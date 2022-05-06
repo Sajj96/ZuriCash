@@ -28,7 +28,7 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail1" class="form-control-label">Amount to withdraw</label>
                                         <input type="number" name="amount" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter amount">
-                                        <small id="emailHelp" class="form-text text-muted">{{ __('Current balance: TZS ')}} {{ $campaign->amount ?? 10000}}</small>
+                                        <small id="emailHelp" class="form-text text-muted">{{ __('Current balance: TZS ')}} {{ $campaign->amount ?? 0}}</small>
                                     </div>
                                     <div class="form-group">
                                         <label for="payment_method" class="form-control-label">Payment method</label>

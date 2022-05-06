@@ -18,7 +18,7 @@ class TransactionController extends Controller
         $user = Auth::user();
         if(!empty($request->id)) {
             $campaign = DB::table('stories')
-                        ->join('donations', 'stories.id','donations.campaign_id')
+                        ->leftJoin('donations', 'stories.id','donations.campaign_id')
                         ->select('stories.*',DB::raw('SUM(donations.amount) as amount'))
                         ->where('stories.owner_id', $user->id)
                         ->where('stories.id', $request->id)
