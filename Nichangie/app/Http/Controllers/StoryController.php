@@ -208,4 +208,17 @@ class StoryController extends Controller
             ];
         });
     }
+
+    public function close(Request $request)
+    {
+        try {
+            $user = Auth::user();
+            $campaign = Story::where('id',$request->campaign_id)->where('owner_id',$user->id)->first();
+            $campaign->status = Story::STATUS_CANCELLED;
+            $campaign->save();
+            return redirect()->route('me.campaign')->with('success','Campaign was successfully closed.');
+        } catch (\Exception $e) {
+            return redirect()->route('me.campaign')->with('error','Something went wrong while closing a campaign!');
+        }
+    }
 }

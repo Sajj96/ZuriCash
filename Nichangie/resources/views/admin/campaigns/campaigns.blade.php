@@ -50,15 +50,25 @@
                                             <td>{{ number_format($rows->fundgoals) }}</td>
                                             <td>{{ $rows->deadline }}</td>
                                             <td>
+                                                @if($rows->status == 0) 
+                                                <div class="label-main"><label class="label label-lg bg-default">In progress</label></div>
+                                                @elseif($rows->status == 1)
                                                 <div class="label-main"><label class="label label-lg bg-success">Completed</label></div>
+                                                @else
+                                                <div class="label-main"><label class="label label-lg bg-danger">Closed</label></div>
+                                                @endif
                                             </td>
                                             <td>
-                                                <a href="{{ route('campaign.show', $rows->id)}}" class="btn btn-danger waves-effect" data-toggle="tooltip" data-placement="top" title="Close Campaign"><i class="ti-close"></i></a>
+                                                <a href="{{ route('campaign.close')}}" class="btn btn-danger waves-effect" data-toggle="tooltip" data-placement="top" onclick="event.preventDefault(); document.getElementById('close-form{{$rows->id}}').submit();" title="Close Campaign"><i class="ti-close"></i></a>
                                                 <a href="{{ route('transaction.withdraw')}}" class="btn btn-success waves-effect" data-toggle="tooltip" data-placement="top" onclick="event.preventDefault(); document.getElementById('withdraw-form{{$rows->id}}').submit();" title="Request Withdraw"><i class="ti-wallet"></i></a>
                                                 <a href="{{ route('campaign.export', $rows->id)}}" class="btn btn-info waves-effect" data-toggle="tooltip" data-placement="top" title="Export Data"><i class="ti-download"></i></a>
                                                 <form id="withdraw-form{{$rows->id}}" action="{{ route('transaction.withdraw')}}" method="POST" style="display: none;">
                                                     @csrf
                                                     <input type="hidden" value="{{$rows->id}}" name="id">
+                                                </form>
+                                                <form id="close-form{{$rows->id}}" action="{{ route('campaign.close')}}" method="POST" style="display: none;">
+                                                    @csrf
+                                                    <input type="hidden" value="{{$rows->id}}" name="campaign_id">
                                                 </form>
                                             </td>
                                         </tr>

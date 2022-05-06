@@ -5,13 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Donation;
 use App\Services\PaymentService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class DonationController extends Controller
 {
-
     public function getDonations()
     {
         $user = Auth::user();
@@ -22,8 +19,7 @@ class DonationController extends Controller
                                 ->get();
         return view('admin.donations.donations', compact('donations'));
     }
-
-
+    
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -43,24 +39,31 @@ class DonationController extends Controller
             for ($i = 0; $i < 13; $i++) {
                 $string .= $characters[mt_rand(0, $max)];
             }
+            
+            if(!empty($request->anonymous)) {
+                $name = $request->anonymous; 
+            } else if(empty($request->anonymous) && empty($request->name)) { 
+                $name = "Anonymous";
+            } else {
+                $name = $request->name;
+            }
 
             $donation = new Donation;
             $donation->campaign_id = $request->campaign_id;
-            $donation->name = (!empty($request->anonymous)) ? $request->anonymous : $request->name;
+            $donation->name = $name;
             $donation->email = $request->email;
             $donation->contact = str_replace('+','',$request->phone);
             $donation->comment = $request->comment;
             $donation->amount = $request->donate_amount;
             $donation->transaction_number = $string;
             $ussd = app(PaymentService::class);
-            $response = $ussd->ussdPush(str_replace('+','',$request->contact),$request->donate_amount,$string)->getData();
+            $response = $ussd->ussdPush(str_replace('+','',$request->phone),$request->donate_amount,$string)->getData();
             if($response->body->response->responseStatus == "Accepted Successfully") {
-                if($donation->save()) {
-                    return redirect()->route('campaign.show', $request->campaign_id)->with('success','Donation is in progress. Please complete payment through USSD appeared on your phone');
-                }
+                if($donation->save())
+                return redirect()->route('campaign.show', $request->campaign_id)->with('success','Donation is in progress. Please complete payment through USSD appeared on your phone');
             }
         } catch (\Exception $e) {
-            return redirect()->route('campaign.show', $request->campaign_id)->with('error','Something went wrong');
+            return redirect()->route('campaign.show', $request->campaign_id)->with('error',$e->getMessage());
         }
     }
 
@@ -88,7 +91,7 @@ class DonationController extends Controller
             $response = $ussd->ussdPush($request->phone_number,$request->amount,$string);
             return $response;
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Action failed'], 500);
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 }

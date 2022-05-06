@@ -42,8 +42,9 @@ Route::group(['prefix' => 'campaigns'], function(){
     Route::get('/latest', [App\Http\Controllers\StoryController::class, 'getLatest'])->name('campaign.latest');
     Route::get('/my-campaings', [App\Http\Controllers\StoryController::class, 'getStories'])->name('me.campaign')->middleware('auth');
     Route::get('/{id}', [App\Http\Controllers\StoryController::class, 'show'])->name('campaign.show');
-    Route::get('/export/{id}', [App\Http\Controllers\StoryController::class, 'exportCampaignData'])->name('campaign.export');
+    Route::get('/export/{id}', [App\Http\Controllers\StoryController::class, 'exportCampaignData'])->name('campaign.export')->middleware('auth');
     Route::post('/', [App\Http\Controllers\StoryController::class, 'create'])->name('campaign.create')->middleware('auth');
+    Route::post('/close', [App\Http\Controllers\StoryController::class, 'close'])->name('campaign.close')->middleware('auth');
 });
 
 Route::group(['prefix' => 'categories'], function(){

@@ -1,6 +1,8 @@
 <?php
 namespace App\Services;
 use GuzzleHttp\Client;      
+use Guzzle\Http\Exception\ClientErrorResponseException;
+use Carbon\Carbon;
 
 
 class PaymentService {
@@ -12,11 +14,21 @@ class PaymentService {
     }
 
     public function ussdPush($phone, $amount, $transactionNo) {
-        $url = 'http://18.220.121.223:30001/gateway/services/v1/collect/push';
+        $url = 'http://18.220.121.223:8980/gateway/services/v1/collect/push';
+        
+        $username = "13";
+        $password = "Nachangia@2022";
+        $timestamp = "20220506104027";
+        
+        $apipassword = base64_encode(hash("sha256", $username.$password.$timestamp, true));
 
         try {
             $response = $this->client->request('POST', $url, [
                 "verify" => false,
+                'headers' => [
+                    'Accept'       => 'application/json',
+                    'Content-Type' => 'application/json'
+                ],
                 "json" => [
                     "body" => (object) array(
                         "request" => (object) array(
@@ -27,9 +39,9 @@ class PaymentService {
                         )
                     ),
                     "header" => (object) array(
-                        "username"  => env('PAYMENT_USERNAME'),
-                        "password"  => env('PAYMENT_PASSWORD'),
-                        "timestamp" => env('PAYMENT_TIMESTAMP')
+                        "username"  => $username,
+                        "password"  => $apipassword,
+                        "timestamp" => $timestamp
                     )
                 ]
             ]);
@@ -38,17 +50,9 @@ class PaymentService {
                 $responseData = json_decode($response->getBody()->getContents()); 
                 return response()->json($responseData);               
             }
-        } catch (\GuzzleHttp\Exception\ClientException $e) {
-            $response = $e->getMessage();
-            // $responseBodyAsString = $response->getBody()->getContents(); 
-            return response()->json(['error'=> $response]);           
-        } catch (\GuzzleHttp\Exception\ConnectException $e) {
-            $response = $e->getMessage();            
-            return response()->json(['error'=> $response]);
-        } catch (\GuzzleHttp\Exception\RequestException $e) {
-            $response = $e->getMessage();
-            // $responseBodyAsString = $response->getBody()->getContents(); 
-            return response()->json(['error'=>  $response]);          
+        } catch (ClientErrorResponseException $exception) {
+            $responseBody = $exception->getResponse()->getBody(true);
+            return response()->json($responseBody);
         }
     }
 }
