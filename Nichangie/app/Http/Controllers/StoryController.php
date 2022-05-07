@@ -169,10 +169,10 @@ class StoryController extends Controller
         $stories = Story::where('owner_id', $user->id)->get();
         $campaigns = DB::table('stories')
                         ->leftJoin('donations', 'stories.id','donations.campaign_id')
-                        ->select('stories.*',DB::raw('SUM(donations.amount) as amount'))
+                        ->select('stories.id','stories.title','stories.fundgoals','stories.deadline','stories.status','stories.description',DB::raw('SUM(donations.amount) as amount')) 
                         ->where('stories.owner_id', $user->id)
                         ->orderBy('stories.id', 'DESC')
-                        ->groupBy('stories.id')
+                        ->groupBy('stories.id','stories.title','stories.fundgoals','stories.deadline','stories.status','stories.description')
                         ->get();
         return view('admin.campaigns.campaigns', compact('campaigns'));
     }
@@ -207,18 +207,5 @@ class StoryController extends Controller
                 "Date" => date('l, d Y',strtotime($data->created_at))
             ];
         });
-    }
-
-    public function close(Request $request)
-    {
-        try {
-            $user = Auth::user();
-            $campaign = Story::where('id',$request->campaign_id)->where('owner_id',$user->id)->first();
-            $campaign->status = Story::STATUS_CANCELLED;
-            $campaign->save();
-            return redirect()->route('me.campaign')->with('success','Campaign was successfully closed.');
-        } catch (\Exception $e) {
-            return redirect()->route('me.campaign')->with('error','Something went wrong while closing a campaign!');
-        }
     }
 }

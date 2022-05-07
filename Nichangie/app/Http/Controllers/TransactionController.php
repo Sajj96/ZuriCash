@@ -19,10 +19,10 @@ class TransactionController extends Controller
         if(!empty($request->id)) {
             $campaign = DB::table('stories')
                         ->leftJoin('donations', 'stories.id','donations.campaign_id')
-                        ->select('stories.*',DB::raw('SUM(donations.amount) as amount'))
+                        ->select('stories.id','stories.title','stories.fundgoals','stories.deadline','stories.status','stories.description',DB::raw('SUM(donations.amount) as amount')) 
                         ->where('stories.owner_id', $user->id)
                         ->where('stories.id', $request->id)
-                        ->groupBy('stories.id')
+                        ->groupBy('stories.id','stories.title','stories.fundgoals','stories.deadline','stories.status','stories.description')
                         ->first();
         return view('admin.transactions.withdraw', compact('campaign'));
         }

@@ -55,6 +55,7 @@
                         <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ $currentUrl }}" class="facebook"><span class="fa fa-facebook"></span>Facebook</a></li>
                         <li><a href="https://twitter.com/intent/tweet?url={{ $currentUrl }}&text={{ $campaign->title }}" class="twitter"><span class="fa fa-twitter"></span>Twitter</a></li>
                         <li><a href="whatsapp://send?text={{ $currentUrl }}" class="whatsapp"><span class="fa fa-whatsapp"></span>Whatsapp</a></li>
+                        <li><a href="whatsapp://send?text={{ $currentUrl }}" class="instagram"><span class="fa fa-instagram"></span>Instagram</a></li>
                     </ul>
                 </div>
                 <div class="donate-form-area">
