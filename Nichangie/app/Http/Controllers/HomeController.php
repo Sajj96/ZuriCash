@@ -21,6 +21,7 @@ class HomeController extends Controller
         $campaigns = DB::table('stories')
                         ->join('users','stories.owner_id','=','users.id')
                         ->select('stories.*','users.name','users.lastname')
+                        ->where('stories.status','<>',3)
                         ->get();
         $campaign_data = array();
         foreach($campaigns as $key=>$rows) {

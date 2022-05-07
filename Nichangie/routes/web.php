@@ -72,6 +72,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::group(['prefix' => 'transactions'], function(){
         Route::get('/', [App\Http\Controllers\TransactionController::class, 'index'])->name('transaction');
+        Route::post('/', [App\Http\Controllers\TransactionController::class, 'requestWithdraw'])->name('transaction.request');
         Route::any('/withdraw', [App\Http\Controllers\TransactionController::class, 'withdraw'])->name('transaction.withdraw');
     });
 });

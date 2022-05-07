@@ -46,6 +46,7 @@ class StoryController extends Controller
         $campaigns = DB::table('stories')
                         ->join('users','stories.owner_id','=','users.id')
                         ->select('stories.*','users.name','users.lastname')
+                        ->where('stories.status','<>',3)
                         ->get();
         $type = 'Featured';
         $campaign_data = array();
@@ -74,6 +75,7 @@ class StoryController extends Controller
         $campaigns = DB::table('stories')
                         ->join('users','stories.owner_id','=','users.id')
                         ->select('stories.*','users.name','users.lastname')
+                        ->where('stories.status','<>',3)
                         ->orderByDesc('stories.id')
                         ->limit(20)
                         ->get();
@@ -207,5 +209,19 @@ class StoryController extends Controller
                 "Date" => date('l, d Y',strtotime($data->created_at))
             ];
         });
+    }
+
+
+    public function close(Request $request)
+    {
+        try {
+            $user = Auth::user();
+            $campaign = Story::where('id',$request->campaign_id)->where('owner_id',$user->id)->first();
+            $campaign->status = Story::STATUS_CANCELLED;
+            $campaign->save();
+            return redirect()->route('me.campaign')->with('success','Campaign was successfully closed.');
+        } catch (\Exception $e) {
+            return redirect()->route('me.campaign')->with('error','Something went wrong while closing a campaign!');
+        }
     }
 }

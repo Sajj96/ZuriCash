@@ -2,24 +2,31 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+    <title>{{ config('app.name', 'NACHANGIA') }}</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="description" content="Nachangia is a Tanzania donation-type crowdfunding service. Anyone in Tanzania can quickly and easily create campaign to raise funds within Tanzania and around the world for their beloved ones, for themselves, for the community and for charity.">
+    <meta name="keywords" content="Nachangia, charity, donation, help">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
+
+
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="env('APP_URL')" />
+    <meta property="og:url" content="{{env('APP_URL')}}" />
     <meta property="og:title" content="NACHANGIA" />
     <meta property="og:description" content="NACHANGIA" />
+    <meta property="og:site_name" content="NACHANGIA" />
     <meta property="og:image" content="{{ asset('assets/images/LOGO2.png')}}" />
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="env('APP_URL')" />
-    <meta property="twitter:title" content="" />
+    <meta property="twitter:site" content="{{env('APP_URL')}}" />
+    <meta property="twitter:title" content="NACHANGIA" />
     <meta property="twitter:description" content="NACHANGIA" />
     <meta property="twitter:image" content="{{ asset('assets/images/LOGO2.png')}}" />
     <meta property="twitter:image:alt" content="Company logo" />
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'NACHANGIA') }}</title>
 
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png')}}" type="image/x-icon">
     <link rel="icon" href="{{ asset('assets/images/favicon.png')}}" type="image/x-icon">
