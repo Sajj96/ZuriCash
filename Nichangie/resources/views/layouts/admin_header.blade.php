@@ -25,7 +25,7 @@
 
                         </a>
                         <ul class="dropdown-menu settings-menu">
-                            <li><a href="#"><i class="icon-user"></i> {{ __('Profile')}}</a></li>
+                            <li><a href="{{ route('profile') }}"><i class="icon-user"></i> {{ __('Profile')}}</a></li>
                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="icon-logout"></i> {{ __('Logout')}}</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf

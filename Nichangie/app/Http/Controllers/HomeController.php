@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Campaign;
 use App\Models\Story;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -76,5 +77,11 @@ class HomeController extends Controller
     public function contactUs()
     {
         return view('contact');
+    }
+
+    public function profile()
+    {
+        $user = Auth::user();
+        return view('admin.profile', compact('user'));
     }
 }
