@@ -84,9 +84,9 @@ class TransactionController extends Controller
                 $fileName = $request->invoice->getClientOriginalName();
                 $extension = $request->file('invoice')->extension();
                 $generated = uniqid() . "_" . time() . date("Ymd") . $extension;
+                $fileName = $generated;
                 $filePath = $request->file('invoice')->storeAs('invoices', $fileName, 'public');
                 $type = pathinfo($filePath, PATHINFO_EXTENSION);
-                $fileName = $generated;
             }
 
             $transaction->user_id = $user->id;
