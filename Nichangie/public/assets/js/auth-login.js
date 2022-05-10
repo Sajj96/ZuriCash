@@ -8,6 +8,7 @@ var it = window.intlTelInput(telInput, {
 initialCountry: 'tz',
 autoPlaceholder: 'aggressive',
 nationalMode: true,
+formatOnDisplay: false,
 utilsScript: utilUrl,
 geoIpLookup: function(callback) {
       $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {

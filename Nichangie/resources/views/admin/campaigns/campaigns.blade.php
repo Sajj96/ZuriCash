@@ -53,7 +53,7 @@
                                                 @if($rows->status == 0) 
                                                 <div class="label-main"><label class="label label-lg bg-default">In progress</label></div>
                                                 @elseif($rows->status == 1)
-                                                <div class="label-main"><label class="label label-lg bg-success">Completed</label></div>
+                                                <div class="label-main"><label class="label label-lg bg-success">Finished</label></div>
                                                 @else
                                                 <div class="label-main"><label class="label label-lg bg-danger">Closed</label></div>
                                                 @endif

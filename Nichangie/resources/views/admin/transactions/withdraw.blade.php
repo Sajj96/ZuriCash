@@ -24,67 +24,74 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
-                        @include('flash-message')
+                            @include('flash-message')
                             <div class="card-block">
-                                <form action="{{ route('transaction.request') }}"  method="POST">
+                                <form action="{{ route('transaction.request') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1" class="form-control-label">Amount to withdraw</label>
-                                        <input type="number" name="amount" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter amount">
-                                        <small id="emailHelp" class="form-text text-muted">{{ __('Current balance: TZS ')}} {{ $campaign->amount ?? 0}}</small>
+                                        <label for="amount" class="form-control-label">{{ __('Amount to withdraw')}}</label>
+                                        <input type="number" name="amount" class="form-control" id="amount" aria-describedby="emailHelp" placeholder="Enter amount">
+                                        <input type="hidden" name="campaign_id" value="{{ (!empty($campaign->id)) ? $campaign->id : '' }}" class="form-control">
+                                        <small id="emailHelp" class="form-text text-muted">{{ __('Current balance: TZS ')}} {{ $balance ?? 0}}</small>
                                     </div>
                                     <div class="form-group">
-                                        <label for="payment_method" class="form-control-label">Payment method</label>
+                                        <label for="deposit" class="form-control-label">{{ __('Amount to deposit')}}</label>
+                                        <input type="number" name="debit" class="form-control" id="deposit" aria-describedby="emailHelp" placeholder="Debit amount" readonly>
+                                        <small id="emailHelp" class="form-text text-muted">{{ __('Platform Fee: 5% of the amount to withdraw')}}</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="payment_method" class="form-control-label">{{ __('Payment method')}}</label>
                                         <select class="form-control " id="payment_method" name="payment_method">
-                                            <option value="mobile">Mobile Number</option>
-                                            <option value="bank">Bank Transfer</option>
-                                            <option value="asset">Asset Purchase</option>
+                                            <option value="mobile">{{ __('Mobile Number')}}</option>
+                                            <option value="bank">{{ __('Bank Transfer')}}</option>
+                                            <option value="asset">{{ __('Asset Purchase')}}</option>
                                         </select>
                                     </div>
                                     <div class="form-group" id="phoneInput">
-                                        <label for="exampleInputPhone" class="form-control-label">Phone number</label>
-                                        <input type="tel" id="phone" name="phone" class="form-control" id="exampleInputPhone" value="{{ Auth::user()->phonenumber }}" placeholder="Enter mobile number">
+                                        <label for="phone" class="form-control-label">{{ __('Phone number')}}</label>
+                                        <input type="tel" id="phone" name="phone" class="form-control" value="{{ Auth::user()->phonenumber }}" placeholder="Enter mobile number" required>
                                     </div>
                                     <div class="row bank">
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label for="exampleInputAccountname" class="form-control-label">Account name</label>
-                                                <input type="text" class="form-control" name="account_name" id="exampleInputAccountname" placeholder="Enter account name">
+                                                <label for="accountname" class="form-control-label">{{ __('Account name')}}</label>
+                                                <input type="text" class="form-control" name="account_name" id="accountname" placeholder="Enter account name">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label for="exampleInputAccountnumber" class="form-control-label">Account number</label>
-                                                <input type="text" class="form-control" name="account_number" id="exampleInputAccountnumber" placeholder="Enter account number">
+                                                <label for="accountnumber" class="form-control-label">{{ __('Account number')}}</label>
+                                                <input type="text" class="form-control" name="account_number" id="accountnumber" placeholder="Enter account number">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label for="exampleInputbankname" class="form-control-label">Bank name</label>
-                                                <input type="text" class="form-control" name="bank_name" id="exampleInputbankname" placeholder="Enter bank name">
+                                                <label for="bankname" class="form-control-label">{{ __('Bank name')}}</label>
+                                                <input type="text" class="form-control" name="bank_name" id="bankname" placeholder="Enter bank name">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label for="exampleInputbranch" class="form-control-label">Branch name</label>
-                                                <input type="text" class="form-control" name="branch_name" id="exampleInputbranch" placeholder="Enter bank's branch name">
+                                                <label for="branch" class="form-control-label">{{ __('Branch name')}}</label>
+                                                <input type="text" class="form-control" name="branch_name" id="branch" placeholder="Enter bank's branch name">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row asset">
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label for="file" class="form-control-label">Attach invoice</label>
+                                                <label for="file" class="form-control-label">{{ __('Attach invoice')}}</label>
                                                 <input type="file" id="file" name="invoice" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label for="exampleInputPhone" class="form-control-label">Supplier Contacts</label>
-                                                <input type="tel" class="form-control" name="supplier_contact" id="exampleInputPhone" value="{{ Auth::user()->phonenumber }}" placeholder="Enter mobile number">
+                                                <label for="contacts" class="form-control-label">{{ __('Supplier Contacts')}}</label>
+                                                <input type="tel" class="form-control" name="supplier_contact" id="contacts" placeholder="Enter mobile number">
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-30">Submit</button>
+                                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-30">{{ __('Submit')}}</button>
                                 </form>
                             </div>
                         </div>
@@ -109,15 +116,45 @@
                 $('.bank').css('display', 'block');
                 $('#phoneInput').css('display', 'none');
                 $('.asset').css('display', 'none');
+                $('#accountname').attr('required', true);
+                $('#accountnumber').attr('required', true);
+                $('#bankname').attr('required', true);
+                $('#branch').attr('required', true);
+                $('#file').removeAttr('required', true);
+                $('#contacts').removeAttr('required', true);
+                $('#phone').removeAttr('required', true);
             } else if (option == "asset") {
                 $('.asset').css('display', 'block');
                 $('.bank').css('display', 'none');
+                $('#file').attr('required', true);
+                $('#contacts').attr('required', true);
                 $('#phoneInput').css('display', 'none');
+                $('#accountname').removeAttr('required', true);
+                $('#accountnumber').removeAttr('required', true);
+                $('#bankname').removeAttr('required', true);
+                $('#branch').removeAttr('required', true);
+                $('#phone').removeAttr('required', true);
             } else {
                 $('#phoneInput').css('display', 'block');
+                $('#phone').attr('required', true);
                 $('.bank').css('display', 'none');
                 $('.asset').css('display', 'none');
+                $('#accountname').removeAttr('required', true);
+                $('#accountnumber').removeAttr('required', true);
+                $('#bankname').removeAttr('required', true);
+                $('#branch').removeAttr('required', true);
+                $('#file').removeAttr('required', true);
+                $('#contacts').removeAttr('required', true);
             }
+        });
+
+        $('#amount').on('blur keyup', () => {
+            var amount = $('#amount').val(),
+                deposit = 0,
+                fee = 0.05;
+
+            deposit = amount - (amount * fee);
+            $('#deposit').val(deposit);
         });
     })
 </script>

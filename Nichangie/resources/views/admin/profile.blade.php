@@ -1,6 +1,7 @@
 @extends('layouts.app_admin')
 
 @section('page-styles')
+<link rel="stylesheet" href="{{ asset('assets/js/intl-tel-input/css/intlTelInput.css')}}">
 @endsection
 
 @section('content')
@@ -31,6 +32,7 @@
                 <div class="card">
                     <div class="card-block">
                         <!-- Row start -->
+                        @include('flash-message')
                         <div class="row m-b-30">
                             <div class="col-lg-12">
                                 <!-- Nav tabs -->
@@ -72,13 +74,12 @@
                                         </div>
                                         <div class="row" style="padding-top: 20px;">
                                             <div class="sub-title">Other Details</div>
-                                            <div class="col-lg-6" >
+                                            <div class="col-lg-6">
                                                 <ul>
                                                     <li><strong>Location:</strong> {{ $user->location }}</li>
                                                     <li><strong>District:</strong> {{ $user->district }}</li>
                                                     <li><strong>City:</strong> {{ $user->city }}</li>
-                                                    <li><strong>Country:</strong> {{ $user->country }}</li>
-                                                    <li><strong>Join Date:</strong> {{ date('l, d Y',strtotime($user->created_at)) }}</li>
+                                                    <li><strong>Join Date:</strong> {{ date('M, d Y',strtotime($user->created_at)) }}</li>
                                                 </ul>
                                             </div>
                                             <div class="col-lg-6">
@@ -87,7 +88,54 @@
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="profile3" role="tabpanel">
-                                        <p>2.Cras consequat in enim ut efficitur. Nulla posuere elit quis auctor interdum praesent sit amet nulla vel enim amet. Donec convallis tellus neque, et imperdiet felis amet.</p>
+                                        <form action="{{ route('profile.edit') }}" method="POST">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputfname" class="form-control-label">{{ __('First Name')}}</label>
+                                                        <input type="text" class="form-control" name="fname" id="exampleInputfname" value="{{ $user->name }}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputlname" class="form-control-label">{{ __('Last Name')}}</label>
+                                                        <input type="text" class="form-control" name="lname" id="exampleInputlname" value="{{ $user->lastname }}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="phone" class="form-control-label">{{ __('Phone')}}</label>
+                                                        <input type="tel" class="form-control" name="phone" id="phone" value="{{ $user->phonenumber }}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputemail" class="form-control-label">{{ __('Email')}}</label>
+                                                        <input type="tel" class="form-control" name="email" id="exampleInputemail" value="{{ $user->email }}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputaddress" class="form-control-label">{{ __('Location')}}</label>
+                                                        <input type="text" class="form-control" name="address" id="exampleInputaddress" value="{{ $user->location }}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputdistrict" class="form-control-label">{{ __('District')}}</label>
+                                                        <input type="text" class="form-control" name="district" id="exampleInputdistrict" value="{{ $user->district }}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputcity" class="form-control-label">{{ __('City')}}</label>
+                                                        <input type="text" class="form-control" name="city" id="exampleInputcity" value="{{ $user->city }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-success waves-effect waves-light m-r-30">{{ __('Update')}}</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -100,5 +148,10 @@
     </div>
 </div>
 @section('page-scripts')
+<script src="{{ asset('assets/js/intl-tel-input/js/intlTelInput.min.js')}}"></script>
+<script type="text/javascript">
+    var utilUrl = "{{ asset('assets/js/intl-tel-input/js/utils.js?1638200991544')}}"
+</script>
+<script src="{{ asset('assets/js/auth-login.js')}}"></script>
 @endsection
 @endsection

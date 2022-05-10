@@ -31,20 +31,28 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>{{ __('Date')}}</th>
+                                            <th>{{ __('Campaign')}}</th>
                                             <th>{{ __('Amount')}}</th>
+                                            <th>{{ __('Debit')}}</th>
+                                            <th>{{ __('Payment Method')}}</th>
+                                            <th>{{ __('Date')}}</th>
                                             <th>{{ __('Status')}}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($transactions as $key=>$rows)
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>{{ $key + 1 }}</td>
+                                            <td>@if($rows->camp_id == 0) {{ __('Multiple Campaigns') }} @else<a href="{{ route('campaign.show', $rows->camp_id) }}">{{ $rows->title }}</a>@endif</td>
+                                            <td>{{ number_format($rows->amount) }}</td>
+                                            <td>{{ number_format($rows->debit) }}</td>
+                                            <td>{{ strtoupper($rows->payment_method) }}</td>
+                                            <td>{{ date('l, d Y', strtotime($rows->created_at)) }}</td>
                                             <td>
-                                                <!-- <div class="label-main"><label class="label label-lg bg-success">Completed</label></div> -->
+                                                <div class="label-main"><label class="label label-lg bg-default">In Progress</label></div>
                                             </td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

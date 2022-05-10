@@ -71,24 +71,46 @@
         </div>
         @else
         <div class="row dashboard-header">
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-3 col-md-6">
                 <div class="card dashboard-product">
                     <span>Campaigns</span>
                     <h2 class="dashboard-total-products">{{ $user_campaings }}</h2>
+                    In progress
                     <div class="side-box">
                         <i class="ti-signal text-warning-color"></i>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-3 col-md-6">
                 <div class="card dashboard-product">
                     <span>Raised</span>
                     <h2 class="dashboard-total-products">TZS {{ number_format($total_donations) }}</h2>
+                    All Campaigns
                     <div class="side-box ">
                         <i class="ti-gift text-primary-color"></i>
                     </div>
                 </div>
             </div>
+            <div class="col-lg-3 col-md-6">
+                  <div class="card dashboard-product">
+                     <span>Withdrawn</span>
+                     <h2 class="dashboard-total-products">TZS <span>{{ number_format($withdrawn) }}</span></h2>
+                     From All Campaigns
+                     <div class="side-box">
+                        <i class="ti-direction-alt text-success-color"></i>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-lg-3 col-md-6">
+                  <div class="card dashboard-product">
+                     <span>Balance</span>
+                     <h2 class="dashboard-total-products">TZS <span>{{ number_format($balance) }}</span></h2>
+                     Current
+                     <div class="side-box">
+                        <i class="ti-money text-danger-color"></i>
+                     </div>
+                  </div>
+               </div>
         </div>
         @endif
         <!-- 4-blocks row end -->

@@ -29,6 +29,7 @@ Route::group(['prefix' => 'home'], function(){
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'adminDashboard'])->name('donee.home')->middleware('auth');
     Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile')->middleware('auth');
+    Route::post('/profile', [App\Http\Controllers\HomeController::class, 'editProfile'])->name('profile.edit')->middleware('auth');
 });
 
 Route::get('/how-it-works', [App\Http\Controllers\HomeController::class, 'howItWorks'])->name('how');
