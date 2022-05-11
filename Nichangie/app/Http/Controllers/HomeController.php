@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Campaign;
 use App\Models\Story;
+use App\Models\Testimonial;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -41,7 +42,7 @@ class HomeController extends Controller
             $total_donations = DB::table('donations')
                                 ->where('campaign_id', $rows->id)
                                 ->sum('amount');
-            $donation_percent = ($total_donations/$rows->fundgoals) * 100;
+            $donation_percent = ($rows->fundgoals > 0) ? ($total_donations/$rows->fundgoals) * 100 : 0;
             $donation_array = (object) array(
                 "total_donation"      => $total_donations,
                 "donation_percentage" => $donation_percent,
@@ -50,13 +51,21 @@ class HomeController extends Controller
             $campaign_data[] = (object) array_merge((array) $rows, (array) $donation_array);;
         }
 
-        return view('home', compact('campaign_data'));
+        $testimonials = Testimonial::all();
+
+        return view('home', compact('campaign_data','testimonials'));
     }
 
     public function adminDashboard()
     {
         if(Auth::user()->user_type == 2) {
-            return view('admin.home');
+            $users = User::all();
+            $num_users = count($users);
+            $campaings = Story::where('status', 0)->get();
+            $num_campaigns = count($campaings);
+            $transactions = Transaction::where('status', 0)->get();
+            $num_trans = count($transactions);
+            return view('admin.home', compact('num_users','num_campaigns','num_trans'));
         }
 
         $transaction = new Transaction;

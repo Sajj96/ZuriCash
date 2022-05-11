@@ -538,15 +538,16 @@
         </div>
         <div class="row">
             <div class="three-item-carousel owl-theme owl-carousel owl-nav-none owl-dot-style-one">
+                @foreach($testimonials as $key=>$rows)
                 <div class="testimonial-block-four">
                     <div class="inner-box">
                         <div class="image"><img src="{{ asset('assets/images/anonymous.jpg')}}" width="90" height="90" alt=""></div>
-                        <h4>It’s helped me so much.</h4>
-                        <div class="text">Goodsoul! charities provided the jump <br>start we needed to expaand our all efforts <br>and train more volunteers.</div>
-                        <div class="author-title">Isaac Samuel</div>
-                        <div class="designation">CEO & Founder <a href="#">Sun Life</a></div>
+                        <h4>{{ $rows->title }}</h4>
+                        <div class="text">{{ $rows->description }}</div>
+                        <div class="author-title">{{ $rows->name }}</div>
                     </div>
                 </div>
+                @endforeach
                 <div class="testimonial-block-four">
                     <div class="inner-box">
                         <div class="image"><img src="{{ asset('assets/images/anonymous.jpg')}}" width="90" height="90" alt=""></div>

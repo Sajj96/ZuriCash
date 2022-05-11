@@ -12,6 +12,7 @@ class Transaction extends Model
 
     const PAYMENT_INPROGRESS = 0;
     const PAYMENT_PAID = 1;
+    const PAYMENT_REJECTED = 2;
 
     public function campaignTransactions($campaign_id,$user_id)
     {

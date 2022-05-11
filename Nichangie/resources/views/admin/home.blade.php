@@ -19,40 +19,40 @@
             <div class="col-lg-3 col-md-6">
                 <div class="card dashboard-product">
                     <span>Users</span>
-                    <h2 class="dashboard-total-products">4500</h2>
-                    <span class="label label-warning">Sales</span>Arriving Today
+                    <h2 class="dashboard-total-products">{{ $num_users }}</h2>
+                    Active 
                     <div class="side-box">
-                        <i class="ti-signal text-warning-color"></i>
+                        <i class="ti-user text-warning-color"></i>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="card dashboard-product">
-                    <span>Campaigns</span>
-                    <h2 class="dashboard-total-products">37,500</h2>
-                    <span class="label label-primary">Views</span>View Today
+                    <span>All Campaigns</span>
+                    <h2 class="dashboard-total-products">{{ $num_campaigns }}</h2>
+                    In progress
                     <div class="side-box ">
-                        <i class="ti-gift text-primary-color"></i>
+                        <i class="ti-announcement text-primary-color"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card dashboard-product">
+                    <span>Featured Campaigns</span>
+                    <h2 class="dashboard-total-products">{{ $num_campaigns }}</h2>
+                    In progress
+                    <div class="side-box">
+                        <i class="ti-crown text-danger-color"></i>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="card dashboard-product">
                     <span>Withdraw Request</span>
-                    <h2 class="dashboard-total-products">$<span>30,780</span></h2>
-                    <span class="label label-success">Sales</span>Reviews
+                    <h2 class="dashboard-total-products">{{ $num_trans }}</h2>
+                    Pending withdrawals
                     <div class="side-box">
-                        <i class="ti-direction-alt text-success-color"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="card dashboard-product">
-                    <span>Products</span>
-                    <h2 class="dashboard-total-products">$<span>30,780</span></h2>
-                    <span class="label label-danger">Sales</span>Reviews
-                    <div class="side-box">
-                        <i class="ti-rocket text-danger-color"></i>
+                        <i class="ti-credit-card text-success-color"></i>
                     </div>
                 </div>
             </div>
@@ -77,7 +77,7 @@
                     <h2 class="dashboard-total-products">{{ $user_campaings }}</h2>
                     In progress
                     <div class="side-box">
-                        <i class="ti-signal text-warning-color"></i>
+                        <i class="ti-announcement text-warning-color"></i>
                     </div>
                 </div>
             </div>
@@ -87,7 +87,7 @@
                     <h2 class="dashboard-total-products">TZS {{ number_format($total_donations) }}</h2>
                     All Campaigns
                     <div class="side-box ">
-                        <i class="ti-gift text-primary-color"></i>
+                        <i class="ti-stats-up text-primary-color"></i>
                     </div>
                 </div>
             </div>
@@ -97,7 +97,7 @@
                      <h2 class="dashboard-total-products">TZS <span>{{ number_format($withdrawn) }}</span></h2>
                      From All Campaigns
                      <div class="side-box">
-                        <i class="ti-direction-alt text-success-color"></i>
+                        <i class="ti-stats-down text-success-color"></i>
                      </div>
                   </div>
                </div>
@@ -107,7 +107,7 @@
                      <h2 class="dashboard-total-products">TZS <span>{{ number_format($balance) }}</span></h2>
                      Current
                      <div class="side-box">
-                        <i class="ti-money text-danger-color"></i>
+                        <i class="ti-credit-card text-danger-color"></i>
                      </div>
                   </div>
                </div>

@@ -32,6 +32,9 @@
                                         <tr>
                                             <th>#</th>
                                             <th>{{ __('Campaign')}}</th>
+                                            @if(Auth::user()->user_type == 2)
+                                            <th>{{ __('Created By')}}</th>
+                                            @endif
                                             <th>{{ __('Amount')}}</th>
                                             <th>{{ __('Debit')}}</th>
                                             <th>{{ __('Payment Method')}}</th>
@@ -44,12 +47,21 @@
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>@if($rows->camp_id == 0) {{ __('Multiple Campaigns') }} @else<a href="{{ route('campaign.show', $rows->camp_id) }}">{{ $rows->title }}</a>@endif</td>
+                                            @if(Auth::user()->user_type == 2)
+                                            <td>{{ $rows->name." ".$rows->lastname }}</td>
+                                            @endif
                                             <td>{{ number_format($rows->amount) }}</td>
                                             <td>{{ number_format($rows->debit) }}</td>
                                             <td>{{ strtoupper($rows->payment_method) }}</td>
                                             <td>{{ date('l, d Y', strtotime($rows->created_at)) }}</td>
                                             <td>
-                                                <div class="label-main"><label class="label label-lg bg-default">In Progress</label></div>
+                                                @if($rows->status == 0) 
+                                                <div class="label-main"><label class="label label-lg bg-default">In progress</label></div>
+                                                @elseif($rows->status == 1)
+                                                <div class="label-main"><label class="label label-lg bg-success">Accepted</label></div>
+                                                @else
+                                                <div class="label-main"><label class="label label-lg bg-danger">Rejected</label></div>
+                                                @endif
                                             </td>
                                         </tr>
                                         @endforeach

@@ -70,11 +70,34 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/create', [App\Http\Controllers\CategoryController::class, 'show'])->name('category.show');
             Route::post('/', [App\Http\Controllers\CategoryController::class, 'create'])->name('category.create');
         });
+
+        Route::group(['prefix' => 'campaigns'], function(){
+            Route::get('/', [App\Http\Controllers\StoryController::class, 'getAllStories'])->name('story');
+        });
+
+        Route::group(['prefix' => 'users'], function(){
+            Route::get('/', [App\Http\Controllers\UserController::class, 'index'])->name('user');
+            Route::get('/{id}', [App\Http\Controllers\UserController::class, 'getUser'])->name('user.details');
+        });
+
+        Route::group(['prefix' => 'donations'], function(){
+            Route::get('/', [App\Http\Controllers\DonationController::class, 'getAllDonations'])->name('donation.all');
+        });
+
+        Route::group(['prefix' => 'testimonials'], function(){
+            Route::get('/', [App\Http\Controllers\TestimonialController::class, 'index'])->name('testimonial');
+            Route::get('/create', [App\Http\Controllers\TestimonialController::class, 'show'])->name('testimonial.show');
+            Route::post('/', [App\Http\Controllers\TestimonialController::class, 'create'])->name('testimonial.create');
+            Route::delete('/', [App\Http\Controllers\TestimonialController::class, 'delete'])->name('testimonial.delete');
+        });
     });
 
     Route::group(['prefix' => 'transactions'], function(){
         Route::get('/', [App\Http\Controllers\TransactionController::class, 'index'])->name('transaction');
         Route::post('/', [App\Http\Controllers\TransactionController::class, 'requestWithdraw'])->name('transaction.request');
+        Route::get('/withdraw/requests', [App\Http\Controllers\TransactionController::class, 'withdrawRequests'])->name('transaction.withdraw.request')->middleware('user.type');
         Route::any('/withdraw', [App\Http\Controllers\TransactionController::class, 'withdraw'])->name('transaction.withdraw');
+        Route::post('/withdraw/accept', [App\Http\Controllers\TransactionController::class, 'acceptWithdraw'])->name('withdraw.accept')->middleware('user.type');
+        Route::post('/withdraw/reject', [App\Http\Controllers\TransactionController::class, 'rejectWithdraw'])->name('withdraw.reject')->middleware('user.type');
     });
 });

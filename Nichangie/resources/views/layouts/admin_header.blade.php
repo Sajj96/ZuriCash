@@ -49,30 +49,37 @@
                 </li>
                 @if(Auth::user()->user_type == 2)
                 <li class="treeview">
-                    <a class="waves-effect waves-dark" href="index.html">
+                    <a class="waves-effect waves-dark" href="{{ route('user') }}">
                         <i class="icon-people"></i><span> Users</span>
                     </a>
                 </li>
                 <li class="treeview">
-                    <a class="waves-effect waves-dark" href="index.html">
+                    <a class="waves-effect waves-dark" href="{{ route('story') }}">
                         <i class="icon-hourglass"></i><span> Campaigns</span>
                     </a>
                 </li>
-                <li class="treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-grid"></i><span> Categories</span><i class="icon-arrow-down"></i></a>
+                <!-- <li class="treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-grid"></i><span> Categories</span><i class="icon-arrow-down"></i></a>
                     <ul class="treeview-menu">
                         <li><a class="waves-effect waves-dark" href="{{ route('category')}}"><i class="icon-arrow-right"></i> Category List</a></li>
                         <li><a class="waves-effect waves-dark" href="{{ route('category.show')}}"><i class="icon-arrow-right"></i> Create Category</a></li>
                     </ul>
+                </li> -->
+                <li class="treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-credit-card"></i><span> Transactions</span><i class="icon-arrow-down"></i></a>
+                    <ul class="treeview-menu">
+                        <li><a class="waves-effect waves-dark" href="{{ route('transaction')}}"><i class="icon-arrow-right"></i> All Transactions</a></li>
+                        <li><a class="waves-effect waves-dark" href="{{ route('transaction.withdraw.request')}}"><i class="icon-arrow-right"></i> Withdraw Requests</a></li>
+                    </ul>
                 </li>
                 <li class="treeview">
-                    <a class="waves-effect waves-dark" href="index.html">
-                        <i class="icon-credit-card"></i><span> Transactions</span>
-                    </a>
-                </li>
-                <li class="treeview">
-                    <a class="waves-effect waves-dark" href="index.html">
+                    <a class="waves-effect waves-dark" href="{{ route('donation.all') }}">
                         <i class="icon-heart"></i><span> Donations</span>
                     </a>
+                </li>
+                <li class="treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-speech"></i><span> Testimonials</span><i class="icon-arrow-down"></i></a>
+                    <ul class="treeview-menu">
+                        <li><a class="waves-effect waves-dark" href="{{ route('testimonial')}}"><i class="icon-arrow-right"></i> All Testimonials</a></li>
+                        <li><a class="waves-effect waves-dark" href="{{ route('testimonial.show')}}"><i class="icon-arrow-right"></i> Add Testimonial</a></li>
+                    </ul>
                 </li>
                 @else
                 <li class="treeview">

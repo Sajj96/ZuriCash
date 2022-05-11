@@ -17,14 +17,21 @@ class TransactionController extends Controller
 
         if ($user->user_type != 2) {
             $transactions = DB::table('transactions')
-                ->join('users', 'transactions.user_id', 'users.id')
-                ->leftJoin('stories', 'transactions.campaign', 'stories.id')
-                ->select('transactions.*', 'users.name', 'users.lastname', 'stories.title', 'stories.id as camp_id')
-                ->where('transactions.user_id', $user->id)
-                ->get();
+                                ->join('users', 'transactions.user_id', 'users.id')
+                                ->leftJoin('stories', 'transactions.campaign', 'stories.id')
+                                ->select('transactions.*', 'users.name', 'users.lastname', 'stories.title', 'stories.id as camp_id')
+                                ->where('transactions.user_id', $user->id)
+                                ->get();
             return view('admin.transactions.transaction', compact('transactions'));
         }
-        return view('admin.transactions.transaction');
+
+        $transactions = DB::table('transactions')
+                                ->join('users', 'transactions.user_id', 'users.id')
+                                ->leftJoin('stories', 'transactions.campaign', 'stories.id')
+                                ->select('transactions.*', 'users.name', 'users.lastname', 'stories.title', 'stories.id as camp_id')
+                                ->get();
+
+        return view('admin.transactions.transaction', compact('transactions'));
     }
 
     public function withdraw(Request $request)
@@ -34,12 +41,12 @@ class TransactionController extends Controller
 
         if (!empty($request->id)) {
             $campaign = DB::table('stories')
-                ->leftJoin('donations', 'stories.id', 'donations.campaign_id')
-                ->select('stories.id', 'stories.title', 'stories.fundgoals', 'stories.deadline', 'stories.status', 'stories.description', DB::raw('SUM(donations.amount) as amount'))
-                ->where('stories.owner_id', $user->id)
-                ->where('stories.id', $request->id)
-                ->groupBy('stories.id', 'stories.title', 'stories.fundgoals', 'stories.deadline', 'stories.status', 'stories.description')
-                ->first();
+                            ->leftJoin('donations', 'stories.id', 'donations.campaign_id')
+                            ->select('stories.id', 'stories.title', 'stories.fundgoals', 'stories.deadline', 'stories.status', 'stories.description', DB::raw('SUM(donations.amount) as amount'))
+                            ->where('stories.owner_id', $user->id)
+                            ->where('stories.id', $request->id)
+                            ->groupBy('stories.id', 'stories.title', 'stories.fundgoals', 'stories.deadline', 'stories.status', 'stories.description')
+                            ->first();
 
             $balance = $transaction->campaignBalance($request->id, $user->id);
             return view('admin.transactions.withdraw', compact('campaign', 'balance'));
@@ -107,6 +114,43 @@ class TransactionController extends Controller
             }
         } catch (\Exception $e) {
             return redirect()->route('transaction.withdraw')->with('error', 'Something went wrong while requesting withdraw!');
+        }
+    }
+
+    public function withdrawRequests()
+    {
+        $transactions = DB::table('transactions')
+                            ->join('users', 'transactions.user_id', 'users.id')
+                            ->leftJoin('stories', 'transactions.campaign', 'stories.id')
+                            ->select('transactions.*', 'users.name', 'users.lastname', 'stories.title', 'stories.id as camp_id')
+                            ->where('transactions.status',Transaction::PAYMENT_INPROGRESS)
+                            ->get();
+        return view('admin.transactions.withdraw_requests', compact('transactions'));
+    }
+
+    public function acceptWithdraw(Request $request)
+    {
+        try {
+            $transaction = Transaction::find($request->id);
+            $transaction->status = Transaction::PAYMENT_PAID;
+            if($transaction->save()) {
+                return redirect()->route('transaction.withdraw.request')->with('success', 'Withdraw accepted successfully!.');
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('transaction.withdraw.request')->with('error', 'Something went wrong.');
+        }
+    }
+
+    public function rejectWithdraw(Request $request)
+    {
+        try {
+            $transaction = Transaction::find($request->reject_id);
+            $transaction->status = Transaction::PAYMENT_REJECTED;
+            if($transaction->save()) {
+                return redirect()->route('transaction.withdraw.request')->with('success', 'Withdraw rejected successfully!.');
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('transaction.withdraw.request')->with('error', 'Something went wrong.');
         }
     }
 }

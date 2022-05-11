@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 use Rap2hpoutre\FastExcel\FastExcel;
 use Box\Spout\Writer\Common\Creator\Style\StyleBuilder;
+use DataTables;
 
 class StoryController extends Controller
 {
@@ -223,5 +224,57 @@ class StoryController extends Controller
         } catch (\Exception $e) {
             return redirect()->route('me.campaign')->with('error','Something went wrong while closing a campaign!');
         }
+    }
+
+    public function getAllStories(Request $request)
+    {
+        if ($request->ajax()) {
+            $campaigns = DB::table('stories')
+                        ->join('users', 'stories.owner_id', 'users.id')
+                        ->leftJoin('donations', 'stories.id','donations.campaign_id')
+                        ->select('stories.id','stories.title','stories.fundgoals','stories.created_at','users.name', 'users.lastname','stories.deadline','stories.status','stories.description',DB::raw('SUM(donations.amount) as amount')) 
+                        ->groupBy('stories.id','stories.title','stories.fundgoals','stories.created_at','users.name', 'users.lastname','stories.deadline','stories.status','stories.description');
+            // $campaigns = DB::table('stories');
+            return Datatables::of($campaigns)
+                    ->addIndexColumn()
+                    ->addColumn('username', function ($row) {
+                        return $row->name." ".$row->lastname;
+                    })
+                    ->addColumn('story_title', function ($row) {
+                        return '<a href="'.route('campaign.show', $row->id).'">'.substr($row->title,0,15).'</a>';
+                    })
+                    ->addColumn('created', function ($row) {
+                        return date('M d Y',strtotime($row->created_at));
+                    })
+                    ->addColumn('enddate', function ($row) {
+                        return date('M d Y',strtotime($row->deadline));
+                    })
+                    ->addColumn('status', function ($row) {
+                        if($row->status == 0){
+                            return '<div class="label-main"><label class="label label-lg bg-default">In progress</label></div>';
+                        } else if($row->status == 1){
+                            return '<div class="label-main"><label class="label label-lg bg-success">Finished</label></div>';
+                        } else {
+                            return '<div class="label-main"><label class="label label-lg bg-danger">Closed</label></div>';
+                        }
+                    })
+                    ->addColumn('action', function($row){
+                            return '<a href="'.route("campaign.close").'" class="btn btn-danger waves-effect" data-toggle="tooltip" data-placement="top" data-class="'.$row->id.'" title="Close Campaign"><i class="ti-close"></i></a>
+                                    <a href="'.route("transaction.withdraw").'" class="btn btn-success waves-effect" data-toggle="tooltip" data-placement="top" data-class="'.$row->id.'" title="Request Withdraw"><i class="ti-wallet"></i></a>
+                                    <a href="'.route("campaign.export", $row->id).'" class="btn btn-info waves-effect" data-toggle="tooltip" data-placement="top" title="Export Data"><i class="ti-download"></i></a>
+                                    <form data-id="'.$row->id.'" class="withdraw-form" action="'.route("transaction.withdraw").'" method="POST" style="display: none;">
+                                        <input type="hidden" name="_token" value="'.csrf_token().'">
+                                        <input type="hidden" value="'.$row->id.'" name="id">
+                                    </form>
+                                    <form data-id="'.$row->id.'" class="close-form" action="'.route('campaign.close').'" method="POST" style="display: none;">
+                                        <input type="hidden" name="_token" value="'.csrf_token().'">
+                                        <input type="hidden" value="'.$row->id.'" name="campaign_id">
+                                    </form>';
+                    })
+                    ->rawColumns(['story_title','action','status'])
+                    ->make(true);
+        }
+
+        return view('admin.campaigns.all_campaigns');
     }
 }

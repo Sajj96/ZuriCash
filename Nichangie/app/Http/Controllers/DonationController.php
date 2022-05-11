@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use DataTables;
 
 class DonationController extends Controller
 {
@@ -20,6 +21,27 @@ class DonationController extends Controller
                                 ->select('donations.*','stories.title')
                                 ->get();
         return view('admin.donations.donations', compact('donations'));
+    }
+
+    public function getAllDonations(Request $request)
+    {
+        if ($request->ajax()) {
+            $donations = DB::table('donations')
+                                ->join('stories','donations.campaign_id','stories.id')
+                                ->select('donations.*','stories.title','stories.id as story_id');
+            return Datatables::of($donations)
+                    ->addIndexColumn()
+                    ->addColumn('story_title', function ($row) {
+                        return '<a href="'.route('campaign.show', $row->story_id).'">'.substr($row->title,0,15).'</a>';
+                    })
+                    ->addColumn('created', function ($row) {
+                        return date('M d Y',strtotime($row->created_at));
+                    })
+                    ->rawColumns(['story_title'])
+                    ->make(true);
+        }
+
+        return view('admin.donations.all_donations');
     }
     
     public function create(Request $request)
