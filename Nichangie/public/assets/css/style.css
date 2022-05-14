@@ -4946,6 +4946,10 @@ img {
 	color: #fff;
 }
 
+.sec-title.donate h1 {
+	color: var(--theme-color);
+}
+
 .sec-title .text {
 	font-size: 16px;
 	font-weight: 300;
@@ -8443,7 +8447,8 @@ img {
 	color: #858585;
 	-webkit-box-shadow: inset 0px 0px 7.2px 0.8px rgba(0, 0, 0, 0.18);
 	        box-shadow: inset 0px 0px 7.2px 0.8px rgba(0, 0, 0, 0.18);
-	max-width: 190px;
+	max-width: 100%;
+	width: 600px;
 	border-radius: 6px;
 }
 
@@ -12425,7 +12430,7 @@ img {
 	color: #a6a6a6;
 	font-weight: 400;
 	counter-increment: count;
-	content: "0" counter(count)".";
+	content: "0" counter(count);
 	text-align: left;
 }
 

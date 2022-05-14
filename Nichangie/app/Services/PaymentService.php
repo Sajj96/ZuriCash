@@ -55,4 +55,27 @@ class PaymentService {
             return response()->json($responseBody);
         }
     }
+
+    public function successPayment() {
+        $url = 'https://nachangia.co.tz/nachangia/payments/callbackpayments.php';
+        
+
+        try {
+            $response = $this->client->request('GET', $url, [
+                "verify" => false,
+                'headers' => [
+                    'Accept'       => 'application/json',
+                    'Content-Type' => 'application/json'
+                ]
+            ]);
+            $statuscode = $response->getStatusCode();
+            if ($statuscode == 200) {
+                $responseData = json_decode($response->getBody()->getContents()); 
+                return response()->json($responseData);               
+            }
+        } catch (ClientErrorResponseException $exception) {
+            $responseBody = $exception->getResponse()->getBody(true);
+            return response()->json($responseBody);
+        }
+    }
 }

@@ -148,7 +148,7 @@ class StoryController extends Controller
             $campaign->deadline = $request->enddate;
             $campaign->status = Story::STATUS_INPROGRESS;
             if($campaign->save()) {
-                return redirect()->route('campaign')->with('success','Campaign created successfully!');
+                return redirect()->route('campaign.show', $campaign->id)->with('success','Campaign created successfully!');
             }
             file_put_contents("/app/public/images/".$fileName, $fileBin);
         } catch (\Exception $e) {

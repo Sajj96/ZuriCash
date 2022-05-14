@@ -60,32 +60,16 @@
                 </div>
                 <div class="donate-form-area">
                     <div class="donate-form-wrapper">
-                        <div class="sec-title">
+                        <div class="sec-title donate">
                             <h1>Donate us to achive our goal</h1>
-                            <div class="text">Beguiled and demoralized by the charms of pleasure of the moment, so by desire, <br>that they cannot foresee.</div>
                         </div>
 
                         <form action="{{ route('donate.create')}}" class="donate-form default-form" method="post">
                             @csrf
                             <ul class="chicklet-list clearfix">
-                                <li>
-                                    <input type="radio" id="donate-amount-1" value="1000" name="donate_amount" class="donate_amount" />
-                                    <label for="donate-amount-1" data-amount="10">TZS 1000</label>
-                                </li>
-                                <li>
-                                    <input type="radio" id="donate-amount-2" value="2000" name="donate_amount" class="donate_amount" />
-                                    <label for="donate-amount-2" data-amount="20">TZS 2000</label>
-                                </li>
-                                <li>
-                                    <input type="radio" id="donate-amount-3" value="5000" name="donate_amount" class="donate_amount" />
-                                    <label for="donate-amount-3" data-amount="50">TZS 5000</label>
-                                </li>
-                                <li>
-                                    <input type="radio" id="donate-amount-4" value="10000" name="donate_amount" class="donate_amount" />
-                                    <label for="donate-amount-4" data-amount="100">TZS 10000</label>
-                                </li>
+                                <li>Amount</li>
                                 <li class="other-amount">
-                                    <div class="input-container" data-message="Every dollar you donate helps end hunger."><input type="text" id="donate_amount" name="donate_amount" placeholder="Other Amount" />
+                                    <div class="input-container" data-message="Every dollar you donate helps end hunger."><input type="text" class="currency" id="donate_amount" name="donate_amount" placeholder="Enter Amount" />
                                     </div>
                                 </li>
                             </ul>
@@ -337,6 +321,7 @@
 @include('layouts.footer')
 @section('page-scripts')
 <script src="{{ asset('assets/js/knob.js')}}"></script>
+<script src="{{ asset('assets/js/cleave-js/dist/cleave.min.js')}}"></script>
 <script src="{{ asset('assets/js/jquery.bootstrap-touchspin.js')}}"></script>
 <script src="{{ asset('assets/js/clipboard/clipboard.min.js')}}"></script>
 <script src="{{ asset('assets/js/intl-tel-input/js/intlTelInput.min.js')}}"></script>
@@ -346,6 +331,11 @@
 <script src="{{ asset('assets/js/auth-login.js')}}"></script>
 <script>
     $(document).ready(function() {
+
+        var cleaveC = new Cleave('.currency', {
+            numeral: true,
+            numeralThousandsGroupStyle: 'thousand'
+        });
 
         new Clipboard('.btn-copy');
 

@@ -47,7 +47,7 @@ class DonationController extends Controller
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'donate_amount'  => 'required|numeric',
+            'donate_amount'  => 'required',
             'phone'        => 'required|string'
         ]);
 
@@ -72,19 +72,22 @@ class DonationController extends Controller
                 $name = $request->name;
             }
 
+            $amount = (int) str_replace(',','',$request->donate_amount);
+
             $donation = new Donation;
             $donation->campaign_id = $request->campaign_id;
             $donation->name = $name;
             $donation->email = $request->email;
             $donation->contact = str_replace('+','',$request->phone);
             $donation->comment = $request->comment;
-            $donation->amount = $request->donate_amount;
+            $donation->amount = $amount;
             $donation->transaction_number = $string;
             $ussd = app(PaymentService::class);
-            $response = $ussd->ussdPush(str_replace('+','',$request->phone),$request->donate_amount,$string)->getData();
+            $response = $ussd->ussdPush(str_replace('+','',$request->phone),$amount,$string)->getData();
             if($response->body->response->responseStatus == "Accepted Successfully") {
-                if($donation->save())
-                return redirect()->route('campaign.show', $request->campaign_id)->with('success','Donation is in progress. Please complete payment through USSD appeared on your phone');
+                // if($donation->save())
+                $success_payment = $ussd->successPayment();
+                return redirect()->route('campaign.show', $request->campaign_id)->with('success',$success_payment);
             }
         } catch (\Exception $e) {
             return redirect()->route('campaign.show', $request->campaign_id)->with('error',$e->getMessage());
