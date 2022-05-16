@@ -64,7 +64,7 @@
                                                 <a href="{{ route('campaign.export', $rows->id)}}" class="btn btn-info waves-effect" data-toggle="tooltip" data-placement="top" title="Export Data"><i class="ti-download"></i></a>
                                                 <form id="withdraw-form{{$rows->id}}" action="{{ route('transaction.withdraw')}}" method="POST" style="display: none;">
                                                     @csrf
-                                                    <input type="hidden" value="{{$rows->id}}" name="id">
+                                                    <input type="text" value="{{$rows->id}}" name="id">
                                                 </form>
                                                 <form id="close-form{{$rows->id}}" action="{{ route('campaign.close')}}" method="POST" style="display: none;">
                                                     @csrf

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Donation;
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -36,7 +37,13 @@ class TransactionController extends Controller
 
     public function withdraw(Request $request)
     {
-        $user = Auth::user();
+ 
+        if(Auth::user()->user_type == 2) {
+            $user = User::find($request->user_id);
+        } else {
+            $user = Auth::user();
+        }
+
         $transaction = new Transaction;
 
         if (!empty($request->id)) {
@@ -71,7 +78,12 @@ class TransactionController extends Controller
 
             $transaction = new Transaction;
 
-            $user = Auth::user();
+            if(Auth::user()->user_type == 2) {
+                $user = User::find($request->user_id);
+            } else {
+                $user = Auth::user();
+            }
+
             if (!empty($request->campaign_id)) {
                 $balance = $transaction->campaignBalance($request->campaign_id, $user->id);
 

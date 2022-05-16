@@ -8,13 +8,15 @@ use Carbon\Carbon;
 class PaymentService {
 
     public $client;
+    public $url = 'http://18.220.121.223:8980/gateway/services/v1/collect/push';
 
-    public function __construct(Client $client) {
+    public function __construct(Client $client) 
+    {
         $this->client = $client;
     }
 
-    public function ussdPush($phone, $amount, $transactionNo) {
-        $url = 'http://18.220.121.223:8980/gateway/services/v1/collect/push';
+    public function ussdPush($phone, $amount, $transactionNo) 
+    {
         
         $username = "13";
         $password = "Nachangia@2022";
@@ -23,7 +25,7 @@ class PaymentService {
         $apipassword = base64_encode(hash("sha256", $username.$password.$timestamp, true));
 
         try {
-            $response = $this->client->request('POST', $url, [
+            $response = $this->client->request('POST', $this->url, [
                 "verify" => false,
                 'headers' => [
                     'Accept'       => 'application/json',
@@ -57,15 +59,32 @@ class PaymentService {
     }
 
     public function successPayment() {
-        $url = 'https://nachangia.co.tz/nachangia/payments/callbackpayments.php';
+
+        $username = "13";
+        $password = "Nachangia@2022";
+        $timestamp = "20220506104027";
         
+        $apipassword = base64_encode(hash("sha256", $username.$password.$timestamp, true));
 
         try {
-            $response = $this->client->request('GET', $url, [
+            $response = $this->client->request('POST', $this->url, [
                 "verify" => false,
                 'headers' => [
                     'Accept'       => 'application/json',
                     'Content-Type' => 'application/json'
+                ],
+                "json" => [
+                    "body" => (object) array(
+                        "request" => (object) array(
+                            "command" => "QueryStatus",
+                            "reference" => "5012345"
+                        )
+                    ),
+                    "header" => (object) array(
+                        "username"  => $username,
+                        "password"  => $apipassword,
+                        "timestamp" => $timestamp
+                    )
                 ]
             ]);
             $statuscode = $response->getStatusCode();

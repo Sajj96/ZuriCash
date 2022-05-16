@@ -3,6 +3,14 @@
 @section('page-styles')
 <link rel="stylesheet" href="{{ asset('admin/assets/plugins/datatables/datatables.min.css')}}">
 <link rel="stylesheet" href="{{ asset('admin/assets/plugins/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
+<!-- <style>
+div.dt-buttons {
+    position: relative;
+    margin-bottom: 20px !important;
+    float: none !important;
+}
+</style> -->
 @endsection
 
 @section('content')
@@ -57,45 +65,45 @@
 @section('page-scripts')
 <script src="{{ asset('admin/assets/plugins/datatables/datatables.min.js')}}"></script>
 <script src="{{ asset('admin/assets/plugins/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
 <script>
     $(function () {
     
     var table = $('#table-1').dataTable({
+        dom: 'Blfrtip',
+        buttons: [
+            { 
+                extend: "excelHtml5", 
+                text: 'Export to Excel',
+                title: "ALL CAMPAIGNS",
+                sheetName: "CAMPAIGNS",
+                className: "btn btn-info mb-0",
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+                },
+                customize: function ( xlsx ){
+                var sheet = xlsx.xl.worksheets['sheet1.xml'];
+
+                // jQuery selector to add a border
+                $('row c[r*="2"]', sheet).attr( 's', '22' );
+                }
+            }
+        ],
         processing: true,
         serverSide: true,
         ajax: "{{ route('story') }}",
         columns: [
-            {data: 'id', name: 'id'},
-            {data: 'story_title', name: 'story_title'},
-            {data: 'username', name: 'username'},
-            {data: 'amount', name: 'amount'},
-            {data: 'fundgoals', name: 'fundgoals'},
-            {data: 'created', name: 'created'},
-            {data: 'enddate', name: 'enddate'},
-            {data: 'status', name: 'status',orderable: false, searchable: false},
+            {data: 'id', name: 'stories.id'},
+            {data: 'title', name: 'stories.title',sortable: true, searchable: true},
+            {data: 'name', name: 'users.name',sortable: true, searchable: true},
+            {data: 'amount', name: 'donations.amount',sortable: true, searchable: true},
+            {data: 'fundgoals', name: 'stories.fundgoals',sortable: true, searchable: true},
+            {data: 'created_at', name: 'stories.created_at',sortable: true, searchable: true},
+            {data: 'deadline', name: 'stories.deadline',sortable: true, searchable: true},
+            {data: 'status', name: 'stories.status',orderable: true, searchable: true},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ],
         order: [[1, 'asc']]
-    });
-    
-    $(document).on('click','.btn-danger', function(){
-        var id = $(this).data('class');
-        $('.close-form').each(function(){
-            var form_id = $(this).data('id');
-            if(form_id === id) {
-                $(this).submit();
-            }
-        })
-    });
-
-    $(document).on('click','.btn-success', function(){
-        var id = $(this).data('class');
-        $('.withdraw-form').each(function(){
-            var form_id = $(this).data('id');
-            if(form_id === id) {
-                $(this).submit();
-            }
-        })
     });
   });
 </script>

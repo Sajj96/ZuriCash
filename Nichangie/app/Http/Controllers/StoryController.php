@@ -47,7 +47,7 @@ class StoryController extends Controller
         $campaigns = DB::table('stories')
                         ->join('users','stories.owner_id','=','users.id')
                         ->select('stories.*','users.name','users.lastname')
-                        ->where('stories.status','<>',3)
+                        ->where('stories.status','<>',"Closed")
                         ->get();
         $type = 'Featured';
         $campaign_data = array();
@@ -76,7 +76,7 @@ class StoryController extends Controller
         $campaigns = DB::table('stories')
                         ->join('users','stories.owner_id','=','users.id')
                         ->select('stories.*','users.name','users.lastname')
-                        ->where('stories.status','<>',3)
+                        ->where('stories.status','<>',"Closed")
                         ->orderByDesc('stories.id')
                         ->limit(20)
                         ->get();
@@ -216,7 +216,12 @@ class StoryController extends Controller
     public function close(Request $request)
     {
         try {
-            $user = Auth::user();
+            if(Auth::user()->user_type == 2) {
+                $user = User::find($request->user_id);
+            } else {
+                $user = Auth::user();
+            }
+
             $campaign = Story::where('id',$request->campaign_id)->where('owner_id',$user->id)->first();
             $campaign->status = Story::STATUS_CANCELLED;
             $campaign->save();
@@ -232,46 +237,49 @@ class StoryController extends Controller
             $campaigns = DB::table('stories')
                         ->join('users', 'stories.owner_id', 'users.id')
                         ->leftJoin('donations', 'stories.id','donations.campaign_id')
-                        ->select('stories.id','stories.title','stories.fundgoals','stories.created_at','users.name', 'users.lastname','stories.deadline','stories.status','stories.description',DB::raw('SUM(donations.amount) as amount')) 
+                        ->select('stories.id','stories.title','stories.fundgoals','stories.created_at','users.name', 'users.lastname','users.id as userid','stories.deadline','stories.status','stories.description',DB::raw('SUM(donations.amount) as amount')) 
                         ->groupBy('stories.id','stories.title','stories.fundgoals','stories.created_at','users.name', 'users.lastname','stories.deadline','stories.status','stories.description');
             // $campaigns = DB::table('stories');
             return Datatables::of($campaigns)
                     ->addIndexColumn()
-                    ->addColumn('username', function ($row) {
+                    ->addColumn('name', function ($row) {
                         return $row->name." ".$row->lastname;
                     })
-                    ->addColumn('story_title', function ($row) {
+                    ->addColumn('title', function ($row) {
                         return '<a href="'.route('campaign.show', $row->id).'">'.substr($row->title,0,15).'</a>';
                     })
-                    ->addColumn('created', function ($row) {
+                    ->addColumn('created_at', function ($row) {
                         return date('M d Y',strtotime($row->created_at));
                     })
-                    ->addColumn('enddate', function ($row) {
+                    ->addColumn('deadline', function ($row) {
                         return date('M d Y',strtotime($row->deadline));
                     })
                     ->addColumn('status', function ($row) {
-                        if($row->status == 0){
+                        if($row->status == "In progress"){
                             return '<div class="label-main"><label class="label label-lg bg-default">In progress</label></div>';
-                        } else if($row->status == 1){
+                        } else if($row->status == "Finished"){
                             return '<div class="label-main"><label class="label label-lg bg-success">Finished</label></div>';
                         } else {
                             return '<div class="label-main"><label class="label label-lg bg-danger">Closed</label></div>';
                         }
                     })
                     ->addColumn('action', function($row){
-                            return '<a href="'.route("campaign.close").'" class="btn btn-danger waves-effect" data-toggle="tooltip" data-placement="top" data-class="'.$row->id.'" title="Close Campaign"><i class="ti-close"></i></a>
-                                    <a href="'.route("transaction.withdraw").'" class="btn btn-success waves-effect" data-toggle="tooltip" data-placement="top" data-class="'.$row->id.'" title="Request Withdraw"><i class="ti-wallet"></i></a>
-                                    <a href="'.route("campaign.export", $row->id).'" class="btn btn-info waves-effect" data-toggle="tooltip" data-placement="top" title="Export Data"><i class="ti-download"></i></a>
-                                    <form data-id="'.$row->id.'" class="withdraw-form" action="'.route("transaction.withdraw").'" method="POST" style="display: none;">
-                                        <input type="hidden" name="_token" value="'.csrf_token().'">
-                                        <input type="hidden" value="'.$row->id.'" name="id">
-                                    </form>
-                                    <form data-id="'.$row->id.'" class="close-form" action="'.route('campaign.close').'" method="POST" style="display: none;">
+                            return '<div class="d-flex"><form data-id="'.$row->id.'" class="close-form" action="'.route('campaign.close').'" method="POST">
                                         <input type="hidden" name="_token" value="'.csrf_token().'">
                                         <input type="hidden" value="'.$row->id.'" name="campaign_id">
-                                    </form>';
+                                        <input type="hidden" value="'.$row->userid.'" name="user_id">
+                                        <button type="submit" class="btn btn-danger waves-effect" data-toggle="tooltip" data-placement="top" title="Close Campaign"><i class="ti-close"></i></button>
+                                    </form>
+                                    <form data-id-withdraw="'.$row->id.'" class="withdraw-form" style="margin: 0 5px;" action="'.route("transaction.withdraw").'" method="POST">
+                                        <input type="hidden" name="_token" value="'.csrf_token().'">
+                                        <input type="hidden" value="'.$row->id.'" name="id">
+                                        <input type="hidden" value="'.$row->userid.'" name="user_id">
+                                        <button type="submit" class="btn btn-success waves-effect" data-toggle="tooltip" data-placement="top" title="Request Withdraw"><i class="ti-wallet"></i></button>
+                                    </form>
+                                    <a href="'.route("campaign.export", $row->id).'" class="btn btn-info waves-effect" data-toggle="tooltip" data-placement="top" title="Export Data"><i class="ti-download"></i></a>
+                                    </div>';
                     })
-                    ->rawColumns(['story_title','action','status'])
+                    ->rawColumns(['title','action','status'])
                     ->make(true);
         }
 

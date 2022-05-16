@@ -28,7 +28,7 @@ class CreateStoriesTable extends Migration
             $table->tinyInteger('type')->nullable();
             $table->text('category')->nullable();
             $table->integer('category_id', false, true)->nullable();
-            $table->tinyInteger('status');
+            $table->string('status');
             $table->timestamps();
         });
     }

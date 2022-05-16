@@ -19,6 +19,7 @@ class CreateTransactionsTable extends Migration
             $table->integer('campaign')->nullable();
             $table->double('amount');
             $table->double('debit');
+            $table->double('earned');
             $table->string('payment_method');
             $table->string('phone')->nullable();
             $table->string('account_name')->nullable();
@@ -27,6 +28,7 @@ class CreateTransactionsTable extends Migration
             $table->string('branch_name')->nullable();
             $table->string('invoice')->nullable();
             $table->string('supplier_contacts')->nullable();
+            $table->string('done_by')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });

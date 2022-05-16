@@ -60,16 +60,35 @@
     $(function () {
     
     var table = $('#table-1').dataTable({
+        dom: 'Blfrtip',
+        buttons: [
+            { 
+                extend: "excelHtml5", 
+                text: 'Export to Excel',
+                title: "ALL USERS",
+                sheetName: "USERS",
+                className: "btn btn-info mb-0",
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5, 6 ]
+                },
+                customize: function ( xlsx ){
+                var sheet = xlsx.xl.worksheets['sheet1.xml'];
+
+                // jQuery selector to add a border
+                $('row c[r*="2"]', sheet).attr( 's', '22' );
+                }
+            }
+        ],
         processing: true,
         serverSide: true,
         ajax: "{{ route('user') }}",
         columns: [
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},
-            {data: 'lastname', lastname: 'name'},
+            {data: 'lastname', name: 'lastname'},
             {data: 'phonenumber', name: 'phonenumber'},
             {data: 'location', name: 'location'},
-            {data: 'created', name: 'created'},
+            {data: 'created_at', name: 'created_at'},
             {data: 'status', name: 'status',orderable: false, searchable: false},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ],

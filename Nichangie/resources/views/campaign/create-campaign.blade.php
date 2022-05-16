@@ -80,21 +80,6 @@
                                     @enderror
                                 </div>
                             </div>
-                            <!-- <div class="col-lg-4 col-md-6 column">
-                                <div class="form-group">
-                                    <label for="type">{{ __('Campaign Type')}}</label>
-                                    <select class="filters-select form-control selectmenu" name="type">
-                                        @foreach($category_types as $key=>$rows)
-                                        <option value="{{ $rows->id }}">{{ $rows->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('type')
-                                    <span class="text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div> -->
                             <div class="col-lg-12 col-md-12 column">
                                 <div class="form-group">
                                     <label for="type">{{ __('Story')}}</label>

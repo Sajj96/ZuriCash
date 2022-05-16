@@ -15,10 +15,7 @@ class UserController extends Controller
             $users = User::query();
             return Datatables::of($users)
                     ->addIndexColumn()
-                    ->addColumn('username', function ($row) {
-                        return $row->name." ".$row->lastname;
-                    })
-                    ->addColumn('created', function ($row) {
+                    ->addColumn('created_at', function ($row) {
                         return date('M d Y',strtotime($row->created_at));
                     })
                     ->addColumn('status', function ($row) {

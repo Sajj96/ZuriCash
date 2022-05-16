@@ -133,7 +133,37 @@
                                     <label for="town_city">{{ __('City')}}</label>
                                     <select class="filters-select form-control selectmenu" name="town_city">
                                         <option value="">Please select</option>
+                                        <option value="Shinyanga">Shinyanga</option>
+                                        <option value="Simiyu">Simiyu</option>
+                                        <option value="Kagera">Kagera</option>
+                                        <option value="Dodoma">Dodoma</option>
+                                        <option value="Kilimanjaro">Kilimanjaro</option>
+                                        <option value="Mara">Mara</option>
+                                        <option value="Tabora">Tabora</option>
+                                        <option value="Morogoro">Morogoro</option>
+                                        <option value="Zanzibar South">Zanzibar South</option>
+                                        <option value="Pemba South">Pemba South</option>
+                                        <option value="Zanzibar North">Zanzibar North</option>
+                                        <option value="Singida">Singida</option>
+                                        <option value="Zanzibar West">Zanzibar West</option>
+                                        <option value="Mtwara">Mtwara</option>
+                                        <option value="Rukwa">Rukwa</option>
+                                        <option value="Kigoma">Kigoma</option>
+                                        <option value="Mwanza">Mwanza</option>
+                                        <option value="Njombe">Njombe</option>
+                                        <option value="Geita">Geita</option>
+                                        <option value="Katavi">Katavi</option>
+                                        <option value="Lindi">Lindi</option>
+                                        <option value="Manyara">Manyara</option>
+                                        <option value="Pwani">Pwani</option>
+                                        <option value="Ruvuma">Ruvuma</option>
+                                        <option value="Tanga">Tanga</option>
+                                        <option value="Pemba North">Pemba North</option>
+                                        <option value="Iringa">Iringa</option>
                                         <option value="Dar es Salaam">Dar es Salaam</option>
+                                        <option value="Arusha">Arusha</option>
+                                        <option value="Mbeya">Mbeya</option>
+                                        <option value="Songwe">Songwe</option>
                                     </select>
                                     @error('town_city')
                                     <span class="text-danger" role="alert">
