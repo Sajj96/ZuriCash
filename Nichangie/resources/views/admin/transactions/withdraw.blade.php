@@ -32,10 +32,11 @@
                                         <label for="amount" class="form-control-label">{{ __('Amount to withdraw')}}</label>
                                         <input type="number" name="amount" class="form-control" id="amount" aria-describedby="emailHelp" placeholder="Enter amount">
                                         <input type="hidden" name="campaign_id" value="{{ (!empty($campaign->id)) ? $campaign->id : '' }}" class="form-control">
+                                        <input type="hidden" name="user_id" value="{{ $user->id }}" class="form-control">
                                         <small id="emailHelp" class="form-text text-muted">{{ __('Current balance: TZS ')}} {{ $balance ?? 0}}</small>
                                     </div>
                                     <div class="form-group">
-                                        <label for="deposit" class="form-control-label">{{ __('Amount to deposit')}}</label>
+                                        <label for="deposit" class="form-control-label">{{ __('Amount to receive')}}</label>
                                         <input type="number" name="debit" class="form-control" id="deposit" aria-describedby="emailHelp" placeholder="Debit amount" readonly>
                                         <small id="emailHelp" class="form-text text-muted">{{ __('Platform Fee: 5% of the amount to withdraw')}}</small>
                                     </div>

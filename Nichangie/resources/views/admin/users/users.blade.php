@@ -3,6 +3,7 @@
 @section('page-styles')
 <link rel="stylesheet" href="{{ asset('admin/assets/plugins/datatables/datatables.min.css')}}">
 <link rel="stylesheet" href="{{ asset('admin/assets/plugins/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
 @endsection
 
 @section('content')
@@ -60,7 +61,7 @@
     $(function () {
     
     var table = $('#table-1').dataTable({
-        dom: 'Blfrtip',
+        dom: 'Bfrtip',
         buttons: [
             { 
                 extend: "excelHtml5", 
@@ -77,6 +78,12 @@
                 // jQuery selector to add a border
                 $('row c[r*="2"]', sheet).attr( 's', '22' );
                 }
+            },
+            { 
+                extend: "pdfHtml5", 
+                text: 'Download PDF',
+                title: "ALL USERS",
+                className: "btn btn-success mb-0",
             }
         ],
         processing: true,

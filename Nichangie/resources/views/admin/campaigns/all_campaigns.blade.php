@@ -64,13 +64,11 @@ div.dt-buttons {
 </div>
 @section('page-scripts')
 <script src="{{ asset('admin/assets/plugins/datatables/datatables.min.js')}}"></script>
-<script src="{{ asset('admin/assets/plugins/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js')}}"></script>
-<script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
 <script>
     $(function () {
     
     var table = $('#table-1').dataTable({
-        dom: 'Blfrtip',
+        dom: 'Bfrtip',
         buttons: [
             { 
                 extend: "excelHtml5", 
@@ -87,6 +85,12 @@ div.dt-buttons {
                 // jQuery selector to add a border
                 $('row c[r*="2"]', sheet).attr( 's', '22' );
                 }
+            },
+            { 
+                extend: "pdfHtml5", 
+                text: 'Download PDF',
+                title: "ALL CAMPAIGNS",
+                className: "btn btn-success mb-0",
             }
         ],
         processing: true,

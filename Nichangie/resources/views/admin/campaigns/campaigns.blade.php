@@ -3,6 +3,7 @@
 @section('page-styles')
 <link rel="stylesheet" href="{{ asset('admin/assets/plugins/datatables/datatables.min.css')}}">
 <link rel="stylesheet" href="{{ asset('admin/assets/plugins/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
 @endsection
 
 @section('content')
@@ -60,9 +61,9 @@
                                             </td>
                                             <td>
                                                 <a href="{{ route('campaign.close')}}" class="btn btn-danger waves-effect" data-toggle="tooltip" data-placement="top" onclick="event.preventDefault(); document.getElementById('close-form{{$rows->id}}').submit();" title="Close Campaign"><i class="ti-close"></i></a>
-                                                <a href="{{ route('transaction.withdraw')}}" class="btn btn-success waves-effect" data-toggle="tooltip" data-placement="top" onclick="event.preventDefault(); document.getElementById('withdraw-form{{$rows->id}}').submit();" title="Request Withdraw"><i class="ti-wallet"></i></a>
+                                                <a href="{{ route('transaction.withdraw', Auth::user()->id)}}" class="btn btn-success waves-effect" data-toggle="tooltip" data-placement="top" onclick="event.preventDefault(); document.getElementById('withdraw-form{{$rows->id}}').submit();" title="Request Withdraw"><i class="ti-wallet"></i></a>
                                                 <a href="{{ route('campaign.export', $rows->id)}}" class="btn btn-info waves-effect" data-toggle="tooltip" data-placement="top" title="Export Data"><i class="ti-download"></i></a>
-                                                <form id="withdraw-form{{$rows->id}}" action="{{ route('transaction.withdraw')}}" method="POST" style="display: none;">
+                                                <form id="withdraw-form{{$rows->id}}" action="{{ route('transaction.withdraw', Auth::user()->id)}}" method="POST" style="display: none;">
                                                     @csrf
                                                     <input type="text" value="{{$rows->id}}" name="id">
                                                 </form>
@@ -88,7 +89,33 @@
 <script src="{{ asset('admin/assets/plugins/datatables/datatables.min.js')}}"></script>
 <script src="{{ asset('admin/assets/plugins/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js')}}"></script>
 <script>
-    $("#table-1").dataTable();
+    $("#table-1").dataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            { 
+                extend: "excelHtml5", 
+                text: 'Export to Excel',
+                title: "ALL CAMPAIGNS",
+                sheetName: "CAMPAIGNS",
+                className: "btn btn-info mb-0",
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+                },
+                customize: function ( xlsx ){
+                var sheet = xlsx.xl.worksheets['sheet1.xml'];
+
+                // jQuery selector to add a border
+                $('row c[r*="2"]', sheet).attr( 's', '22' );
+                }
+            },
+            { 
+                extend: "pdfHtml5", 
+                text: 'Download PDF',
+                title: "ALL CAMPAIGNS",
+                className: "btn btn-success mb-0",
+            }
+        ],
+    });
 </script>
 @endsection
 @endsection

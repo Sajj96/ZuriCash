@@ -81,12 +81,14 @@ class DonationController extends Controller
             $donation->contact = str_replace('+','',$request->phone);
             $donation->comment = $request->comment;
             $donation->amount = $amount;
-            $donation->transaction_number = $string;
             $ussd = app(PaymentService::class);
             $response = $ussd->ussdPush(str_replace('+','',$request->phone),$amount,$string)->getData();
+            $donation->transaction_number = $response->body->response->reference;
             if($response->body->response->responseStatus == "Accepted Successfully") {
                 // if($donation->save())
-                $success_payment = $ussd->successPayment();
+                $success_payment = $ussd->successPayment($response->body->response->reference);
+                print_r($success_payment);
+                exit;
                 return redirect()->route('campaign.show', $request->campaign_id)->with('success',$success_payment);
             }
         } catch (\Exception $e) {

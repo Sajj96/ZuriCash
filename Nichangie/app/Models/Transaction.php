@@ -10,9 +10,9 @@ class Transaction extends Model
 {
     use HasFactory;
 
-    const PAYMENT_INPROGRESS = 0;
-    const PAYMENT_PAID = 1;
-    const PAYMENT_REJECTED = 2;
+    const PAYMENT_INPROGRESS = "In progress";
+    const PAYMENT_PAID = "Accepted";
+    const PAYMENT_REJECTED = "Rejected";
 
     public function campaignTransactions($campaign_id,$user_id)
     {
@@ -51,5 +51,13 @@ class Transaction extends Model
         $user_balance = $user_donation - $user_transaction;
         $balance = $user_balance ?? 0;
         return $balance;
+    }
+
+    public function earning()
+    {
+        $transaction = DB::table('transactions')
+                        ->sum('earned');
+        $transaction_amount = $transaction ?? 0;
+        return $transaction_amount;
     }
 }

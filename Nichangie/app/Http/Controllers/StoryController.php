@@ -264,16 +264,15 @@ class StoryController extends Controller
                         }
                     })
                     ->addColumn('action', function($row){
-                            return '<div class="d-flex"><form data-id="'.$row->id.'" class="close-form" action="'.route('campaign.close').'" method="POST">
+                            return '<div class="d-flex tooltip-btn button-list">
+                                    <form data-id="'.$row->id.'" class="close-form" action="'.route('campaign.close').'" method="POST">
                                         <input type="hidden" name="_token" value="'.csrf_token().'">
                                         <input type="hidden" value="'.$row->id.'" name="campaign_id">
-                                        <input type="hidden" value="'.$row->userid.'" name="user_id">
                                         <button type="submit" class="btn btn-danger waves-effect" data-toggle="tooltip" data-placement="top" title="Close Campaign"><i class="ti-close"></i></button>
                                     </form>
-                                    <form data-id-withdraw="'.$row->id.'" class="withdraw-form" style="margin: 0 5px;" action="'.route("transaction.withdraw").'" method="POST">
+                                    <form data-id-withdraw="'.$row->id.'" class="withdraw-form" style="margin: 0 5px;" action="'.route("transaction.withdraw",$row->userid).'" method="POST">
                                         <input type="hidden" name="_token" value="'.csrf_token().'">
                                         <input type="hidden" value="'.$row->id.'" name="id">
-                                        <input type="hidden" value="'.$row->userid.'" name="user_id">
                                         <button type="submit" class="btn btn-success waves-effect" data-toggle="tooltip" data-placement="top" title="Request Withdraw"><i class="ti-wallet"></i></button>
                                     </form>
                                     <a href="'.route("campaign.export", $row->id).'" class="btn btn-info waves-effect" data-toggle="tooltip" data-placement="top" title="Export Data"><i class="ti-download"></i></a>

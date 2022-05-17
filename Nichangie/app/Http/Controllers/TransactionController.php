@@ -35,11 +35,11 @@ class TransactionController extends Controller
         return view('admin.transactions.transaction', compact('transactions'));
     }
 
-    public function withdraw(Request $request)
+    public function withdraw(Request $request, $userid)
     {
  
         if(Auth::user()->user_type == 2) {
-            $user = User::find($request->user_id);
+            $user = User::find($userid);
         } else {
             $user = Auth::user();
         }
@@ -56,11 +56,11 @@ class TransactionController extends Controller
                             ->first();
 
             $balance = $transaction->campaignBalance($request->id, $user->id);
-            return view('admin.transactions.withdraw', compact('campaign', 'balance'));
+            return view('admin.transactions.withdraw', compact('campaign', 'balance','user'));
         }
 
         $balance = $transaction->userBalance($user->id);
-        return view('admin.transactions.withdraw', compact('balance'));
+        return view('admin.transactions.withdraw', compact('balance','user'));
     }
 
     public function requestWithdraw(Request $request)
@@ -70,32 +70,32 @@ class TransactionController extends Controller
             'payment_method' => 'required'
         ]);
 
+        if(Auth::user()->user_type == 2) {
+            $user = User::find($request->user_id);
+        } else {
+            $user = Auth::user();
+        }
+
         if ($validator->fails()) {
-            return redirect()->route('transaction.withdraw')->with('error', 'Amount and Payment Method are required!');
+            return redirect()->route('transaction.withdraw', $user->id)->with('error', 'Amount and Payment Method are required!');
         }
 
         try {
 
             $transaction = new Transaction;
 
-            if(Auth::user()->user_type == 2) {
-                $user = User::find($request->user_id);
-            } else {
-                $user = Auth::user();
-            }
-
             if (!empty($request->campaign_id)) {
                 $balance = $transaction->campaignBalance($request->campaign_id, $user->id);
 
                 if ($request->amount > $balance) {
-                    return redirect()->route('transaction.withdraw')->with('error', 'Sorry you don\'t have enough balance in this campaign to withdraw ' . $request->amount . '!');
+                    return redirect()->route('transaction.withdraw', $user->id)->with('error', 'Sorry you don\'t have enough balance in this campaign to withdraw ' . $request->amount . '!');
                 }
             }
 
             $balance = $transaction->userBalance($user->id);
 
             if ($request->amount > $balance) {
-                return redirect()->route('transaction.withdraw')->with('error', 'Sorry you don\'t have enough balance to withdraw ' . $request->amount . '!');
+                return redirect()->route('transaction.withdraw', $user->id)->with('error', 'Sorry you don\'t have enough balance to withdraw ' . $request->amount . '!');
             }
 
             $fileName = '';
@@ -112,6 +112,7 @@ class TransactionController extends Controller
             $transaction->campaign = (!empty($request->campaign_id)) ? $request->campaign_id : 0;
             $transaction->amount = $request->amount;
             $transaction->debit = $request->debit;
+            $transaction->earned = ($request->amount - $request->debit);
             $transaction->payment_method = $request->payment_method;
             $transaction->phone = $request->phone;
             $transaction->account_name = $request->account_name;
@@ -120,12 +121,13 @@ class TransactionController extends Controller
             $transaction->branch_name = $request->branch_name;
             $transaction->invoice = $fileName;
             $transaction->supplier_contacts = $request->supplier_contacts;
+            $transaction->done_by = (Auth::user()->user_type == 2) ? "Admin" : $user->name." ".$user->lastname;
             $transaction->status = Transaction::PAYMENT_INPROGRESS;
             if ($transaction->save()) {
-                return redirect()->route('transaction.withdraw')->with('success', 'Withdraw request is submitted successfully. Please wait for confirmation.');
+                return redirect()->route('transaction.withdraw', $user->id)->with('success', 'Withdraw request is submitted successfully. Please wait for confirmation.');
             }
         } catch (\Exception $e) {
-            return redirect()->route('transaction.withdraw')->with('error', 'Something went wrong while requesting withdraw!');
+            return redirect()->route('transaction.withdraw', $user->id)->with('error', 'Something went wrong while requesting withdraw!');
         }
     }
 
@@ -143,8 +145,10 @@ class TransactionController extends Controller
     public function acceptWithdraw(Request $request)
     {
         try {
+            $user = Auth::user();   
             $transaction = Transaction::find($request->id);
             $transaction->status = Transaction::PAYMENT_PAID;
+            $transaction->managed_by = $user->name." ".$user->lastname;
             if($transaction->save()) {
                 return redirect()->route('transaction.withdraw.request')->with('success', 'Withdraw accepted successfully!.');
             }
@@ -156,8 +160,10 @@ class TransactionController extends Controller
     public function rejectWithdraw(Request $request)
     {
         try {
+            $user = Auth::user();
             $transaction = Transaction::find($request->reject_id);
             $transaction->status = Transaction::PAYMENT_REJECTED;
+            $transaction->managed_by = $user->name." ".$user->lastname;
             if($transaction->save()) {
                 return redirect()->route('transaction.withdraw.request')->with('success', 'Withdraw rejected successfully!.');
             }

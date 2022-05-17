@@ -59,12 +59,14 @@ class HomeController extends Controller
     {
         if(Auth::user()->user_type == 2) {
             $users = User::all();
+            $transaction = new Transaction;
             $num_users = count($users);
-            $campaings = Story::where('status', 0)->get();
+            $campaings = Story::where('status', "In progress")->get();
             $num_campaigns = count($campaings);
-            $transactions = Transaction::where('status', 0)->get();
+            $transactions = Transaction::where('status', "In progress")->get();
             $num_trans = count($transactions);
-            return view('admin.home', compact('num_users','num_campaigns','num_trans'));
+            $earnings = $transaction->earning();
+            return view('admin.home', compact('num_users','num_campaigns','num_trans','earnings'));
         }
 
         $transaction = new Transaction;

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Transaction;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -29,7 +30,8 @@ class CreateTransactionsTable extends Migration
             $table->string('invoice')->nullable();
             $table->string('supplier_contacts')->nullable();
             $table->string('done_by')->nullable();
-            $table->tinyInteger('status')->default(0);
+            $table->string('managed_by')->nullable();
+            $table->string('status')->default(Transaction::PAYMENT_INPROGRESS);
             $table->timestamps();
         });
     }

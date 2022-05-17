@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Donation;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -22,6 +23,7 @@ class CreateDonationsTable extends Migration
             $table->string('transaction_number')->nullable();
             $table->double('amount');
             $table->text('comment')->nullable();
+            $table->tinyInteger('status')->default(Donation::UPPAID);
             $table->timestamps();
         });
     }

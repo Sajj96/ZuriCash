@@ -96,8 +96,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', [App\Http\Controllers\TransactionController::class, 'index'])->name('transaction');
         Route::post('/', [App\Http\Controllers\TransactionController::class, 'requestWithdraw'])->name('transaction.request');
         Route::get('/withdraw/requests', [App\Http\Controllers\TransactionController::class, 'withdrawRequests'])->name('transaction.withdraw.request')->middleware('user.type');
-        Route::any('/withdraw', [App\Http\Controllers\TransactionController::class, 'withdraw'])->name('transaction.withdraw');
         Route::post('/withdraw/accept', [App\Http\Controllers\TransactionController::class, 'acceptWithdraw'])->name('withdraw.accept')->middleware('user.type');
         Route::post('/withdraw/reject', [App\Http\Controllers\TransactionController::class, 'rejectWithdraw'])->name('withdraw.reject')->middleware('user.type');
+        Route::any('/withdraw/{userid}', [App\Http\Controllers\TransactionController::class, 'withdraw'])->name('transaction.withdraw');
     });
 });

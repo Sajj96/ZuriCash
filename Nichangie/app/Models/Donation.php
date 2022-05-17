@@ -10,6 +10,9 @@ class Donation extends Model
 {
     use HasFactory;
 
+    const UPPAID = 0;
+    const PAID = 1;
+
     public function campaignDonations($campaign_id,$user_id)
     {
         $donation = DB::table('stories')

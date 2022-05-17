@@ -21,3 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/campaign/{id}', [App\Http\Controllers\StoryController::class, 'storyLink'])->name('campaign.link');
 
 Route::post('/donate', [App\Http\Controllers\DonationController::class, 'donation'])->name('donate');
+
+Route::post('/auth/register', [App\Http\Controllers\AuthController::class, 'register'])->name('auth.register');
+
+Route::post('/auth/login', [App\Http\Controllers\AuthController::class, 'login'])->name('auth.login');

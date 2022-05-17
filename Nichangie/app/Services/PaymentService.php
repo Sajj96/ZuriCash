@@ -58,7 +58,7 @@ class PaymentService {
         }
     }
 
-    public function successPayment() {
+    public function successPayment($reference) {
 
         $username = "13";
         $password = "Nachangia@2022";
@@ -77,7 +77,7 @@ class PaymentService {
                     "body" => (object) array(
                         "request" => (object) array(
                             "command" => "QueryStatus",
-                            "reference" => "5012345"
+                            "reference" => $reference
                         )
                     ),
                     "header" => (object) array(

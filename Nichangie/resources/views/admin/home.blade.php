@@ -17,47 +17,67 @@
         @if(Auth::user()->user_type == 2)
         <div class="row dashboard-header">
             <div class="col-lg-3 col-md-6">
-                <div class="card dashboard-product">
-                    <span>Users</span>
-                    <h2 class="dashboard-total-products">{{ $num_users }}</h2>
-                    Active 
-                    <div class="side-box">
-                        <i class="ti-user text-warning-color"></i>
+                <a href="{{ route('user') }}">
+                    <div class="card dashboard-product">
+                        <span>Users</span>
+                        <h2 class="dashboard-total-products">{{ $num_users }}</h2>
+                        Active
+                        <div class="side-box">
+                            <i class="ti-user text-warning-color"></i>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-lg-3 col-md-6">
-                <div class="card dashboard-product">
-                    <span>All Campaigns</span>
-                    <h2 class="dashboard-total-products">{{ $num_campaigns }}</h2>
-                    In progress
-                    <div class="side-box ">
-                        <i class="ti-announcement text-primary-color"></i>
+                <a href="{{ route('story') }}">
+                    <div class="card dashboard-product">
+                        <span>All Campaigns</span>
+                        <h2 class="dashboard-total-products">{{ $num_campaigns }}</h2>
+                        In progress
+                        <div class="side-box ">
+                            <i class="ti-announcement text-primary-color"></i>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-lg-3 col-md-6">
-                <div class="card dashboard-product">
-                    <span>Featured Campaigns</span>
-                    <h2 class="dashboard-total-products">{{ $num_campaigns }}</h2>
-                    In progress
-                    <div class="side-box">
-                        <i class="ti-crown text-danger-color"></i>
+                <a href="{{ route('story') }}">
+                    <div class="card dashboard-product">
+                        <span>Featured Campaigns</span>
+                        <h2 class="dashboard-total-products">{{ $num_campaigns }}</h2>
+                        In progress
+                        <div class="side-box">
+                            <i class="ti-crown text-danger-color"></i>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-lg-3 col-md-6">
-                <div class="card dashboard-product">
-                    <span>Withdraw Request</span>
-                    <h2 class="dashboard-total-products">{{ $num_trans }}</h2>
-                    Pending withdrawals
-                    <div class="side-box">
-                        <i class="ti-credit-card text-success-color"></i>
+                <a href="{{ route('transaction.withdraw.request')}}">
+                    <div class="card dashboard-product">
+                        <span>Withdraw Request</span>
+                        <h2 class="dashboard-total-products">{{ $num_trans }}</h2>
+                        Pending withdrawals
+                        <div class="side-box">
+                            <i class="ti-credit-card text-success-color"></i>
+                        </div>
                     </div>
-                </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <a href="{{ route('transaction.withdraw.request')}}">
+                    <div class="card dashboard-product">
+                        <span>Earnings</span>
+                        <h2 class="dashboard-total-products">TZS {{ number_format($earnings) }}</h2>
+                        Platform fees
+                        <div class="side-box">
+                            <i class="ti-money text-success-color"></i>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
@@ -68,18 +88,20 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         @else
         <div class="row dashboard-header">
             <div class="col-lg-3 col-md-6">
-                <div class="card dashboard-product">
-                    <span>Campaigns</span>
-                    <h2 class="dashboard-total-products">{{ $user_campaings }}</h2>
-                    In progress
-                    <div class="side-box">
-                        <i class="ti-announcement text-warning-color"></i>
+                <a href="{{ route('me.campaign')}}">
+                    <div class="card dashboard-product">
+                        <span>Campaigns</span>
+                        <h2 class="dashboard-total-products">{{ $user_campaings }}</h2>
+                        In progress
+                        <div class="side-box">
+                            <i class="ti-announcement text-warning-color"></i>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="card dashboard-product">
@@ -92,25 +114,25 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
-                  <div class="card dashboard-product">
-                     <span>Withdrawn</span>
-                     <h2 class="dashboard-total-products">TZS <span>{{ number_format($withdrawn) }}</span></h2>
-                     From All Campaigns
-                     <div class="side-box">
+                <div class="card dashboard-product">
+                    <span>Withdrawn</span>
+                    <h2 class="dashboard-total-products">TZS <span>{{ number_format($withdrawn) }}</span></h2>
+                    From All Campaigns
+                    <div class="side-box">
                         <i class="ti-stats-down text-success-color"></i>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-lg-3 col-md-6">
-                  <div class="card dashboard-product">
-                     <span>Balance</span>
-                     <h2 class="dashboard-total-products">TZS <span>{{ number_format($balance) }}</span></h2>
-                     Current
-                     <div class="side-box">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card dashboard-product">
+                    <span>Balance</span>
+                    <h2 class="dashboard-total-products">TZS <span>{{ number_format($balance) }}</span></h2>
+                    Current
+                    <div class="side-box">
                         <i class="ti-credit-card text-danger-color"></i>
-                     </div>
-                  </div>
-               </div>
+                    </div>
+                </div>
+            </div>
         </div>
         @endif
         <!-- 4-blocks row end -->
