@@ -60,7 +60,7 @@ class TransactionController extends Controller
         }
 
         $balance = $transaction->userBalance($user->id);
-        $campaign = array('fee_percent' => 5);
+        $campaign = (object) array('fee_percent' => 5);
         return view('admin.transactions.withdraw', compact('balance','user','campaign'));
     }
 
