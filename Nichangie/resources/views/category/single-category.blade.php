@@ -23,27 +23,26 @@
     <div class="auto-container">
         <div class="cause-wrapper">
             <div class="row loadMore" id="jar">
-                @foreach($campaigns as $key=>$rows)
+                @foreach($campaign_data as $key=>$rows)
                 <div class="cause-block-one col-lg-4 col-md-6">
                     <div class="inner-box">
                         <div class="image"><a href="{{ route('campaign.show', $rows->id) }}"><img src="{{ $rows->link }}" style="height: 230px;" alt="cause-media"></a></div>
                         <div class="lower-content">
                             <h4><a href="{{ route('campaign.show', $rows->id) }}">{{ $rows->title }}</a></h4>
                             <div class="category"><span class="flaticon-user"></span> {{ $rows->owner_name }}</div>
-                            <div class="text">{{ substr($rows->description,0,40) }}...</div>
                             <div class="info-box">
-                                <a href="#"><span>Raised:</span> $72000</a>
-                                <a href="#"><span>Goal:</span> TZS {{ $rows->fundgoals }}</a>
+                                <a href="#"><span>Raised:</span>TZS {{ number_format($rows->total_donation) }}</a>
+                                <a href="#"> {{ round($rows->donation_percentage)}}%</a>
                             </div>
                             <!--Progress Levels-->
-                            <div class="progress-levels style-two">
+                            <div class="progress-levels">
 
                                 <!--Skill Box-->
                                 <div class="progress-box wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1500ms">
                                     <div class="inner">
                                         <div class="bar">
                                             <div class="bar-innner">
-                                                <div class="bar-fill" data-percent="60">
+                                                <div class="bar-fill" data-percent="{{ round($rows->donation_percentage) }}">
                                                     <div class="percent"></div>
                                                 </div>
                                             </div>
@@ -51,7 +50,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="text">Raised by 84 people in 12 days</div>
+                            <div class="info-box">
+                                <a href="#"><i><span>Goal:</span> TZS {{ number_format($rows->fundgoals) }}</i></a>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -32,13 +32,14 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Title</th>
-                                            <th>Story</th>
-                                            <th>Raised</th>
-                                            <th>Goal</th>
-                                            <th>Deadline</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
+                                            <th>{{ __('Title')}}</th>
+                                            <th>{{ __('Story')}}</th>
+                                            <th>{{ __('Raised')}}</th>
+                                            <th>{{ __('Goal')}}</th>
+                                            <th>{{ __('Deadline')}}</th>
+                                            <th>{{ __('Type')}}</th>
+                                            <th>{{ __('Status')}}</th>
+                                            <th>{{ __('Action')}}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -51,7 +52,13 @@
                                             <td>{{ number_format($rows->fundgoals) }}</td>
                                             <td>{{ $rows->deadline }}</td>
                                             <td>
-                                                @if($rows->status == 0) 
+                                                @if($rows->type == 1)
+                                                @else
+                                                <a href="" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#make-featured-Modal">Upgrade</a>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($rows->status == 0)
                                                 <div class="label-main"><label class="label label-lg bg-default">In progress</label></div>
                                                 @elseif($rows->status == 1)
                                                 <div class="label-main"><label class="label label-lg bg-success">Finished</label></div>
@@ -81,6 +88,29 @@
                     </div>
                 </div>
                 <!-- Basic Table ends -->
+                <div class="modal fade modal-flex" id="make-featured-Modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-md" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h5 class="modal-title">{{ __('Make this campaign featured')}}</h5>
+                            </div>
+                            <!-- end of modal-header -->
+                            <div class="modal-body">
+                                <h6>{{ __('By making this campaign featured, 1% of the platform fee will be added.')}}</h6>
+                                <form action="" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-success btn-md waves-effect">Confirm</button>
+                                </form>
+                            </div>
+                            <!-- end of modal-body -->
+                        </div>
+                        <!-- end of modal-content -->
+                    </div>
+                    <!-- end of modal-dialog -->
+                </div>
             </div>
         </div>
     </div>
@@ -91,25 +121,24 @@
 <script>
     $("#table-1").dataTable({
         dom: 'Bfrtip',
-        buttons: [
-            { 
-                extend: "excelHtml5", 
+        buttons: [{
+                extend: "excelHtml5",
                 text: 'Export to Excel',
                 title: "ALL CAMPAIGNS",
                 sheetName: "CAMPAIGNS",
                 className: "btn btn-info mb-0",
                 exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+                    columns: [0, 1, 2, 3, 4, 5, 6, 7]
                 },
-                customize: function ( xlsx ){
-                var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                customize: function(xlsx) {
+                    var sheet = xlsx.xl.worksheets['sheet1.xml'];
 
-                // jQuery selector to add a border
-                $('row c[r*="2"]', sheet).attr( 's', '22' );
+                    // jQuery selector to add a border
+                    $('row c[r*="2"]', sheet).attr('s', '22');
                 }
             },
-            { 
-                extend: "pdfHtml5", 
+            {
+                extend: "pdfHtml5",
                 text: 'Download PDF',
                 title: "ALL CAMPAIGNS",
                 className: "btn btn-success mb-0",

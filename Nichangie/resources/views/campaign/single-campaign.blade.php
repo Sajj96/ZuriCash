@@ -31,7 +31,7 @@
                     </div>
                 </div>
             </div>
-            <div class="donars"><span>Donars</span> <br>{{ $doners }}</div>
+            <div class="donars"><span>Donors</span> <br>{{ $doners }}</div>
             <div class="days-left"><span>Days Left</span> <br>{{ $days_between }}</div>
         </div>
     </div>

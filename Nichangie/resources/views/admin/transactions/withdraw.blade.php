@@ -38,7 +38,7 @@
                                     <div class="form-group">
                                         <label for="deposit" class="form-control-label">{{ __('Amount to receive')}}</label>
                                         <input type="number" name="debit" class="form-control" id="deposit" aria-describedby="emailHelp" placeholder="Debit amount" readonly>
-                                        <small id="emailHelp" class="form-text text-muted">{{ __('Platform Fee: 5% of the amount to withdraw')}}</small>
+                                        <small id="emailHelp" class="form-text text-muted">Platform Fee: {{$campaign->fee_percent}}% of the amount to withdraw</small>
                                     </div>
                                     <div class="form-group">
                                         <label for="payment_method" class="form-control-label">{{ __('Payment method')}}</label>
@@ -108,7 +108,9 @@
     var utilUrl = "{{ asset('assets/js/intl-tel-input/js/utils.js?1638200991544')}}"
 </script>
 <script src="{{ asset('assets/js/auth-login.js')}}"></script>
-
+<script type="text/javascript">
+    var fee_percent = "{{ $campaign->fee_percent }}";
+</script>
 <script>
     $(document).ready(function() {
         $('#payment_method').on('change', function() {
@@ -152,7 +154,7 @@
         $('#amount').on('blur keyup', () => {
             var amount = $('#amount').val(),
                 deposit = 0,
-                fee = 0.05;
+                fee = fee_percent/100;
 
             deposit = amount - (amount * fee);
             $('#deposit').val(deposit);

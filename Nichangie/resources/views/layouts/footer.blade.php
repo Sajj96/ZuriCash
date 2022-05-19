@@ -7,7 +7,6 @@
                     <div class="col-lg-3 col-md-6 contact-widget footer-widget">
                         <h4 class="widget-title">Contact</h4>
                         <ul>
-                            <li>5404 Berrick Street, <br> 2nd cross, <br>Boston, MA 02115.</li>
                             <li><a href="mailto:info@nachangia.co.tz">info@nachangia.co.tz</a></li>
                         </ul>
                         <h3><a href="tel:+255788209794">+255 788 209 794</a></h3>

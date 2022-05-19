@@ -26,6 +26,7 @@ class CreateStoriesTable extends Migration
             $table->double('fundgoals');
             $table->date('deadline');
             $table->tinyInteger('type')->nullable();
+            $table->integer('fee_percent')->default(5)->nullable();
             $table->text('category')->nullable();
             $table->integer('category_id', false, true)->nullable();
             $table->string('status');

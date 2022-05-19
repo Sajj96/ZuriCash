@@ -39,14 +39,14 @@ div.dt-buttons {
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Title</th>
-                                            <th>Created By</th>
-                                            <th>Raised</th>
-                                            <th>Goal</th>
-                                            <th>Created On</th>
-                                            <th>Deadline</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
+                                            <th>{{ __('Title')}}</th>
+                                            <th>{{ __('Created By')}}</th>
+                                            <th>{{ __('Raised')}}</th>
+                                            <th>{{ __('Goal')}}</th>
+                                            <th>{{ __('Created On')}}</th>
+                                            <th>{{ __('Deadline')}}</th>
+                                            <th>{{ __('Status')}}</th>
+                                            <th>{{ __('Action')}}</th>
                                         </tr>
                                     </thead>
                                     <tbody>

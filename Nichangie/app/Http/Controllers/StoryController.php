@@ -172,10 +172,10 @@ class StoryController extends Controller
         $stories = Story::where('owner_id', $user->id)->get();
         $campaigns = DB::table('stories')
                         ->leftJoin('donations', 'stories.id','donations.campaign_id')
-                        ->select('stories.id','stories.title','stories.fundgoals','stories.deadline','stories.status','stories.description',DB::raw('SUM(donations.amount) as amount')) 
+                        ->select('stories.id','stories.title','stories.type','stories.fundgoals','stories.deadline','stories.status','stories.description',DB::raw('SUM(donations.amount) as amount')) 
                         ->where('stories.owner_id', $user->id)
                         ->orderBy('stories.id', 'DESC')
-                        ->groupBy('stories.id','stories.title','stories.fundgoals','stories.deadline','stories.status','stories.description')
+                        ->groupBy('stories.id','stories.title','stories.type','stories.fundgoals','stories.deadline','stories.status','stories.description')
                         ->get();
         return view('admin.campaigns.campaigns', compact('campaigns'));
     }
@@ -284,4 +284,7 @@ class StoryController extends Controller
 
         return view('admin.campaigns.all_campaigns');
     }
+
+    public function getPopularStories()
+    {}
 }

@@ -36,7 +36,10 @@ Route::get('/how-it-works', [App\Http\Controllers\HomeController::class, 'howItW
 
 Route::get('/privacypolicy', [App\Http\Controllers\HomeController::class, 'privacyPolicy'])->name('privacy');
 
-Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contactUs'])->name('contact');
+Route::group(['prefix' => 'contact-us'], function(){
+    Route::get('/', [App\Http\Controllers\ContactController::class, 'index'])->name('contact');
+    Route::post('/', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
+});
 
 Route::group(['prefix' => 'campaigns'], function(){
     Route::get('/', [App\Http\Controllers\StoryController::class, 'index'])->name('campaign')->middleware('auth');

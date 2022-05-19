@@ -26,6 +26,16 @@ class HomeController extends Controller
                         ->select('stories.*','users.name','users.lastname')
                         ->where('stories.status','<>',"Closed")
                         ->get();
+        //SELECT campaign_id, COUNT(campaign_id) FROM donations GROUP BY campaign_id ORDER BY COUNT(campaign_id) DESC
+        $popular_campaigns = DB::table('stories')
+                                ->join('users','stories.owner_id','=','users.id')
+                                ->join('donations','stories.id','=','donations.campaign_id')
+                                ->select('stories.*','users.name','users.lastname',DB::raw('COUNT(donations.campaign_id) as count'))
+                                ->where('stories.status','<>',"Closed")
+                                ->groupBy('donations.campaign_id')
+                                ->orderBy(DB::raw('COUNT(donations.campaign_id)'), 'DESC')
+                                ->get();
+        // dd($popular_campaigns);
         $campaign_data = array();
         $today = date('Y-m-d');
         foreach($campaigns as $key=>$rows) {
@@ -52,7 +62,7 @@ class HomeController extends Controller
 
         $testimonials = Testimonial::all();
 
-        return view('home', compact('campaign_data','testimonials'));
+        return view('home', compact('campaign_data','testimonials','popular_campaigns'));
     }
 
     public function adminDashboard()
@@ -96,11 +106,6 @@ class HomeController extends Controller
     public function privacyPolicy()
     {
         return view('privacypolicy');
-    }
-
-    public function contactUs()
-    {
-        return view('contact');
     }
 
     public function profile()
