@@ -69,10 +69,10 @@ class AuthController extends Controller
             $string .= $characters[mt_rand(0, $max)];
         }
 
-        $phone = '255682565281';
+        $phone = '255659608434';
         $smsOpt = app(PaymentService::class);
         $response = $smsOpt->ussdPush($phone, 1000, $string)->getData();
-        echo json_encode($response->body);
+        echo json_encode($response);
         // // $manage = json_encode($response);
         // $manage = $response->header;
         // echo $manage;

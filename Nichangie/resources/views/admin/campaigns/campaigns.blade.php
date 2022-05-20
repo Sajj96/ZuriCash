@@ -53,8 +53,9 @@
                                             <td>{{ $rows->deadline }}</td>
                                             <td>
                                                 @if($rows->type == 1)
+                                                <div class="label-main"><label class="label label-lg bg-warning">Featured</label></div>
                                                 @else
-                                                <a href="" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#make-featured-Modal">Upgrade</a>
+                                                <button type="button" data-id="{{ $rows->id }}" id="btn-upgrade" class="btn btn-primary waves-effect btn-upgrade">Upgrade</a>
                                                 @endif
                                             </td>
                                             <td>
@@ -102,6 +103,7 @@
                                 <h6>{{ __('By making this campaign featured, 1% of the platform fee will be added.')}}</h6>
                                 <form action="" method="POST">
                                     @csrf
+                                    <input type="text" name="story_id" id="story_id">
                                     <button type="submit" class="btn btn-success btn-md waves-effect">Confirm</button>
                                 </form>
                             </div>
@@ -119,6 +121,14 @@
 <script src="{{ asset('admin/assets/plugins/datatables/datatables.min.js')}}"></script>
 <script src="{{ asset('admin/assets/plugins/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js')}}"></script>
 <script>
+    $(document).ready(function(){
+        $('.btn-upgrade').on('click', function(){
+            var id = $(this).data('id');
+            $('#story_id').val(id);
+            $('#make-featured-Modal').modal('show');
+        });
+    });
+
     $("#table-1").dataTable({
         dom: 'Bfrtip',
         buttons: [{

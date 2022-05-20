@@ -60,7 +60,12 @@ class TransactionController extends Controller
         }
 
         $balance = $transaction->userBalance($user->id);
-        $campaign = (object) array('fee_percent' => 5);
+        $campaign = DB::table('stories')
+                        ->leftJoin('donations', 'stories.id', 'donations.campaign_id')
+                        ->select('stories.id', 'stories.title','stories.fee_percent', 'stories.fundgoals', 'stories.deadline', 'stories.status', 'stories.description', DB::raw('SUM(donations.amount) as amount'))
+                        ->where('stories.owner_id', $user->id)
+                        ->groupBy('stories.id', 'stories.title','stories.fee_percent', 'stories.fundgoals', 'stories.deadline', 'stories.status', 'stories.description')
+                        ->get();
         return view('admin.transactions.withdraw', compact('balance','user','campaign'));
     }
 

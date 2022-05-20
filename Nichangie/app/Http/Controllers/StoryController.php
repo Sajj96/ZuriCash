@@ -212,7 +212,6 @@ class StoryController extends Controller
         });
     }
 
-
     public function close(Request $request)
     {
         try {
@@ -285,6 +284,8 @@ class StoryController extends Controller
         return view('admin.campaigns.all_campaigns');
     }
 
-    public function getPopularStories()
-    {}
+    public function upgradeStory()
+    {
+        
+    }
 }
