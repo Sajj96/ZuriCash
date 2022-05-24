@@ -33,6 +33,16 @@ class Transaction extends Model
         return $transaction_amount;
     }
 
+    public function userNonFeaturedTransactions($user_id)
+    {
+        $transaction = DB::table('transactions')
+                            ->where('transactions.user_id', $user_id)
+                            ->whereNotIn('transactions.campaign',DB::table('stories')->select('id')->where('type', 1))
+                            ->sum('transactions.amount');
+        $transaction_amount = $transaction ?? 0;
+        return $transaction_amount;
+    }
+
     public function campaignBalance($campaign_id,$user_id)
     {
         $donation = new Donation;
@@ -48,6 +58,16 @@ class Transaction extends Model
         $donation = new Donation;
         $user_donation = $donation->userDonations($user_id);
         $user_transaction = self::userTransactions($user_id);
+        $user_balance = $user_donation - $user_transaction;
+        $balance = $user_balance ?? 0;
+        return $balance;
+    }
+
+    public function userNonFeaturedBalance($user_id)
+    {
+        $donation = new Donation;
+        $user_donation = $donation->userNonFeaturedDonations($user_id);
+        $user_transaction = self::userNonFeaturedTransactions($user_id);
         $user_balance = $user_donation - $user_transaction;
         $balance = $user_balance ?? 0;
         return $balance;

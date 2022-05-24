@@ -26,6 +26,7 @@
                 <!-- Basic Table starts -->
                 <div class="card">
                     <div class="card-block">
+                    @include('flash-message')
                         <div class="row">
                             <div class="col-sm-12 table-responsive">
                                 <table class="table" id="table-1">
@@ -55,13 +56,17 @@
                                                 @if($rows->type == 1)
                                                 <div class="label-main"><label class="label label-lg bg-warning">Featured</label></div>
                                                 @else
+                                                @if($rows->status != "Closed")
                                                 <button type="button" data-id="{{ $rows->id }}" id="btn-upgrade" class="btn btn-primary waves-effect btn-upgrade">Upgrade</a>
+                                                @else
+                                                <button type="button" class="btn btn-primary waves-effect btn-upgrade" disabled>Upgrade</a>
+                                                @endif
                                                 @endif
                                             </td>
                                             <td>
-                                                @if($rows->status == 0)
+                                                @if($rows->status == "In progress")
                                                 <div class="label-main"><label class="label label-lg bg-default">In progress</label></div>
-                                                @elseif($rows->status == 1)
+                                                @elseif($rows->status == "Finished")
                                                 <div class="label-main"><label class="label label-lg bg-success">Finished</label></div>
                                                 @else
                                                 <div class="label-main"><label class="label label-lg bg-danger">Closed</label></div>
@@ -101,9 +106,10 @@
                             <!-- end of modal-header -->
                             <div class="modal-body">
                                 <h6>{{ __('By making this campaign featured, 1% of the platform fee will be added.')}}</h6>
-                                <form action="" method="POST">
+                                <form action="{{ route('campaign.upgrade') }}" method="POST">
                                     @csrf
-                                    <input type="text" name="story_id" id="story_id">
+                                    @method('PUT')
+                                    <input type="hidden" name="story_id" id="story_id">
                                     <button type="submit" class="btn btn-success btn-md waves-effect">Confirm</button>
                                 </form>
                             </div>

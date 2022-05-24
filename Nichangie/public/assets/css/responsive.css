@@ -223,7 +223,7 @@
 	.payment-donate-section-three .sec-bg-one,
 	.news-block-three h2 br,
 	.top-bar .left-content {
-    	display: none;
+    	display: block;
 	}
 	.top-bar .wrapper-box {
 	    -webkit-box-pack: center;

@@ -59,13 +59,8 @@ class TransactionController extends Controller
             return view('admin.transactions.withdraw', compact('campaign', 'balance','user'));
         }
 
-        $balance = $transaction->userBalance($user->id);
-        $campaign = DB::table('stories')
-                        ->leftJoin('donations', 'stories.id', 'donations.campaign_id')
-                        ->select('stories.id', 'stories.title','stories.fee_percent', 'stories.fundgoals', 'stories.deadline', 'stories.status', 'stories.description', DB::raw('SUM(donations.amount) as amount'))
-                        ->where('stories.owner_id', $user->id)
-                        ->groupBy('stories.id', 'stories.title','stories.fee_percent', 'stories.fundgoals', 'stories.deadline', 'stories.status', 'stories.description')
-                        ->get();
+        $balance = $transaction->userNonFeaturedBalance($user->id);
+        $campaign = (object) array('fee_percent' => 5);
         return view('admin.transactions.withdraw', compact('balance','user','campaign'));
     }
 
@@ -94,14 +89,14 @@ class TransactionController extends Controller
                 $balance = $transaction->campaignBalance($request->campaign_id, $user->id);
 
                 if ($request->amount > $balance) {
-                    return redirect()->route('transaction.withdraw', $user->id)->with('error', 'Sorry you don\'t have enough balance in this campaign to withdraw ' . $request->amount . '!');
+                    return redirect()->route('transaction.withdraw')->with('error', 'Sorry you don\'t have enough balance in this campaign to withdraw ' . $request->amount . '!');
                 }
-            }
+            } else {
+                $balance = $transaction->userNonFeaturedBalance($user->id);
 
-            $balance = $transaction->userBalance($user->id);
-
-            if ($request->amount > $balance) {
-                return redirect()->route('transaction.withdraw', $user->id)->with('error', 'Sorry you don\'t have enough balance to withdraw ' . $request->amount . '!');
+                if ($request->amount > $balance) {
+                    return redirect()->route('transaction.withdraw', $user->id)->with('error', 'Sorry you don\'t have enough balance to withdraw ' . $request->amount . '!');
+                }
             }
 
             $fileName = '';
@@ -130,6 +125,18 @@ class TransactionController extends Controller
             $transaction->done_by = (Auth::user()->user_type == 2) ? "Admin" : $user->name." ".$user->lastname;
             $transaction->status = Transaction::PAYMENT_INPROGRESS;
             if ($transaction->save()) {
+                if (!empty($request->campaign_id)) {
+                    $campaign = DB::table('stories')
+                                    ->leftJoin('donations', 'stories.id', 'donations.campaign_id')
+                                    ->select('stories.id', 'stories.title','stories.fee_percent', 'stories.fundgoals', 'stories.deadline', 'stories.status', 'stories.description', DB::raw('SUM(donations.amount) as amount'))
+                                    ->where('stories.owner_id', $user->id)
+                                    ->where('stories.id', $request->campaign_id)
+                                    ->groupBy('stories.id', 'stories.title','stories.fee_percent', 'stories.fundgoals', 'stories.deadline', 'stories.status', 'stories.description')
+                                    ->first();
+        
+                    $balance = $transaction->campaignBalance($request->campaign_id, $user->id);
+                    return view('admin.transactions.withdraw', compact('campaign', 'balance','user'))->with('success', 'Withdraw request is submitted successfully. Please wait for confirmation.');
+                }
                 return redirect()->route('transaction.withdraw', $user->id)->with('success', 'Withdraw request is submitted successfully. Please wait for confirmation.');
             }
         } catch (\Exception $e) {

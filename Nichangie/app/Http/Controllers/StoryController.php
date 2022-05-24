@@ -48,6 +48,7 @@ class StoryController extends Controller
                         ->join('users','stories.owner_id','=','users.id')
                         ->select('stories.*','users.name','users.lastname')
                         ->where('stories.status','<>',"Closed")
+                        ->where('stories.type',1)
                         ->get();
         $type = 'Featured';
         $campaign_data = array();
@@ -146,6 +147,7 @@ class StoryController extends Controller
             $campaign->fundgoals = $request->amount;
             $campaign->category = $request->category;
             $campaign->deadline = $request->enddate;
+            $campaign->type = Story::NOT_FEATURED;
             $campaign->status = Story::STATUS_INPROGRESS;
             if($campaign->save()) {
                 return redirect()->route('campaign.show', $campaign->id)->with('success','Campaign created successfully!');
@@ -284,8 +286,17 @@ class StoryController extends Controller
         return view('admin.campaigns.all_campaigns');
     }
 
-    public function upgradeStory()
+    public function upgradeStory(Request $request)
     {
-        
+        try {
+            $campaign = Story::find($request->story_id);
+            $campaign->fee_percent = 6;
+            $campaign->type = Story::FEATURED;
+            if($campaign->save()) {
+                return redirect()->route('me.campaign')->with('success','You have successful upgraded your campaign.');  
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('me.campaign')->with('error','Something went wrong.');
+        }
     }
 }

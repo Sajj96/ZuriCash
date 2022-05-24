@@ -50,6 +50,7 @@ Route::group(['prefix' => 'campaigns'], function(){
     Route::get('/export/{id}', [App\Http\Controllers\StoryController::class, 'exportCampaignData'])->name('campaign.export')->middleware('auth');
     Route::post('/', [App\Http\Controllers\StoryController::class, 'create'])->name('campaign.create')->middleware('auth');
     Route::post('/close', [App\Http\Controllers\StoryController::class, 'close'])->name('campaign.close')->middleware('auth');
+    Route::put('/upgrade', [App\Http\Controllers\StoryController::class, 'upgradeStory'])->name('campaign.upgrade')->middleware('auth');
 });
 
 Route::group(['prefix' => 'categories'], function(){

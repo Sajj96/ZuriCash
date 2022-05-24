@@ -7,7 +7,6 @@ var telInput = document.querySelector("#phone");
 var it = window.intlTelInput(telInput, {
 initialCountry: 'tz',
 autoPlaceholder: 'aggressive',
-nationalMode: true,
 formatOnDisplay: false,
 utilsScript: utilUrl,
 geoIpLookup: function(callback) {
@@ -15,8 +14,7 @@ geoIpLookup: function(callback) {
         var countryCode = (resp && resp.country) ? resp.country : "us";
         callback(countryCode);
       });
-    },
-  separateDialCode: true
+    }
 });
 
 var handleChange = function() {

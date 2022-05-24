@@ -4,13 +4,6 @@
 <link rel="stylesheet" href="{{ asset('admin/assets/plugins/datatables/datatables.min.css')}}">
 <link rel="stylesheet" href="{{ asset('admin/assets/plugins/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
-<!-- <style>
-div.dt-buttons {
-    position: relative;
-    margin-bottom: 20px !important;
-    float: none !important;
-}
-</style> -->
 @endsection
 
 @section('content')

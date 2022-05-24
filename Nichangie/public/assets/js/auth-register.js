@@ -15,15 +15,13 @@ var errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long
 var it = window.intlTelInput(telInput, {
 initialCountry: 'tz',
 autoPlaceholder: 'aggressive',
-nationalMode: true,
 utilsScript: utilUrl,
 geoIpLookup: function(callback) {
       $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
         var countryCode = (resp && resp.country) ? resp.country : "us";
         callback(countryCode);
       });
-    },
-  separateDialCode: true
+    }
 });
 
 var handleChange = function() {

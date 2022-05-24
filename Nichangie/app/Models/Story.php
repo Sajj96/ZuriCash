@@ -14,5 +14,5 @@ class Story extends Model
     const STATUS_CANCELLED = "Closed";
 
     const FEATURED = 1;
-    const NOT_FEATURED = 2;
+    const NOT_FEATURED = 0;
 }

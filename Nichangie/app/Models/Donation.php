@@ -45,4 +45,21 @@ class Donation extends Model
         $donation_amount = $sum ?? 0;
         return $donation_amount;
     }
+
+    public function userNonFeaturedDonations($user_id)
+    {
+        $donation = DB::table('stories')
+                        ->join('donations', 'stories.id','donations.campaign_id')
+                        ->select('stories.id',DB::raw('SUM(donations.amount) as amount')) 
+                        ->where('stories.owner_id', $user_id)
+                        ->where('stories.type','<>', 1)
+                        ->groupBy('stories.id')
+                        ->get();
+        $sum = 0;
+        foreach($donation as $key=>$rows) {
+            $sum += $rows->amount;
+        }
+        $donation_amount = $sum ?? 0;
+        return $donation_amount;
+    }
 }

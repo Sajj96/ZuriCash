@@ -39,7 +39,7 @@
                                     <div class="form-group">
                                         <label for="deposit" class="form-control-label">{{ __('Amount to receive')}}</label>
                                         <input type="number" name="debit" class="form-control" id="deposit" aria-describedby="emailHelp" placeholder="Debit amount" readonly>
-                                        <small id="emailHelp" class="form-text text-muted">Platform Fee: {{ (!empty($campaign->title)) ? $campaign->fee_percent : $campaign[0]->fee_percent }}% of the amount to withdraw</small>
+                                        <small id="emailHelp" class="form-text text-muted">Platform Fee: {{ (!empty($campaign->title)) ? $campaign->fee_percent : $campaign->fee_percent }}% of the amount to withdraw</small>
                                     </div>
                                     <div class="form-group">
                                         <label for="payment_method" class="form-control-label">{{ __('Payment method')}}</label>
@@ -110,7 +110,7 @@
 </script>
 <script src="{{ asset('assets/js/auth-login.js')}}"></script>
 <script type="text/javascript">
-    var fee_percent = "{{ (!empty($campaign->title)) ? $campaign->fee_percent : $campaign[0]->fee_percent }}";
+    var fee_percent = "{{ (!empty($campaign->title)) ? $campaign->fee_percent : $campaign->fee_percent }}";
 </script>
 <script>
     $(document).ready(function() {

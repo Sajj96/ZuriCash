@@ -43,12 +43,19 @@
         <div class="row">
             <div class="col-lg-8 content-column">
                 @include('flash-message')
+                @if($campaign->status == "Closed")
+                <div class="alert alert-danger alert-block">
+                    <button type="button" class="close" data-dismiss="alert">x</button>
+                    <strong>{{ __('This campaign is closed') }}</strong>
+                </div>
+                @endif
                 <div class="image mb-50"><img src="{{ $campaign->link }}" width="720" height="400" alt="campaign-image"></div>
                 <div class="sec-title mb-40">
                     <h1>The Story</h1>
                     <div class="text">{{ $campaign->description }}.</div>
                 </div>
                 <br>
+                @if($campaign->status != "Closed")
                 <div class="share-post">
                     <div class="text"><i class="flaticon-share"></i>Share with friends</div>
                     <ul class="social-icon-seven">
@@ -119,6 +126,7 @@
                         </form>
                     </div>
                 </div>
+                @endif
                 <div class="row">
                     <div class="col-md-12">
                         <div class="product-tab-box tabs-box">
