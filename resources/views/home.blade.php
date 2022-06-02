@@ -221,7 +221,7 @@
     </div>
     <div class="row ">
         <div class="col-xl-3 col-lg-6">
-            <div class="card l-bg-purple">
+            <div class="card l-bg-green">
                 <div class="card-statistic-3">
                     <div class="card-icon card-icon-large d-none d-md-block d-lg-block"><i class="fas fa-money-bill-alt"></i></div>
                     <div class="card-content">
@@ -255,7 +255,7 @@
             </div>
         </div>
         <div class="col-xl-3 col-lg-6">
-            <div class="card l-bg-orange">
+            <div class="card l-bg-red">
                 <div class="card-statistic-3">
                     <div class="card-icon card-icon-large d-none d-md-block d-lg-block"><i class="fas fa-play-circle"></i></div>
                     <div class="card-content">
@@ -272,7 +272,7 @@
             </div>
         </div>
         <div class="col-xl-3 col-lg-6">
-            <div class="card l-bg-green">
+            <div class="card l-bg-purple">
                 <div class="card-statistic-3">
                     <div class="card-icon card-icon-large d-none d-md-block d-lg-block"><i class="fab fa-whatsapp"></i></div>
                     <div class="card-content">
@@ -323,7 +323,7 @@
                 $('#card-expenses').children().children().children().children().children().addClass('pl-5 pb-4');
                 $('#card-profit').children().children().children().children().children().addClass('pl-5 pb-4');
 
-                $('#card-total').addClass('l-bg-green');
+                $('#card-total').addClass('l-bg-orange');
                 $('#card-total').children().removeClass('card-statistic-4');
                 $('#card-total').children().addClass('card-statistic-3');
                 $('#card-total').children().children().children().children().removeClass('pt-3');
@@ -339,7 +339,7 @@
                 $('#card-profit').css('color', '#FFF');
 
                 $('.info').each(function() {
-                    $(this).css('display','none');
+                    $(this).css('display', 'none');
                 });
 
                 $('.progress').each(function() {
@@ -347,7 +347,9 @@
                 });
 
                 $('.progress').each(function() {
-                    $(this).css({height: 1});
+                    $(this).css({
+                        height: 1
+                    });
                 });
             } else {
                 $('#card-expenses').addClass('col-xs-12');
@@ -378,11 +380,11 @@
                 $('#card-profit').css('color', '#6c757d');
 
                 $('.info').each(function() {
-                    $(this).css('display','block');
+                    $(this).css('display', 'block');
                 });
 
                 $('.progress').each(function() {
-                    $(this).attr('data-height',8);
+                    $(this).attr('data-height', 8);
                 });
             }
         }).trigger('resize');

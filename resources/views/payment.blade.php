@@ -5,9 +5,9 @@
   <div class="container mt-5">
     <div class="row">
       <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
-        <div class="card card-success">
+        <div class="card card-warning">
           <div class="card-header">
-            <h4>TANZANIA DELASKA AGENCY PAYMENT</h4>
+            <h4>TANZANIA ZURICASH AGENCY PAYMENT</h4>
           </div>
           <div class="card-body">
             <h5 class="font-15">KUJIUNGA KWA KUNUNUA BIDHAA ZETU ZA VIRUTUBISHO (SUPPLEMENTS) LIPA TZS 48000/=</h5>

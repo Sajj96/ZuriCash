@@ -14,7 +14,7 @@
                         <div class="card-body">
                             <div class="row ">
                                 <div class="col-lg-4 col-md-3 col-sm-3 col-xs-3">
-                                    <div class="card l-bg-cyan">
+                                    <div class="card l-bg-orange">
                                         <div class="card-statistic-3">
                                             <div class="card-icon card-icon-large"><i class="fas fa-users"></i></div>
                                             <div class="card-content">
