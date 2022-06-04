@@ -227,8 +227,8 @@
                     <div class="card-content">
                         <h4 class="card-title">{{ __('Withdrawn')}}</h4>
                         <span class="font-20">{{ __('TZS')}} {{ number_format($withdrawn) }}</span>
-                        <div class="progress mt-1 mb-1" data-height="1">
-                            <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress mt-1 mb-1" data-height="4">
+                            <div class="progress-bar l-bg-cyan" role="progressbar" data-width="100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <p class="mb-0 text-sm">
                             <span class="text-nowrap">From Main balance</span>
@@ -238,14 +238,14 @@
             </div>
         </div>
         <div class="col-xl-3 col-lg-6">
-            <div class="card l-bg-cyan">
+            <div class="card l-bg-red">
                 <div class="card-statistic-3">
                     <div class="card-icon card-icon-large d-none d-md-block d-lg-block"><i class="far fa-question-circle"></i></div>
                     <div class="card-content">
                         <h4 class="card-title">{{ __('Trivia Questions')}}</h4>
                         <span class="font-20">{{ __('TZS')}} {{ number_format($question) }}</span>
                         <div class="progress mt-1 mb-1" data-height="8">
-                            <div class="progress-bar l-bg-orange" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar l-bg-orange" role="progressbar" data-width="100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <p class="mb-0 text-sm">
                             <span class="text-nowrap">Earnings</span>
@@ -255,14 +255,14 @@
             </div>
         </div>
         <div class="col-xl-3 col-lg-6">
-            <div class="card l-bg-red">
+            <div class="card l-bg-orange">
                 <div class="card-statistic-3">
                     <div class="card-icon card-icon-large d-none d-md-block d-lg-block"><i class="fas fa-play-circle"></i></div>
                     <div class="card-content">
                         <h4 class="card-title">{{ __('Video')}}</h4>
                         <span class="font-20">{{ __('TZS')}} {{ number_format($video) }}</span>
                         <div class="progress mt-1 mb-1" data-height="8">
-                            <div class="progress-bar l-bg-green" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar l-bg-cyan" role="progressbar" data-width="100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <p class="mb-0 text-sm">
                             <span class="text-nowrap">Earnings</span>
@@ -272,14 +272,14 @@
             </div>
         </div>
         <div class="col-xl-3 col-lg-6">
-            <div class="card l-bg-purple">
+            <div class="card l-bg-cyan">
                 <div class="card-statistic-3">
                     <div class="card-icon card-icon-large d-none d-md-block d-lg-block"><i class="fab fa-whatsapp"></i></div>
                     <div class="card-content">
                         <h4 class="card-title">{{ __('WhatsApp Status')}}</h4>
                         <span class="font-20">{{ __('TZS')}} {{ number_format($whatsapp) }}</span>
                         <div class="progress mt-1 mb-1" data-height="8">
-                            <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar l-bg-orange" role="progressbar" data-width="100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <p class="mb-0 text-sm">
                             <span class="text-nowrap">Earnings</span>
@@ -348,7 +348,7 @@
 
                 $('.progress').each(function() {
                     $(this).css({
-                        height: 1
+                        height: 4
                     });
                 });
             } else {

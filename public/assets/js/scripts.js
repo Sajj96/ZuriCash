@@ -713,9 +713,9 @@ $(function () {
   //start up class add
 
   //add default class on body tag
-  jQuery("body").addClass("light");
+  jQuery("body").addClass("dark");
   jQuery("body").addClass("light-sidebar");
-  jQuery("body").addClass("theme-orange");
+  jQuery("body").addClass("theme-black");
   // set theme default color
   $(".choose-theme li").removeClass("active");
   $(".choose-theme li[title|='white']").addClass("active");
