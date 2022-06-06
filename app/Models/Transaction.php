@@ -16,7 +16,7 @@ class Transaction extends Model
     const TRANSACTION_SUCCESS = 1;
     const TRANSACTION_CANCELLED = 2;
 
-    const REGISTRATION_FEE = 13000;
+    const REGISTRATION_FEE = 12000;
 
     const TYPE_WITHDRAW = "Withdraw";
     const TYPE_QUESTIONS = "Trivia";
@@ -31,9 +31,9 @@ class Transaction extends Model
      */
     public function getUserTotalEarnings($id)
     {
-        $referral_amount_level_1 = 6000;
+        $referral_amount_level_1 = 5000;
         $referral_amount_level_2 = 3000;
-        $referral_amount_level_3 = 1000;
+        $referral_amount_level_3 = 2000;
 
         $level_1 = DB::table('users','t1')
                     ->leftJoin('users as t2', 't2.referrer_id','=','t1.id')

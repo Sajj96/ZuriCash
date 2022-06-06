@@ -50,7 +50,7 @@
                                             </td>
                                             @else
                                             <td>
-                                                <div class="badge badge-light badge-shadow">{{ __('Inactive') }}</div>
+                                                <div class="badge badge-danger badge-shadow">{{ __('Inactive') }}</div>
                                             </td>
                                             @endif
                                         </tr>

@@ -151,7 +151,7 @@
                             <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 pr-0 pt-3">
                                 <div class="card-content">
                                     <h5 class="font-15"> {{ __('Expenses')}}</h5>
-                                    <span class="mb-3 font-18" id="expense-amount">{{ __('TZS')}} {{ number_format(13000) }}</span>
+                                    <span class="mb-3 font-18" id="expense-amount">{{ $currency }} {{ number_format($amount) }}</span>
                                     <p class="mb-0 info"><span class="col-orange"></span>Registration Fee</p>
                                 </div>
                             </div>
@@ -173,7 +173,7 @@
                             <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 pr-0 pt-3">
                                 <div class="card-content">
                                     <h5 class="font-15">{{ __('Net Profit')}}</h5>
-                                    <span class="mb-3 font-18" id="profit-amount">{{ __('TZS')}} {{ number_format($profit) }}</span>
+                                    <span class="mb-3 font-18" id="profit-amount">{{ $currency }} {{ number_format($profit) }}</span>
                                     <p class="mb-0 info"><span class="col-green"></span>
                                         Referral + Other Earnings
                                     </p>
@@ -198,7 +198,7 @@
                             <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 pr-0 pt-3">
                                 <div class="card-content">
                                     <h4 id="balance" class="font-15">{{ __('Total Balance')}}</h4>
-                                    <span class="mb-3 font-18" id="total-amount">{{ __('TZS')}} {{ number_format($balance) }}</span>
+                                    <span class="mb-3 font-18" id="total-amount">{{ $currency }} {{ number_format($balance) }}</span>
                                     <div class="progress mt-1 mb-1 d-block d-lg-none d-xl-none d-sm-block d-md-block" data-height="8">
                                         <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
@@ -226,7 +226,7 @@
                     <div class="card-icon card-icon-large d-none d-md-block d-lg-block"><i class="fas fa-money-bill-alt"></i></div>
                     <div class="card-content">
                         <h4 class="card-title">{{ __('Withdrawn')}}</h4>
-                        <span class="font-20">{{ __('TZS')}} {{ number_format($withdrawn) }}</span>
+                        <span class="font-20">{{ $currency }} {{ number_format($withdrawn) }}</span>
                         <div class="progress mt-1 mb-1" data-height="4">
                             <div class="progress-bar l-bg-cyan" role="progressbar" data-width="100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
@@ -243,7 +243,7 @@
                     <div class="card-icon card-icon-large d-none d-md-block d-lg-block"><i class="far fa-question-circle"></i></div>
                     <div class="card-content">
                         <h4 class="card-title">{{ __('Trivia Questions')}}</h4>
-                        <span class="font-20">{{ __('TZS')}} {{ number_format($question) }}</span>
+                        <span class="font-20">{{ $currency }} {{ number_format($question) }}</span>
                         <div class="progress mt-1 mb-1" data-height="8">
                             <div class="progress-bar l-bg-orange" role="progressbar" data-width="100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
@@ -260,7 +260,7 @@
                     <div class="card-icon card-icon-large d-none d-md-block d-lg-block"><i class="fas fa-play-circle"></i></div>
                     <div class="card-content">
                         <h4 class="card-title">{{ __('Video')}}</h4>
-                        <span class="font-20">{{ __('TZS')}} {{ number_format($video) }}</span>
+                        <span class="font-20">{{ $currency }} {{ number_format($video) }}</span>
                         <div class="progress mt-1 mb-1" data-height="8">
                             <div class="progress-bar l-bg-cyan" role="progressbar" data-width="100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
@@ -277,12 +277,29 @@
                     <div class="card-icon card-icon-large d-none d-md-block d-lg-block"><i class="fab fa-whatsapp"></i></div>
                     <div class="card-content">
                         <h4 class="card-title">{{ __('WhatsApp Status')}}</h4>
-                        <span class="font-20">{{ __('TZS')}} {{ number_format($whatsapp) }}</span>
+                        <span class="font-20">{{ $currency }} {{ number_format($whatsapp) }}</span>
                         <div class="progress mt-1 mb-1" data-height="8">
                             <div class="progress-bar l-bg-orange" role="progressbar" data-width="100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <p class="mb-0 text-sm">
                             <span class="text-nowrap">Earnings</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+            <div class="card l-bg-purple">
+                <div class="card-statistic-3">
+                    <div class="card-icon card-icon-large d-none d-md-block d-lg-block"><i class="fas fa-audio-description"></i></div>
+                    <div class="card-content">
+                        <h4 class="card-title">{{ __('AD Click')}}</h4>
+                        <span class="font-20">{{ $currency }} {{ number_format($withdrawn) }}</span>
+                        <div class="progress mt-1 mb-1" data-height="4">
+                            <div class="progress-bar l-bg-cyan" role="progressbar" data-width="100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <p class="mb-0 text-sm">
+                            <span class="text-nowrap">{{ __('Earning')}}</span>
                         </p>
                     </div>
                 </div>

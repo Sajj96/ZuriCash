@@ -116,6 +116,15 @@ $day = Carbon::createFromFormat('d/m/Y', $date)->format('l');
                     </ul>
                 </li>
                 <li class="dropdown">
+                    <a href="{{ route('pay_for_downline')}}" class="nav-link"><i data-feather="dollar-sign"></i><span>{{ __('Crypto Education')}}</span></a>
+                </li>
+                <li class="dropdown">
+                    <a href="{{ route('pay_for_downline')}}" class="nav-link"><i data-feather="book-open"></i><span>{{ __('Enterpreneur Class')}}</span></a>
+                </li>
+                <li class="dropdown">
+                    <a href="{{ route('pay_for_downline')}}" class="nav-link"><i data-feather="thumbs-up"></i><span>{{ __('AD Click')}}</span></a>
+                </li>
+                <li class="dropdown">
                     <a href="{{ route('questions')}}" class="nav-link"><i data-feather="help-circle"></i><span>{{ __('Trivia Questions')}}</span></a>
                 </li>
                 <li class="dropdown">

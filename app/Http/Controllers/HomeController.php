@@ -70,8 +70,25 @@ class HomeController extends Controller
             }
         }
 
+        $currency = "TZ";
+        $amount = 12000;
+
+        if(Auth::user()->country == "tz") {
+            $currency = $currency;
+            $amount = $amount;
+        } else if(Auth::user()->country == "ke") {
+            $currency = "KSH";
+            $amount = 0.05 * $amount;
+        } else if(Auth::user()->country == "ug") {
+            $currency = "UGX";
+            $amount = 1.61034 * $amount;
+        } else {
+            $currency = "USD";
+            $amount = $amount / 2328;
+        }
+
         if(Auth::user()->user_type != 1) {
-            return view('home', compact('profit','balance','withdrawn','whatsapp','question','video','notification'));
+            return view('home', compact('profit','balance','withdrawn','whatsapp','question','video','notification','currency','amount'));
         }
 
         return view('home', compact('all_users','active_users','withdraw_requests','system_earnings','transactionData','todayEarning','totalWithdraw','newUsers','inactiveUsers'));

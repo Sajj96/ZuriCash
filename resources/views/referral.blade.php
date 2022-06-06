@@ -13,7 +13,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row ">
-                                <div class="col-lg-4 col-md-3 col-sm-3 col-xs-3">
+                                <div class="col-lg-4 col-md-3 col-sm-3 col-xs-3 text-center">
                                     <div class="card l-bg-orange">
                                         <div class="card-statistic-3">
                                             <div class="card-icon card-icon-large"><i class="fas fa-users"></i></div>
@@ -48,6 +48,9 @@
                             </a>
                             <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ Auth::user()->referral_link }}/?utm_source=linkedin&utm_medium=referral&utm_campaign=share" class="btn btn-social btn-linkedin" data-toggle="tooltip" title="LinkedIn">
                                 <span class="fab fa-linkedin"></span> LinkedIn
+                            </a>
+                            <a href="whatsapp://send?text={{ Auth::user()->referral_link }}" class="btn btn-social btn-success" data-toggle="tooltip" title="WhatsApp">
+                                <span class="fab fa-whatsapp"></span> WhatsApp
                             </a>
                         </div>
                     </div>
