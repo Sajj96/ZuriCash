@@ -38,14 +38,22 @@
                                             <td>{{ ($rows->created_at)->format('M d Y') }}</td>
                                             <td>{{ number_format($rows->amount,2) }}</td>
                                             <td>{{ $rows->phone }}</td>
-                                            <td>{{ $rows->transaction_type }}</td>
+                                            <td>
+                                                @if($rows->transaction_type == "pay_for_downline")
+                                                PAID: {{ $rows->username }}
+                                                @else
+                                                {{ $rows->transaction_type }}
+                                                @endif
+                                            </td>
+                                            <td>
                                             @if($rows->status == 0)
-                                            <td><div class="badge badge-light badge-shadow">Pending</div></td>
+                                            <div class="badge badge-light badge-shadow">Pending</div>
                                             @elseif($rows->status == 1)
-                                            <td><div class="badge badge-success badge-shadow">Paid</div></td>
+                                            <div class="badge badge-success badge-shadow">Paid</div>
                                             @else
-                                            <td><div class="badge badge-danger badge-shadow">Cancelled</div></td>
+                                            <div class="badge badge-danger badge-shadow">Cancelled</div>
                                             @endif
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>

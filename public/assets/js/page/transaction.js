@@ -73,6 +73,8 @@ $(function () {
             $('#balance-amount').text(video);
         } else if(valueSelected == "whatsapp"){
             $('#balance-amount').text(whatsapp);
+        } else if(valueSelected == "ads"){
+            $('#balance-amount').text(ads);
         } else {
             $('#balance-amount').text(balance);
         }

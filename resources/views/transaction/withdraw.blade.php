@@ -45,6 +45,7 @@
                                             <option value="trivia">{{ __('Trivia Questions balance')}}</option>
                                             <option value="video">{{ __('Videos balance')}}</option>
                                             <option value="whatsapp">{{ __('WhatsApp Status balance')}}</option>
+                                            <option value="ads">{{ __('AD Click balance')}}</option>
                                         </select>
                                         <div class="help-info">{{ __('Current balance: TZS')}} <span id="balance-amount">{{ number_format($balance,2) }}</span></div>
                                     </div>
@@ -95,10 +96,11 @@
 @endsection
 @section('page-specific-js')
 <script type="text/javascript">
-    var trivia = "{{ $trivia }}";
-    var video = "{{ $video }}";
-    var whatsapp = "{{ $whatsapp }}";
-    var balance = "{{ $balance }}";
+    var trivia = <?php echo $trivia ?>;
+    var video = <?php echo $video ?>;
+    var whatsapp = <?php echo $whatsapp ?>;
+    var balance = <?php echo $balance ?>;
+    var ads = <?php echo $ads ?>;
 </script>
 <script src="{{ asset('assets/js/page/transaction.js')}}"></script>
 @endsection

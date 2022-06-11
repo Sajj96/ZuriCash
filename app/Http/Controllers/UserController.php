@@ -67,7 +67,7 @@ class UserController extends Controller
     public function getUser(Request $request, $id)
     {
         $user = User::find($id);
-        $users = User::select("*")->orderBy("username")->get();
+        $users = User::lazy();
         $userObj = new User;
         $transaction = new Transaction();
         $transactions = Transaction::where('user_id', $user->id)->get();

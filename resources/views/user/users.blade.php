@@ -84,7 +84,7 @@
         serverSide: true,
         ajax: "{{ route('users') }}",
         columns: [
-            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},
             {data: 'username', name: 'username'},
             {data: 'phone', name: 'phone'},

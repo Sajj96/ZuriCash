@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\VideoAndAds;
+use App\Models\Video;
 use App\Models\VideoUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
-class VideoAndAdsController extends Controller
+class VideoController extends Controller
 {
      /**
      * Show the videos page.
@@ -21,7 +21,7 @@ class VideoAndAdsController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $videos = VideoAndAds::where('status', VideoAndAds::VIDEO_PUBLISHED)->get();
+        $videos = Video::where('status', Video::VIDEO_PUBLISHED)->get();
         $video_ids = array();
         $video_users = DB::table('video_users')
                             ->select('video_id')
@@ -37,7 +37,7 @@ class VideoAndAdsController extends Controller
 
     public function getList()
     {
-        $videos = VideoAndAds::all();
+        $videos = Video::all();
         $serial = 1;
         return view('video.video_list', compact('videos', 'serial'));
     }
@@ -66,7 +66,7 @@ class VideoAndAdsController extends Controller
         if($validator->fails()) {
             return redirect()->route('video.show')->with('error','Only valid details are required!');
         }
-        // dd($request->file('video')->getClientOriginalName());
+
         try {
 
             $videoFile = $request->file('video')->getClientOriginalName();
@@ -103,7 +103,7 @@ class VideoAndAdsController extends Controller
                 $fileName = "";
             }
 
-            $video = new VideoAndAds;
+            $video = new Video;
             $video->video = $videoFile;
             $video->title = $request->title;
             $video->poster = $fileName;
@@ -121,7 +121,7 @@ class VideoAndAdsController extends Controller
     public function delete(Request $request)
     {
         try {
-            $video = VideoAndAds::find($request->id);
+            $video = Video::find($request->id);
             if($video->delete()){
                 return redirect()->route('video.list')->with('success','Video deleted successfully!');
             }

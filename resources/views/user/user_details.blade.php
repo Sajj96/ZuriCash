@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@php use App\Models\User; @endphp
 @section('general-css')
 <link rel="stylesheet" href="{{ asset('assets/bundles/datatables/datatables.min.css')}}">
 <link rel="stylesheet" href="{{ asset('assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css')}}">
@@ -243,9 +243,11 @@
                                                 <div class="form-group col-12">
                                                     <label>{{ __('Referrer')}}</label>
                                                     <select class="form-control select2" name="referrer" required>
-                                                        @foreach($users as $key => $rows)
-                                                        <option {{ $user->referrer->id == $rows->id ? 'selected' : '' }} value="{{ $rows->id }}">{{ $rows->name }}</option>
+                                                        Users::chunk(200, function($users){
+                                                        @foreach($users as $key => $rows) {
+                                                        <option {{ $user->referrer_id == $rows->id ? 'selected' : '' }} value="{{ $rows->id }}">{{ $rows->name }}</option>
                                                         @endforeach
+                                                        });
                                                     </select>
                                                 </div>
                                             </div>

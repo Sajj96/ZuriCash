@@ -41,7 +41,11 @@ class TransactionController extends Controller
      */
     public function userTransactions()
     {
-        $transactions = Transaction::where('user_id', Auth::user()->id)->get();
+        $transactions = DB::table('transactions')
+                            ->leftJoin('users','transactions.receiver_id','users.id')
+                            ->select('transactions.*','users.username','users.phone')
+                            ->where('transactions.user_id', Auth::user()->id)
+                            ->get();
         $serial = 1;
         return view('transaction.history', compact('transactions','serial'));
     }
@@ -59,9 +63,10 @@ class TransactionController extends Controller
         $balance = $transactions->getUserBalance($id);
         $trivia = $transactions->getQuestionsEarnings($id);
         $video = $transactions->getVideoEarnings($id);
+        $ads = $transactions->getAdsEarnings($id);
         $whatsapp = $transactions->getWhatsAppEarnings($id);
 
-        return view('transaction.withdraw', compact('setting','balance','trivia','video','whatsapp'));
+        return view('transaction.withdraw', compact('setting','balance','trivia','video','whatsapp','ads'));
     }
 
     /**
@@ -107,6 +112,9 @@ class TransactionController extends Controller
             } else if($request->balance == "video") {
                 $balance = $transactions->getVideoEarnings($id);
                 $type = Transaction::TYPE_VIDEO;
+            } else if($request->balance == "ads") {
+                $balance = $transactions->getAdsEarnings($id);
+                $type = Transaction::TYPE_ADCLICK;
             } else {
                 $balance = $transactions->getWhatsAppEarnings($id);
                 $type = Transaction::TYPE_WHATSAPP;
@@ -221,6 +229,7 @@ class TransactionController extends Controller
                     $payment = new Transaction;
                     $payment->balance = "main";
                     $payment->user_id = Auth::user()->id;
+                    $payment->receiver_id = $request->id;
                     $payment->phone = Auth::user()->phone;
                     $payment->amount = Transaction::REGISTRATION_FEE;
                     $payment->amount_deposit = 0;

@@ -188,11 +188,10 @@ async function showResult(){
 
     let secondScore = questions.length - 1;
     
-    if (userScore == allQuestions.length){
         let revenueBody = {
             "user_id": parseInt(user),
             "type": "questions",
-            "amount": userScore * 200
+            "amount": userScore * 50
         }
         const res = await fetch(url1, {
             method: 'POST',
@@ -211,15 +210,6 @@ async function showResult(){
         //creating a new span tag and passing the user score number and total question number
         let scoreTag = '<span>Congrats! 🎉, You got  <strong>'+ userScore +'</strong> out of  <strong>'+ questions.length +'</strong></span>';
         scoreText.innerHTML = scoreTag;  //adding new span tag inside score_Text
-    }
-    else if(userScore == secondScore){ // if user scored more than 1
-        let scoreTag = '<span>Nice 😎, You got <strong>'+ userScore +'</strong> out of  <strong>'+ questions.length +'</strong></span>';
-        scoreText.innerHTML = scoreTag;
-    }
-    else{ // if user scored less than 1
-        let scoreTag = '<span>Sorry 😐, You got only <strong>'+ userScore +'</strong> out of  <strong>'+ questions.length +'</strong></span>';
-        scoreText.innerHTML = scoreTag;
-    }
 }
 
 function startTimer(time){

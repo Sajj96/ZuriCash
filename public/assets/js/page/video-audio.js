@@ -103,10 +103,10 @@ $(function () {
         myPlayer.on("timeupdate", () => {
         
             var remainingTime = myPlayer.remainingTime();
-            var halfDuration = myPlayer.duration() / 2;
+            var duration = myPlayer.duration();
             var currentTime = myPlayer.currentTime();
 
-                if (currentTime >= halfDuration) {
+                if (currentTime == duration) {
                 myPlayer.pause();
                 $.ajax({
                     url: url3,
@@ -142,7 +142,7 @@ $(function () {
                                                 user_id: user_id,
                                                 video_id:video_id,
                                                 type: "video",
-                                                amount: 250
+                                                amount: 100
                                             },
                                             success: function (response) {
                                               $("#exampleModal").modal("show");

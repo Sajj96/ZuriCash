@@ -6,19 +6,19 @@
     <meta name="description" content="">
     <meta property="og:type" content="website"/>
 	<meta property="og:url" content="env('APP_URL')"/>
-	<meta property="og:title" content="DELASKA"/>
-	<meta property="og:description" content="DELASKA Agency - Earn with Us"/>
-	<meta property="og:image" content="{{ asset('assets/img/logo1.png')}}"/>
+	<meta property="og:title" content="ZuriCash"/>
+	<meta property="og:description" content="ZuriCash Agency - Earn with Us"/>
+	<meta property="og:image" content="{{ asset('assets/img/logo4.jpeg')}}"/>
 	<meta property="twitter:card" content="summary_large_image"/>
 	<meta property="twitter:url" content="env('APP_URL')"/>
 	<meta property="twitter:title" content=""/>
-	<meta property="twitter:description" content="DELASKA Agency - Earn with Us"/>
-	<meta property="twitter:image" content="{{ asset('assets/img/logo1.png')}}"/>
+	<meta property="twitter:description" content="ZuriCash Agency - Earn with Us"/>
+	<meta property="twitter:image" content="{{ asset('assets/img/logo4.jpeg')}}"/>
 	<meta property="twitter:image:alt" content="Company logo"/>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'SmartPesa') }}</title>
+    <title>{{ config('app.name', 'ZURICASH') }}</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/css/app.min.css')}}">
@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/components.css')}}">
     <!-- Custom style CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css')}}">
-    <link rel='shortcut icon' type='image/x-icon' href="{{ asset('assets/img/logo3.png')}}" />
+    <link rel='shortcut icon' type='image/x-icon' href="{{ asset('assets/img/logo4.jpeg')}}" />
 </head>
 <body>
     <div class="loader"></div>

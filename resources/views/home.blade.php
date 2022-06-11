@@ -8,7 +8,7 @@
 @include('layouts.header')
 <!-- Main Content -->
 <div class="main-content">
-    <h4 class="section-title mb-3">Hello, {{Auth::user()->username}}.</h4>
+    <h4 class="section-title mb-3 text-md-left text-sm-center">Hi, welcome {{Auth::user()->username}}.</h4>
     @if(Auth::user()->user_type == 1)
     <section class="section">
         <div class="row">
@@ -142,7 +142,7 @@
 @endif
 @endforeach
 <section class="section">
-    <div class="row ">
+    <div class="row text-md-left text-sm-center">
         <div id="card-expenses" class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <div class="card">
                 <div class="card-statistic-4">
@@ -192,7 +192,7 @@
         <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div id="card-total" class="card">
                 <div class="card-statistic-4">
-                    <div class="card-icon card-icon-large d-none d-lg-none d-xl-none d-sm-block d-md-block"><i class="fas fa-credit-card"></i></div>
+                    <div class="card-icon card-icon-large d-lg-none d-sm-block d-md-block"><i class="fas fa-credit-card"></i></div>
                     <div class="align-items-center justify-content-between">
                         <div class="row ">
                             <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 pr-0 pt-3">
@@ -200,7 +200,7 @@
                                     <h4 id="balance" class="font-15">{{ __('Total Balance')}}</h4>
                                     <span class="mb-3 font-18" id="total-amount">{{ $currency }} {{ number_format($balance) }}</span>
                                     <div class="progress mt-1 mb-1 d-block d-lg-none d-xl-none d-sm-block d-md-block" data-height="8">
-                                        <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar l-bg-cyan" role="progressbar" data-width="100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <p class="mb-0 text-sm d-block d-lg-none d-xl-none d-sm-block d-md-block">
                                         <span class="text-nowrap">Main balance</span>
@@ -223,7 +223,7 @@
         <div class="col-xl-3 col-lg-6">
             <div class="card l-bg-green">
                 <div class="card-statistic-3">
-                    <div class="card-icon card-icon-large d-none d-md-block d-lg-block"><i class="fas fa-money-bill-alt"></i></div>
+                    <div class="card-icon card-icon-large d-md-block d-lg-block"><i class="fas fa-money-bill-alt"></i></div>
                     <div class="card-content">
                         <h4 class="card-title">{{ __('Withdrawn')}}</h4>
                         <span class="font-20">{{ $currency }} {{ number_format($withdrawn) }}</span>
@@ -240,7 +240,7 @@
         <div class="col-xl-3 col-lg-6">
             <div class="card l-bg-red">
                 <div class="card-statistic-3">
-                    <div class="card-icon card-icon-large d-none d-md-block d-lg-block"><i class="far fa-question-circle"></i></div>
+                    <div class="card-icon card-icon-large d-md-block d-lg-block"><i class="far fa-question-circle"></i></div>
                     <div class="card-content">
                         <h4 class="card-title">{{ __('Trivia Questions')}}</h4>
                         <span class="font-20">{{ $currency }} {{ number_format($question) }}</span>
@@ -257,7 +257,7 @@
         <div class="col-xl-3 col-lg-6">
             <div class="card l-bg-orange">
                 <div class="card-statistic-3">
-                    <div class="card-icon card-icon-large d-none d-md-block d-lg-block"><i class="fas fa-play-circle"></i></div>
+                    <div class="card-icon card-icon-large d-md-block d-lg-block"><i class="fas fa-play-circle"></i></div>
                     <div class="card-content">
                         <h4 class="card-title">{{ __('Video')}}</h4>
                         <span class="font-20">{{ $currency }} {{ number_format($video) }}</span>
@@ -274,7 +274,7 @@
         <div class="col-xl-3 col-lg-6">
             <div class="card l-bg-cyan">
                 <div class="card-statistic-3">
-                    <div class="card-icon card-icon-large d-none d-md-block d-lg-block"><i class="fab fa-whatsapp"></i></div>
+                    <div class="card-icon card-icon-large d-md-block d-lg-block"><i class="fab fa-whatsapp"></i></div>
                     <div class="card-content">
                         <h4 class="card-title">{{ __('WhatsApp Status')}}</h4>
                         <span class="font-20">{{ $currency }} {{ number_format($whatsapp) }}</span>
@@ -291,10 +291,10 @@
         <div class="col-xl-3 col-lg-6">
             <div class="card l-bg-purple">
                 <div class="card-statistic-3">
-                    <div class="card-icon card-icon-large d-none d-md-block d-lg-block"><i class="fas fa-audio-description"></i></div>
+                    <div class="card-icon card-icon-large d-md-block d-lg-block"><i class="fas fa-audio-description"></i></div>
                     <div class="card-content">
                         <h4 class="card-title">{{ __('AD Click')}}</h4>
-                        <span class="font-20">{{ $currency }} {{ number_format($withdrawn) }}</span>
+                        <span class="font-20">{{ $currency }} {{ number_format($ads) }}</span>
                         <div class="progress mt-1 mb-1" data-height="4">
                             <div class="progress-bar l-bg-cyan" role="progressbar" data-width="100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>

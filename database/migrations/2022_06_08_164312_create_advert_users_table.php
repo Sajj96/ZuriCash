@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVideosTable extends Migration
+class CreateAdvertUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateVideosTable extends Migration
      */
     public function up()
     {
-        Schema::create('videos', function (Blueprint $table) {
-            $table->id();
-            $table->string('video_path');
-            $table->string('poster')->nullable();
-            $table->string('title');
-            $table->tinyInteger('status')->default('0');
+        Schema::create('advert_users', function (Blueprint $table) {
+            $table->bigInteger('ads_id');
+            $table->bigInteger('user_id');
+            $table->primary(['ads_id', 'user_id'],  'primaryKeyName');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateVideosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('video_and_ads');
+        Schema::dropIfExists('advert_users');
     }
 }

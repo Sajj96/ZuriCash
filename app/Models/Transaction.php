@@ -23,6 +23,7 @@ class Transaction extends Model
     const TYPE_WHATSAPP = "WhatsApp";
     const TYPE_VIDEO = "Video";
     const TYPE_PAY_FOR_DOWNLINE = "pay_for_downline";
+    const TYPE_ADCLICK = "Adclick";
 
     /**
      * Get user total earning.
@@ -103,8 +104,12 @@ class Transaction extends Model
                         ->where('transaction_type', self::TYPE_WITHDRAW)
                         ->where('user_id', $id)
                         ->sum('amount');
+        $payment_for_downline = $this->getUserPaymentForDownline($id);
+        $payment_amount = $payment_for_downline ?? 0;
         $withdrawn_amount = $withdrawn ?? 0;
-        return $withdrawn_amount;
+
+        $balance = $withdrawn_amount + $payment_amount;
+        return $balance;
     }
 
 
@@ -226,8 +231,33 @@ class Transaction extends Model
         return $withdrawn_amount;
     }
 
+        /**
+     * Get ADs earnings.
+     *
+     * @return float
+     */
+    public function getAdsEarnings($id)
+    {
+        $earning = DB::table('revenues')
+                        ->where('type', Revenue::TYPE_ADCLICK)
+                        ->where('user_id', $id)
+                        ->sum('amount');
+        $earning_amount = $earning ?? 0;
+        return $earning_amount;
+    }
+
+    public function getUserAdsWithdrawnAmount($id)
+    {
+        $withdrawn = DB::table('transactions')
+                        ->where('transaction_type', self::TYPE_ADCLICK)
+                        ->where('user_id', $id)
+                        ->sum('amount');
+        $withdrawn_amount = $withdrawn ?? 0;
+        return $withdrawn_amount;
+    }
+
     /**
-     * Get video earnings.
+     * Get profit.
      *
      * @return float
      */

@@ -15,7 +15,7 @@ class CreateWhatsAppStatusesTable extends Migration
     {
         Schema::create('whats_app_statuses', function (Blueprint $table) {
             $table->id();
-            $table->text('media');
+            $table->text('media_path');
             $table->string('description');
             $table->tinyInteger('status')->default('0');
             $table->timestamps();

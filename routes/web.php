@@ -50,11 +50,11 @@ Route::middleware(['auth','active.user'])->group(function ()
     });
     
     Route::group(['prefix' => 'videos'], function(){
-        Route::get('/', [App\Http\Controllers\VideoAndAdsController::class, 'index'])->name('video');
-        Route::get('/list', [App\Http\Controllers\VideoAndAdsController::class, 'getList'])->name('video.list');
-        Route::get('/upload', [App\Http\Controllers\VideoAndAdsController::class, 'show'])->name('video.show')->middleware('user.type');
-        Route::post('/', [App\Http\Controllers\VideoAndAdsController::class, 'create'])->name('video.create')->middleware('user.type');
-        Route::delete('/', [App\Http\Controllers\VideoAndAdsController::class, 'delete'])->name('video.delete')->middleware('user.type');
+        Route::get('/', [App\Http\Controllers\VideoController::class, 'index'])->name('video');
+        Route::get('/list', [App\Http\Controllers\VideoController::class, 'getList'])->name('video.list');
+        Route::get('/upload', [App\Http\Controllers\VideoController::class, 'show'])->name('video.show')->middleware('user.type');
+        Route::post('/', [App\Http\Controllers\VideoController::class, 'create'])->name('video.create')->middleware('user.type');
+        Route::delete('/', [App\Http\Controllers\VideoController::class, 'delete'])->name('video.delete')->middleware('user.type');
     });
 
     Route::group(['prefix' => 'video-users'], function(){
@@ -121,5 +121,29 @@ Route::middleware(['auth','active.user'])->group(function ()
         Route::get('/', [App\Http\Controllers\NotificationController::class, 'index'])->name('notify');
         Route::get('/send', [App\Http\Controllers\NotificationController::class, 'show'])->name('notify.show')->middleware('user.type');
         Route::post('/', [App\Http\Controllers\NotificationController::class, 'create'])->name('notify.create')->middleware('user.type');
+    });
+
+    Route::group(['prefix' => 'adverts'], function(){
+        Route::get('/', [App\Http\Controllers\AdvertController::class, 'index'])->name('advert');
+        Route::get('/create', [App\Http\Controllers\AdvertController::class, 'show'])->name('advert.show');
+        Route::get('/list', [App\Http\Controllers\AdvertController::class, 'getAll'])->name('advert.list')->middleware('user.type');
+        Route::post('/', [App\Http\Controllers\AdvertController::class, 'create'])->name('advert.create')->middleware('user.type');
+    });
+
+    Route::group(['prefix' => 'advert-users'], function(){
+        Route::get('/', [App\Http\Controllers\AdvertUsersController::class, 'checkUser'])->name('advert.users.check');
+        Route::post('/', [App\Http\Controllers\AdvertUsersController::class, 'create'])->name('advert.users.create');
+    });
+
+    Route::group(['prefix' => 'crypto-lessons'], function(){
+        Route::get('/', [App\Http\Controllers\CryptoController::class, 'index'])->name('crypto');
+        Route::get('/create', [App\Http\Controllers\CryptoController::class, 'show'])->name('crypto.show');
+        Route::post('/', [App\Http\Controllers\CryptoController::class, 'create'])->name('crypto.create');
+    });
+
+    Route::group(['prefix' => 'enterpreneur-lessons'], function(){
+        Route::get('/', [App\Http\Controllers\EducationController::class, 'index'])->name('education');
+        Route::get('/create', [App\Http\Controllers\EducationController::class, 'show'])->name('education.show');
+        Route::post('/', [App\Http\Controllers\EducationController::class, 'create'])->name('education.create');
     });
 });

@@ -90,6 +90,27 @@ $day = Carbon::createFromFormat('d/m/Y', $date)->format('l');
                     </ul>
                 </li>
                 <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="dollar-sign"></i><span>{{ __('Crypto Currency Lessons')}}</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="{{ route('crypto')}}">{{ __('All Lessons')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('crypto.show')}}">{{ __('Add Lesson')}}</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="book-open"></i><span>{{ __('Enterpreneur Lessons')}}</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="{{ route('education')}}">{{ __('All Lessons')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('education.show')}}">{{ __('Add Lesson')}}</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="thumbs-up"></i><span>{{ __('ADs Click')}}</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="{{ route('advert')}}">{{ __('Advert List')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('advert.show')}}">{{ __('Add Advert')}}</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="bell"></i><span>{{ __('Notification')}}</span></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('notify')}}">{{ __('Notifications List')}}</a></li>
@@ -116,13 +137,13 @@ $day = Carbon::createFromFormat('d/m/Y', $date)->format('l');
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="{{ route('pay_for_downline')}}" class="nav-link"><i data-feather="dollar-sign"></i><span>{{ __('Crypto Education')}}</span></a>
+                    <a href="{{ route('crypto')}}" class="nav-link"><i data-feather="dollar-sign"></i><span>{{ __('Crypto Currency Lessons')}}</span></a>
                 </li>
                 <li class="dropdown">
-                    <a href="{{ route('pay_for_downline')}}" class="nav-link"><i data-feather="book-open"></i><span>{{ __('Enterpreneur Class')}}</span></a>
+                    <a href="{{ route('education')}}" class="nav-link"><i data-feather="book-open"></i><span>{{ __('Enterpreneur Lessons')}}</span></a>
                 </li>
                 <li class="dropdown">
-                    <a href="{{ route('pay_for_downline')}}" class="nav-link"><i data-feather="thumbs-up"></i><span>{{ __('AD Click')}}</span></a>
+                    <a href="{{ route('advert')}}" class="nav-link"><i data-feather="thumbs-up"></i><span>{{ __('ADs Click')}}</span></a>
                 </li>
                 <li class="dropdown">
                     <a href="{{ route('questions')}}" class="nav-link"><i data-feather="help-circle"></i><span>{{ __('Trivia Questions')}}</span></a>

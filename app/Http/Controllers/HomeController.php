@@ -27,6 +27,7 @@ class HomeController extends Controller
         $whatsapp = $transactions->getWhatsAppEarnings($id);
         $question = $transactions->getQuestionsEarnings($id);
         $video = $transactions->getVideoEarnings($id);
+        $ads = $transactions->getAdsEarnings($id);
         $payment_for_downline = $transactions->getUserPaymentForDownline($id);
         $withdrawn = $mainWithdrawn + $payment_for_downline;
 
@@ -77,7 +78,7 @@ class HomeController extends Controller
             $currency = $currency;
             $amount = $amount;
         } else if(Auth::user()->country == "ke") {
-            $currency = "KSH";
+            $currency = "KES";
             $amount = 0.05 * $amount;
         } else if(Auth::user()->country == "ug") {
             $currency = "UGX";
@@ -88,7 +89,7 @@ class HomeController extends Controller
         }
 
         if(Auth::user()->user_type != 1) {
-            return view('home', compact('profit','balance','withdrawn','whatsapp','question','video','notification','currency','amount'));
+            return view('home', compact('profit','balance','withdrawn','whatsapp','question','video','notification','currency','amount','ads'));
         }
 
         return view('home', compact('all_users','active_users','withdraw_requests','system_earnings','transactionData','todayEarning','totalWithdraw','newUsers','inactiveUsers'));

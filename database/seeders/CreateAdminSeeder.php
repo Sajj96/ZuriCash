@@ -16,7 +16,7 @@ class CreateAdminSeeder extends Seeder
     public function run()
     {
         //Super Admin
-        DB::enableQueryLog();
+        // DB::enableQueryLog();
         $super_admin = User::firstOrNew(['email'=>'admin@example.com']);
         $super_admin->name = 'Super Admin';
         $super_admin->username = 'Admin';
@@ -26,6 +26,6 @@ class CreateAdminSeeder extends Seeder
         $super_admin->user_type = User::ADMIN_USER;
         $super_admin->active = User::USER_STATUS_ACTIVE;
         $super_admin->save();
-        dd(DB::getQueryLog());
+        // dd(DB::getQueryLog());
     }
 }
