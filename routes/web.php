@@ -126,8 +126,9 @@ Route::middleware(['auth','active.user'])->group(function ()
     Route::group(['prefix' => 'adverts'], function(){
         Route::get('/', [App\Http\Controllers\AdvertController::class, 'index'])->name('advert');
         Route::get('/create', [App\Http\Controllers\AdvertController::class, 'show'])->name('advert.show');
-        Route::get('/list', [App\Http\Controllers\AdvertController::class, 'getAll'])->name('advert.list')->middleware('user.type');
+        Route::get('/list', [App\Http\Controllers\AdvertController::class, 'getList'])->name('advert.list')->middleware('user.type');
         Route::post('/', [App\Http\Controllers\AdvertController::class, 'create'])->name('advert.create')->middleware('user.type');
+        Route::delete('/', [App\Http\Controllers\AdvertController::class, 'delete'])->name('advert.delete')->middleware('user.type');
     });
 
     Route::group(['prefix' => 'advert-users'], function(){

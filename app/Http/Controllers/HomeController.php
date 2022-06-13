@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaction;
 use App\Models\User;
+use App\Services\ExchangeRateService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -71,8 +72,12 @@ class HomeController extends Controller
             }
         }
 
-        $currency = "TZ";
+        $currency = "TZS";
         $amount = 12000;
+
+        // $exchange = app(ExchangeRateService::class);
+
+        // $rate = (object) json_decode($exchange->getRate());
 
         if(Auth::user()->country == "tz") {
             $currency = $currency;
@@ -100,8 +105,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showPaymentInformationPage()
+    public function showPaymentInformationPage(Request $request)
     {
-        return view('payment');
+        $country = $request->session()->get('country');
+        return view('payment', compact('country'));
     }
 }

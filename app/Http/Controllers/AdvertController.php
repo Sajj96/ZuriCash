@@ -25,12 +25,19 @@ class AdvertController extends Controller
             array_push($ads_ids,$rows->ads_id);
         }
 
-        return view('ads.ads_list', compact('user','ads','ads_ids'));
+        return view('ads.ads', compact('user','ads','ads_ids'));
     }
 
     public function show()
     {
         return view('ads.create');
+    }
+
+    public function getList()
+    {
+        $ads = Advert::all();
+        $serial = 1;
+        return view('ads.ads_list', compact('ads'));
     }
 
     public function create(Request $request)
@@ -54,6 +61,8 @@ class AdvertController extends Controller
                     $fileName = $generated.".png";
                 } else if($extension == "jpg") {
                     $fileName = $generated.".jpg";
+                } else if($extension == "gif") {
+                    $fileName = $generated.".gif";
                 } else if($extension == "jpeg") {
                     $fileName = $generated.".jpeg";
                 } else {
@@ -77,6 +86,19 @@ class AdvertController extends Controller
             }
         } catch (\Exception $e) {
             return redirect()->route('advert.show')->with('error',$e->getMessage());
+        }
+    }
+
+    public function delete(Request $request)
+    {
+        try {
+            $ads = Advert::find($request->id);
+            if($ads->delete()){
+                DB::table('advert_users')->where('ads_id','=',$request->id)->delete();
+                return true;
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('advert.list')->with('error','Something went wrong while deleting a question!');
         }
     }
 }

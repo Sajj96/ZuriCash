@@ -54,13 +54,13 @@
     </section>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="formModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
+            <div class="modal-content" style="background-color: none !important; background-image: url(/assets/img/confetti-yellow.jpg);background-position: inherit;background-repeat: no-repeat;">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body text-center">
+                <div class="modal-body text-center text-white">
                     <h2>Congrats! 🎉</h2>
                     <h4>You got <strong>TZS 250 </strong> for watching this video</h4>
                 </div>

@@ -1,4 +1,10 @@
 @extends('layouts.app')
+@php
+use Akaunting\Money\Currency;
+use Akaunting\Money\Money;
+$m1 = Money::USD(500);
+$time = date("H");
+@endphp
 
 @section('general-css')
 <link rel="stylesheet" href="{{ asset('assets/bundles/jqvmap/dist/jqvmap.min.css')}}">
@@ -8,7 +14,17 @@
 @include('layouts.header')
 <!-- Main Content -->
 <div class="main-content">
-    <h4 class="section-title mb-3 text-md-left text-sm-center">Hi, welcome {{Auth::user()->username}}.</h4>
+    <h4 class="section-title mb-3 text-md-left text-sm-center">
+    @if ($time < "12") 
+        {{ __('Good morning')}}
+    @elseif ($time >= "12" && $time < "15") 
+        {{ __('Good afternoon')}}
+    @elseif ($time >= "15" && $time < "19") 
+        {{ __('Good evening')}}
+    @else ($time >= "19") 
+        {{ __('Good night')}}
+    @endif
+    {{Auth::user()->username}},</h4>
     @if(Auth::user()->user_type == 1)
     <section class="section">
         <div class="row">
@@ -60,7 +76,7 @@
                         <div class="p-t-20 d-flex justify-content-between">
                             <div class="col">
                                 <h6 class="mb-0">{{ __('Total Earnings')}}</h6>
-                                <span class="font-weight-bold mb-0 font-20">TZS {{ number_format($system_earnings,2) }}</span>
+                                <span class="font-weight-bold mb-0 font-20">{{ $m1->convert(new Currency('TZS'), 2347); }}</span>
                             </div>
                             <i class="fas fa-hand-holding-usd card-icon col-green font-30 p-r-30"></i>
                         </div>

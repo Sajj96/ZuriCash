@@ -113,34 +113,34 @@ function optionSelected(answer, que_id){
     let questionNumber = que_id;
     const allOptions = option_list.children.length; //getting all option items
 
-    $.ajax({
-        url: url3,
-        method: "GET",
-        data: {
-            question_id: questionNumber,
-            user_id: parseInt(user)
-        },
-        success: function (count) {
-          if(count > 0) {
-              window.location.href = url4;
-          } else {
-            $.ajax({
-                url: url2,
-                method: "POST",
-                data: {
-                    _token: document
-                        .querySelector('meta[name="csrf-token"]')
-                        .getAttribute("content"),
-                    question_id: questionNumber,
-                    user_id: parseInt(user)
-                },
-                success: function (response) {
-                  console.log("Question attempted");
-                },
-            });
-          }
-        },
-    });
+    // $.ajax({
+    //     url: url3,
+    //     method: "GET",
+    //     data: {
+    //         question_id: questionNumber,
+    //         user_id: parseInt(user)
+    //     },
+    //     success: function (count) {
+    //       if(count > 0) {
+    //           window.location.href = url4;
+    //       } else {
+    //         $.ajax({
+    //             url: url2,
+    //             method: "POST",
+    //             data: {
+    //                 _token: document
+    //                     .querySelector('meta[name="csrf-token"]')
+    //                     .getAttribute("content"),
+    //                 question_id: questionNumber,
+    //                 user_id: parseInt(user)
+    //             },
+    //             success: function (response) {
+    //               console.log("Question attempted");
+    //             },
+    //         });
+    //       }
+    //     },
+    // });
     
     if(userAns == correcAns){ //if user selected option is equal to array's correct answer
         userScore += 1; //upgrading score value with 1
@@ -193,20 +193,20 @@ async function showResult(){
             "type": "questions",
             "amount": userScore * 50
         }
-        const res = await fetch(url1, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            },
-            body: JSON.stringify(revenueBody)
-        }).then(r => {
-            console.log(r);
-        })
-        .catch(error => {
-            console.log("There was", error);
-        });
+        // const res = await fetch(url1, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json',
+        //         'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        //     },
+        //     body: JSON.stringify(revenueBody)
+        // }).then(r => {
+        //     console.log(r);
+        // })
+        // .catch(error => {
+        //     console.log("There was", error);
+        // });
         //creating a new span tag and passing the user score number and total question number
         let scoreTag = '<span>Congrats! 🎉, You got  <strong>'+ userScore +'</strong> out of  <strong>'+ questions.length +'</strong></span>';
         scoreText.innerHTML = scoreTag;  //adding new span tag inside score_Text

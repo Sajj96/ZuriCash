@@ -245,7 +245,7 @@
                                                     <select class="form-control select2" name="referrer" required>
                                                         Users::chunk(200, function($users){
                                                         @foreach($users as $key => $rows) {
-                                                        <option {{ $user->referrer_id == $rows->id ? 'selected' : '' }} value="{{ $rows->id }}">{{ $rows->name }}</option>
+                                                        <option {{ $user->referrer_id == $rows->id ? 'selected' : '' }} value="{{ $rows->id }}">{{ $rows->username }}</option>
                                                         @endforeach
                                                         });
                                                     </select>

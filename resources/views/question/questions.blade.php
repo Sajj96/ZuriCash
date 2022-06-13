@@ -61,7 +61,7 @@
             </div>
             <div class="row result_box">
                 <div class="col-12 col-md-12 col-lg-12">
-                    <div class="card">
+                    <div class="card text-white" style="background-color: none !important; background-image: url(/assets/img/confetti-yellow-2.jpg);background-position: inherit;background-repeat: no-repeat;background-size:cover;">
                         <div class="card-body">
                             <div class="result_info">
                                 <div class="icon">

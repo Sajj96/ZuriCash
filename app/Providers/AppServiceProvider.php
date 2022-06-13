@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\ExchangeRateService;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -25,5 +26,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
+        $this->app->singleton(ExchangeRateService::class, function() {
+            return new ExchangeRateService(new \GuzzleHttp\Client([
+                'headers' => [
+                    'Content-Type'  => 'application/json',
+                ]
+            ]));
+        });
     }
 }

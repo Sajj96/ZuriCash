@@ -106,7 +106,8 @@ $day = Carbon::createFromFormat('d/m/Y', $date)->format('l');
                 <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="thumbs-up"></i><span>{{ __('ADs Click')}}</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('advert')}}">{{ __('Advert List')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('advert')}}">{{ __('Adverts')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('advert.list')}}">{{ __('Manage ADs')}}</a></li>
                         <li><a class="nav-link" href="{{ route('advert.show')}}">{{ __('Add Advert')}}</a></li>
                     </ul>
                 </li>

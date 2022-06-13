@@ -12,12 +12,18 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>{{ __('Add Crypto Currency Lesson Link')}}</h4>
+                            <h4>{{ __('Add Enterpreneur Lesson Link')}}</h4>
                         </div>
                         @include('flash-message')
                         <div class="card-body">
-                            <form action="{{ route('crypto.create')}}" method="post">
+                            <form action="{{ route('education.create')}}" method="post">
                                 @csrf
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Title')}}</label>
+                                    <div class="col-sm-12 col-md-7">
+                                        <input type="text" class="form-control" name="title" placeholder="Paste link here" required>
+                                    </div>
+                                </div>
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Link')}}</label>
                                     <div class="col-sm-12 col-md-7">

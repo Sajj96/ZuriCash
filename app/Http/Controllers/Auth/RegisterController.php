@@ -85,6 +85,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $referrer = User::whereUsername(session()->pull('referrer'))->first();
+        session(['country'=> $data['country']]);
 
         User::create([
             'name'        => $data['name'],
