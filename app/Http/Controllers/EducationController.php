@@ -4,18 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Education;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class EducationController extends Controller
 {
     public function index()
     {
-        return view('education.lessons');
+        $education = Education::all();
+        return view('education.lessons', compact('education'));
     }
 
     public function show()
     {
-        $education = Education::all();
-        return view('education.create', compact('education'));
+        return view('education.create');
     }
 
     public function create(Request $request)

@@ -16,46 +16,18 @@
                         </div>
                         <div class="card-body">
                             <ul class="list-unstyled list-unstyled-border list-unstyled-noborder">
+                                @foreach($education as $key=>$rows)
                                 <li class="media">
                                     <i class="fas fa-play-circle fa-2x mr-3"></i>
                                     <div class="media-body">
                                         <div class="media-right">
-                                            <div class="text-primary">New</div>
+                                            <div class="text-primary"></div>
                                         </div>
-                                        <div class="media-title mb-1"><a href="#">Cara Stevens</a></div>
-                                        <div class="text-time">Yesterday</div>
+                                        <div class="media-title mb-1"><a href="{{ $rows->link }}" target="_blank" rel="noopener noreferrer">{{ $rows->title }}</a></div>
+                                        <div class="text-time">{{ date('F, d Y', strtotime($rows->created_at)) }}</div>
                                     </div>
                                 </li>
-                                <li class="media">
-                                    <i class="fas fa-play-circle fa-2x mr-3"></i>
-                                    <div class="media-body">
-                                        <div class="media-right">
-                                            <div class="text-primary">New</div>
-                                        </div>
-                                        <div class="media-title mb-1"><a href="#">Cara Stevens</a></div>
-                                        <div class="text-time">Yesterday</div>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-play-circle fa-2x mr-3"></i>
-                                    <div class="media-body">
-                                        <div class="media-right">
-                                            <div class="text-primary">New</div>
-                                        </div>
-                                        <div class="media-title mb-1"><a href="#">Cara Stevens</a></div>
-                                        <div class="text-time">Yesterday</div>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-play-circle fa-2x mr-3"></i>
-                                    <div class="media-body">
-                                        <div class="media-right">
-                                            <div class="text-primary">New</div>
-                                        </div>
-                                        <div class="media-title mb-1"><a href="#">Cara Stevens</a></div>
-                                        <div class="text-time">Yesterday</div>
-                                    </div>
-                                </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
