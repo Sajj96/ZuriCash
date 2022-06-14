@@ -22,6 +22,7 @@ class CreateTransactionsTable extends Migration
             $table->double('amount');
             $table->double('amount_deposit');
             $table->double('fee');
+            $table->string('currency')->nullable();
             $table->string('transaction_type');
             $table->integer('status');
             $table->timestamps();

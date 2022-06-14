@@ -105,6 +105,19 @@ $(function () {
             var remainingTime = myPlayer.remainingTime();
             var duration = myPlayer.duration();
             var currentTime = myPlayer.currentTime();
+            var amount = 100;
+
+            if(userCountry === 'tz'){
+                amount = amount;
+            }else if(userCountry === 'ke'){
+                amount = amount * 0.05;
+            }else if(userCountry === 'ug'){
+                amount = amount * 1.6;
+            }else if(userCountry === 'rw'){
+                amount = amount * 0.44;
+            }else {
+                amount = amount * 0.0004;
+            }
 
                 if (currentTime == duration) {
                 myPlayer.pause();
@@ -142,7 +155,7 @@ $(function () {
                                                 user_id: user_id,
                                                 video_id:video_id,
                                                 type: "video",
-                                                amount: 100
+                                                amount: amount
                                             },
                                             success: function (response) {
                                               $("#exampleModal").modal("show");

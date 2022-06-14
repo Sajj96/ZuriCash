@@ -51,14 +51,16 @@
                             <div class="tab-content" id="myTabContent2">
                                 <div class="tab-pane fade show active" id="home3" role="tabpanel" aria-labelledby="home-tab3">
                                     <div class="table-responsive">
-                                        <table class="table table-striped" id="tableExport">
+                                        <table class="table table-striped" id="tableTrans">
                                             <thead>
                                                 <tr>
                                                     <th class="text-center">
                                                         #
                                                     </th>
                                                     <th>{{ __('Name')}}</th>
+                                                    <th>{{ __('Username')}}</th>
                                                     <th>{{ __('Date')}}</th>
+                                                    <th>{{ __('Currency')}}</th>
                                                     <th>{{ __('Amount')}}</th>
                                                     <th>{{ __('Debit')}}</th>
                                                     <th>{{ __('Fee')}}</th>
@@ -68,31 +70,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($transactions as $key=>$rows)
-                                                <tr>
-                                                    <td>{{ $serial_1++ }}</td>
-                                                    <td>{{ $rows->name }}</td>
-                                                    <td>{{ date('M d Y', strtotime($rows->created_at)) }}</td>
-                                                    <td>{{ number_format($rows->amount,2) }}</td>
-                                                    <td>{{ number_format($rows->amount_deposit,2) }}</td>
-                                                    <td>{{ number_format($rows->fee,2) }}</td>
-                                                    <td>{{ $rows->phone }}</td>
-                                                    <td>{{ $rows->transaction_type }}</td>
-                                                    @if($rows->status == 0)
-                                                    <td>
-                                                        <div class="badge badge-light badge-shadow">Pending</div>
-                                                    </td>
-                                                    @elseif($rows->status == 1)
-                                                    <td>
-                                                        <div class="badge badge-success badge-shadow">Paid</div>
-                                                    </td>
-                                                    @else
-                                                    <td>
-                                                        <div class="badge badge-danger badge-shadow">Cancelled</div>
-                                                    </td>
-                                                    @endif
-                                                </tr>
-                                                @endforeach
+                                                
                                             </tbody>
                                         </table>
                                     </div>
@@ -106,7 +84,9 @@
                                                         #
                                                     </th>
                                                     <th>{{ __('Name')}}</th>
+                                                    <th>{{ __('Username')}}</th>
                                                     <th>{{ __('Date')}}</th>
+                                                    <th>{{ __('Currency')}}</th>
                                                     <th>{{ __('Amount')}}</th>
                                                     <th>{{ __('Debit')}}</th>
                                                     <th>{{ __('Fee')}}</th>
@@ -121,25 +101,23 @@
                                                 <tr>
                                                     <td>{{ $serial_2++ }}</td>
                                                     <td>{{ $rows->name }}</td>
+                                                    <td>{{ $rows->username }}</td>
                                                     <td>{{ date('M d Y', strtotime($rows->created_at)) }}</td>
+                                                    <th>{{ $rows->currency }}</th>
                                                     <td>{{ number_format($rows->amount,2) }}</td>
                                                     <td>{{ number_format($rows->amount_deposit,2) }}</td>
                                                     <td>{{ number_format($rows->fee,2) }}</td>
                                                     <td>{{ $rows->phone }}</td>
                                                     <td>{{ $rows->transaction_type }}</td>
-                                                    @if($rows->status == 0)
                                                     <td>
+                                                        @if($rows->status == 0)
                                                         <div class="badge badge-light badge-shadow">Pending</div>
-                                                    </td>
-                                                    @elseif($rows->status == 1)
-                                                    <td>
+                                                        @elseif($rows->status == 1)
                                                         <div class="badge badge-success badge-shadow">Paid</div>
-                                                    </td>
-                                                    @else
-                                                    <td>
+                                                        @else
                                                         <div class="badge badge-danger badge-shadow">Cancelled</div>
+                                                        @endif
                                                     </td>
-                                                    @endif
                                                     <td>
                                                         <a class="btn btn-success btn-action mr-1" data-toggle="tooltip" title="Accept" id="accept" onclick="event.preventDefault(); document.getElementById('accept-form').submit();"><i class="fas fa-check"></i></a>
                                                         <a class="btn btn-danger btn-action decline" id="decline" data-id="{{ $rows->id }}" data-toggle="tooltip" title="Decline"><i class="fas fa-times"></i></a>
@@ -175,6 +153,9 @@
 <script src="{{ asset('assets/bundles/sweetalert/sweetalert.min.js')}}"></script>
 @endsection
 @section('page-specific-js')
+<script type="text/javascript">
+    var transactionUrl = "{{ route('transaction') }}";
+</script>
 <script src="{{ asset('assets/js/page/datatables.js')}}"></script>
 @endsection
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Advert;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -25,7 +26,13 @@ class AdvertController extends Controller
             array_push($ads_ids,$rows->ads_id);
         }
 
-        return view('ads.ads', compact('user','ads','ads_ids'));
+        $transaction = new Transaction;
+        $rate = $transaction->getExchangeRate($user->id,50,'TZS');
+
+        $currency = $rate['currency'];
+        $amount = $rate['amount'];
+
+        return view('ads.ads', compact('user','ads','ads_ids','amount', 'currency'));
     }
 
     public function show()

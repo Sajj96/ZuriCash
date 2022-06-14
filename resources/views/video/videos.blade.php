@@ -24,8 +24,8 @@
                             <div id="sync1" class="slider owl-carousel owl-theme">
                                 @foreach($videos as $key => $rows)
                                 @if(!in_array($rows->id, $video_ids))
-                                <video id="{{ 'video_'.$rows->id }}" data-id="{{ $rows->id }}" class="video-js item videos" controls preload="auto" poster="{{ asset('storage/video_posters/'.$rows->poster)}}" data-setup=''>
-                                    <source src="{{ asset('storage/videos/'.$rows->video)}}" type='video/mp4'>
+                                <video id="{{ 'video_'.$rows->id }}" data-id="{{ $rows->id }}" class="video-js item videos" controls preload="auto" poster="{{ $rows->poster }}" data-setup=''>
+                                    <source src="{{ $rows->video_path }}" type='video/mp4'>
                                 </video>
                                 @endif
                                 @endforeach
@@ -36,7 +36,7 @@
                                 @if(!in_array($rows->id, $video_ids))
                                 <div class="item">
                                     @if($rows->poster != "")
-                                    <img src="{{ asset('storage/video_posters/'.$rows->poster)}}" class="img-responsive thumbnail" width="80" height="100" alt="">
+                                    <img src="{{ $rows->poster }}" class="img-responsive thumbnail" width="80" height="100" alt="">
                                     @else
                                     <img src="{{ asset('storage/video_posters/20220203_162602.jpg')}}" class="img-responsive thumbnail" width="80" height="100" alt="">
                                     @endif
@@ -62,7 +62,7 @@
                 </div>
                 <div class="modal-body text-center text-white">
                     <h2>Congrats! 🎉</h2>
-                    <h4>You got <strong>TZS 250 </strong> for watching this video</h4>
+                    <h4>You got <strong>{{ $amount." ".$currency }} </strong> for watching this video</h4>
                 </div>
             </div>
         </div>
@@ -96,6 +96,7 @@
     var url2 = "{{ route('video.users.create')}}";
     var url3 = "{{ route('video.users.check')}}";
     var url4 = "{{ route('video')}}";
+    var userCountry = "{{ Auth::user()->country }}";
 </script>
 <script src="{{ asset('assets/js/page/video-audio.js')}}"></script>
 @endsection

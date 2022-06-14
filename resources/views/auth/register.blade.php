@@ -14,7 +14,7 @@
                         <div class="col-12 col-md-12 col-lg-5 p-0">
                             <div class="card-body text-center">
                                 <img alt="image" src="{{ asset('assets/img/logo4.jpeg')}}" width="300" class="header-logo mx-auto" />
-                                <h6>Earn with Us</h6>
+                                <h5><i>Earn with Us</i></h5>
                             </div>
                         </div>
                         <div class="col-12 col-md-12 col-lg-7 p-0" style="background-color: #f6f6f6;">

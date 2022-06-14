@@ -57,6 +57,30 @@ $('#tableExport1').DataTable({
   ]
 });
 
+var table = $('#tableTrans').DataTable({
+  dom: 'Bfrtip',
+  buttons: [
+    'copy', 'csv', 'excel', 'pdf', 'print'
+  ],
+  processing: true,
+  serverSide: false,
+  ajax: transactionUrl,
+  columns: [
+      {data: 'id', name: 'id'},
+      {data: 'name', name: 'name'},
+      {data: 'username', name: 'username'},
+      {data: 'created_at', name: 'created_at'},
+      {data: 'currency', name: 'currency'},
+      {data: 'amount', name: 'amount'},
+      {data: 'amount_deposit', name: 'amount_deposit'},
+      {data: 'fee', name: 'fee'},
+      {data: 'phone', name: 'phone'},
+      {data: 'transaction_type', name: 'transaction_type'},
+      {data: 'status', name: 'status',orderable: false, searchable: false}
+  ],
+  order: [[1, 'asc']]
+});
+
 $(".decline").click(function () {
   var id = $(this).data("id");
   swal({

@@ -62,41 +62,43 @@ class WhatsAppStatusController extends Controller
             'image'   => 'required|file|mimes:png,jpeg,gif,jpeg'
         ]);
 
-        if($validator->fails()) {
-            return redirect()->route('whatsapp.show')->with('error','Only valid details are required!');
+        if ($validator->fails()) {
+            return redirect()->route('whatsapp.show')->with('error', 'Only valid details are required!');
         }
 
         try {
 
-            $fileName = $request->image->getClientOriginalName();
-            $extension = $request->file('image')->extension();
-            $generated_name = uniqid()."_".time().date("Ymd")."_IMG";
-            if($extension == "png") {
-                $fileName = $generated_name.".png";
-            } else if($extension == "jpg") {
-                $fileName = $generated_name.".jpg";
-            } else if($extension == "jpeg") {
-                $fileName = $generated_name.".jpeg";
-            } else {
-                return redirect()->route('whatsapp.show')->with('error', "Invalid file type only png, jpeg and jpg files are allowed.");
+            if ($request->hasFile('image')) {
+                $fileName = $request->image->getClientOriginalName();
+                $extension = $request->file('image')->extension();
+                $generated_name = uniqid() . "_" . time() . date("Ymd") . "_IMG";
+                if ($extension == "png") {
+                    $fileName = $generated_name . ".png";
+                } else if ($extension == "jpg") {
+                    $fileName = $generated_name . ".jpg";
+                } else if ($extension == "jpeg") {
+                    $fileName = $generated_name . ".jpeg";
+                } else {
+                    return redirect()->route('whatsapp.show')->with('error', "Invalid file type only png, jpeg and jpg files are allowed.");
+                }
+                $filePath = $request->file('image')->storeAs('whatsapp_statuses', $fileName, 'public');
+                $type = pathinfo($filePath, PATHINFO_EXTENSION);
+                $image_data = File::get(storage_path('/app/public/whatsapp_statuses/' . $fileName));
+                $base64encodedString = 'data:image/' . $type . ';base64,' . base64_encode($image_data);
+                $fileBin = file_get_contents($base64encodedString);
+                $fileLink = url('storage/whatsapp_statuses/'.$fileName);
             }
-            $filePath = $request->file('image')->storeAs('whatsapp_statuses', $fileName,'public');
-            $type = pathinfo($filePath, PATHINFO_EXTENSION);
-            $image_data = File::get(storage_path('/app/public/whatsapp_statuses/'.$fileName));
-            $base64encodedString = 'data:image/' . $type . ';base64,' . base64_encode($image_data);
-            $fileBin = file_get_contents($base64encodedString);
 
             $whatsapp_status = new WhatsAppStatus;
-            $whatsapp_status->media = $fileName;
+            $whatsapp_status->media_path = $fileLink;
             $whatsapp_status->description = strip_tags($request->title);
             $whatsapp_status->status = $request->status;
-            if($whatsapp_status->save()){
-                return redirect()->route('whatsapp.show')->with('success','WhatsApp Status added successfully!');
+            if ($whatsapp_status->save()) {
+                return redirect()->route('whatsapp.show')->with('success', 'WhatsApp Status added successfully!');
             }
-            file_put_contents("/app/public/whatsapp_statuses/".$fileName, $fileBin);
-
+            file_put_contents("/app/public/whatsapp_statuses/" . $fileName, $fileBin);
         } catch (\Exception $e) {
-            return redirect()->route('whatsapp.show')->with('error','WhatsApp Status was not added!');
+            return redirect()->route('whatsapp.show')->with('error', 'WhatsApp Status was not added!');
         }
     }
 
@@ -112,27 +114,27 @@ class WhatsAppStatusController extends Controller
             'image'   => 'required|file|mimes:png,jpeg,gif,jpeg'
         ]);
 
-        if($validator->fails()) {
-            return redirect()->route('whatsapp.show')->with('error','Only valid details are required!');
+        if ($validator->fails()) {
+            return redirect()->route('whatsapp.show')->with('error', 'Only valid details are required!');
         }
 
         try {
 
             $fileName = $request->image->getClientOriginalName();
             $extension = $request->file('image')->extension();
-            $generated_name = uniqid()."_".time().date("Ymd")."_IMG";
-            if($extension == "png") {
-                $fileName = $generated_name.".png";
-            } else if($extension == "jpg") {
-                $fileName = $generated_name.".jpg";
-            } else if($extension == "jpeg") {
-                $fileName = $generated_name.".jpeg";
+            $generated_name = uniqid() . "_" . time() . date("Ymd") . "_IMG";
+            if ($extension == "png") {
+                $fileName = $generated_name . ".png";
+            } else if ($extension == "jpg") {
+                $fileName = $generated_name . ".jpg";
+            } else if ($extension == "jpeg") {
+                $fileName = $generated_name . ".jpeg";
             } else {
                 return redirect()->route('whatsapp.edit', $request->id)->with('error', "Invalid file type only png, jpeg and jpg files are allowed.");
             }
-            $filePath = $request->file('image')->storeAs('whatsapp_statuses', $fileName,'public');
+            $filePath = $request->file('image')->storeAs('whatsapp_statuses', $fileName, 'public');
             $type = pathinfo($filePath, PATHINFO_EXTENSION);
-            $image_data = File::get(storage_path('/app/public/whatsapp_statuses/'.$fileName));
+            $image_data = File::get(storage_path('/app/public/whatsapp_statuses/' . $fileName));
             $base64encodedString = 'data:image/' . $type . ';base64,' . base64_encode($image_data);
             $fileBin = file_get_contents($base64encodedString);
 
@@ -140,13 +142,12 @@ class WhatsAppStatusController extends Controller
             $whatsapp_status->media = $fileName;
             $whatsapp_status->description = strip_tags($request->title);
             $whatsapp_status->status = $request->status;
-            if($whatsapp_status->save()){
-                return redirect()->route('whatsapp.edit', $request->id)->with('success','WhatsApp Status updated successfully!');
+            if ($whatsapp_status->save()) {
+                return redirect()->route('whatsapp.edit', $request->id)->with('success', 'WhatsApp Status updated successfully!');
             }
-            file_put_contents("/app/public/whatsapp_statuses/".$fileName, $fileBin);
-
+            file_put_contents("/app/public/whatsapp_statuses/" . $fileName, $fileBin);
         } catch (\Exception $e) {
-            return redirect()->route('whatsapp.edit', $request->id)->with('error',$e->getMessage());
+            return redirect()->route('whatsapp.edit', $request->id)->with('error', $e->getMessage());
         }
     }
 
@@ -154,7 +155,7 @@ class WhatsAppStatusController extends Controller
     {
         try {
             $status = WhatsAppStatus::where('id', $request->id)->first();
-            if($status->delete()) {
+            if ($status->delete()) {
                 return redirect()->route('whatsapp.list')->with('success', 'Status deleted successfully!');
             }
         } catch (\Throwable $th) {

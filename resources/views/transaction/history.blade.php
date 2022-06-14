@@ -34,7 +34,7 @@
                                     <tbody>
                                         @foreach($transactions as $key=>$rows)
                                         <tr>
-                                            <td>{{ $serial++ }}</td>
+                                            <td>{{ $key + 1 }}</td>
                                             <td>{{ ($rows->created_at)->format('M d Y') }}</td>
                                             <td>{{ number_format($rows->amount,2) }}</td>
                                             <td>{{ $rows->phone }}</td>

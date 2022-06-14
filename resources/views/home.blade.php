@@ -76,7 +76,7 @@ $time = date("H");
                         <div class="p-t-20 d-flex justify-content-between">
                             <div class="col">
                                 <h6 class="mb-0">{{ __('Total Earnings')}}</h6>
-                                <span class="font-weight-bold mb-0 font-20">{{ $m1->convert(new Currency('TZS'), 2347); }}</span>
+                                <span class="font-weight-bold mb-0 font-20">{{ number_format($system_earnings,2)." ". $currency }}</span>
                             </div>
                             <i class="fas fa-hand-holding-usd card-icon col-green font-30 p-r-30"></i>
                         </div>
@@ -99,7 +99,7 @@ $time = date("H");
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <div class="list-inline text-center">
                                             <div class="list-inline-item p-r-30"><i data-feather="arrow-up-circle" class="col-cyan"></i>
-                                                <h5 class="m-b-0">TZS <span id="earning"></span></h5>
+                                                <h5 class="m-b-0"><span id="earning"></span> {{ $currency }}</h5>
                                                 <p class="text-muted font-14 m-b-0">Weekly Earnings</p>
                                             </div>
                                         </div>
@@ -107,7 +107,7 @@ $time = date("H");
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <div class="list-inline text-center">
                                             <div class="list-inline-item p-r-30"><i data-feather="arrow-down-circle" class="col-orange"></i>
-                                                <h5 class="m-b-0">TZS <span id="withdraw"></span></h5>
+                                                <h5 class="m-b-0"><span id="withdraw"></span> {{ $currency }}</h5>
                                                 <p class="text-muted font-14 m-b-0">Weekly Withdraws</p>
                                             </div>
                                         </div>
@@ -123,12 +123,12 @@ $time = date("H");
                                     </div>
                                     <div class="col-7 col-xl-7 mb-3">Total Withdraws</div>
                                     <div class="col-5 col-xl-5 mb-3">
-                                        <span class="text-big">TZS {{ number_format($totalWithdraw) }}</span>
+                                        <span class="text-big">{{ number_format($totalWithdraw,2)." ".$currency }}</span>
                                         <sup class="text-danger">00</sup>
                                     </div>
                                     <div class="col-7 col-xl-7 mb-3">Today's Earnings</div>
                                     <div class="col-5 col-xl-5 mb-3">
-                                        <span class="text-big">TZS {{ number_format($todayEarning) }}</span>
+                                        <span class="text-big">{{ number_format($todayEarning,2)." ".$currency }}</span>
                                         <sup class="col-green">00</sup>
                                     </div>
                                     <div class="col-7 col-xl-7 mb-3">Inactive Users</div>
@@ -167,7 +167,7 @@ $time = date("H");
                             <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 pr-0 pt-3">
                                 <div class="card-content">
                                     <h5 class="font-15"> {{ __('Expenses')}}</h5>
-                                    <span class="mb-3 font-18" id="expense-amount">{{ $currency }} {{ number_format($amount) }}</span>
+                                    <span class="mb-3 font-18" id="expense-amount">{{ number_format($amount,2)." ".$currency }}</span>
                                     <p class="mb-0 info"><span class="col-orange"></span>Registration Fee</p>
                                 </div>
                             </div>
@@ -189,7 +189,7 @@ $time = date("H");
                             <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 pr-0 pt-3">
                                 <div class="card-content">
                                     <h5 class="font-15">{{ __('Net Profit')}}</h5>
-                                    <span class="mb-3 font-18" id="profit-amount">{{ $currency }} {{ number_format($profit) }}</span>
+                                    <span class="mb-3 font-18" id="profit-amount">{{ number_format($profit,2)." ".$currency }}</span>
                                     <p class="mb-0 info"><span class="col-green"></span>
                                         Referral + Other Earnings
                                     </p>
@@ -214,7 +214,7 @@ $time = date("H");
                             <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 pr-0 pt-3">
                                 <div class="card-content">
                                     <h4 id="balance" class="font-15">{{ __('Total Balance')}}</h4>
-                                    <span class="mb-3 font-18" id="total-amount">{{ $currency }} {{ number_format($balance) }}</span>
+                                    <span class="mb-3 font-18" id="total-amount">{{ number_format($balance,2)." ".$currency }}</span>
                                     <div class="progress mt-1 mb-1 d-block d-lg-none d-xl-none d-sm-block d-md-block" data-height="8">
                                         <div class="progress-bar l-bg-cyan" role="progressbar" data-width="100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
@@ -242,7 +242,7 @@ $time = date("H");
                     <div class="card-icon card-icon-large d-md-block d-lg-block"><i class="fas fa-money-bill-alt"></i></div>
                     <div class="card-content">
                         <h4 class="card-title">{{ __('Withdrawn')}}</h4>
-                        <span class="font-20">{{ $currency }} {{ number_format($withdrawn) }}</span>
+                        <span class="font-20">{{ number_format($withdrawn,2)." ".$currency }}</span>
                         <div class="progress mt-1 mb-1" data-height="4">
                             <div class="progress-bar l-bg-cyan" role="progressbar" data-width="100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
@@ -259,7 +259,7 @@ $time = date("H");
                     <div class="card-icon card-icon-large d-md-block d-lg-block"><i class="far fa-question-circle"></i></div>
                     <div class="card-content">
                         <h4 class="card-title">{{ __('Trivia Questions')}}</h4>
-                        <span class="font-20">{{ $currency }} {{ number_format($question) }}</span>
+                        <span class="font-20">{{ number_format($question,2)." ".$currency }}</span>
                         <div class="progress mt-1 mb-1" data-height="8">
                             <div class="progress-bar l-bg-orange" role="progressbar" data-width="100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
@@ -276,7 +276,7 @@ $time = date("H");
                     <div class="card-icon card-icon-large d-md-block d-lg-block"><i class="fas fa-play-circle"></i></div>
                     <div class="card-content">
                         <h4 class="card-title">{{ __('Video')}}</h4>
-                        <span class="font-20">{{ $currency }} {{ number_format($video) }}</span>
+                        <span class="font-20">{{ number_format($video,2)." ".$currency }}</span>
                         <div class="progress mt-1 mb-1" data-height="8">
                             <div class="progress-bar l-bg-cyan" role="progressbar" data-width="100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
@@ -293,7 +293,7 @@ $time = date("H");
                     <div class="card-icon card-icon-large d-md-block d-lg-block"><i class="fab fa-whatsapp"></i></div>
                     <div class="card-content">
                         <h4 class="card-title">{{ __('WhatsApp Status')}}</h4>
-                        <span class="font-20">{{ $currency }} {{ number_format($whatsapp) }}</span>
+                        <span class="font-20">{{ number_format($whatsapp,2)." ".$currency }}</span>
                         <div class="progress mt-1 mb-1" data-height="8">
                             <div class="progress-bar l-bg-orange" role="progressbar" data-width="100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
@@ -310,7 +310,7 @@ $time = date("H");
                     <div class="card-icon card-icon-large d-md-block d-lg-block"><i class="fas fa-audio-description"></i></div>
                     <div class="card-content">
                         <h4 class="card-title">{{ __('AD Click')}}</h4>
-                        <span class="font-20">{{ $currency }} {{ number_format($ads) }}</span>
+                        <span class="font-20">{{ number_format($ads,2)." ".$currency }}</span>
                         <div class="progress mt-1 mb-1" data-height="4">
                             <div class="progress-bar l-bg-cyan" role="progressbar" data-width="100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>

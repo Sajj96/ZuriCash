@@ -32,9 +32,13 @@ class Transaction extends Model
      */
     public function getUserTotalEarnings($id)
     {
-        $referral_amount_level_1 = 5000;
-        $referral_amount_level_2 = 3000;
-        $referral_amount_level_3 = 2000;
+        $rate1 = $this->getExchangeRate($id,5000,'TZS');
+        $rate2 = $this->getExchangeRate($id,3000,'TZS');
+        $rate3 = $this->getExchangeRate($id,2000,'TZS');
+        $referral_amount_level_1 = $rate1['amount'];
+        $referral_amount_level_2 = $rate2['amount'];
+        $referral_amount_level_3 = $rate3['amount'];
+        
 
         $level_1 = DB::table('users','t1')
                     ->leftJoin('users as t2', 't2.referrer_id','=','t1.id')
@@ -270,5 +274,29 @@ class Transaction extends Model
 
         $profit_amount = $totalBalance + $whatsAppEarnings + $questionsEarning + $videoEarnings;
         return $profit_amount;
+    }
+
+    public function getExchangeRate($id, $amount, $currency)
+    {
+        $user = User::find($id);
+
+        if($user->country == "tz") {
+            $currency = $currency;
+            $amount = $amount;
+        } else if($user->country == "ke") {
+            $currency = "KES";
+            $amount = 0.05 * $amount;
+        } else if($user->country == "ug") {
+            $currency = "UGX";
+            $amount = 1.6 * $amount;
+        }  else if($user->country == "rw") {
+            $currency = "RWF";
+            $amount = 0.44 * $amount;
+        } else {
+            $currency = "USD";
+            $amount = 0.0004 * $amount;
+        }
+
+        return array('currency' => $currency,'amount' => $amount);
     }
 }

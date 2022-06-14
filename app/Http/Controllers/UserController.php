@@ -54,8 +54,6 @@ class UserController extends Controller
                     ->make(true);
         }
 
-        // $users = User::all();
-        // $serial = 1;
         return view('user.users');
     }
 
@@ -76,11 +74,16 @@ class UserController extends Controller
         $level_1_downlines = $userObj->getLevelOneDownlines($user->id);
         $level_2_downlines = $userObj->getLevelTwoDownlines($user->id);
         $level_3_downlines = $userObj->getLevelThreeDownlines($user->id);
-        $serial = 1;
-        $serial_1 = 1;
-        $serial_2 = 1;
-        $serial_3 = 1;
-        return view('user.user_details', compact('user','users', 'transactions', 'serial','serial_1','serial_2','serial_3','profit','balance','level_1_downlines','level_2_downlines','level_3_downlines'));
+
+        $rate1 = $transaction->getExchangeRate($id,5000,'TZS');
+        $rate2 = $transaction->getExchangeRate($id,3000,'TZS');
+        $rate3 = $transaction->getExchangeRate($id,2000,'TZS');
+        $amount_level_1 = $rate1['amount'];
+        $amount_level_2 = $rate2['amount'];
+        $amount_level_3 = $rate3['amount'];
+        $currency = $rate1['currency'];
+
+        return view('user.user_details', compact('user','users', 'transactions','profit','balance','level_1_downlines','level_2_downlines','level_3_downlines','currency','amount_level_1','amount_level_2','amount_level_3'));
     }
 
     /**
@@ -95,7 +98,12 @@ class UserController extends Controller
         $profit = $transactions->getProfit($id);
         $balance = $transactions->getUserBalance($id);
 
-        return view('profile', compact('profit','balance'));
+        $rate = $transactions->getExchangeRate($id,$balance,'TZS');
+
+        $currency = $rate['currency'];
+        $amount = $rate['amount'];
+
+        return view('profile', compact('profit','balance','currency','amount'));
     }
 
     /**

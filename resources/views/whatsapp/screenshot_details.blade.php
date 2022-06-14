@@ -59,9 +59,9 @@
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Screenshot')}}</label>
                                 <div class="col-sm-12 col-md-4 image-preview">
                                     <div class="chocolat-parent">
-                                        <a href="{{ asset('storage/screenshots/'.$screenshot->screenshot)}}" class="chocolat-image" title="Just an example">
+                                        <a href="{{ $screenshot->screenshot_path }}" class="chocolat-image" title="Just an example">
                                             <div data-crop-image="285">
-                                                <img alt="screenshot_image" src="{{ asset('storage/screenshots/'.$screenshot->screenshot) }}" class="img-fluid">
+                                                <img alt="screenshot_image" src="{{ $screenshot->screenshot_path  }}" class="img-fluid">
                                             </div>
                                         </a>
                                     </div>

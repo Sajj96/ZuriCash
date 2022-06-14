@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use DataTables;
 
 class TransactionController extends Controller
 {
@@ -17,12 +18,39 @@ class TransactionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $transactions = DB::table('transactions')
+        if ($request->ajax()) {
+            $transactions = DB::table('transactions')
                             ->join('users','transactions.user_id','=','users.id')
-                            ->select('transactions.*','users.username','users.name')
-                            ->get();
+                            ->select('transactions.*','users.username','users.name');
+            return Datatables::of($transactions)
+                    ->addIndexColumn()
+                    ->addColumn('amount', function ($row) {
+                        return number_format($row->amount,2);
+                    })
+                    ->addColumn('amount_deposit', function ($row) {
+                        return number_format($row->amount_deposit,2);
+                    })
+                    ->addColumn('fee', function ($row) {
+                        return number_format($row->fee,2);
+                    })
+                    ->addColumn('created_at', function ($row) {
+                        return ($row->created_at)->format('M d Y');
+                    })
+                    ->addColumn('status', function ($row) {
+                        if($row->status == 0){
+                            return '<div class="badge badge-light badge-shadow">Pending</div>';
+                        } else if($row->status == 1){
+                            return '<div class="badge badge-success badge-shadow">Paid</div>';
+                        } else {
+                            return '<div class="badge badge-danger badge-shadow">Cancelled</div>';
+                        }
+                    })
+                    ->rawColumns(['status'])
+                    ->make(true);
+        }
+
         $withdraw_requests = DB::table('transactions')
                                     ->join('users','transactions.user_id','=','users.id')
                                     ->select('transactions.*','users.username','users.name')
@@ -31,7 +59,7 @@ class TransactionController extends Controller
                                     ->get();
         $serial_1 = 1;
         $serial_2 = 1;
-        return view('transaction.admin_history', compact('transactions','withdraw_requests','serial_1','serial_2'));
+        return view('transaction.admin_history', compact('withdraw_requests','serial_1','serial_2'));
     }
 
     /**
@@ -58,15 +86,19 @@ class TransactionController extends Controller
     public function show()
     {
         $setting = DB::table('setting')->first();
-        $id = Auth::user()->id;
+        $user= Auth::user();
         $transactions = new Transaction();
-        $balance = $transactions->getUserBalance($id);
-        $trivia = $transactions->getQuestionsEarnings($id);
-        $video = $transactions->getVideoEarnings($id);
-        $ads = $transactions->getAdsEarnings($id);
-        $whatsapp = $transactions->getWhatsAppEarnings($id);
+        $balance = $transactions->getUserBalance($user->id);
+        $trivia = $transactions->getQuestionsEarnings($user->id);
+        $video = $transactions->getVideoEarnings($user->id);
+        $ads = $transactions->getAdsEarnings($user->id);
+        $whatsapp = $transactions->getWhatsAppEarnings($user->id);
+        $rate = $transactions->getExchangeRate($user->id,15000,'TZS');
 
-        return view('transaction.withdraw', compact('setting','balance','trivia','video','whatsapp','ads'));
+        $currency = $rate['currency'];
+        $amount = $rate['amount'];
+
+        return view('transaction.withdraw', compact('setting','balance','trivia','video','whatsapp','ads','currency','amount'));
     }
 
     /**
@@ -132,6 +164,7 @@ class TransactionController extends Controller
             $transaction->amount_deposit = $request->deposit;
             $transaction->fee = $request->fee;
             $transaction->transaction_type = $type;
+            $transaction->currency = $request->currency;
             $transaction->status = Transaction::TRANSACTION_PENDING;
 
             if($transaction->save()) {
@@ -217,8 +250,21 @@ class TransactionController extends Controller
             $transactions = new Transaction();
             $id = Auth::user()->id;
             $balance = $transactions->getUserBalance($id);
+            $fee = Transaction::REGISTRATION_FEE;
 
-            if(Transaction::REGISTRATION_FEE > $balance) {
+            if(Auth::user()->country == "tz") {
+                $fee = $fee;
+            } else if(Auth::user()->country == "ke") {
+                $fee = 0.05 * $fee;
+            } else if(Auth::user()->country == "ug") {
+                $fee = 1.6 * $fee;
+            }  else if(Auth::user()->country == "rw") {
+                $fee = 0.44 * $fee;
+            } else {
+                $fee = 0.0004 * $fee;
+            }
+
+            if($fee > $balance) {
                 return redirect()->route('pay_for_downline')->with('error','You don\'t have enough balance to make payment');
             }
 
@@ -231,7 +277,7 @@ class TransactionController extends Controller
                     $payment->user_id = Auth::user()->id;
                     $payment->receiver_id = $request->id;
                     $payment->phone = Auth::user()->phone;
-                    $payment->amount = Transaction::REGISTRATION_FEE;
+                    $payment->amount = $fee;
                     $payment->amount_deposit = 0;
                     $payment->fee = 0;
                     $payment->transaction_type = Transaction::TYPE_PAY_FOR_DOWNLINE;

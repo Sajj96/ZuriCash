@@ -18,7 +18,7 @@
                             <div class="card-header-action">
                                 <a href="#" class="btn btn-info text-white">{{ __('Level 2')}}</a>
                                 <a href="#" class="btn btn-primary text-white">{{ count($downlines) ?? '0' }} {{ __('Referral')}}</a>
-                                <a href="#" class="btn btn-success text-white">{{ __('Total Earned TZS ')}} {{ number_format($active_referrals * 3000)  ?? '0.00' }} </a>
+                                <a href="#" class="btn btn-success text-white">{{ __('Total Earned')}} {{ number_format($active_referrals * $amount)." ".$currency  ?? '0.00 '.$currency }} </a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -43,7 +43,7 @@
                                             </td>
                                             <td>{{ $rows->username }}</td>
                                             <td>{{ $rows->phone }}</td>
-                                            <td>{{ $rows->active == 1 ? number_format(3000,2) : '0.00' }}</td>
+                                            <td>{{ $rows->active == 1 ? number_format($amount,2) : '0.00' }}</td>
                                             @if($rows->active == 1)
                                             <td>
                                                 <div class="badge badge-success badge-shadow">{{ __('Active') }}</div>

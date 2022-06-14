@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Revenue;
 use App\Models\VideoUsers;
 use App\Models\Screenshot;
+use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RevenueController extends Controller
@@ -25,17 +27,23 @@ class RevenueController extends Controller
 
             if ($request->type == Revenue::TYPE_VIDEO) {
                 $video_users = Revenue::where('video_id', $request->video_id)->where('user_id', $request->user_id)
-                                        ->get();
+                    ->get();
 
                 if (count($video_users) > 0) {
                     return false;
                 }
             }
+
+            $transaction = new Transaction;
+
+            $rate = $transaction->getExchangeRate($request->user_id,$request->amount,'TZS');
+            $amount = $rate['amount'];
+
             $revenue = new Revenue;
             $revenue->user_id = $request->user_id;
             $revenue->video_id = $request->video_id ?? "";
             $revenue->type = $request->type;
-            $revenue->amount = $request->amount;
+            $revenue->amount = $amount;
             $revenue->status = Revenue::STATUS_PAID;
             if ($revenue->save()) {
                 if ($request->type == Revenue::TYPE_WHATSAPP) {
@@ -56,15 +64,20 @@ class RevenueController extends Controller
         try {
             $date = date('Y-m-d');
             $screenshots = Screenshot::where('status', 0)
-                                    ->where('created_at', 'like', '%'.$date.'%')
-                                    ->where('status',Screenshot::SCREENSHOT_PENDING)
-                                    ->get();
+                ->where('created_at', 'like', '%' . $date . '%')
+                ->where('status', Screenshot::SCREENSHOT_PENDING)
+                ->get();
+
+            $transaction = new Transaction;
 
             foreach ($screenshots as $key => $rows) {
+                $rate = $transaction->getExchangeRate($rows->user_id,$request->amount,'TZS');
+                $amount = $rate['amount'];
+
                 $revenue = new Revenue;
                 $revenue->user_id = $rows->user_id;
                 $revenue->type = Revenue::TYPE_WHATSAPP;
-                $revenue->amount = $request->amount;
+                $revenue->amount = $amount;
                 $revenue->status = Revenue::STATUS_PAID;
                 if ($revenue->save()) {
                     $screenshot = Screenshot::find($rows->id);

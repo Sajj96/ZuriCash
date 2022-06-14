@@ -47,30 +47,31 @@
                                             <option value="whatsapp">{{ __('WhatsApp Status balance')}}</option>
                                             <option value="ads">{{ __('AD Click balance')}}</option>
                                         </select>
-                                        <div class="help-info">{{ __('Current balance: TZS')}} <span id="balance-amount">{{ number_format($balance,2) }}</span></div>
+                                        <div class="help-info">{{ __('Current balance: ')}} <span id="balance-amount">{{ number_format($balance,2)." ".$currency }}</span></div>
                                     </div>
                                     <div class="form-group">
                                         <label>{{ __('Phone Number')}}</label>
                                         <input type="tel" name="phone" value="{{ Auth::user()->phone }}" class="form-control" readonly>
+                                        <input type="hidden" name="currency" value="{{ $currency }}">
                                     </div>
                                     <div class="form-group">
                                         <label>{{ __('Amount to withdraw')}}</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    {{ __('TZS')}}
+                                                    {{ $currency }}
                                                 </div>
                                             </div>
-                                            <input min="15000" type="number" name="amount" id="amount" class="form-control" required>
+                                            <input min="{{$amount}}" type="number" name="amount" id="amount" class="form-control" required>
                                         </div>
-                                        <div class="help-info">{{ __('You can withdraw an amount not less than TZS 15000')}}</div>
+                                        <div class="help-info">{{ __('You can withdraw an amount not less than ')}} {{ number_format($amount,2)." ".$currency }}</div>
                                     </div>
                                     <div class="form-group">
                                         <label>{{ __('Amount to deposit')}}</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    {{ __('TZS')}}
+                                                    {{ $currency }}
                                                 </div>
                                             </div>
                                             <input type="number" name="deposit" id="deposit" class="form-control" required readonly>
@@ -96,11 +97,13 @@
 @endsection
 @section('page-specific-js')
 <script type="text/javascript">
-    var trivia = <?php echo $trivia ?>;
-    var video = <?php echo $video ?>;
-    var whatsapp = <?php echo $whatsapp ?>;
-    var balance = <?php echo $balance ?>;
-    var ads = <?php echo $ads ?>;
+    var trivia = "{{ $trivia }}";
+    var video = "{{ $video }}";
+    var whatsapp = "{{ $whatsapp }}";
+    var balance = "{{ $balance }}";
+    var ads = "{{ $ads }}";
+    var currency = "{{ $currency }}";
+    var userCountry = '{{ Auth::user()->country }}';
 </script>
 <script src="{{ asset('assets/js/page/transaction.js')}}"></script>
 @endsection

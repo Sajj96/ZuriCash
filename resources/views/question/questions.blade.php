@@ -93,6 +93,7 @@
     var url2 = "{{ route('question.user.create')}}";
     var url3 = "{{ route('question.user.check')}}";
     var url4 = "{{ route('questions')}}";
+    var userCountry = "{{ Auth::user()->country }}";
 </script>
 <script src="{{ asset('assets/js/page/questions.js')}}"></script>
 @endsection

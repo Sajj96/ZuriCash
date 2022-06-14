@@ -60,6 +60,10 @@ for (var i = 0; i < countryData.length; i++) {
     errorMsg.innerHTML = "";
     errorMsg.classList.add("hide");
     validMsg.classList.add("hide");
+    if(it.isValidNumber()) {
+      var text = it.getNumber();
+      telInput.value = text;
+    }
   };
   
   // on blur: validate

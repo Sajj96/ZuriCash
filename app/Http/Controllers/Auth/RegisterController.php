@@ -91,7 +91,7 @@ class RegisterController extends Controller
             'name'        => $data['name'],
             'username'    => $data['username'],
             'email'       => $data['email'],
-            'phone'       => $data['phone'],
+            'phone'       => str_replace('+','',$data['phone']),
             'referrer_id' => $referrer ? $referrer->id : null,
             'password'    => Hash::make($data['password']),
             'country'     => $data['country'],

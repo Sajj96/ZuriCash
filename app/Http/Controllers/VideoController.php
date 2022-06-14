@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
 use App\Models\Video;
 use App\Models\VideoUsers;
 use Illuminate\Http\Request;
@@ -32,7 +33,13 @@ class VideoController extends Controller
             array_push($video_ids,$rows->video_id);
         }
 
-        return view('video.videos', compact('user','videos','video_ids'));
+        $transaction = new Transaction;
+        $rate = $transaction->getExchangeRate($user->id,100,'TZS');
+
+        $currency = $rate['currency'];
+        $amount = $rate['amount'];
+
+        return view('video.videos', compact('user','videos','video_ids','amount', 'currency'));
     }
 
     public function getList()
@@ -80,8 +87,9 @@ class VideoController extends Controller
             $videoPath = $request->file('video')->storeAs('videos', $videoFile,'public');
             $type_video = pathinfo($videoPath, PATHINFO_EXTENSION);
             $video_data = File::get(storage_path('/app/public/videos/'.$videoFile));
+            $videoFileLink = url('storage/videos/'.$videoFile);
 
-            if($request->file('poster') != "") {
+            if($request->hasFile('poster')) {
                 $fileName = $request->file('poster')->getClientOriginalName();
                 $extension = $request->file('poster')->extension();
                 $generated = uniqid()."_".time().date("Ymd")."_IMG";
@@ -99,14 +107,15 @@ class VideoController extends Controller
                 $image_data = File::get(storage_path('/app/public/video_posters/'.$fileName));
                 $base64encodedString = 'data:image/' . $type . ';base64,' . base64_encode($image_data);
                 $fileBin = file_get_contents($base64encodedString);
+                $fileLink = url('storage/video_posters/'.$fileName);
             } else {
-                $fileName = "";
+                $fileLink = "";
             }
 
             $video = new Video;
-            $video->video = $videoFile;
+            $video->video_path = $videoFileLink;
             $video->title = $request->title;
-            $video->poster = $fileName;
+            $video->poster = $fileLink;
             $video->status = $request->status;
             if($video->save()) {
                 return redirect()->route('video.show')->with('success','You have successfully uploaded the video!');

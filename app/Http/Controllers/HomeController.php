@@ -72,32 +72,20 @@ class HomeController extends Controller
             }
         }
 
-        $currency = "TZS";
-        $amount = 12000;
-
         // $exchange = app(ExchangeRateService::class);
 
         // $rate = (object) json_decode($exchange->getRate());
 
-        if(Auth::user()->country == "tz") {
-            $currency = $currency;
-            $amount = $amount;
-        } else if(Auth::user()->country == "ke") {
-            $currency = "KES";
-            $amount = 0.05 * $amount;
-        } else if(Auth::user()->country == "ug") {
-            $currency = "UGX";
-            $amount = 1.61034 * $amount;
-        } else {
-            $currency = "USD";
-            $amount = $amount / 2328;
-        }
+        $rate = $transactions->getExchangeRate($id,12000,'TZS');
+
+        $currency = $rate['currency'];
+        $amount = $rate['amount'];
 
         if(Auth::user()->user_type != 1) {
             return view('home', compact('profit','balance','withdrawn','whatsapp','question','video','notification','currency','amount','ads'));
         }
 
-        return view('home', compact('all_users','active_users','withdraw_requests','system_earnings','transactionData','todayEarning','totalWithdraw','newUsers','inactiveUsers'));
+        return view('home', compact('all_users','active_users','withdraw_requests','system_earnings','transactionData','todayEarning','totalWithdraw','newUsers','currency','amount','inactiveUsers'));
     }
 
     /**

@@ -37,7 +37,7 @@
                                         {{ __('Total Balance')}}
                                     </span>
                                     <span class="float-right text-muted">
-                                        TZS {{ number_format($balance,2) }}
+                                        {{ number_format($balance,2)." ".$currency }}
                                     </span>
                                 </p>
                                 <p class="clearfix">
@@ -45,7 +45,7 @@
                                         {{ __('Profit')}}
                                     </span>
                                     <span class="float-right text-muted">
-                                        TZS {{ number_format($profit,2) }}
+                                        {{ number_format($profit,2)." ".$currency }}
                                     </span>
                                 </p>
                             </div>
@@ -159,6 +159,7 @@
                                                             #
                                                         </th>
                                                         <th>{{ __('Date')}}</th>
+                                                        <th>{{ __('Currency')}}</th>
                                                         <th>{{ __('Amount')}}</th>
                                                         <th>{{ __('Phone')}}</th>
                                                         <th>{{ __('Type')}}</th>
@@ -168,24 +169,21 @@
                                                 <tbody>
                                                     @foreach($transactions as $key=>$rows)
                                                     <tr>
-                                                        <td>{{ $serial++ }}</td>
+                                                        <td>{{ $key + 1 }}</td>
                                                         <td>{{ ($rows->created_at)->format('M d Y') }}</td>
+                                                        <td>{{ $rows->currency }}</td>
                                                         <td>{{ number_format($rows->amount,2) }}</td>
                                                         <td>{{ $rows->phone }}</td>
                                                         <td>{{ $rows->transaction_type }}</td>
-                                                        @if($rows->status == 0)
                                                         <td>
+                                                            @if($rows->status == 0)
                                                             <div class="badge badge-light badge-shadow">Pending</div>
-                                                        </td>
-                                                        @elseif($rows->status == 1)
-                                                        <td>
+                                                            @elseif($rows->status == 1)
                                                             <div class="badge badge-success badge-shadow">Paid</div>
-                                                        </td>
-                                                        @else
-                                                        <td>
+                                                            @else
                                                             <div class="badge badge-danger badge-shadow">Cancelled</div>
+                                                            @endif
                                                         </td>
-                                                        @endif
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
@@ -279,20 +277,18 @@
                                                     @foreach($level_1_downlines as $key=>$rows)
                                                     <tr>
                                                         <td>
-                                                            {{ $serial_1++ }}
+                                                            {{ $key + 1 }}
                                                         </td>
                                                         <td>{{ $rows->username }}</td>
                                                         <td>{{ $rows->phone }}</td>
-                                                        <td>{{ $rows->active == 1 ? number_format(6000,2) : '0.00' }}</td>
-                                                        @if($rows->active == 1)
+                                                        <td>{{ $rows->active == 1 ? number_format($amount_level_1,2) : '0.00' }}</td>
                                                         <td>
+                                                            @if($rows->active == 1)
                                                             <div class="badge badge-success badge-shadow">{{ __('Active') }}</div>
-                                                        </td>
-                                                        @else
-                                                        <td>
+                                                            @else
                                                             <div class="badge badge-light badge-shadow">{{ __('Inactive') }}</div>
+                                                            @endif
                                                         </td>
-                                                        @endif
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
@@ -326,16 +322,14 @@
                                                         </td>
                                                         <td>{{ $rows->username }}</td>
                                                         <td>{{ $rows->phone }}</td>
-                                                        <td>{{ $rows->active == 1 ? number_format(3000,2) : '0.00' }}</td>
-                                                        @if($rows->active == 1)
+                                                        <td>{{ $rows->active == 1 ? number_format($amount_level_2,2) : '0.00' }}</td>
                                                         <td>
+                                                            @if($rows->active == 1)
                                                             <div class="badge badge-success badge-shadow">{{ __('Active') }}</div>
-                                                        </td>
-                                                        @else
-                                                        <td>
+                                                            @else
                                                             <div class="badge badge-light badge-shadow">{{ __('Inactive') }}</div>
+                                                            @endif
                                                         </td>
-                                                        @endif
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
@@ -369,16 +363,14 @@
                                                         </td>
                                                         <td>{{ $rows->username }}</td>
                                                         <td>{{ $rows->phone }}</td>
-                                                        <td>{{ $rows->active == 1 ? number_format(1000,2) : '0.00' }}</td>
-                                                        @if($rows->active == 1)
+                                                        <td>{{ $rows->active == 1 ? number_format($amount_level_3,2) : '0.00' }}</td>
                                                         <td>
+                                                            @if($rows->active == 1)
                                                             <div class="badge badge-success badge-shadow">{{ __('Active') }}</div>
-                                                        </td>
-                                                        @else
-                                                        <td>
+                                                            @else
                                                             <div class="badge badge-light badge-shadow">{{ __('Inactive') }}</div>
+                                                            @endif
                                                         </td>
-                                                        @endif
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
@@ -408,7 +400,7 @@
 @section('page-specific-js')
 <script src="{{ asset('assets/js/page/datatables.js')}}"></script>
 <script type="text/javascript">
-    var utilUrl = "{{ asset('assets/bundles/intl-tel-input/js/utils.js')}}"
+    var utilUrl = "{{ asset('assets/bundles/intl-tel-input/js/utils.js?1638200991544')}}"
 </script>
 <script src="{{ asset('assets/js/page/auth-register.js')}}"></script>
 @endsection

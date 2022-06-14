@@ -96,10 +96,11 @@ class ScreenshotController extends Controller
             $image_data = File::get(storage_path('/app/public/screenshots/'.$fileName));
             $base64encodedString = 'data:image/' . $type . ';base64,' . base64_encode($image_data);
             $fileBin = file_get_contents($base64encodedString);
+            $fileLink = url('storage/screenshots/'.$fileName);
 
             $screenshot = new Screenshot;
             $screenshot->user_id = $user->id;
-            $screenshot->screenshot = $fileName;
+            $screenshot->screenshot_path = $fileLink;
             $screenshot->status = Screenshot::SCREENSHOT_PENDING;
             if($screenshot->save()) {
                 return redirect()->route('screenshot')->with('success','Screenshot submitted successfully!');

@@ -29,7 +29,7 @@
                                         {{ __('Total Balance')}}
                                     </span>
                                     <span class="float-right text-muted">
-                                        TZS {{ number_format($balance,2) }}
+                                        {{ number_format($balance,2)." ".$currency }}
                                     </span>
                                 </p>
                                 <p class="clearfix">
@@ -37,7 +37,7 @@
                                         {{ __('Profit')}}
                                     </span>
                                     <span class="float-right text-muted">
-                                        TZS {{ number_format($profit,2) }}
+                                        {{ number_format($profit,2)." ".$currency }}
                                     </span>
                                 </p>
                             </div>

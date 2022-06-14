@@ -57,7 +57,7 @@
                 </div>
                 <div class="modal-body text-center text-white">
                     <h2>Congrats! 🎉</h2>
-                    <h4>You got <strong>TZS 50 </strong> for clicking this AD</h4>
+                    <h4>You got <strong> {{ $amount." ".$currency }} </strong> for clicking this AD</h4>
                 </div>
             </div>
         </div>
@@ -88,6 +88,7 @@
     var url2 = "{{ route('advert.users.create')}}";
     var url3 = "{{ route('advert.users.check')}}";
     var url4 = "{{ route('advert')}}";
+    var userCountry = "{{ Auth::user()->country }}";
 </script>
 <script src="{{ asset('assets/js/page/adverts.js')}}"></script>
 @endsection
