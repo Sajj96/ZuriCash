@@ -18,26 +18,26 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $id = Auth::user()->id; 
+        $user = Auth::user(); 
 
         $transactions = new Transaction();
-        $profit = $transactions->getProfit($id);
-        $balance = $transactions->getUserBalance($id);
-        $mainWithdrawn = $transactions->getUserWithdrawnAmount($id);
-        $whatsapp = $transactions->getWhatsAppEarnings($id);
-        $question = $transactions->getQuestionsEarnings($id);
-        $video = $transactions->getVideoEarnings($id);
-        $ads = $transactions->getAdsEarnings($id);
-        $payment_for_downline = $transactions->getUserPaymentForDownline($id);
+        $profit = $transactions->getProfit($user->id);
+        $balance = $transactions->getUserBalance($user->id);
+        $mainWithdrawn = $transactions->getUserWithdrawnAmount($user->id);
+        $whatsapp = $transactions->getWhatsAppEarnings($user->id);
+        $question = $transactions->getQuestionsEarnings($user->id);
+        $video = $transactions->getVideoEarnings($user->id);
+        $ads = $transactions->getAdsEarnings($user->id);
+        $payment_for_downline = $transactions->getUserPaymentForDownline($user->id);
         $withdrawn = $mainWithdrawn + $payment_for_downline;
 
-        $user = new User();
-        $all_users = $user->getAllUsers();
-        $active_users = $user->getAllActiveUsers();
+        $user_obj = new User();
+        $all_users = $user_obj->getAllUsers();
+        $active_users = $user_obj->getAllActiveUsers();
         $withdraw_requests = $transactions->getWithdrawRequests();
         $system_earnings = $transactions->getSystemEarnings();
-        $transactionData = Transaction::where('transaction_type',Transaction::TYPE_WITHDRAW)
-                                        ->where('status',Transaction::TRANSACTION_SUCCESS)
+        $transactionData = $transactions::where('transaction_type',$transactions::TYPE_WITHDRAW)
+                                        ->where('status',$transactions::TRANSACTION_SUCCESS)
                                         ->get();
 
         $dayofweek = date('w', strtotime('2022-02-18'));
@@ -71,12 +71,14 @@ class HomeController extends Controller
             }
         }
 
-        $rate = $transactions->getExchangeRate($id,12000,'TZS');
+        $rate = $transactions->getExchangeRate($user->id,12000,'TZS');
 
         $currency = $rate['currency'];
         $amount = $rate['amount'];
 
-        if(Auth::user()->user_type != 1) {
+        // dd($rate);
+
+        if($user->user_type != 1) {
             return view('home', compact('profit','balance','withdrawn','whatsapp','question','video','notification','currency','amount','ads'));
         }
 
