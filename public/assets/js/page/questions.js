@@ -169,6 +169,7 @@ async function showResult(){
     quiz_box.classList.remove("activeQuiz"); //hide quiz box
     result_box.classList.add("activeResult"); //show result box
     const scoreText = result_box.querySelector(".score_text");
+    
     let dataBody = {
         "user_id": parseInt(user),
         "score": userScore
@@ -188,25 +189,14 @@ async function showResult(){
 
     let secondScore = questions.length - 1;
 
-    var amount = 50;
-
-    if(userCountry === 'tz'){
-        amount = amount;
-    }else if(userCountry === 'ke'){
-        amount = amount * 0.05;
-    }else if(userCountry === 'ug'){
-        amount = amount * 1.6;
-    }else if(userCountry === 'rw'){
-        amount = amount * 0.44;
-    }else {
-        amount = amount * 0.0004;
-    }
+    var amount = 150;
     
     let revenueBody = {
         "user_id": parseInt(user),
         "type": "questions",
         "amount": userScore * amount
     }
+    
     const res = await fetch(url1, {
         method: 'POST',
         headers: {

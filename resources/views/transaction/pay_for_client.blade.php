@@ -14,7 +14,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>{{ __('Pay For A Downline')}}</h4>
+                            <h4>{{ __('Pay For A Downline From Main Balance')}}</h4>
                             <div class="card-header-action">
                                 <a href="#" class="btn btn-primary">{{ count(Auth::user()->referrals)  ?? '0' }} {{ __('References')}}</a>
                             </div>
@@ -89,7 +89,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="formModal">Re-enter password to confirm payment of TZS {{ number_format(13000) }}</h5>
+                    <h5 class="modal-title" id="formModal">Re-enter password to confirm payment of {{ number_format($amount,2)." ".$currency }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

@@ -9,7 +9,7 @@ class Revenue extends Model
 {
     use HasFactory;
 
-    const TYPE_TRIVIA_QUESTION = "question";
+    const TYPE_TRIVIA_QUESTION = "questions";
     const TYPE_WHATSAPP = "whatsapp";
     const TYPE_VIDEO = "video";
     const TYPE_ADCLICK = "ads";

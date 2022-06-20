@@ -41,4 +41,16 @@ class NotificationController extends Controller
             return redirect()->route('notify.show')->with('error','Something went wrong while sending notification!');
         }
     }
+
+    public function delete(Request $request)
+    {
+        try {
+            $notification = Notification::find($request->id);
+            if($notification->delete()){
+                return redirect()->route('notify')->with('success','Notification deleted successfully');
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('notify')->with('error','Something went wrong!');
+        }
+    }
 }

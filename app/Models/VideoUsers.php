@@ -10,5 +10,5 @@ class VideoUsers extends Model
     use HasFactory;
 
     protected $primaryKey = ['video_id', 'user_id'];
-    protected $incrementing = false;
+    public $incrementing = false;
 }

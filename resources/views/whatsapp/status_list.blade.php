@@ -36,7 +36,7 @@
                                         <tr>
                                             <td>{{ $serial++ }}</td>
                                             <td>{{ $rows->description }}</td>
-                                            <td>{{ $rows->media }}</td>
+                                            <td>{{ $rows->media_path }}</td>
                                             <td>{{ ($rows->created_at)->format('M d Y') }}</td>
                                             @if($rows->status == 0)
                                             <td>

@@ -69,31 +69,31 @@ $(function () {
                 deposit = amount - fee;
                 $('#deposit').val(deposit.toFixed(2).toLocaleString('en-US'));
                 $('#fee').val(fee.toFixed(2).toLocaleString('en-US'));
-                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" TZS");
+                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" KES");
             } else if (amount >= (51000 * 0.05) && amount <= (100000 * 0.05)) {
                 fee = 2000 * 0.05;
                 deposit = amount - fee;
                 $('#deposit').val(deposit.toFixed(2).toLocaleString('en-US'));
                 $('#fee').val(fee.toFixed(2).toLocaleString('en-US'));
-                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" TZS");
+                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" KES");
             } else if (amount >= (101000 * 0.05) && amount <= (500000 * 0.05)) {
                 fee = 5000 * 0.05;
                 deposit = amount - fee;
                 $('#deposit').val(deposit.toFixed(2).toLocaleString('en-US'));
                 $('#fee').val(fee.toFixed(2).toLocaleString('en-US'));
-                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" TZS");
+                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" KES");
             } else if (amount >= (501000 * 0.05) && amount <= (1000000 * 0.05)) {
                 fee = 10000 * 0.05;
                 deposit = amount - fee;
                 $('#deposit').val(deposit.toFixed(2).toLocaleString('en-US'));
                 $('#fee').val(fee.toFixed(2).toLocaleString('en-US'));
-                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" TZS");
+                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" KES");
             } else if(amount >= (1010000 * 0.05)){
                 fee = 15000 * 0.05;
                 deposit = amount - fee;
                 $('#deposit').val(deposit.toFixed(2).toLocaleString('en-US'));
                 $('#fee').val(fee.toFixed(2).toLocaleString('en-US'));
-                $('#fee_info').text("Fee: TZS " + fee);
+                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" KES");
             } else {
                 $('#deposit').val("");
                 $('#fee').val("");
@@ -105,31 +105,31 @@ $(function () {
                 deposit = amount - fee;
                 $('#deposit').val(deposit.toFixed(2).toLocaleString('en-US'));
                 $('#fee').val(fee.toFixed(2).toLocaleString('en-US'));
-                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" TZS");
+                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" UGX");
             } else if (amount >= (51000 * 1.6) && amount <= (100000 * 1.6)) {
                 fee = 2000 * 1.6;
                 deposit = amount - fee;
                 $('#deposit').val(deposit.toFixed(2).toLocaleString('en-US'));
                 $('#fee').val(fee.toFixed(2).toLocaleString('en-US'));
-                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" TZS");
+                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" UGX");
             } else if (amount >= (101000 * 1.6) && amount <= (500000 * 1.6)) {
                 fee = 5000 * 1.6;
                 deposit = amount - fee;
                 $('#deposit').val(deposit.toFixed(2).toLocaleString('en-US'));
                 $('#fee').val(fee.toFixed(2).toLocaleString('en-US'));
-                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" TZS");
+                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" UGX");
             } else if (amount >= (501000 * 1.6) && amount <= (1000000 * 1.6)) {
                 fee = 10000 * 1.6;
                 deposit = amount - fee;
                 $('#deposit').val(deposit.toFixed(2).toLocaleString('en-US'));
                 $('#fee').val(fee.toFixed(2).toLocaleString('en-US'));
-                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" TZS");
+                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" UGX");
             } else if(amount >= (1010000 * 1.6)){
                 fee = 15000 * 1.6;
                 deposit = amount - fee;
                 $('#deposit').val(deposit.toFixed(2).toLocaleString('en-US'));
                 $('#fee').val(fee.toFixed(2).toLocaleString('en-US'));
-                $('#fee_info').text("Fee: TZS " + fee);
+                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" UGX");
             } else {
                 $('#deposit').val("");
                 $('#fee').val("");
@@ -141,31 +141,31 @@ $(function () {
                 deposit = amount - fee;
                 $('#deposit').val(deposit.toFixed(2).toLocaleString('en-US'));
                 $('#fee').val(fee.toFixed(2).toLocaleString('en-US'));
-                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" TZS");
+                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" RWF");
             } else if (amount >= (51000 * 0.44) && amount <= (100000 * 0.44)) {
                 fee = 2000 * 0.44;
                 deposit = amount - fee;
                 $('#deposit').val(deposit.toFixed(2).toLocaleString('en-US'));
                 $('#fee').val(fee.toFixed(2).toLocaleString('en-US'));
-                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" TZS");
+                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" RWF");
             } else if (amount >= (101000 * 0.44) && amount <= (500000 * 0.44)) {
                 fee = 5000 * 0.44;
                 deposit = amount - fee;
                 $('#deposit').val(deposit.toFixed(2).toLocaleString('en-US'));
                 $('#fee').val(fee.toFixed(2).toLocaleString('en-US'));
-                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" TZS");
+                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" RWF");
             } else if (amount >= (501000 * 0.44) && amount <= (1000000 * 0.44)) {
                 fee = 10000 * 0.44;
                 deposit = amount - fee;
                 $('#deposit').val(deposit.toFixed(2).toLocaleString('en-US'));
                 $('#fee').val(fee.toFixed(2).toLocaleString('en-US'));
-                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" TZS");
+                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" RWF");
             } else if(amount >= (1010000 * 0.44)){
                 fee = 15000 * 0.44;
                 deposit = amount - fee;
                 $('#deposit').val(deposit.toFixed(2).toLocaleString('en-US'));
                 $('#fee').val(fee.toFixed(2).toLocaleString('en-US'));
-                $('#fee_info').text("Fee: TZS " + fee);
+                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" RWF");
             } else {
                 $('#deposit').val("");
                 $('#fee').val("");
@@ -177,31 +177,31 @@ $(function () {
                 deposit = amount - fee;
                 $('#deposit').val(deposit.toFixed(2).toLocaleString('en-US'));
                 $('#fee').val(fee.toFixed(2).toLocaleString('en-US'));
-                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" TZS");
+                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" USD");
             } else if (amount >= (51000 * 0.0004) && amount <= (100000 * 0.0004)) {
                 fee = 2000 * 0.0004;
                 deposit = amount - fee;
                 $('#deposit').val(deposit.toFixed(2).toLocaleString('en-US'));
                 $('#fee').val(fee.toFixed(2).toLocaleString('en-US'));
-                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" TZS");
+                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" USD");
             } else if (amount >= (101000 * 0.0004) && amount <= (500000 * 0.0004)) {
                 fee = 5000 * 0.0004;
                 deposit = amount - fee;
                 $('#deposit').val(deposit.toFixed(2).toLocaleString('en-US'));
                 $('#fee').val(fee.toFixed(2).toLocaleString('en-US'));
-                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" TZS");
+                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" USD");
             } else if (amount >= (501000 * 0.0004) && amount <= (1000000 * 0.0004)) {
                 fee = 10000 * 0.0004;
                 deposit = amount - fee;
                 $('#deposit').val(deposit.toFixed(2).toLocaleString('en-US'));
                 $('#fee').val(fee.toFixed(2).toLocaleString('en-US'));
-                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" TZS");
+                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" USD");
             } else if(amount >= (1010000 * 0.0004)){
                 fee = 15000 * 0.0004;
                 deposit = amount - fee;
                 $('#deposit').val(deposit.toFixed(2).toLocaleString('en-US'));
                 $('#fee').val(fee.toFixed(2).toLocaleString('en-US'));
-                $('#fee_info').text("Fee: TZS " + fee);
+                $('#fee_info').text("Fee: " + fee.toFixed(2).toLocaleString('en-US') +" USD");
             } else {
                 $('#deposit').val("");
                 $('#fee').val("");
@@ -214,15 +214,15 @@ $(function () {
         var optionSelected = $("option:selected", this);
         var valueSelected = this.value;
         if(valueSelected == "trivia") {
-            $('#balance-amount').text(parseInt(trivia).toFixed(2).toLocaleString('en-US') + " " + currency);
+            $('#balance-amount').text(parseFloat(trivia).toFixed(2).toLocaleString('en-US') + " " + currency);
         } else if(valueSelected == "video") {
-            $('#balance-amount').text(parseInt(video).toFixed(2).toLocaleString('en-US') + " " + currency);
+            $('#balance-amount').text(parseFloat(video).toFixed(2).toLocaleString('en-US') + " " + currency);
         } else if(valueSelected == "whatsapp"){
-            $('#balance-amount').text(parseInt(whatsapp).toFixed(2).toLocaleString('en-US') + " " + currency);
+            $('#balance-amount').text(parseFloat(whatsapp).toFixed(2).toLocaleString('en-US') + " " + currency);
         } else if(valueSelected == "ads"){
-            $('#balance-amount').text(parseInt(ads).toFixed(2).toLocaleString('en-US') + " " + currency);
+            $('#balance-amount').text(parseFloat(ads).toFixed(2).toLocaleString('en-US') + " " + currency);
         } else {
-            $('#balance-amount').text(parseInt(balance).toFixed(2).toLocaleString('en-US') + " " + currency);
+            $('#balance-amount').text(parseFloat(balance).toFixed(2).toLocaleString('en-US') + " " + currency);
         }
     });
 });

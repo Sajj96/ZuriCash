@@ -75,6 +75,7 @@ var table = $('#tableTrans').DataTable({
       {data: 'amount_deposit', name: 'amount_deposit'},
       {data: 'fee', name: 'fee'},
       {data: 'phone', name: 'phone'},
+      {data: 'uname', name: 'uname'},
       {data: 'transaction_type', name: 'transaction_type'},
       {data: 'status', name: 'status',orderable: false, searchable: false}
   ],

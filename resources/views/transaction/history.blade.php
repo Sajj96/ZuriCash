@@ -26,7 +26,6 @@
                                             </th>
                                             <th>{{ __('Date')}}</th>
                                             <th>{{ __('Amount')}}</th>
-                                            <th>{{ __('Phone')}}</th>
                                             <th>{{ __('Type')}}</th>
                                             <th>{{ __('Status')}}</th>
                                         </tr>
@@ -35,9 +34,8 @@
                                         @foreach($transactions as $key=>$rows)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
-                                            <td>{{ ($rows->created_at)->format('M d Y') }}</td>
+                                            <td>{{ date('F, d Y',strtotime($rows->created_at)) }}</td>
                                             <td>{{ number_format($rows->amount,2) }}</td>
-                                            <td>{{ $rows->phone }}</td>
                                             <td>
                                                 @if($rows->transaction_type == "pay_for_downline")
                                                 PAID: {{ $rows->username }}

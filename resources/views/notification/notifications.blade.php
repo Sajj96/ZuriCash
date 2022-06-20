@@ -24,8 +24,9 @@
                                             <th class="text-center">
                                                 #
                                             </th>
-                                            <th>Message</th>
-                                            <th>Type</th>
+                                            <th>{{ __('Message')}}</th>
+                                            <th>{{ __('Type')}}</th>
+                                            <th>{{ __('Action')}}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -36,6 +37,14 @@
                                             </td>
                                             <td>{{ $rows->message }}</td>
                                             <td>{{ $rows->type }}</td>
+                                            <td>
+                                                <a class="btn btn-danger btn-action delete" id="delete" onclick="event.preventDefault(); document.getElementById('delete-form{{ $rows->id }}').submit();" data-id="{{ $rows->id }}" data-toggle="tooltip" title="Delete"><i class="fas fa-trash"></i></a>
+                                                <form id="delete-form{{ $rows->id }}" action="{{ route('notify.delete') }}" method="POST" class="d-none">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <input type="hidden" value="{{ $rows->id }}">
+                                                </form>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>

@@ -9,25 +9,11 @@ $day = Carbon::createFromFormat('d/m/Y', $date)->format('l');
             <ul class="navbar-nav mr-3">
                 <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg
 									collapse-btn"> <i data-feather="align-justify"></i></a></li>
-                <li><a href="#" class="nav-link nav-link-lg fullscreen-btn">
-                        <i data-feather="maximize"></i>
-                    </a></li>
-                <li>
-                    <form class="form-inline mr-auto">
-                        <div class="search-element">
-                            <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="200">
-                            <button class="btn" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </form>
-                </li>
             </ul>
         </div>
         <ul class="navbar-nav navbar-right">
-            <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                    <figure class="avatar mr-2 avatar-sm bg-success text-white" data-initial="{{strtoupper(substr(Auth::user()->name,0,2))}}"></figure> <span class="d-sm-none d-lg-inline-block"></span>
-                </a>
+            <li class="dropdown"><a href="#" data-toggle="dropdown"
+              class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <i data-feather="user"></i> <span class="d-sm-none d-lg-inline-block"></span></a>
                 <div class="dropdown-menu dropdown-menu-right pullDown">
                     <div class="dropdown-title">Hello {{ Auth::user()->username }}</div>
                     <a href="{{ route('profile')}}" class="dropdown-item has-icon"> <i class="far fa-user"></i> {{ __('Profile') }} </a>
@@ -93,6 +79,7 @@ $day = Carbon::createFromFormat('d/m/Y', $date)->format('l');
                     <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="dollar-sign"></i><span>{{ __('Crypto Currency Lessons')}}</span></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('crypto')}}">{{ __('All Lessons')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('crypto.list')}}">{{ __('Manage Lessons')}}</a></li>
                         <li><a class="nav-link" href="{{ route('crypto.show')}}">{{ __('Add Lesson')}}</a></li>
                     </ul>
                 </li>
@@ -100,11 +87,12 @@ $day = Carbon::createFromFormat('d/m/Y', $date)->format('l');
                     <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="book-open"></i><span>{{ __('Enterpreneur Lessons')}}</span></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('education')}}">{{ __('All Lessons')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('education.list')}}">{{ __('Manage Lessons')}}</a></li>
                         <li><a class="nav-link" href="{{ route('education.show')}}">{{ __('Add Lesson')}}</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="thumbs-up"></i><span>{{ __('ADs Click')}}</span></a>
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="thumbs-up"></i><span>{{ __('Ads Click')}}</span></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('advert')}}">{{ __('Adverts')}}</a></li>
                         <li><a class="nav-link" href="{{ route('advert.list')}}">{{ __('Manage ADs')}}</a></li>
@@ -144,7 +132,7 @@ $day = Carbon::createFromFormat('d/m/Y', $date)->format('l');
                     <a href="{{ route('education')}}" class="nav-link"><i data-feather="book-open"></i><span>{{ __('Enterpreneur Lessons')}}</span></a>
                 </li>
                 <li class="dropdown">
-                    <a href="{{ route('advert')}}" class="nav-link"><i data-feather="thumbs-up"></i><span>{{ __('ADs Click')}}</span></a>
+                    <a href="{{ route('advert')}}" class="nav-link"><i data-feather="thumbs-up"></i><span>{{ __('Ads Click')}}</span></a>
                 </li>
                 <li class="dropdown">
                     <a href="{{ route('questions')}}" class="nav-link"><i data-feather="help-circle"></i><span>{{ __('Trivia Questions')}}</span></a>

@@ -12,7 +12,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>{{ __('ADS Click.')}}</h4>
+                            <h4>{{ __('Ads Click.')}}</h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -22,7 +22,7 @@
                                 $image_name = str_replace('http://127.0.0.1:8002/storage/ads/','',$rows->ads_path);
                                 @endphp
                                 @if(!in_array($rows->id, $ads_ids))
-                                <div class="col-12 col-sm-6 col-md-6 col-lg-3 advert" id="advert" data-id="{{ $rows->id }}">
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
                                     <article class="article">
                                         <div class="article-header">
                                             <div class="article-image" data-background="{{ asset('storage/ads/'.$image_name)}}">
@@ -31,8 +31,8 @@
                                                 <h2><a href="#">{{ $rows->title }}</a></h2>
                                             </div>
                                         </div>
-                                        <div class="article-details">
-                                            <i class="fas fa-audio-description"></i>
+                                        <div class="article-details text-center">
+                                            <a class="btn advert" href="#" id="advert" data-id="{{ $rows->id }}"><i class="far fa-thumbs-up fa-2x"></i> {{ __('Like')}}</a>
                                         </div>
                                     </article>
                                 </div>

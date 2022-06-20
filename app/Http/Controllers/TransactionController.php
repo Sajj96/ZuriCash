@@ -23,7 +23,8 @@ class TransactionController extends Controller
         if ($request->ajax()) {
             $transactions = DB::table('transactions')
                             ->join('users','transactions.user_id','=','users.id')
-                            ->select('transactions.*','users.username','users.name');
+                            ->leftJoin('users as us','transactions.receiver_id','us.id')
+                            ->select('transactions.*','users.username','users.name','us.username as uname');
             return Datatables::of($transactions)
                     ->addIndexColumn()
                     ->addColumn('amount', function ($row) {
@@ -36,7 +37,7 @@ class TransactionController extends Controller
                         return number_format($row->fee,2);
                     })
                     ->addColumn('created_at', function ($row) {
-                        return ($row->created_at)->format('M d Y');
+                        return date('F, d Y',strtotime($row->created_at));
                     })
                     ->addColumn('status', function ($row) {
                         if($row->status == 0){
@@ -108,9 +109,17 @@ class TransactionController extends Controller
      */
     public function showInactiveDownlines()
     {
-        $downlines = User::where('referrer_id', Auth::user()->id)->where('active', 0)->get();
+        $id = Auth::user()->id;
+        $downlines = User::where('referrer_id', $id)->where('active', 0)->get();
         $serial = 1;
-        return view('transaction.pay_for_client', compact('downlines', 'serial'));
+        $transaction = new Transaction;
+
+        $rate = $transaction->getExchangeRate($id,12000,'TZS');
+
+        $currency = $rate['currency'];
+        $amount = $rate['amount'];
+
+        return view('transaction.pay_for_client', compact('downlines', 'serial','amount', 'currency'));
     }
 
     /**
@@ -154,21 +163,26 @@ class TransactionController extends Controller
 
             if($request->amount > $balance) {
                 return redirect()->route('withdraw')->with('error','You don\'t have enough balance to withdraw '. $request->amount);
-            }
+            } else {
+                $rate = $transactions->getExchangeRate($id,$request->amount,'TZS');
 
-            $transaction = new Transaction;
-            $transaction->balance = $request->balance;
-            $transaction->user_id = Auth::user()->id;
-            $transaction->phone = $request->phone;
-            $transaction->amount = $request->amount;
-            $transaction->amount_deposit = $request->deposit;
-            $transaction->fee = $request->fee;
-            $transaction->transaction_type = $type;
-            $transaction->currency = $request->currency;
-            $transaction->status = Transaction::TRANSACTION_PENDING;
+                $currency = $rate['currency'];
+                $amount = $rate['amount'];
 
-            if($transaction->save()) {
-                return redirect()->route('withdraw')->with('success','You have successfully withdrawn TZS '.$request->amount.'. Please wait for confirmation!.');
+                $transaction = new Transaction;
+                $transaction->balance = $request->balance;
+                $transaction->user_id = $id;
+                $transaction->phone = $request->phone;
+                $transaction->amount = $request->amount;
+                $transaction->amount_deposit = $request->deposit;
+                $transaction->fee = $request->fee;
+                $transaction->transaction_type = $type;
+                $transaction->currency = $request->currency;
+                $transaction->status = Transaction::TRANSACTION_PENDING;
+    
+                if($transaction->save()) {
+                    return redirect()->route('withdraw')->with('success','You have successfully withdrawn '.$request->amount.' '.$currency.'. Please wait for confirmation!.');
+                }
             }
         } catch (\Exception $e) {
             return redirect()->route('withdraw')->with('error','Something went wrong while withdrawing!');
@@ -252,19 +266,12 @@ class TransactionController extends Controller
             $balance = $transactions->getUserBalance($id);
             $fee = Transaction::REGISTRATION_FEE;
 
-            if(Auth::user()->country == "tz") {
-                $fee = $fee;
-            } else if(Auth::user()->country == "ke") {
-                $fee = 0.05 * $fee;
-            } else if(Auth::user()->country == "ug") {
-                $fee = 1.6 * $fee;
-            }  else if(Auth::user()->country == "rw") {
-                $fee = 0.44 * $fee;
-            } else {
-                $fee = 0.0004 * $fee;
-            }
+            $rate = $transactions->getExchangeRate($id,$fee,'TZS');
 
-            if($fee > $balance) {
+            $currency = $rate['currency'];
+            $amount = $rate['amount'];
+
+            if($amount > $balance) {
                 return redirect()->route('pay_for_downline')->with('error','You don\'t have enough balance to make payment');
             }
 
@@ -277,10 +284,11 @@ class TransactionController extends Controller
                     $payment->user_id = Auth::user()->id;
                     $payment->receiver_id = $request->id;
                     $payment->phone = Auth::user()->phone;
-                    $payment->amount = $fee;
+                    $payment->amount = $amount;
                     $payment->amount_deposit = 0;
                     $payment->fee = 0;
                     $payment->transaction_type = Transaction::TYPE_PAY_FOR_DOWNLINE;
+                    $payment->currency = $currency;
                     $payment->status = 1;
                     if($payment->save()) {
                         return redirect()->route('pay_for_downline')->with('success','You successfully paid for your downline!');

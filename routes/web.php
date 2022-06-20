@@ -94,7 +94,7 @@ Route::middleware(['auth','active.user'])->group(function ()
     });
 
     Route::group(['prefix' => 'revenues'], function(){
-        Route::get('/', [App\Http\Controllers\RevenueController::class, 'index'])->name('revenue')->middleware('user.type');
+        Route::get('/', [App\Http\Controllers\RevenueController::class, 'index'])->name('revenue');
         Route::post('/', [App\Http\Controllers\RevenueController::class, 'create'])->name('revenue.create');
         Route::post('/bulk', [App\Http\Controllers\RevenueController::class, 'createBulk'])->name('revenue.create.bulk');
     });
@@ -121,6 +121,7 @@ Route::middleware(['auth','active.user'])->group(function ()
         Route::get('/', [App\Http\Controllers\NotificationController::class, 'index'])->name('notify');
         Route::get('/send', [App\Http\Controllers\NotificationController::class, 'show'])->name('notify.show')->middleware('user.type');
         Route::post('/', [App\Http\Controllers\NotificationController::class, 'create'])->name('notify.create')->middleware('user.type');
+        Route::delete('/', [App\Http\Controllers\NotificationController::class, 'delete'])->name('notify.delete')->middleware('user.type');
     });
 
     Route::group(['prefix' => 'adverts'], function(){
@@ -138,13 +139,21 @@ Route::middleware(['auth','active.user'])->group(function ()
 
     Route::group(['prefix' => 'crypto-lessons'], function(){
         Route::get('/', [App\Http\Controllers\CryptoController::class, 'index'])->name('crypto');
-        Route::get('/create', [App\Http\Controllers\CryptoController::class, 'show'])->name('crypto.show');
-        Route::post('/', [App\Http\Controllers\CryptoController::class, 'create'])->name('crypto.create');
+        Route::get('/create', [App\Http\Controllers\CryptoController::class, 'show'])->name('crypto.show')->middleware('user.type');
+        Route::get('/list', [App\Http\Controllers\CryptoController::class, 'getList'])->name('crypto.list')->middleware('user.type');
+        Route::get('/{id}', [App\Http\Controllers\CryptoController::class, 'edit'])->name('crypto.edit')->middleware('user.type');
+        Route::post('/', [App\Http\Controllers\CryptoController::class, 'create'])->name('crypto.create')->middleware('user.type');
+        Route::put('/', [App\Http\Controllers\CryptoController::class, 'update'])->name('crypto.update')->middleware('user.type');
+        Route::delete('/', [App\Http\Controllers\CryptoController::class, 'delete'])->name('crypto.delete')->middleware('user.type');
     });
 
     Route::group(['prefix' => 'enterpreneur-lessons'], function(){
         Route::get('/', [App\Http\Controllers\EducationController::class, 'index'])->name('education');
-        Route::get('/create', [App\Http\Controllers\EducationController::class, 'show'])->name('education.show');
-        Route::post('/', [App\Http\Controllers\EducationController::class, 'create'])->name('education.create');
+        Route::get('/create', [App\Http\Controllers\EducationController::class, 'show'])->name('education.show')->middleware('user.type');
+        Route::get('/list', [App\Http\Controllers\EducationController::class, 'getList'])->name('education.list')->middleware('user.type');
+        Route::get('/{id}', [App\Http\Controllers\EducationController::class, 'edit'])->name('education.edit')->middleware('user.type');
+        Route::post('/', [App\Http\Controllers\EducationController::class, 'create'])->name('education.create')->middleware('user.type');
+        Route::put('/', [App\Http\Controllers\EducationController::class, 'update'])->name('education.update')->middleware('user.type');
+        Route::delete('/', [App\Http\Controllers\EducationController::class, 'delete'])->name('education.delete')->middleware('user.type');
     });
 });

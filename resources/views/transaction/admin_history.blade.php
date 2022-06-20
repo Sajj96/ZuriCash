@@ -65,6 +65,7 @@
                                                     <th>{{ __('Debit')}}</th>
                                                     <th>{{ __('Fee')}}</th>
                                                     <th>{{ __('Phone')}}</th>
+                                                    <th>{{ __('Paid For')}}</th>
                                                     <th>{{ __('Type')}}</th>
                                                     <th>{{ __('Status')}}</th>
                                                 </tr>

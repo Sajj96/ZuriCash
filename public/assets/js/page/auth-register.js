@@ -22,14 +22,14 @@ var errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long
 var it = window.intlTelInput(telInput, {
 	initialCountry: 'tz',
 	autoPlaceholder: 'aggressive',
+  formatOnDisplay: false,
 	utilsScript: utilUrl,
 	geoIpLookup: function(callback) {
         $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
           var countryCode = (resp && resp.country) ? resp.country : "us";
           callback(countryCode);
         });
-      },
-    separateDialCode: true
+      }
 });
 
 // populate the country dropdown

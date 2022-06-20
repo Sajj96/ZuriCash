@@ -41,11 +41,13 @@
                                             <td>{{ $rows->question }}</td>
                                             <td>{{ $rows->answer }}</td>
                                             <td>{{ $rows->options }}</td>
-                                            @if($rows->status == 1)
-                                            <td><div class="badge badge-primary">{{ __('Published')}}</div></td>
-                                            @else
-                                            <td><div class="badge badge-warning">{{ __('Pending')}}</div></td>
-                                            @endif
+                                            <td>
+                                                @if($rows->status == 1)
+                                                <div class="badge badge-primary">{{ __('Published')}}</div>
+                                                @else
+                                                <div class="badge badge-warning">{{ __('Pending')}}</div>
+                                                @endif
+                                            </td>
                                             <td>
                                                 <a href="{{ route('question.edit', $rows->id) }}" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
                                                 <a class="btn btn-danger btn-action delete" id="delete" data-id="{{ $rows->id }}" data-toggle="tooltip" title="Delete"><i class="fas fa-trash"></i></a>

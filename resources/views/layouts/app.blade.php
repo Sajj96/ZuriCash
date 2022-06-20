@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta property="og:type" content="website"/>
-	<meta property="og:url" content="env('APP_URL')"/>
+	<meta property="og:url" content="{{env('APP_URL')}}"/>
 	<meta property="og:title" content="ZuriCash"/>
 	<meta property="og:description" content="ZuriCash Agency - Earn with Us"/>
 	<meta property="og:image" content="{{ asset('assets/img/logo4.jpeg')}}"/>
 	<meta property="twitter:card" content="summary_large_image"/>
-	<meta property="twitter:url" content="env('APP_URL')"/>
+	<meta property="twitter:url" content="{{env('APP_URL')}}"/>
 	<meta property="twitter:title" content=""/>
 	<meta property="twitter:description" content="ZuriCash Agency - Earn with Us"/>
 	<meta property="twitter:image" content="{{ asset('assets/img/logo4.jpeg')}}"/>
@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/components.css')}}">
     <!-- Custom style CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css')}}">
-    <link rel='shortcut icon' type='image/x-icon' href="{{ asset('assets/img/logo4.jpeg')}}" />
+    <link rel='shortcut icon' type='image/x-icon' href="{{ asset('assets/img/favicon.png')}}" />
 </head>
 <body>
     <div class="loader"></div>

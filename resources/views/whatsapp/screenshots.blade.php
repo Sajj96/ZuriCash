@@ -67,7 +67,7 @@
                                         @foreach($screenshots as $key=>$rows)
                                         <tr>
                                             <td>{{ $serial++ }}</td>
-                                            <td>{{ $rows->screenshot }}</td>
+                                            <td>{{ $rows->screenshot_path }}</td>
                                             <td>{{ $rows->created_at }}</td>
                                             @if($rows->status == 0)
                                             <td>

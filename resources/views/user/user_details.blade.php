@@ -216,16 +216,16 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="form-group col-md-7 col-12">
+                                                <div class="form-group col-md-6 col-12">
                                                     <label>{{ __('Email')}}</label>
                                                     <input type="email" class="form-control" name="email" value="{{ $user->email }}" required>
                                                     <div class="invalid-feedback">
                                                         {{ __('Please fill in the email')}}
                                                     </div>
                                                 </div>
-                                                <div class="form-group col-md-5 col-12">
+                                                <div class="form-group col-md-6 col-12">
                                                     <label>{{ __('Phone')}}</label>
-                                                    <input id="phone" type="tel" class="form-control" name="phone" value="{{ $user->phone }}" required>
+                                                    <input id="phone" type="tel" class="form-control" name="phone" value="{{ $user->phone }}" required style="padding: 10px 0px 10px 50px;">
                                                 </div>
                                                 <div class="form-group col-md-12 col-12">
                                                     <label for="country">{{ __('Country') }}</label>
@@ -241,11 +241,9 @@
                                                 <div class="form-group col-12">
                                                     <label>{{ __('Referrer')}}</label>
                                                     <select class="form-control select2" name="referrer" required>
-                                                        Users::chunk(200, function($users){
-                                                        @foreach($users as $key => $rows) {
+                                                        @foreach($users as $rows) {
                                                         <option {{ $user->referrer_id == $rows->id ? 'selected' : '' }} value="{{ $rows->id }}">{{ $rows->username }}</option>
                                                         @endforeach
-                                                        });
                                                     </select>
                                                 </div>
                                             </div>
@@ -318,7 +316,7 @@
                                                     @foreach($level_2_downlines as $key=>$rows)
                                                     <tr>
                                                         <td>
-                                                            {{ $serial_2++ }}
+                                                            {{ $key + 1 }}
                                                         </td>
                                                         <td>{{ $rows->username }}</td>
                                                         <td>{{ $rows->phone }}</td>
@@ -359,7 +357,7 @@
                                                     @foreach($level_3_downlines as $key=>$rows)
                                                     <tr>
                                                         <td>
-                                                            {{ $serial_3++ }}
+                                                            {{ $key + 1 }}
                                                         </td>
                                                         <td>{{ $rows->username }}</td>
                                                         <td>{{ $rows->phone }}</td>

@@ -108,12 +108,8 @@ class Transaction extends Model
                         ->where('transaction_type', self::TYPE_WITHDRAW)
                         ->where('user_id', $id)
                         ->sum('amount');
-        $payment_for_downline = $this->getUserPaymentForDownline($id);
-        $payment_amount = $payment_for_downline ?? 0;
         $withdrawn_amount = $withdrawn ?? 0;
-
-        $balance = $withdrawn_amount + $payment_amount;
-        return $balance;
+        return $withdrawn_amount;
     }
 
 
@@ -140,8 +136,25 @@ class Transaction extends Model
     public function getSystemEarnings()
     {
         $earning = DB::table('transactions')
+                        ->where('currency', 'TZS')
                         ->sum('fee');
-        $earning_amount = $earning ?? 0;
+        $earning_kes = DB::table('transactions')
+                        ->where('currency', 'KES')
+                        ->sum('fee');
+        $earning_ugx = DB::table('transactions')
+                        ->where('currency', 'UGX')
+                        ->sum('fee');
+        $earning_rwf = DB::table('transactions')
+                        ->where('currency', 'RWF')
+                        ->sum('fee');
+        $earning_usd = DB::table('transactions')
+                        ->where('currency', 'USD')
+                        ->sum('fee');
+        $balance_kes = $earning_kes / 0.05 ?? 0;
+        $balance_ugx = $earning_ugx / 1.6 ?? 0;
+        $balance_rwf = $earning_rwf / 0.44 ?? 0;
+        $balance_usd = $earning_usd / 0.0004 ?? 0;
+        $earning_amount = ($earning + $balance_kes + $balance_rwf + $balance_ugx + $balance_usd) ?? 0;
         return $earning_amount;
     }
 
@@ -154,6 +167,10 @@ class Transaction extends Model
     {
         $withdraw_request = DB::table('transactions')
                         ->where('transaction_type', self::TYPE_WITHDRAW)
+                        ->orWhere('transaction_type', self::TYPE_WHATSAPP)
+                        ->orWhere('transaction_type', self::TYPE_VIDEO)
+                        ->orWhere('transaction_type', self::TYPE_QUESTIONS)
+                        ->orWhere('transaction_type', self::TYPE_ADCLICK)
                         ->where('status', self::TRANSACTION_PENDING)
                         ->get();
         $numRequest = count($withdraw_request) ?? 0;
@@ -171,8 +188,11 @@ class Transaction extends Model
                         ->where('type', Revenue::TYPE_WHATSAPP)
                         ->where('user_id', $id)
                         ->sum('amount');
+        
+        $withdrawals = $this->getUserWhatsAppWithdrawnAmount($id);
         $earning_amount = $earning ?? 0;
-        return $earning_amount;
+        $whatsapp_earning = $earning_amount - $withdrawals;
+        return $whatsapp_earning;
     }
 
     public function getUserWhatsAppWithdrawnAmount($id)
@@ -197,7 +217,9 @@ class Transaction extends Model
                         ->where('user_id', $id)
                         ->sum('amount');
         $earning_amount = $earning ?? 0;
-        return $earning_amount;
+        $withdrawals = $this->getUserQuestionsWithdrawnAmount($id);
+        $questions_earning = $earning_amount - $withdrawals;
+        return $questions_earning;
     }
 
     public function getUserQuestionsWithdrawnAmount($id)
@@ -222,7 +244,9 @@ class Transaction extends Model
                         ->where('user_id', $id)
                         ->sum('amount');
         $earning_amount = $earning ?? 0;
-        return $earning_amount;
+        $withdrawals = $this->getUserVideoWithdrawnAmount($id);
+        $videos_earning = $earning_amount - $withdrawals;
+        return $videos_earning;
     }
 
     public function getUserVideoWithdrawnAmount($id)
@@ -247,7 +271,9 @@ class Transaction extends Model
                         ->where('user_id', $id)
                         ->sum('amount');
         $earning_amount = $earning ?? 0;
-        return $earning_amount;
+        $withdrawals = $this->getUserAdsWithdrawnAmount($id);
+        $ads_earning = $earning_amount - $withdrawals;
+        return $ads_earning;
     }
 
     public function getUserAdsWithdrawnAmount($id)
@@ -271,8 +297,9 @@ class Transaction extends Model
         $whatsAppEarnings = $this->getWhatsAppEarnings($id);
         $questionsEarning = $this->getQuestionsEarnings($id);
         $videoEarnings = $this->getVideoEarnings($id);
+        $adsEarnings = $this->getAdsEarnings($id);
 
-        $profit_amount = $totalBalance + $whatsAppEarnings + $questionsEarning + $videoEarnings;
+        $profit_amount = $totalBalance + $whatsAppEarnings + $questionsEarning + $videoEarnings + $adsEarnings;
         return $profit_amount;
     }
 

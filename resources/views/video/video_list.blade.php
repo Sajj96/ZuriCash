@@ -41,15 +41,13 @@
                                             <td>{{ strip_tags($rows->title) }}</td>
                                             <td>{{ $rows->video }}</td>
                                             <td>{{ $rows->created_at->format('M, d Y') }}</td>
-                                            @if($rows->status == 1)
                                             <td>
+                                                @if($rows->status == 1)
                                                 <div class="badge badge-primary">{{ __('Published')}}</div>
-                                            </td>
-                                            @else
-                                            <td>
+                                                @else
                                                 <div class="badge badge-warning">{{ __('Pending')}}</div>
+                                                @endif
                                             </td>
-                                            @endif
                                             <td>
                                                 <a class="btn btn-danger btn-action delete" id="delete" onclick="event.preventDefault(); document.getElementById('delete-form').submit();" data-toggle="tooltip" title="Delete"><i class="fas fa-trash"></i></a>
                                             </td>

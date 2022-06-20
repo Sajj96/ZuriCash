@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaction;
 use App\Models\User;
-use App\Services\ExchangeRateService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -71,10 +70,6 @@ class HomeController extends Controller
                 $newUsers[] = $rows;
             }
         }
-
-        // $exchange = app(ExchangeRateService::class);
-
-        // $rate = (object) json_decode($exchange->getRate());
 
         $rate = $transactions->getExchangeRate($id,12000,'TZS');
 

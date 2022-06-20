@@ -103,23 +103,11 @@ $(function () {
         myPlayer.on("timeupdate", () => {
         
             var remainingTime = myPlayer.remainingTime();
-            var duration = myPlayer.duration();
+            var duration = myPlayer.duration() * 0.75;
             var currentTime = myPlayer.currentTime();
-            var amount = 100;
+            var amount = 200;
 
-            if(userCountry === 'tz'){
-                amount = amount;
-            }else if(userCountry === 'ke'){
-                amount = amount * 0.05;
-            }else if(userCountry === 'ug'){
-                amount = amount * 1.6;
-            }else if(userCountry === 'rw'){
-                amount = amount * 0.44;
-            }else {
-                amount = amount * 0.0004;
-            }
-
-                if (currentTime == duration) {
+                if (currentTime >= duration) {
                 myPlayer.pause();
                 $.ajax({
                     url: url3,
