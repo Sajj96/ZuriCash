@@ -108,7 +108,8 @@ class Transaction extends Model
                         ->where('transaction_type', self::TYPE_WITHDRAW)
                         ->where('user_id', $id)
                         ->sum('amount');
-        $withdrawn_amount = $withdrawn ?? 0;
+        $amount = $this->getTransactionRate($id,$withdrawn,self::TYPE_WITHDRAW);
+        $withdrawn_amount = $amount ?? 0;
         return $withdrawn_amount;
     }
 
@@ -124,7 +125,8 @@ class Transaction extends Model
                         ->where('transaction_type', self::TYPE_PAY_FOR_DOWNLINE)
                         ->where('user_id', $id)
                         ->sum('amount');
-        $payment_amount = $payment ?? 0;
+        $amount = $this->getTransactionRate($id,$payment,self::TYPE_PAY_FOR_DOWNLINE);
+        $payment_amount = $amount ?? 0;
         return $payment_amount;
     }
 
@@ -167,10 +169,10 @@ class Transaction extends Model
     {
         $withdraw_request = DB::table('transactions')
                         ->where('transaction_type', self::TYPE_WITHDRAW)
-                        ->orWhere('transaction_type', self::TYPE_WHATSAPP)
-                        ->orWhere('transaction_type', self::TYPE_VIDEO)
-                        ->orWhere('transaction_type', self::TYPE_QUESTIONS)
-                        ->orWhere('transaction_type', self::TYPE_ADCLICK)
+                        //->orWhere('transaction_type', self::TYPE_WHATSAPP)
+                        //->orWhere('transaction_type', self::TYPE_VIDEO)
+                        //->orWhere('transaction_type', self::TYPE_QUESTIONS)
+                        //->orWhere('transaction_type', self::TYPE_ADCLICK)
                         ->where('status', self::TRANSACTION_PENDING)
                         ->get();
         $numRequest = count($withdraw_request) ?? 0;
@@ -190,8 +192,10 @@ class Transaction extends Model
                         ->sum('amount');
         
         $withdrawals = $this->getUserWhatsAppWithdrawnAmount($id);
-        $earning_amount = $earning ?? 0;
+        $amount = $this->getRevenueRate($id,$earning,Revenue::TYPE_WHATSAPP);
+        $earning_amount = $amount?? 0;
         $whatsapp_earning = $earning_amount - $withdrawals;
+    
         return $whatsapp_earning;
     }
 
@@ -201,7 +205,8 @@ class Transaction extends Model
                         ->where('transaction_type', self::TYPE_WHATSAPP)
                         ->where('user_id', $id)
                         ->sum('amount');
-        $withdrawn_amount = $withdrawn ?? 0;
+        $amount = $this->getTransactionRate($id,$withdrawn,'TZS');
+        $withdrawn_amount = $amount['amount'] ?? 0;
         return $withdrawn_amount;
     }
 
@@ -216,7 +221,8 @@ class Transaction extends Model
                         ->where('type', Revenue::TYPE_TRIVIA_QUESTION)
                         ->where('user_id', $id)
                         ->sum('amount');
-        $earning_amount = $earning ?? 0;
+        $amount = $this->getRevenueRate($id,$earning,Revenue::TYPE_TRIVIA_QUESTION);
+        $earning_amount = $amount ?? 0;
         $withdrawals = $this->getUserQuestionsWithdrawnAmount($id);
         $questions_earning = $earning_amount - $withdrawals;
         return $questions_earning;
@@ -228,7 +234,8 @@ class Transaction extends Model
                         ->where('transaction_type', self::TYPE_QUESTIONS)
                         ->where('user_id', $id)
                         ->sum('amount');
-        $withdrawn_amount = $withdrawn ?? 0;
+        $amount = $this->getTransactionRate($id,$withdrawn,'TZS');
+        $withdrawn_amount = $amount['amount'] ?? 0;
         return $withdrawn_amount;
     }
 
@@ -239,11 +246,12 @@ class Transaction extends Model
      */
     public function getVideoEarnings($id)
     {
-        $earning = DB::table('revenues')
+        $earning = DB::table('video_users')
                         ->where('type', Revenue::TYPE_VIDEO)
                         ->where('user_id', $id)
                         ->sum('amount');
-        $earning_amount = $earning ?? 0;
+        $amount = $this->getRevenueRate($id,$earning,Revenue::TYPE_VIDEO);
+        $earning_amount = $amount ?? 0;
         $withdrawals = $this->getUserVideoWithdrawnAmount($id);
         $videos_earning = $earning_amount - $withdrawals;
         return $videos_earning;
@@ -255,7 +263,8 @@ class Transaction extends Model
                         ->where('transaction_type', self::TYPE_VIDEO)
                         ->where('user_id', $id)
                         ->sum('amount');
-        $withdrawn_amount = $withdrawn ?? 0;
+        $amount = $this->getTransactionRate($id, $withdrawn, 'TZS');
+        $withdrawn_amount = $amount['amount'] ?? 0;
         return $withdrawn_amount;
     }
 
@@ -270,7 +279,8 @@ class Transaction extends Model
                         ->where('type', Revenue::TYPE_ADCLICK)
                         ->where('user_id', $id)
                         ->sum('amount');
-        $earning_amount = $earning ?? 0;
+        $amount = $this->getRevenueRate($id,$earning,Revenue::TYPE_ADCLICK);
+        $earning_amount = $amount ?? 0;
         $withdrawals = $this->getUserAdsWithdrawnAmount($id);
         $ads_earning = $earning_amount - $withdrawals;
         return $ads_earning;
@@ -282,7 +292,8 @@ class Transaction extends Model
                         ->where('transaction_type', self::TYPE_ADCLICK)
                         ->where('user_id', $id)
                         ->sum('amount');
-        $withdrawn_amount = $withdrawn ?? 0;
+        $amount = $this->getTransactionRate($id, $withdrawn,'TZS');
+        $withdrawn_amount = $amount['amount'] ?? 0;
         return $withdrawn_amount;
     }
 
@@ -325,5 +336,122 @@ class Transaction extends Model
         }
 
         return array('currency' => $currency,'amount' => $amount);
+    }
+
+    public function getTransactionRate($id, $amount, $type)
+    {
+        $transactions = DB::table('transactions')
+                        ->where('transaction_type', $type)
+                        ->where('user_id', $id)
+                        ->groupBy('transaction_type')
+                        ->get();
+
+        $user = User::find($id);
+        $country_currency = '';
+
+        foreach($transactions as $key=>$rows){
+            if($user->country == "tz") {
+                $country_currency = 'TZS';
+            } else if($user->country == "ke") {
+                $country_currency = "KES";
+            } else if($user->country == "ug") {
+                $country_currency = "UGX";
+            }  else if($user->country == "rw") {
+                $country_currency = "RWF";
+            } else {
+                $country_currency = "USD";
+            }
+
+            if($rows->currency == $country_currency) {
+                
+                $amount = $amount;
+            } else {
+                if($rows->currency == "TZS") {
+                    if($user->country == "ke") {
+                        $currency = "KES";
+                        $amount = $amount * 0.05;
+                    } else if($user->country == "ug"){
+                        $currency = "UGX";
+                        $amount = $amount * 1.6;
+                    } else if($user->country == "rw"){
+                        $currency = "RWF";
+                        $amount = $amount * 0.44;
+                    } else {
+                        $currency = "USD";
+                        $amount = $amount * 0.0004;
+                    }
+                    
+                } else if($rows->currency == "KES") {
+                    $currency = "TZS";
+                    $amount =  $amount / 0.05;
+                } else if($rows->currency == "UGX") {
+                    $currency = "TZS";
+                    $amount = $amount / 1.6;
+                }  else if($rows->currency == "RWF") {
+                    $currency = "TZS";
+                    $amount = $amount / 0.44;
+                } else {
+                    $currency = "TZS";
+                    $amount = $amount / 0.0004;
+                }
+            }
+        }
+
+        return $amount;
+    }
+
+    public function getRevenueRate($id, $amount, $type)
+    {
+
+        if($type == Revenue::TYPE_VIDEO) {
+            $revenues = DB::table('video_users')
+                        ->where('user_id', $id)
+                        ->where('type', $type)
+                        ->groupBy('type')
+                        ->get();
+        } else {
+            $revenues = DB::table('revenues')
+                        ->where('user_id', $id)
+                        ->where('type', $type)
+                        ->groupBy('type')
+                        ->get();
+        }
+
+        $user = User::find($id);   
+
+        foreach($revenues as $key=>$rows){
+            if($rows->currency == $user->country) {
+                $amount = $amount;
+            } else {
+                if($user->country == "tz") {
+                    if($rows->currency == "ke") {
+                        $currency = "TZS";
+                        $amount = $amount / 0.05;
+                    } else if($rows->currency == "ug"){
+                        $currency = "TZS";
+                        $amount = $amount / 1.6;
+                    } else if($rows->currency == "rw"){
+                        $currency = "TZS";
+                        $amount = $amount / 0.44;
+                    } else {
+                        $amount = $amount / 0.0004;
+                    }
+                } else if($user->country == "ke") {
+                    $currency = "KES";
+                    $amount =  $amount * 0.05;
+                } else if($user->country == "ug") {
+                    $currency = "UGX";
+                    $amount = $amount * 1.6;
+                }  else if($user->country == "rw") {
+                    $currency = "RWF";
+                    $amount = $amount * 0.44;
+                } else {
+                    $currency = "USD";
+                    $amount = $amount * 0.0004;
+                }
+            }
+        }
+
+        return $amount;
     }
 }

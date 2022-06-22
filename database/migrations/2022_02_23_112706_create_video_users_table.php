@@ -17,6 +17,10 @@ class CreateVideoUsersTable extends Migration
             // $table->id();
             $table->bigInteger('video_id');
             $table->bigInteger('user_id');
+            $table->string('type');
+            $table->double('amount');
+            $table->string('currency');
+            $table->tinyInteger('status')->default('0');
             $table->primary(['video_id', 'user_id'],  'primaryKeyName');
             $table->timestamps();
         });

@@ -25,25 +25,18 @@ class RevenueController extends Controller
     {
         try {
 
-            if ($request->type == Revenue::TYPE_VIDEO) {
-                $video_users = Revenue::where('video_id', $request->video_id)->where('user_id', $request->user_id)
-                    ->get();
-
-                if (count($video_users) > 0) {
-                    return false;
-                }
-            }
-
             $transaction = new Transaction;
 
             $rate = $transaction->getExchangeRate($request->user_id,$request->amount,'TZS');
             $amount = $rate['amount'];
 
+            $user = User::find($request->user_id);
+
             $revenue = new Revenue;
             $revenue->user_id = $request->user_id;
-            $revenue->video_id = $request->video_id ?? "";
             $revenue->type = $request->type;
             $revenue->amount = $amount;
+            $revenue->currency = $user->country;
             $revenue->status = Revenue::STATUS_PAID;
             if ($revenue->save()) {
                 if ($request->type == Revenue::TYPE_WHATSAPP) {
@@ -73,11 +66,13 @@ class RevenueController extends Controller
             foreach ($screenshots as $key => $rows) {
                 $rate = $transaction->getExchangeRate($rows->user_id,$request->amount,'TZS');
                 $amount = $rate['amount'];
+                $user = User::find($request->user_id);
 
                 $revenue = new Revenue;
                 $revenue->user_id = $rows->user_id;
                 $revenue->type = Revenue::TYPE_WHATSAPP;
                 $revenue->amount = $amount;
+                $revenue->currency = $user->country;
                 $revenue->status = Revenue::STATUS_PAID;
                 if ($revenue->save()) {
                     $screenshot = Screenshot::find($rows->id);

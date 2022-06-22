@@ -1,10 +1,4 @@
 @extends('layouts.app')
-@php
-use Akaunting\Money\Currency;
-use Akaunting\Money\Money;
-$m1 = Money::USD(500);
-$time = date("H");
-@endphp
 
 @section('general-css')
 <link rel="stylesheet" href="{{ asset('assets/bundles/jqvmap/dist/jqvmap.min.css')}}">
@@ -14,11 +8,7 @@ $time = date("H");
 @include('layouts.header')
 <!-- Main Content -->
 <div class="main-content">
-    <h4 class="section-title mb-3 text-md-left text-sm-center">
-        @if ($time < "12" ) {{ __('Good morning')}} @elseif ($time>= "12" && $time < "15" ) {{ __('Good afternoon')}} @elseif ($time>= "15" && $time < "19" ) {{ __('Good evening')}} @else ($time>= "19")
-                    {{ __('Good night')}}
-                    @endif
-                    {{Auth::user()->username}},</h4>
+    <h4 class="section-title mb-3 text-md-left text-sm-center">{{ $hours." ".Auth::user()->username}},</h4>
     @if(Auth::user()->user_type == 1)
     <section class="section">
         <div class="row">
@@ -127,7 +117,7 @@ $time = date("H");
                                     </div>
                                     <div class="col-7 col-xl-7 mb-3">Inactive Users</div>
                                     <div class="col-5 col-xl-5 mb-3">
-                                        <span class="text-big">{{ count($inactiveUsers) }}</span>
+                                        <span class="text-big">{{ $inactiveUsers }}</span>
                                     </div>
                                 </div>
                             </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaction;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -58,9 +59,9 @@ class HomeController extends Controller
             $totalWithdraw += $rows->amount;
         }
 
-        $users = User::where('active', 1)->get();
+        $users = User::where('active', 1)->paginate(50);
 
-        $inactiveUsers = User::where('active', 0)->get();
+        $inactiveUsers = User::where('active', 0)->count();
 
         $newUsers = array();
 
@@ -75,14 +76,25 @@ class HomeController extends Controller
 
         $currency = $rate['currency'];
         $amount = $rate['amount'];
-
-        // dd($rate);
-
-        if($user->user_type != 1) {
-            return view('home', compact('profit','balance','withdrawn','whatsapp','question','video','notification','currency','amount','ads'));
+        $hours = '';
+        $time = Carbon::now()->format('H');
+        
+        if ($time < "12" ) {
+            $hours = 'Good morning';
+        } else if ($time >= "12" && $time < "15" ) { 
+            $hours = 'Good afternoon';
+        } else if ($time>= "15" && $time < "19" ) {
+            $hours = 'Good evening';
+        } else if($time >= "19"){
+            $hours = 'Good night';
         }
 
-        return view('home', compact('all_users','active_users','withdraw_requests','system_earnings','transactionData','todayEarning','totalWithdraw','newUsers','currency','amount','inactiveUsers'));
+        if($user->user_type != 1) {
+            // dd($notification);
+            return view('home', compact('profit','balance','withdrawn','whatsapp','question','video','notification','currency','amount','ads','hours'));
+        }
+
+        return view('home', compact('all_users','active_users','withdraw_requests','system_earnings','transactionData','todayEarning','totalWithdraw','newUsers','currency','amount','inactiveUsers','hours'));
     }
 
     /**

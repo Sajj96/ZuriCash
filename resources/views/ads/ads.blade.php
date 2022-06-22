@@ -57,7 +57,7 @@
                 </div>
                 <div class="modal-body text-center text-white">
                     <h2>Congrats! 🎉</h2>
-                    <h4>You got <strong> {{ $amount." ".$currency }} </strong> for clicking this AD</h4>
+                    <h4>You got <strong> {{ $amount." ".$currency }} </strong> for liking this AD</h4>
                 </div>
             </div>
         </div>

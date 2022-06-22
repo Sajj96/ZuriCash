@@ -103,7 +103,7 @@ $(function () {
         myPlayer.on("timeupdate", () => {
         
             var remainingTime = myPlayer.remainingTime();
-            var duration = myPlayer.duration() * 0.75;
+            var duration = myPlayer.duration() * 0.98;
             var currentTime = myPlayer.currentTime();
             var amount = 200;
 
@@ -129,27 +129,12 @@ $(function () {
                                         .querySelector('meta[name="csrf-token"]')
                                         .getAttribute("content"),
                                     video_id: video_id,
-                                    user_id: user_id
+                                    user_id: user_id,
+                                    type: "video",
+                                    amount: amount
                                 },
                                 success: function (resp) {
-                                    if(rows == 0) {
-                                          $.ajax({
-                                            url: url1,
-                                            method: "POST",
-                                            data: {
-                                                _token: document
-                                                    .querySelector('meta[name="csrf-token"]')
-                                                    .getAttribute("content"),
-                                                user_id: user_id,
-                                                video_id:video_id,
-                                                type: "video",
-                                                amount: amount
-                                            },
-                                            success: function (response) {
-                                              $("#exampleModal").modal("show");
-                                            },
-                                        });
-                                    }
+                                    $("#exampleModal").modal("show");
                                 },
                             });
                       }

@@ -16,9 +16,9 @@ class CreateRevenuesTable extends Migration
         Schema::create('revenues', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
-            $table->integer('video_id')->nullable();
             $table->string('type');
             $table->double('amount');
+            $table->string('currency');
             $table->tinyInteger('status')->default('0');
             $table->timestamps();
         });

@@ -106,16 +106,14 @@ class User extends Authenticatable
 
     public function getAllUsers()
     {
-        $user = self::all();
-        $users_number = count($user) ?? 0;
-        return $users_number;
+        $users = self::all()->count();
+        return $users;
     }
 
     public function getAllActiveUsers()
     {
-        $user = self::where('active',1)->get();
-        $users_number = count($user) ?? 0;
-        return $users_number;
+        $users = self::where('active',1)->count();
+        return $users;
     }
 
     public function getLevelOneActiveReferrals($id) {

@@ -34,7 +34,7 @@ class VideoController extends Controller
         }
 
         $transaction = new Transaction;
-        $rate = $transaction->getExchangeRate($user->id,100,'TZS');
+        $rate = $transaction->getExchangeRate($user->id,200,'TZS');
 
         $currency = $rate['currency'];
         $amount = $rate['amount'];
