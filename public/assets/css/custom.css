@@ -331,6 +331,8 @@
       display: none;
   }
 
+  .l-bg-red-dark{background:linear-gradient(135deg, #bd2349 0%, #fd4b7d 100%) !important;color:#fff}.l-bg-green .content .text,.l-bg-green .content .number{color:#fff !important}.l-bg-green-dark{background:linear-gradient(135deg, #bd235e 0, #a96570 100%) !important;color:#fff}
+
 @media (max-width: 1024px) {
     body {
         /* background: #262B40; */

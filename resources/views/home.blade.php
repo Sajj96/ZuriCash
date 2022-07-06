@@ -128,19 +128,7 @@
         </div>
     </section>
     @else
-    @foreach($notification as $key=>$rows)
-    <?php $end_date = date('Y-m-d', strtotime($rows->created_at . " + 2 days")); ?>
-    @if(date('Y-m-d') < $end_date) <div class="alert alert-{{ $rows->type }} alert-has-icon alert-dismissible show fade">
-        <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
-        <div class="alert-body">
-            <button class="close" data-dismiss="alert">
-                <span>&times;</span>
-            </button>
-            {{ $rows->message }}
-        </div>
-</div>
-@endif
-@endforeach
+    @php echo $notification_output @endphp
 <section class="section">
     <div class="row text-md-left text-sm-center">
         <div id="card-expenses" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -193,7 +181,7 @@
     <div class="row ">
         <div class="col-xl-3 col-lg-6">
             <div class="cards">
-                <div class="face l-bg-orange-dark">
+                <div class="face l-bg-red-dark">
                     <div class="head">
                         <div class="title">{{ __('Balance')}}</div>
                         <img src="{{ asset('assets/img/card-logo.svg') }}" alt="">
@@ -214,7 +202,7 @@
         </div>
         <div class="col-xl-3 col-lg-6">
             <div class="cards">
-                <div class="face l-bg-grey-dark">
+                <div class="face l-bg-grey">
                     <div class="head">
                         <div class="title">{{ __('Withdrawn')}}</div>
                         <img src="{{ asset('assets/img/card-logo.svg') }}" alt="">
@@ -235,7 +223,7 @@
         </div>
         <div class="col-xl-3 col-lg-6">
             <div class="cards">
-                <div class="face l-bg-cyan-dark">
+                <div class="face l-bg-purple">
                     <div class="head">
                         <div class="title">{{ __('Trivia Questions')}}</div>
                         <img src="{{ asset('assets/img/card-logo.svg') }}" alt="">
@@ -256,7 +244,7 @@
         </div>
         <div class="col-xl-3 col-lg-6">
             <div class="cards">
-                <div class="face l-bg-red">
+                <div class="face l-bg-orange">
                     <div class="head">
                         <div class="title">{{ __('Videos')}}</div>
                         <img src="{{ asset('assets/img/card-logo.svg') }}" alt="">
@@ -277,7 +265,7 @@
         </div>
         <div class="col-xl-3 col-lg-6">
             <div class="cards">
-                <div class="face l-bg-purple-dark">
+                <div class="face l-bg-green">
                     <div class="head">
                         <div class="title">{{ __('WhatsApp Status')}}</div>
                         <img src="{{ asset('assets/img/card-logo.svg') }}" alt="">
@@ -298,7 +286,7 @@
         </div>
         <div class="col-xl-3 col-lg-6">
             <div class="cards">
-                <div class="face l-bg-green-dark">
+                <div class="face l-bg-cyan">
                     <div class="head">
                         <div class="title text-white">{{ __('Ads Click')}}</div>
                         <img src="{{ asset('assets/img/card-logo.svg') }}" alt="">

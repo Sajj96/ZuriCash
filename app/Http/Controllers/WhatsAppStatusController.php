@@ -158,7 +158,7 @@ class WhatsAppStatusController extends Controller
             if ($status->delete()) {
                 return redirect()->route('whatsapp.list')->with('success', 'Status deleted successfully!');
             }
-        } catch (\Throwable $th) {
+        } catch (\Exception $th) {
             return redirect()->route('whatsapp.list')->with('error', 'Status was not deleted successfully!');
         }
     }

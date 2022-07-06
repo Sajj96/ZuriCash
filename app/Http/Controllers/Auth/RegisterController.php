@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Services\SMSService;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -86,8 +87,11 @@ class RegisterController extends Controller
     {
         $referrer = User::whereUsername(session()->pull('referrer'))->first();
         session(['country'=> $data['country']]);
+        $phone = str_replace('+','',$data['phone']);
+        $message = "Hongera Umemaliza usajili wa Akaunti yako ya ZURICASH. Fanya malipo ili Uweze kufadika na huduma zetu. \n\n\n";
+        $message .= "Congratulations You have completed the registration of your ZURICASH Account. Make a payment so that you can benefit from our services.";
 
-        User::create([
+        $user = User::create([
             'name'        => $data['name'],
             'username'    => $data['username'],
             'email'       => $data['email'],
@@ -99,6 +103,11 @@ class RegisterController extends Controller
             'active'      => User::USER_STATUS_BLOCKED
         ]);
 
+        if($user) {
+            $sms = app(SMSService::class);
+            $response = $sms->registration($phone, $message);
+        }
+
     }
 
     public function register(Request $request)
@@ -107,5 +116,18 @@ class RegisterController extends Controller
         event(new Registered($user = $this->create($request->all())));
         return $this->registered($request, $user)
            ?: redirect($this->redirectPath());
+    }
+
+    public function verifyTest()
+    {
+
+        $phone = '255659608434';
+        $smsOpt = app(SMSService::class);
+        $message = "Reached";
+        $response = $smsOpt->registration($phone, $message);
+        echo json_encode($response);
+        // // $manage = json_encode($response);
+        // $manage = $response->header;
+        // echo $manage;
     }
 }

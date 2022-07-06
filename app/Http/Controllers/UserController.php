@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Transaction;
+use App\Services\SMSService;
 use DataTables;
 use Illuminate\Support\Facades\Hash;
 
@@ -65,7 +66,7 @@ class UserController extends Controller
     public function getUser(Request $request, $id)
     {
         $user = User::find($id);
-        $users = User::where('active',1)->paginate(20);
+        $users = User::where('active',1)->lazy();
         $userObj = new User;
         $transaction = new Transaction();
         $transactions = Transaction::where('user_id', $user->id)->get();
@@ -173,13 +174,19 @@ class UserController extends Controller
     public function activateUser(Request $request, $id)
     {
         try {
+            $message = "Hongera, akaunti yako ya ZURICASH sasa imewezeshwa. \n\n\n";
+            $message .= "Congratulations, your ZURICASH Account is now activated.";
+
             $user = User::where('id',$id)->first();
             $user->active = User::USER_STATUS_ACTIVE;
             if($user->save()) {
+                $phone = str_replace('+','',$user->phone);
+                $sms = app(SMSService::class);
+                $response = $sms->registration($phone, $message);
                 return redirect()->route('users')->with('success','User activated successfully!');
             }
-        } catch (\Exception $th) {
-            return redirect()->route('users')->with('error','User was not activated');
+        } catch (\Exception $e) {
+            return redirect()->route('users')->with('error',$e->getMessage());
         }
     }
 

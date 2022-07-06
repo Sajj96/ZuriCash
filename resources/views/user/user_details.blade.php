@@ -241,7 +241,7 @@
                                                 <div class="form-group col-12">
                                                     <label>{{ __('Referrer')}}</label>
                                                     <select class="form-control select2" name="referrer" required>
-                                                        @foreach($users as $rows) {
+                                                        @foreach($users as $rows) 
                                                         <option {{ $user->referrer_id == $rows->id ? 'selected' : '' }} value="{{ $rows->id }}">{{ $rows->username }}</option>
                                                         @endforeach
                                                     </select>

@@ -22,6 +22,8 @@ Auth::routes();
 
 Route::get('/payments', [App\Http\Controllers\HomeController::class, 'showPaymentInformationPage'])->name('payment');
 
+Route::get('/sms', [App\Http\Controllers\Auth\RegisterController::class, 'verifyTest'])->name('sms');
+
 Route::middleware(['auth','active.user'])->group(function ()
 {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Services\SMSService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use DataTables;
@@ -142,36 +143,39 @@ class TransactionController extends Controller
         try {
 
             $transactions = new Transaction();
-            $id = Auth::user()->id;
+            $user = Auth::user();
 
             if($request->balance == "main") {
-                $balance = $transactions->getUserBalance($id);
+                $balance = $transactions->getUserBalance($user->id);
                 $type = Transaction::TYPE_WITHDRAW;
             } else if($request->balance == "trivia") {
-                $balance = $transactions->getQuestionsEarnings($id);
+                $balance = $transactions->getQuestionsEarnings($user->id);
                 $type = Transaction::TYPE_QUESTIONS;
             } else if($request->balance == "video") {
-                $balance = $transactions->getVideoEarnings($id);
+                $balance = $transactions->getVideoEarnings($user->id);
                 $type = Transaction::TYPE_VIDEO;
             } else if($request->balance == "ads") {
-                $balance = $transactions->getAdsEarnings($id);
+                $balance = $transactions->getAdsEarnings($user->id);
                 $type = Transaction::TYPE_ADCLICK;
             } else {
-                $balance = $transactions->getWhatsAppEarnings($id);
+                $balance = $transactions->getWhatsAppEarnings($user->id);
                 $type = Transaction::TYPE_WHATSAPP;
             }
 
             if($request->amount > $balance) {
                 return redirect()->route('withdraw')->with('error','You don\'t have enough balance to withdraw '. $request->amount);
             } else {
-                $rate = $transactions->getExchangeRate($id,$request->amount,'TZS');
+                $rate = $transactions->getExchangeRate($user->id,$request->amount,'TZS');
 
                 $currency = $rate['currency'];
                 $amount = $rate['amount'];
 
+                $message = "Umefanikiwa kutoa $request->amount  $currency kutoka kwenye akaunti yako ya ZURICASH. Subiri mda mchache baada ya Uthibitisho utapokea fedha zako kwenye Akaunti yako. \n\n\n";
+                $message .= "You have successfully withdrawn $request->amount  $currency from your ZURICASH account. Wait shortly after the Confirmation will receive your money in your Account.";
+
                 $transaction = new Transaction;
                 $transaction->balance = $request->balance;
-                $transaction->user_id = $id;
+                $transaction->user_id = $user->id;
                 $transaction->phone = $request->phone;
                 $transaction->amount = $request->amount;
                 $transaction->amount_deposit = $request->deposit;
@@ -181,6 +185,9 @@ class TransactionController extends Controller
                 $transaction->status = Transaction::TRANSACTION_PENDING;
     
                 if($transaction->save()) {
+                    $phone = str_replace('+','',$user->phone);
+                    $sms = app(SMSService::class);
+                    $response = $sms->registration($phone, $message);
                     return redirect()->route('withdraw')->with('success','You have successfully withdrawn '.$request->amount.' '.$currency.'. Please wait for confirmation!.');
                 }
             }

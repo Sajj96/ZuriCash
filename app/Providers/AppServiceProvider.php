@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\ExchangeRateService;
+use App\Services\SMSService;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -32,6 +33,12 @@ class AppServiceProvider extends ServiceProvider
                 'headers' => [
                     'Content-Type'  => 'application/json',
                 ]
+            ]));
+        });
+
+        $this->app->singleton(SMSService::class, function() {
+            return new SMSService(new \GuzzleHttp\Client([
+                'base_uri' => config('services.sms.uri')
             ]));
         });
     }

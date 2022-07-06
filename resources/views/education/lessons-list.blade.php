@@ -46,7 +46,7 @@
                                                 <form id="delete-form{{ $rows->id }}" action="{{ route('education.delete') }}" method="POST" class="d-none">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <input type="hidden" value="{{ $rows->id }}">
+                                                    <input type="hidden" name="id" value="{{ $rows->id }}">
                                                 </form>
                                             </td>
                                         </tr>
