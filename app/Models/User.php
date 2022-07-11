@@ -106,7 +106,7 @@ class User extends Authenticatable
 
     public function getAllUsers()
     {
-        $users = self::all()->count();
+        $users = self::count();
         return $users;
     }
 

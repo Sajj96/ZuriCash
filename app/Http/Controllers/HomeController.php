@@ -92,18 +92,20 @@ class HomeController extends Controller
             return view('home', compact('profit', 'balance', 'withdrawn', 'whatsapp', 'question', 'video', 'notification_output', 'currency', 'amount', 'ads', 'hours'));
         }
 
-        $users = User::where('active', 1)->lazy();
-
         $inactiveUsers = User::where('active', 0)->count();
 
         $newUsers = array();
 
-        foreach ($users as $key => $rows) {
-            $created_at = date('Y-m-d', strtotime($rows->created_at));
-            if ($created_at == $today) {
-                $newUsers[] = $rows;
+        User::where('active', 1)->chunk(500, function($users){
+            foreach ($users as $key => $rows) {
+                $created_at = date('Y-m-d', strtotime($rows->created_at));
+                $today = date('Y-m-d');
+                if ($created_at == $today) {
+                    $newUsers[] = $rows;
+                }
             }
-        }
+        });
+        
 
         return view('home', compact('all_users', 'active_users', 'withdraw_requests', 'system_earnings', 'transactionData', 'todayEarning', 'totalWithdraw', 'newUsers', 'currency', 'amount', 'inactiveUsers', 'hours'));
     }

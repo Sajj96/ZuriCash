@@ -16,7 +16,7 @@
                         <div class="card-header">
                             <h4>{{ __('Pay For A Downline From Main Balance')}}</h4>
                             <div class="card-header-action">
-                                <a href="#" class="btn btn-primary">{{ count(Auth::user()->referrals)  ?? '0' }} {{ __('References')}}</a>
+                                <a href="#" class="btn btn-primary">{{ count(Auth::user()->referrals)  ?? '0' }} {{ __('Referrals')}}</a>
                             </div>
                         </div>
                         @include('flash-message')

@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    $year = date('Y');
+    return view('welcome', [ 'year' => $year]);
 });
 
 Auth::routes();

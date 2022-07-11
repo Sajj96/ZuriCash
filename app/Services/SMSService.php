@@ -36,9 +36,17 @@ class SMSService {
                 $responseData = json_decode($response->getBody()->getContents()); 
                 echo json_encode($responseData);               
             }
-        } catch (ClientErrorResponseException $exception) {
-            $responseBody = $exception->getResponse()->getBody(true);
-            return response()->json($responseBody);
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            $response = $e->getMessage();
+            // $responseBodyAsString = $response->getBody()->getContents(); 
+            return redirect()->route('register')->with('error', $response);           
+        } catch (\GuzzleHttp\Exception\ConnectException $e) {
+            $response = $e->getMessage();            
+            return redirect()->route('register')->with('error', $response);
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+            $response = $e->getMessage();
+            // $responseBodyAsString = $response->getBody()->getContents(); 
+            return redirect()->route('register')->with('error', $response);           
         }
     }
 }

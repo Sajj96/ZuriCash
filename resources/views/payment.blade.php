@@ -97,72 +97,22 @@
                   <ul class="list-unstyled mt-4">
                     <li class="media row">
                       <!-- <img class="mr-1 img-fluid col-lg-3 col-md-9 col-sm-9 col-9" src="{{ asset('assets/img/Tanzania-Mpesa-logo.jpeg')}}" alt="Generic placeholder image"> -->
-                      <div class="media-body col-lg-9 col-md-12 col-sm-12 col-12">
-                        <h5 class="mt-0 mb-1">Jinsi Ya Kulipia(VODACOM)</h5>
+                      <div class="media-body col-lg-12 col-md-12 col-sm-12 col-12">
+                        <h5 class="mt-0 mb-1">KWA MITANDAO YA HALOTEL,VODACOM,AIRTEL NA TIGO.</h5>
                         <ol>
-                          <li>👉Finya *150*00#</li>
-                          <li>👉Tuma pesa</li>
-                          <li>👉Mitandao mingine</li>
-                          <li>👉Tigopesa</li>
-                          <li>👉Weka namba  <strong>5436869 (DELASKA MANAGEMENT)</strong></li>
-                          <li>👉Kiasi 12000/=TZS </li>
-                          <li>👉Weka namba ya siri</li>
-                          <li>👉Tuma</li>
-                        </ol>
-                      </div>
-                    </li>
-                    <li class="media row my-4">
-                      <!-- <img class="mr-3 img-fluid col-lg-3 col-md-9 col-sm-9 col-9" src="{{ asset('assets/img/airtel-money.png')}}" alt="Generic placeholder image"> -->
-                      <div class="media-body col-lg-9 col-md-12 col-sm-12 col-12">
-                        <h5 class="mt-0 mb-1">Jinsi Ya Kulipia(AIRTEL MONEY TANZANIA)</h5>
-                        <ol>
-                          <li>👉Finya *150*60#</li>
-                          <li>👉Tuma pesa</li>
-                          <li>👉Tuma mitandao mingine</li>
-                          <li>👉Tigopesa</li>
-                          <li>👉Chagua weka Lipa namba ya Tigo pesa</li>
-                          <li>👉WEKA <strong>5436869(DELASKA MANAGEMENT)</strong></li>
-                          <li>👉Kiasi 12000/=TZS </li>
-                          <li>👉Weka neno la siri</li>
-                          <li>👉Tuma</li>
-                        </ol>
-                      </div>
-                    </li>
-                    <li class="media row">
-                      <!-- <img class="mr-3 img-fluid col-lg-3 col-md-9 col-sm-9 col-9" src="{{ asset('assets/img/tigo-pesa.png')}}" alt="Generic placeholder image"> -->
-                      <div class="media-body col-lg-9 col-md-12 col-sm-12 col-12">
-                        <h5 class="mt-0 mb-1">Jinsi Ya Kulipia(TIGO)</h5>
-                        <ol>
-                          <li>👉Finya *150*01#</li>
-                          <li>👉Lipa kwa simu </li>
-                          <li>👉Kwenda Tigo pesa</li>
-                          <li>👉Weka Lipa namba <strong>5436869 (DELASKA MANAGEMENT)</strong></li>
-                          <li>👉Weka kiasi 12000/=TZS</li>
-                          <li>👉Weka namba ya siri</li>
-                          <li>👉Tuma </li>
-                        </ol>
-                      </div>
-                    </li>
-                    <li class="media row">
-                      <!-- <img class="mr-3 img-fluid col-lg-3 col-md-9 col-sm-9 col-9" src="{{ asset('assets/img/halopesa.png')}}" alt="Generic placeholder image"> -->
-                      <div class="media-body col-lg-9 col-md-12 col-sm-12 col-12">
-                        <h5 class="mt-0 mb-1">Jinsi Ya Kulipia(Halotel)</h5>
-                        <ol>
-                          <li>👉Finya *150*88#</li>
-                          <li>👉Tuma pesa</li>
-                          <li>👉Kwenda mitandao mingine</li>
-                          <li>👉Chagua Tigo pesa</li>
-                          <li>👉Weka namba simu ya mpokeaji <strong>5436869 (DELASKA MANAGEMENT)</strong> </li>
-                          <li>👉Weka kiasi 12000/=TZS</li>
-                          <li>👉Weka namba ya siri</li>
+                          <li>👉Piga *150*50*1#</li>
+                          <li>👉Ingiza pay namba, weka (60781812)</li>
+                          <li>👉Ingiza kiasi cha kulipia (12000/=TZS)</li>
+                          <li>👉Jina linakuja DELASKA ENTERPRISES hakiki kwa kuingiza namba 1</li>
+                          <li>👉Gusa Ok kusubiri sehemu ya kuweka namba yako ya siri</strong></li>
                           <li>👉Tuma</li>
                         </ol>
                       </div>
                     </li>
                   </ul>
-                  <p class="mt-4 mb-0">KWA DHARURA FANYA MALIPO KWENDA NAMBA 0713814109 JINA ADELA RICHARD MUGUSSI.</p>
-                  <p><strong>BAADA YA KUFANYA MALIPO TUMA TAARIFA ZAKO YAANI USERNAME, NAMBA ULIYOJISAJILIA NA MAJINA YA LAINI ULIYOFANYIA MALIPO KWENDA DELASKA MANAGEMENT. KISHA TUMA  TAARIFA HIZO KWA NAMBA YETU YA WHATSAPP HUDUMA KWA WATEJA KUFANYIWA ACTIVATION KWA ACCOUNT YAKO.. 0742602267(WhatsApp)</strong></p>
-                  <p>NA KWA MAWASILIANO ZAIDI PIGA  0786390106.</p>
+                  <p class="mt-4 mb-0">KWA DHARURA FANYA MALIPO KWENDA NAMBA <a href="tel:+255713814109">0713814109</a> JINA ADELA RICHARD MUGUSSI.</p>
+                  <p><strong>BAADA YA KUFANYA MALIPO TUMA TAARIFA ZAKO YAANI SCREENSHOT YA MUAMALA WAKO, USERNAME, NAMBA ULIYOJISAJILIA NA MAJINA YA LAINI ULIYOFANYIA MALIPO KWENDA DELASKA ENTERPRISES. KISHA TUMA  TAARIFA HIZO KWA NAMBA YETU YA WHATSAPP HUDUMA KWA WATEJA KUFANYIWA ACTIVATION KWA ACCOUNT YAKO.. <a href="tel:+255742602267">0742602267</a>(WhatsApp)</strong></p>
+                  <p>NA KWA MAWASILIANO ZAIDI PIGA  <a href="tel:+255786390106">0786390106</a>.</p>
                 </div>
               </div>
               @elseif($country == 'rw')
@@ -205,7 +155,7 @@
                   </ul>
                   <p>If you don't have the coin simply register yourself with BINANCE EXCHANGE where you will be able to buy them safely using P2P payments with your local Mobile money zen send the COINS To this Address 👇</p>
                   <p><strong>0xB8E0c7B0CB6FeA84DFaf3Cc3786201EE43299383</strong></p>
-                  <p>After all procedures send payments screenshots ZURICASH MANAGEMENT WhatsApp number. 255628334168</p>
+                  <p>After all procedures send payments screenshots ZURICASH MANAGEMENT WhatsApp number. <a href="tel:+255628334168">+255628334168</a></p>
                 </div>
               </div>
               @endif
