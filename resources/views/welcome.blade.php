@@ -91,15 +91,15 @@
                     <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
                         <div class="content">
                             <h3>Who We Are</h3>
-                            <h2>Expedita voluptas omnis cupiditate totam eveniet nobis sint iste. Dolores est repellat corrupti reprehenderit.</h2>
+                            <h4>{{ ucfirst(strtolower('ON OUR PLATFORM WE HAVE PREMIUM CRYPTO CURRENCY TEACHINGS AND MANY OTHER BENEFICIAL FEATURES WHICH WILL HELP YOUTH TO GET IN TOUCH WITH THE GROTH OF THIS NEW ERA OF TECHNOLOGY WHICH HELP MOST OF PEOPLE TO GAIN INCOME IN THEIR COMFORT ZONE.')) }}</h4>
                             <p>
                                 We provide services  24 hours / 7🔥 all client have equality  and we   appreciate you  all 😇👏
                             </p>
                         </div>
                     </div>
 
-                    <div class="col-lg-6 d-flex" data-aos="zoom-out" data-aos-delay="200">
-                        <img src="{{ asset('assets_landing/img/values-1.png')}}" class="img-fluid" alt="">
+                    <div class="col-lg-6 text-center d-flex" data-aos="zoom-out" data-aos-delay="200">
+                        <img src="{{ asset('assets_landing/img/values-1.png')}}" class="img-fluid" style="width: 100%;" alt="">
                     </div>
 
                 </div>
@@ -122,8 +122,8 @@
 
                     <div class="row">
 
-                        <div class="col-xl-4 text-center" data-aos="fade-right" data-aos-delay="100">
-                            <img src="{{ asset('assets_landing/img/values-2.png')}}" class="img-fluid p-4" alt="">
+                        <div class="col-xl-4 align-self-center text-center" data-aos="fade-right" data-aos-delay="100">
+                            <img src="{{ asset('assets_landing/img/values-2.png')}}" class="img-fluid" style="width: 100%;" alt="">
                         </div>
 
                         <div class="col-xl-8 d-flex content">
@@ -149,7 +149,7 @@
                                     <i class="ri-question-mark"></i>
                                     <div>
                                         <h4>Trivia Questions</h4>
-                                        <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+                                        <p>These are simple questions related to the community Sarounding us and if you answer these questions fluently within a specified time you will be paid🤩😌</p>
                                     </div>
                                 </div>
 
@@ -157,7 +157,7 @@
                                     <i class="ri-advertisement-line"></i>
                                     <div>
                                         <h4>ADs Click</h4>
-                                        <p>Expedita veritatis consequuntur nihil tempore laudantium vitae denat pacta</p>
+                                        <p>There will be  available  ads that will be placed on your account where each time you click on the ads you will be paid💰🍿</p>
                                     </div>
                                 </div>
 
@@ -165,7 +165,7 @@
                                     <i class="ri-whatsapp-line"></i>
                                     <div>
                                         <h4>WhatsApp Status</h4>
-                                        <p>Et fuga et deserunt et enim. Dolorem architecto ratione tensa raptor marte</p>
+                                        <p>Here our management provided you with various posters which u will  advertise via your  status and   you will get paid according to  the number of viewers you have.🥳</p>
                                     </div>
                                 </div>
 
@@ -173,7 +173,7 @@
                                     <i class="ri-video-line"></i>
                                     <div>
                                         <h4>Videos Watching</h4>
-                                        <p>Est autem dicta beatae suscipit. Sint veritatis et sit quasi ab aut inventore</p>
+                                        <p>Watch various videos which will be uploaded in our platform  and get paid.  Earn via short videos  and get paid 💰🔖</p>
                                     </div>
                                 </div>
 

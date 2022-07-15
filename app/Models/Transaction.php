@@ -168,13 +168,12 @@ class Transaction extends Model
     public function getWithdrawRequests()
     {
         $withdraw_request = DB::table('transactions')
-                        ->where('transaction_type', self::TYPE_WITHDRAW)
-                        //->orWhere('transaction_type', self::TYPE_WHATSAPP)
-                        //->orWhere('transaction_type', self::TYPE_VIDEO)
-                        //->orWhere('transaction_type', self::TYPE_QUESTIONS)
-                        //->orWhere('transaction_type', self::TYPE_ADCLICK)
-                        ->where('status', self::TRANSACTION_PENDING)
-                        ->get();
+                                ->join('users','transactions.user_id','=','users.id')
+                                ->select('transactions.*','users.username','users.name')
+                                ->where('transaction_type',Transaction::TYPE_WITHDRAW)
+                                ->where('status',Transaction::TRANSACTION_PENDING)
+                                ->get();
+                                
         $numRequest = count($withdraw_request) ?? 0;
         return $numRequest;
     }
