@@ -95,8 +95,8 @@ class LoginController extends Controller
         $user = User::where($login_type,$request->input('login'))->first();
         
         if($user) {
-            session(['country'=> $user->country]);
             if($user->active == 0) {
+                session(['country'=> $user->country]);
                 return view('payment');
             }
         }
