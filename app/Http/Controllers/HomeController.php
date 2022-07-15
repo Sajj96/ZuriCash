@@ -47,10 +47,43 @@ class HomeController extends Controller
 
         foreach ($transactionData as $key => $rows) {
             $created_at = date('Y-m-d', strtotime($rows->created_at));
+            $sum_earnings = 0;
+            $sum_withdraws = 0;
             if ($created_at == $today) {
-                $todayEarning += $rows->fee;
+                if($rows->currency == "KES") {
+                    $sum_earnings += $rows->fee / 0.05 ?? 0;
+                }
+                if($rows->currency == "UGX") {
+                    $sum_earnings += $rows->fee / 1.6 ?? 0;
+                }
+                if($rows->currency == "RWF") {
+                    $sum_earnings += $rows->fee / 0.44 ?? 0;
+                }
+                if($rows->currency == "USD") {
+                    $sum_earnings += $rows->fee / 0.0004 ?? 0;
+                }
+                if($rows->currency == "TZS") {
+                    $sum_earnings += $rows->fee;
+                }
+                $todayEarning += $sum_earnings;
             }
-            $totalWithdraw += $rows->amount;
+
+            if($rows->currency == "KES") {
+                $sum_withdraws += $rows->amount / 0.05 ?? 0;
+            }
+            if($rows->currency == "UGX") {
+                $sum_withdraws += $rows->amount / 1.6 ?? 0;
+            }
+            if($rows->currency == "RWF") {
+                $sum_withdraws += $rows->amount / 0.44 ?? 0;
+            }
+            if($rows->currency == "USD") {
+                $sum_withdraws += $rows->amount / 0.0004 ?? 0;
+            }
+            if($rows->currency == "TZS") {
+                $sum_withdraws += $rows->amount;
+            }
+            $totalWithdraw += $sum_withdraws;
         }
 
         $rate = $transactions->getExchangeRate($user->id, 12000, 'TZS');
@@ -95,16 +128,14 @@ class HomeController extends Controller
         $inactiveUsers = User::where('active', 0)->count();
 
         $newUsers = array();
+        $users = User::where('active', 1)->lazy();
 
-        User::where('active', 1)->chunk(500, function($users){
-            foreach ($users as $key => $rows) {
-                $created_at = date('Y-m-d', strtotime($rows->created_at));
-                $today = date('Y-m-d');
-                if ($created_at == $today) {
-                    $newUsers[] = $rows;
-                }
+        foreach ($users as $key => $rows) {
+            $created_at = date('Y-m-d', strtotime($rows->created_at));
+            if ($created_at == $today) {
+                $newUsers[] = $rows;
             }
-        });
+        }
         
 
         return view('home', compact('all_users', 'active_users', 'withdraw_requests', 'system_earnings', 'transactionData', 'todayEarning', 'totalWithdraw', 'newUsers', 'currency', 'amount', 'inactiveUsers', 'hours'));

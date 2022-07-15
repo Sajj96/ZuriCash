@@ -96,8 +96,8 @@ class LoginController extends Controller
         
         if($user) {
             if($user->active == 0) {
-                session(['country'=> $user->country]);
-                return view('payment');
+                $country = $user->country;
+                return view('payment', compact('country'));
             }
         }
 

@@ -24,7 +24,7 @@ class SMSService {
                     'Content-Type' => 'application/json'
                 ],
                 "json" => [
-                    'source_addr' => 'INFO',
+                    'source_addr' => 'ZURICASH',
                     'encoding'=>0,
                     'schedule_time' => '',
                     'message' => $message,

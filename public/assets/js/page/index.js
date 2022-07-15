@@ -71,12 +71,33 @@ function chart1() {
       const dateString = currentYear + "-" + (currentMonth) + "-" + currentDayOfMonth;
 
       console.log(week);
+      let weekEarning = 0;
+      let weekWithdraw = 0;
       
       if(dateString === week[0]) {
-          monWithdraw = monWithdraw + x.amount;
-          withdraw[0] = monWithdraw;
-          monEarnings =monEarnings + x.fee;
-          earning[0] = monEarnings;
+            if(x.currency == "KES") {
+                monWithdraw += x.amount / 0.05;
+                monEarnings += x.fee / 0.05;
+            }
+            if(x.currency == "UGX") {
+                monWithdraw += x.amount / 1.6;
+                monEarnings += x.fee / 1.6;
+            }
+            if(x.currency == "RWF") {
+                monWithdraw += x.amount / 0.44;
+                monEarnings += x.fee / 0.44;
+            }
+            if(x.currency == "USD") {
+                monWithdraw += x.amount / 0.05;
+                monEarnings += x.fee / 0.05;
+            }
+            if(x.currency == "TZS") {
+                monWithdraw += x.amount / 0.0004;
+                monEarnings += x.fee / 0.0004;
+            }
+
+          withdraw[0] += monWithdraw;
+          earning[0] += monEarnings;
       }
 
       if(dateString === week[1]) {
@@ -101,10 +122,29 @@ function chart1() {
       }
 
       if(dateString === week[4]) {
-          friWithdraw = friWithdraw + x.amount;
-          withdraw[4] = friWithdraw;
-          friEarnings =friEarnings + x.fee;
-          earning[4] = friEarnings;
+        if(x.currency == "KES") {
+            friWithdraw = friWithdraw + x.amount / 0.05 ;
+            friEarnings = friEarnings + x.fee / 0.05 ;
+        }
+        if(x.currency == "UGX") {
+            friWithdraw = friWithdraw + x.amount / 1.6 ;
+            friEarnings = friEarnings + x.fee / 1.6 ;
+        }
+        if(x.currency == "RWF") {
+            friWithdraw = friWithdraw + x.amount / 0.44 ;
+            friEarnings = friEarnings + x.fee / 0.44 ;
+        }
+        if(x.currency == "USD") {
+            friWithdraw = friWithdraw + x.amount / 0.0004 ;
+            friEarnings = friEarnings + x.fee / 0.0004 ;
+        }
+        if(x.currency == "TZS") {
+            friWithdraw = friWithdraw + x.amount ;
+            friEarnings = friEarnings + x.fee ;
+        }
+
+        withdraw[4] = friWithdraw;
+        earning[4] = friEarnings;
       }
 
       if(dateString === week[5]) {
@@ -183,7 +223,7 @@ function chart1() {
                 }
             },
             min: 0,
-            max: 100000
+            max: 1000000
         },
         legend: {
             position: "top",

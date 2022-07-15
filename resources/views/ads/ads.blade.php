@@ -25,7 +25,7 @@
                                 <div class="col-12 col-sm-6 col-md-6 col-lg-3">
                                     <article class="article">
                                         <div class="article-header">
-                                            <div class="article-image" data-background="{{ asset('storage/ads/'.$image_name)}}">
+                                            <div class="article-image" data-background="{{ $rows->ads_path }}">
                                             </div>
                                             <div class="article-title">
                                                 <h2><a href="#">{{ $rows->title }}</a></h2>
