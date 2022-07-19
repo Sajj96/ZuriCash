@@ -114,36 +114,3 @@ $(".decline").click(function () {
       }
     });
 });
-
-$(".delete").click(function () {
-  var id = $(this).data("id");
-  swal({
-    title: 'Are you sure?',
-    text: 'Once deleted, you will not be able to recover this question!',
-    icon: 'warning',
-    buttons: true,
-    dangerMode: true,
-  })
-    .then((willDelete) => {
-      if (willDelete) {
-        $.ajax({
-          url: delete_url,
-          method: "DELETE",
-          data: { 
-            _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            id : id 
-          },
-          success: function(response) {
-            swal('Poof! Question is deleted successfully', {
-              icon: 'success',
-            });
-            setTimeout(() => {
-              location.reload();
-            }, 1500);
-          }
-        });
-      } else {
-        swal('The question is safe!');
-      }
-    });
-});

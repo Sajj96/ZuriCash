@@ -2,41 +2,6 @@
 
 $(function () {
     chart1();
-    chart2();
-    chart3();
-    chart4();
-
-    // select all on checkbox click
-    $("[data-checkboxes]").each(function () {
-        var me = $(this),
-            group = me.data('checkboxes'),
-            role = me.data('checkbox-role');
-
-        me.change(function () {
-            var all = $('[data-checkboxes="' + group + '"]:not([data-checkbox-role="dad"])'),
-                checked = $('[data-checkboxes="' + group + '"]:not([data-checkbox-role="dad"]):checked'),
-                dad = $('[data-checkboxes="' + group + '"][data-checkbox-role="dad"]'),
-                total = all.length,
-                checked_length = checked.length;
-
-            if (role == 'dad') {
-                if (me.is(':checked')) {
-                    all.prop('checked', true);
-                } else {
-                    all.prop('checked', false);
-                }
-            } else {
-                if (checked_length >= total) {
-                    dad.prop('checked', true);
-                } else {
-                    dad.prop('checked', false);
-                }
-            }
-        });
-    });
-
-
-
 });
 
 
@@ -69,56 +34,109 @@ function chart1() {
       const currentYear = date.getUTCFullYear();
 
       const dateString = currentYear + "-" + (currentMonth) + "-" + currentDayOfMonth;
-
-      console.log(week);
-      let weekEarning = 0;
-      let weekWithdraw = 0;
       
       if(dateString === week[0]) {
-            if(x.currency == "KES") {
-                monWithdraw += x.amount / 0.05;
-                monEarnings += x.fee / 0.05;
-            }
-            if(x.currency == "UGX") {
-                monWithdraw += x.amount / 1.6;
-                monEarnings += x.fee / 1.6;
-            }
-            if(x.currency == "RWF") {
-                monWithdraw += x.amount / 0.44;
-                monEarnings += x.fee / 0.44;
-            }
-            if(x.currency == "USD") {
-                monWithdraw += x.amount / 0.05;
-                monEarnings += x.fee / 0.05;
-            }
-            if(x.currency == "TZS") {
-                monWithdraw += x.amount / 0.0004;
-                monEarnings += x.fee / 0.0004;
-            }
+        if(x.currency == "KES") {
+            monWithdraw = monWithdraw + x.amount / 0.05 ;
+            monEarnings = monEarnings + x.fee / 0.05 ;
+        }
+        if(x.currency == "UGX") {
+            monWithdraw = monWithdraw + x.amount / 1.6 ;
+            monEarnings = monEarnings + x.fee / 1.6 ;
+        }
+        if(x.currency == "RWF") {
+            monWithdraw = monWithdraw + x.amount / 0.44 ;
+            monEarnings = monEarnings + x.fee / 0.44 ;
+        }
+        if(x.currency == "USD") {
+            monWithdraw = monWithdraw + x.amount / 0.0004 ;
+            monEarnings = monEarnings + x.fee / 0.0004 ;
+        }
+        if(x.currency == "TZS") {
+            monWithdraw = monWithdraw + x.amount ;
+            monEarnings = monEarnings + x.fee ;
+        }
 
-          withdraw[0] += monWithdraw;
-          earning[0] += monEarnings;
+        withdraw[0] = monWithdraw;
+        earning[0] = monEarnings;
       }
 
       if(dateString === week[1]) {
-          tueWithdraw = tueWithdraw + x.amount;
-          withdraw[1] = tueWithdraw;
-          tueEarnings =tueEarnings + x.fee;
-          earning[1] = tueEarnings;
+        if(x.currency == "KES") {
+            tueWithdraw = tueWithdraw + x.amount / 0.05 ;
+            tueEarnings = tueEarnings + x.fee / 0.05 ;
+        }
+        if(x.currency == "UGX") {
+            tueWithdraw = tueWithdraw + x.amount / 1.6 ;
+            tueEarnings = tueEarnings + x.fee / 1.6 ;
+        }
+        if(x.currency == "RWF") {
+            tueWithdraw = tueWithdraw + x.amount / 0.44 ;
+            tueEarnings = tueEarnings + x.fee / 0.44 ;
+        }
+        if(x.currency == "USD") {
+            tueWithdraw = tueWithdraw + x.amount / 0.0004 ;
+            tueEarnings = tueEarnings + x.fee / 0.0004 ;
+        }
+        if(x.currency == "TZS") {
+            tueWithdraw = tueWithdraw + x.amount ;
+            tueEarnings = tueEarnings + x.fee ;
+        }
+
+        withdraw[1] = tueWithdraw;
+        earning[1] = tueEarnings;
       }
 
       if(dateString === week[2]) {
-          wedWithdraw = wedWithdraw + x.amount;
-          withdraw[2] = wedWithdraw;
-          wedEarnings =wedEarnings + x.fee;
-          earning[2] = wedEarnings;
+        if(x.currency == "KES") {
+            wedWithdraw = wedWithdraw + x.amount / 0.05 ;
+            wedEarnings = wedEarnings + x.fee / 0.05 ;
+        }
+        if(x.currency == "UGX") {
+            wedWithdraw = wedWithdraw + x.amount / 1.6 ;
+            wedEarnings = wedEarnings + x.fee / 1.6 ;
+        }
+        if(x.currency == "RWF") {
+            wedWithdraw = wedWithdraw + x.amount / 0.44 ;
+            wedEarnings = wedEarnings + x.fee / 0.44 ;
+        }
+        if(x.currency == "USD") {
+            wedWithdraw = wedWithdraw + x.amount / 0.0004 ;
+            wedEarnings = wedEarnings + x.fee / 0.0004 ;
+        }
+        if(x.currency == "TZS") {
+            wedWithdraw = wedWithdraw + x.amount ;
+            wedEarnings = wedEarnings + x.fee ;
+        }
+
+        withdraw[2] = wedWithdraw;
+        earning[2] = wedEarnings;
       }
 
       if(dateString === week[3]) {
-          thurWithdraw = thurWithdraw + x.amount;
-          withdraw[3] = thurWithdraw;
-          thurEarnings =thurEarnings + x.fee;
-          earning[3] = thurEarnings;
+        if(x.currency == "KES") {
+            thurWithdraw = thurWithdraw + x.amount / 0.05 ;
+            thurEarnings = thurEarnings + x.fee / 0.05 ;
+        }
+        if(x.currency == "UGX") {
+            thurWithdraw = thurWithdraw + x.amount / 1.6 ;
+            thurEarnings = thurEarnings + x.fee / 1.6 ;
+        }
+        if(x.currency == "RWF") {
+            thurWithdraw = thurWithdraw + x.amount / 0.44 ;
+            thurEarnings = thurEarnings + x.fee / 0.44 ;
+        }
+        if(x.currency == "USD") {
+            thurWithdraw = thurWithdraw + x.amount / 0.0004 ;
+            thurEarnings = thurEarnings + x.fee / 0.0004 ;
+        }
+        if(x.currency == "TZS") {
+            thurWithdraw = thurWithdraw + x.amount ;
+            thurEarnings = thurEarnings + x.fee ;
+        }
+
+        withdraw[3] = thurWithdraw;
+        earning[3] = thurEarnings;
       }
 
       if(dateString === week[4]) {
@@ -148,17 +166,55 @@ function chart1() {
       }
 
       if(dateString === week[5]) {
-          satWithdraw = satWithdraw + x.amount;
-          withdraw[5] = satWithdraw;
-          satEarnings =satEarnings + x.fee;
-          earning[5] = satEarnings;
+        if(x.currency == "KES") {
+            satWithdraw = satWithdraw + x.amount / 0.05 ;
+            satEarnings = satEarnings + x.fee / 0.05 ;
+        }
+        if(x.currency == "UGX") {
+            satWithdraw = satWithdraw + x.amount / 1.6 ;
+            satEarnings = satEarnings + x.fee / 1.6 ;
+        }
+        if(x.currency == "RWF") {
+            satWithdraw = satWithdraw + x.amount / 0.44 ;
+            satEarnings = satEarnings + x.fee / 0.44 ;
+        }
+        if(x.currency == "USD") {
+            satWithdraw = satWithdraw + x.amount / 0.0004 ;
+            satEarnings = satEarnings + x.fee / 0.0004 ;
+        }
+        if(x.currency == "TZS") {
+            satWithdraw = satWithdraw + x.amount ;
+            satEarnings = satEarnings + x.fee ;
+        }
+
+        withdraw[5] = satWithdraw;
+        earning[5] = satEarnings;
       }
 
       if(dateString === week[6]) {
-          sunWithdraw = sunWithdraw + x.amount;
-          withdraw[6] = sunWithdraw;
-          sunEarnings =sunEarnings + x.fee;
-          earning[6] = sunEarnings;
+        if(x.currency == "KES") {
+            sunWithdraw = sunWithdraw + x.amount / 0.05 ;
+            sunEarnings = sunEarnings + x.fee / 0.05 ;
+        }
+        if(x.currency == "UGX") {
+            sunWithdraw = sunWithdraw + x.amount / 1.6 ;
+            sunEarnings = sunEarnings + x.fee / 1.6 ;
+        }
+        if(x.currency == "RWF") {
+            sunWithdraw = sunWithdraw + x.amount / 0.44 ;
+            sunEarnings = sunEarnings + x.fee / 0.44 ;
+        }
+        if(x.currency == "USD") {
+            sunWithdraw = sunWithdraw + x.amount / 0.0004 ;
+            sunEarnings = sunEarnings + x.fee / 0.0004 ;
+        }
+        if(x.currency == "TZS") {
+            sunWithdraw = sunWithdraw + x.amount ;
+            sunEarnings = sunEarnings + x.fee ;
+        }
+
+        withdraw[6] = sunWithdraw;
+        earning[6] = sunEarnings;
       }
     });
 
@@ -247,212 +303,4 @@ function chart1() {
     var chart = new ApexCharts(document.querySelector("#chart1"), options);
 
     chart.render();
-}
-
-function chart2() {
-    var options = {
-        chart: {
-            height: 250,
-            type: 'bar',
-            stacked: true,
-            toolbar: {
-                show: false
-            },
-            zoom: {
-                enabled: true
-            }
-        },
-        responsive: [{
-            breakpoint: 480,
-            options: {
-                legend: {
-                    position: 'bottom',
-                    offsetX: -10,
-                    offsetY: 0
-                }
-            }
-        }],
-        plotOptions: {
-            bar: {
-                horizontal: false,
-                columnWidth: '200px',
-            },
-        },
-        series: [{
-            name: 'PRODUCT A',
-            data: [44, 55, 41, 67, 22, 43]
-        }, {
-            name: 'PRODUCT B',
-            data: [13, 23, 20, 8, 13, 27]
-        }, {
-            name: 'PRODUCT C',
-            data: [11, 17, 15, 15, 21, 14]
-        }],
-        xaxis: {
-            type: 'datetime',
-            categories: ['01/01/2019 GMT', '01/02/2019 GMT', '01/03/2019 GMT', '01/04/2019 GMT', '01/05/2019 GMT', '01/06/2019 GMT'],
-            labels: {
-                style: {
-                    colors: "#9aa0ac"
-                }
-            }
-        },
-        yaxis: {
-            labels: {
-                style: {
-                    color: "#9aa0ac"
-                }
-            }
-        },
-        legend: {
-            position: 'top',
-            offsetY: 40,
-            show: false,
-        },
-        fill: {
-            opacity: 1
-        },
-    }
-
-    var chart = new ApexCharts(
-        document.querySelector("#chart2"),
-        options
-    );
-
-    chart.render();
-
-}
-
-function chart3() {
-    var options = {
-        chart: {
-            height: 250,
-            type: 'line',
-            zoom: {
-                enabled: false
-            },
-            toolbar: {
-                show: false
-            },
-
-        },
-        dataLabels: {
-            enabled: false
-        },
-        stroke: {
-            width: [5, 7, 5],
-            curve: 'straight',
-            dashArray: [0, 8, 5]
-        },
-        series: [{
-            name: "Option 1",
-            data: [45, 52, 38, 24, 33, 26, 21, 20]
-        },
-        {
-            name: "Option 2",
-            data: [35, 41, 62, 42, 13, 18, 29, 37]
-        },
-        {
-            name: 'Option 3',
-            data: [87, 57, 74, 99, 75, 38, 62, 47]
-        }
-        ],
-        legend: {
-            show: false,
-        },
-        markers: {
-            size: 0,
-
-            hover: {
-                sizeOffset: 6
-            }
-        },
-        xaxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug'
-            ],
-            labels: {
-                style: {
-                    colors: "#9aa0ac"
-                }
-            }
-        },
-        yaxis: {
-            labels: {
-                style: {
-                    color: "#9aa0ac"
-                }
-            }
-        },
-        tooltip: {
-
-        },
-        grid: {
-            borderColor: '#f1f1f1',
-        }
-    }
-
-    var chart = new ApexCharts(
-        document.querySelector("#chart3"),
-        options
-    );
-
-    chart.render();
-}
-function chart4() {
-    var options = {
-        chart: {
-            height: 250,
-            type: 'area',
-            toolbar: {
-                show: false
-            },
-
-        },
-        colors: ['#999b9c', '#4CC2B0'], // line color
-        fill: {
-            colors: ['#999b9c', '#4CC2B0'] // fill color
-        },
-        dataLabels: {
-            enabled: false
-        },
-        stroke: {
-            curve: 'smooth'
-        },
-        markers: {
-            colors: ['#999b9c', '#4CC2B0'] // marker color
-        },
-        series: [{
-            name: 'series1',
-            data: [31, 40, 28, 51, 22, 64, 80]
-        }, {
-            name: 'series2',
-            data: [11, 32, 67, 32, 44, 52, 41]
-        }],
-        legend: {
-            show: false,
-        },
-        xaxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July'],
-            labels: {
-                style: {
-                    colors: "#9aa0ac"
-                }
-            },
-        },
-        yaxis: {
-            labels: {
-                style: {
-                    color: "#9aa0ac"
-                }
-            }
-        },
-    }
-
-    var chart = new ApexCharts(
-        document.querySelector("#chart4"),
-        options
-    );
-
-    chart.render();
-
 }
